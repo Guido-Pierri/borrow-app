@@ -4,7 +4,7 @@ import { NextPage } from "next"
 
 interface Props {}
 
-const TestProps: NextPage<Props> = ({}) => {
+const Product: NextPage<Props> = ({}) => {
   return (
     <div className="bg-[#F3F0EC] max-w-sm">
       <section>
@@ -56,4 +56,4 @@ const TestProps: NextPage<Props> = ({}) => {
   )
 }
 
-export default TestProps
+export default Product
