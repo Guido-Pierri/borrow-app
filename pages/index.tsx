@@ -11,7 +11,7 @@ const Index: NextPage<Props> = ({}) => {
 
       <section className="flex flex-column justify-center">
         <Link href={"/login/login"}>
-          <h1>Wellcome to BORROW!</h1>
+          <h1>Welcome to BORROW!</h1>
         </Link>
       </section>
     </div>
