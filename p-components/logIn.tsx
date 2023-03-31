@@ -16,7 +16,7 @@ const LogIn = ({}) => {
   return (
     <div className=" justify-center text-center ">
       <div className="bg-[#F5F5F5]" onSubmit={handleSubmit}>
-        <h1 className="text-lg ">
+        <h1 className="text-lg pt-8">
           Välkommen till Borrow! <br />
           Börja med att logga in.
         </h1>
@@ -77,7 +77,7 @@ const LogIn = ({}) => {
           <a href={"/"}>
             <div style={{ color: "grey" }} className="mx-3 text-3xl">
               <BsApple />
-              <br className="my-40" />
+              <br className="" />
             </div>
           </a>
         </footer>
