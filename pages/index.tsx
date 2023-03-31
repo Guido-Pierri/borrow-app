@@ -11,7 +11,7 @@ const Index: NextPage<Props> = ({}) => {
 
       <section>
         <h1>Wellcome to BORROW!</h1>
-        <Link>
+        <Link href={"/login/login"}>
           <h2>LOGIN</h2>
         </Link>
         <h2>LOGIN</h2>
