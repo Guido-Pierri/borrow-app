@@ -1,7 +1,7 @@
 import Products from "@/p-components/products"
 import Header from "@/p-components/header"
 import { NextPage } from "next"
-
+import Link from "next/link"
 interface Props {}
 
 const Index: NextPage<Props> = ({}) => {
@@ -11,6 +11,10 @@ const Index: NextPage<Props> = ({}) => {
 
       <section>
         <h1>Wellcome to BORROW!</h1>
+        <Link>
+          <h2>LOGIN</h2>
+        </Link>
+        <h2>LOGIN</h2>
       </section>
     </div>
   )
