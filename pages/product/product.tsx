@@ -1,5 +1,5 @@
 import Products from "@/p-components/products"
-import Header from "@/p-components/header2"
+import Header from "@/p-components/header"
 import { NextPage } from "next"
 
 interface Props {}

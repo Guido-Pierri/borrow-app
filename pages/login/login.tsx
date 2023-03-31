@@ -1,6 +1,6 @@
 import { NextPage } from "next"
 import LogIn from "@/p-components/logIn"
-import Header from "@/p-components/header2"
+import Header from "@/p-components/header"
 interface Props {}
 
 const LoginPage: NextPage<Props> = ({}) => {

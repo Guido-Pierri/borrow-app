@@ -1,24 +1,29 @@
-import Link from "next/link"
-import { FcGoogle } from "react-icons/fc"
-import { GiHamburgerMenu } from "react-icons/gi"
-import { BsFacebook, BsApple, BsFillChatLeftTextFill } from "react-icons/bs"
+import { RxHamburgerMenu } from "react-icons/rx"
+import { BsChatLeftText } from "react-icons/bs"
 
-export default function Header() {
+const Header2 = ({}) => {
   return (
-    <div>
-      <nav>
-        <div className="border text-white flex justify-between content-center h-20">
-          <div className="">
-            <GiHamburgerMenu /> {/*Make icons a bit bigger in size*/}
+    <div className="flex items-top justify-center ">
+      <nav className="w-full">
+        <div className="flex space-x-8 p-3 rounded-sm bg-[#DBE3DF] justify-center">
+          <div className="p-3 mt-3 text-3xl text-[#7BAEAB]">
+            <button>
+              <RxHamburgerMenu />
+            </button>
           </div>
-          <h1>
-            <b>Borrow</b>
-          </h1>
-          <div className="">
-            <BsFillChatLeftTextFill /> {/*Make icons a bit bigger in size*/}
-          </div>
+
+          <header className="mt-4 text-[#C7784C]">
+            <b className="text-3xl">Borrow</b>
+          </header>
+          <a href="/">
+            <div className="p-3 mt-3 text-3xl text-[#7BAEAB]">
+              <BsChatLeftText />
+            </div>
+          </a>
         </div>
       </nav>
     </div>
   )
 }
+
+export default Header2
