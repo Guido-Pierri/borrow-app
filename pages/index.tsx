@@ -9,7 +9,9 @@ const Index: NextPage<Props> = ({}) => {
     <div className="bg-[#F3F0EC] max-w-sm">
       <Header></Header>
 
-      <section></section>
+      <section>
+        <h1>Wellcome to BORROW!</h1>
+      </section>
     </div>
   )
 }
