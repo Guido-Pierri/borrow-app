@@ -5,7 +5,7 @@ interface Props {}
 
 const LoginPage: NextPage<Props> = ({}) => {
   return (
-    <div>
+    <div className="max-w-sm">
       <Header></Header>
       <LogIn></LogIn>
     </div>
