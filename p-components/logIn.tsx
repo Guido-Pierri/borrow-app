@@ -14,7 +14,7 @@ const LogIn = ({}) => {
   }
 
   return (
-    <div className=" justify-center text-center ">
+    <div className=" justify-center text-center">
       <div className="bg-[#F5F5F5]" onSubmit={handleSubmit}>
         <h1 className="text-lg pt-8">
           Välkommen till Borrow! <br />
@@ -23,7 +23,7 @@ const LogIn = ({}) => {
         <form className=" my-12 ">
           <label>
             <input
-              className="rounded py-4 px-7 "
+              className="rounded py-4 px-7"
               placeholder="Användarnamn..."
               type="text"
               value={name}
@@ -46,7 +46,7 @@ const LogIn = ({}) => {
             <Link href={"/"}>
               <div
                 className=" text-xl mb-2 
-        rounded bg-[#7BAEAB] py-3 w-[221px] "
+        rounded bg-[#7BAEAB] py-3 w-[256px] "
               >
                 <button
                   type="submit"
