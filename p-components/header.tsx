@@ -12,9 +12,9 @@ const Header2 = ({}) => {
             </button>
           </div>
 
-          <header className="mt-4 text-[#C7784C]">
+          <span className="mt-4 text-[#C7784C]">
             <b className="text-3xl">Borrow</b>
-          </header>
+          </span>
           <a href="/">
             <div className="p-3 mt-3 text-3xl text-[#7BAEAB]">
               <BsChatLeftText />
