@@ -1,6 +1,5 @@
 import Products from "@/p-components/products"
-import Product from "@/p-components/products"
-//import Header from "@/p-components/header"
+import Header from "@/p-components/header"
 import { NextPage } from "next"
 
 interface Props {}
@@ -8,7 +7,9 @@ interface Props {}
 const TestProps: NextPage<Props> = ({}) => {
   return (
     <div className="bg-[#F3F0EC] max-w-sm">
-      <section>{/* <Header></Header> */}</section>
+      <section>
+        <Header></Header>
+      </section>
       {/*<section className="p-8 grid grid-cols-2 place-content-center  bg-[#DBE3DF]">
         <article className="p-4">
           <Product
