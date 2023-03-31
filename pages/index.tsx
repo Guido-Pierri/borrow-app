@@ -9,12 +9,10 @@ const Index: NextPage<Props> = ({}) => {
     <div className="bg-[#F3F0EC] max-w-sm">
       <Header></Header>
 
-      <section>
-        <h1>Wellcome to BORROW!</h1>
+      <section className="flex flex-column justify-center">
         <Link href={"/login/login"}>
-          <h2>LOGIN</h2>
+          <h1>Wellcome to BORROW!</h1>
         </Link>
-        <h2>LOGIN</h2>
       </section>
     </div>
   )
