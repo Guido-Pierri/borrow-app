@@ -43,7 +43,7 @@ const LogIn = ({}) => {
           </label>
 
           <div className="flex items-top justify-center my-12">
-            <Link href={"/product/product"}>
+            <Link href={"/products"}>
               <div
                 className=" text-xl mb-2 
         rounded bg-[#7BAEAB] py-3 w-[256px] "

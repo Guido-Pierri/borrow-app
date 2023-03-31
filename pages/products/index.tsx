@@ -4,7 +4,7 @@ import { NextPage } from "next"
 
 interface Props {}
 
-const Product: NextPage<Props> = ({}) => {
+const Index: NextPage<Props> = ({}) => {
   return (
     <div className="bg-[#F3F0EC] max-w-sm">
       <section>
@@ -56,4 +56,4 @@ const Product: NextPage<Props> = ({}) => {
   )
 }
 
-export default Product
+export default Index

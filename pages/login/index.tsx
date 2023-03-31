@@ -3,7 +3,7 @@ import LogIn from "@/p-components/logIn"
 import Header from "@/p-components/header"
 interface Props {}
 
-const LoginPage: NextPage<Props> = ({}) => {
+const Index: NextPage<Props> = ({}) => {
   return (
     <div className="max-w-sm">
       <Header></Header>
@@ -12,4 +12,4 @@ const LoginPage: NextPage<Props> = ({}) => {
   )
 }
 
-export default LoginPage
+export default Index
