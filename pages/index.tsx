@@ -6,12 +6,12 @@ interface Props {}
 
 const Index: NextPage<Props> = ({}) => {
   return (
-    <div className="bg-[#F3F0EC] max-w-sm">
+    <div className="bg-[#F3F0EC] max-w-sm h-screen">
       <Header></Header>
 
       <section className="flex flex-column justify-center">
         <Link href={"/login/login"}>
-          <h1>Welcome to BORROW!</h1>
+          <h1 className="pt-10">Welcome to BORROW!</h1>
         </Link>
       </section>
     </div>
