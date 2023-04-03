@@ -30,18 +30,16 @@ const products = [
     price: "$35",
     imageSrc:
       "https://images-na.ssl-images-amazon.com/images/I/916YJyJGfdL.jpg",
-    imageAlt:
-      "Olive drab green insulated bottle with flared screw lid and flat top.",
+    imageAlt: "",
   },
   {
     id: 3,
-    name: "Chair",
+    name: "Office Chair",
     href: "#",
     price: "$89",
     imageSrc:
       "https://i5.walmartimages.com/asr/88c4906f-0c30-40c7-aef6-b67ec3fbbdf0.85f44ef61cc777e88292ab6faaa7c402.jpeg",
-    imageAlt:
-      "Person using a pen to cross a task off a productivity paper card.",
+    imageAlt: "",
   },
   {
     id: 4,
@@ -60,8 +58,7 @@ const products = [
     price: "$15",
     imageSrc:
       "https://cdnimg.webstaurantstore.com/images/products/xxl/540645/1978166.jpg",
-    imageAlt:
-      "Hand holding black machined steel mechanical pencil with brass tip and top.",
+    imageAlt: "",
   },
   {
     id: 6,
@@ -70,7 +67,7 @@ const products = [
     price: "$15",
     imageSrc:
       "https://i5.walmartimages.com/asr/200b2856-a500-494d-9903-4d3f894fca0b.792b3b384eb97a8c51d55df8b4ac5e3c.jpeg?odnWidth=1000&odnHeight=1000&odnBg=ffffff",
-    imageAlt: "Thermos.",
+    imageAlt: "Waffle maker",
   },
   // More products...
 ]
