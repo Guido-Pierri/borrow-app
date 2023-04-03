@@ -14,73 +14,93 @@ const LogIn = ({}) => {
   }
 
   return (
-    <div className=" justify-center text-center">
-      <div className="bg-[#F5F5F5]" onSubmit={handleSubmit}>
-        <h1 className="text-lg pt-8">
-          Välkommen till Borrow! <br />
-          Börja med att logga in.
-        </h1>
-        <form className=" my-12 ">
-          <label>
-            <input
-              className="rounded py-4 px-7"
-              placeholder="Användarnamn..."
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-          <br />
-          <label>
-            <br />
-            <input
-              className="rounded py-4 px-7"
-              placeholder="Lösenord..."
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-
-          <div className="flex items-top justify-center my-12">
-            <Link href={"/products"}>
-              <div
-                className=" text-xl mb-2 
-        rounded bg-[#7BAEAB] py-3 w-[256px] "
-              >
-                <button
-                  type="submit"
-                  className=" 
-          rounded-sm font-bold text-white 
-         "
-                >
-                  Logga in
-                </button>
+    <div className=" flex items-center justify-center text-center bg-[#F3F0EC]">
+      <div className="" onSubmit={handleSubmit}>
+        {" "}
+        {/*bg-[#F5F5F5], på div innan form*/}
+        <div className=" justify-center ml-2 mt-24 ">
+          <div className="border-[#7BAEAB] border w-[250px] py-4 my-3">
+            <a href={"/"}>
+              <div className="mx-5 text-3xl outline-blue-500 flex flex-row ">
+                <FcGoogle />
+                <p className=" text-base ml-4">Fortsätt med Google</p>
               </div>
-            </Link>
+            </a>
           </div>
-        </form>
-        <p className="">Eller fortsätt med</p>
-        <footer className="flex space-x-4 justify-center mt-10">
-          <a href={"/"}>
-            <div className="mx-3 text-3xl">
-              <FcGoogle />
+
+          <div className="border-[#7BAEAB] border w-[250px] py-4">
+            <a href={"/"}>
+              <div className="mx-5 text-3xl text-[#46649D] flex flex-row  ">
+                <BsFacebook />
+                <p className="text-base text-[#020617] ml-4">
+                  Fortsätt med Facebook
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <p className="mt-12">eller</p>
+        {/*<div className=" ml-2 justify-center mt-16">
+        <button>
+          <div className="mx-4 text-2xl text-[#7BAEAB]  flex flex-row space-x-[126px] my-2">
+            <p className=" text-base text-[#020617]">Logga in</p>
+            <IoIosArrowDown />
+          </div>
+        </button>
+        <br />
+        <button className="mt-6">
+          <div className="mx-4 text-2xl text-[#7BAEAB]  flex flex-row space-x-[100px] ">
+            <p className=" text-base text-[#020617]">Skapa konto</p>
+            <IoIosArrowDown />
+          </div>
+        </button>
+</div>*/}
+        {
+          <form className=" my-12 ">
+            <label>
+              <input
+                className="rounded py-4 px-7 "
+                placeholder="Epost..."
+                type="email"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              <br />
+              <input
+                className="rounded py-4 px-7"
+                placeholder="Lösenord..."
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+
+            <div className="flex items-top justify-center my-12">
+              <Link href={"/products"}>
+                <div
+                  className=" text-xl mb-2 
+      rounded bg-[#7BAEAB] py-3 w-[221px] "
+                >
+                  <button
+                    type="submit"
+                    className=" 
+        rounded-sm font-bold text-white 
+       "
+                  >
+                    Logga in
+                  </button>
+                </div>
+              </Link>
             </div>
-          </a>
-          <br />
-          <a href={"/"}>
-            <div className="mx-3 text-3xl text-[#46649D]">
-              <BsFacebook />
-            </div>
-          </a>
-          <br />
-          <a href={"/"}>
-            <div style={{ color: "grey" }} className="mx-3 text-3xl">
-              <BsApple />
-              <br className="" />
-            </div>
-          </a>
-        </footer>
+            <Link href={"/"}>
+              <p>Har du inte ett konto? Registrera dig här</p>
+            </Link>
+          </form>
+        }
+        <br className="my-40" />
       </div>
     </div>
   )
