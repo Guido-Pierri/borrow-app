@@ -8,9 +8,26 @@ import ReactDOM from "react-dom/client"
 const LogIn = ({}) => {
   const [epost, setEpost] = useState("")
   const [password, setPassword] = useState("")
+  const [validMessageEmail, setValidMessagEmail] = useState("")
+  const [validMessagePassword, setValidMessagePassword] = useState("")
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     console.log(epost, password)
+  }
+
+  const validation = () => {
+    const emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+    const passwordRegEx = new RegExp(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+    )
+
+    if (!emailRegEx.test(epost) || epost === "") {
+      setValidMessagEmail("Epost är inte i giltig format!")
+    } else if (emailRegEx) {
+    }
+    if (!passwordRegEx.test(password) || password === "") {
+      setValidMessagePassword("Lösenord är inte i giltig format!")
+    }
   }
 
   return (
@@ -50,6 +67,7 @@ const LogIn = ({}) => {
               />
             </label>
             <br />
+            {validMessageEmail}
             <label>
               <br />
               <input
@@ -60,14 +78,16 @@ const LogIn = ({}) => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
-
+            <br />
+            {validMessagePassword}
             <div className="flex items-top justify-center my-12">
-              <Link href={"/products"}>
+              <Link href={""}>
                 <div
                   className=" text-xl mb-2 
       rounded bg-[#7BAEAB] py-3 w-[221px] "
                 >
                   <button
+                    onClick={validation}
                     type="submit"
                     className=" 
         rounded-sm font-bold text-white 
