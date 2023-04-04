@@ -81,7 +81,9 @@ const LogIn = ({}) => {
             <br />
             {validMessagePassword}
             <div className="flex items-top justify-center my-12">
-              <Link href={""}>
+              <Link href={"/products"}>
+                {" "}
+                {/*Regex fungerar, det syns inte i och med att länken leder till en annan sida*/}
                 <div
                   className=" text-xl mb-2 
       rounded bg-[#7BAEAB] py-3 w-[221px] "
