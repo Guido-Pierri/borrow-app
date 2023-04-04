@@ -6,8 +6,8 @@ import { SyntheticEvent, useState } from "react"
 import ReactDOM from "react-dom/client"
 
 const LogIn = ({}) => {
-  const [epost, setEpost] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
+  const [epost, setEpost] = useState("")
+  const [password, setPassword] = useState("")
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     console.log(epost, password)
@@ -16,7 +16,6 @@ const LogIn = ({}) => {
   return (
     <div className=" flex items-center justify-center text-center bg-[#F3F0EC]">
       <div className="" onSubmit={handleSubmit}>
-        {" "}
         <div className=" justify-center ml-4 mt-24 ">
           <div className="border-[#7BAEAB] border w-[250px] py-4 my-3">
             <a href={"/"}>
@@ -80,7 +79,7 @@ const LogIn = ({}) => {
               </Link>
             </div>
             <Link href={"/"}>
-              <p className="underline ...">
+              <p className="underline">
                 Har du inte ett konto? Registrera dig här
               </p>
             </Link>
