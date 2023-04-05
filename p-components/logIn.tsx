@@ -18,7 +18,7 @@ const LogIn = ({}) => {
     console.log(email, password)
   }
 
-  const validation = () => {
+  /*const validation = () => {
     const emailRegEx =
       /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/i
 
@@ -36,7 +36,7 @@ const LogIn = ({}) => {
     } else if (!passwordRegEx.test(password)) {
       setValidMessagePassword("Vänligen ange ett giltigt lösenord!")
     }
-  }
+  }*/
 
   return (
     <div className=" flex items-center justify-center text-center ">
@@ -119,13 +119,13 @@ const LogIn = ({}) => {
             {validMessagePassword}
 
             <div className="flex items-top justify-center my-12 ">
-              <Link href={"/"}>
+              <Link href={"/products"}>
                 <div
                   className=" text-xl mb-2 
         rounded bg-[#9EBB9D] py-3 border w-[265px] "
                 >
                   <button
-                    onClick={validation}
+                    /*onClick={validation}*/
                     type="submit"
                     className=" 
           rounded-sm text-[17px] text-black 
