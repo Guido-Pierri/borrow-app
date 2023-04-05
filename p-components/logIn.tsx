@@ -1,18 +1,21 @@
 import { FcGoogle } from "react-icons/fc"
 import { BsFacebook, BsApple } from "react-icons/bs"
+
+import { IoIosArrowDown } from "react-icons/io"
+import RegEx from "react"
 import Link from "next/link"
 
 import { SyntheticEvent, useState } from "react"
 import ReactDOM from "react-dom/client"
 
 const LogIn = ({}) => {
-  const [epost, setEpost] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
-  const [validMessageEmail, setValidMessagEmail] = useState<string>("")
-  const [validMessagePassword, setValidMessagePassword] = useState<string>("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [validMessageEmail, setValidMessagEmail] = useState("")
+  const [validMessagePassword, setValidMessagePassword] = useState("")
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
-    console.log(epost, password)
+    console.log(email, password)
   }
 
   /*const validation = () => {
@@ -23,23 +26,32 @@ const LogIn = ({}) => {
       "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
     )
 
-    if (epost === "") {
+    if (email === "") {
       setValidMessagEmail("Epost är obligatoriskt!")
-    } else if (!emailRegEx.test(epost)) {
-      setValidMessagEmail("Epost ej giltigt!")
+    } else if (!emailRegEx.test(email)) {
+      setValidMessagEmail("Vänligen ange en giltig Epost!")
     }
     if (password === "") {
       setValidMessagePassword("Lösenord är obligatoriskt!")
     } else if (!passwordRegEx.test(password)) {
-      setValidMessagePassword("Lösenord ej giltigt!")
+      setValidMessagePassword("Vänligen ange ett giltigt lösenord!")
     }
   }*/
 
   return (
-    <div className=" flex items-center justify-center text-center bg-[#F3F0EC]">
+    <div className=" flex items-center justify-center text-center ">
       <div className="" onSubmit={handleSubmit}>
-        <div className=" justify-center ml-4 mt-24 ">
-          <div className="border-[#7BAEAB] border w-[250px] py-4 my-3">
+        <Link href={"/"}>
+          <h1 className="text-xl font-[500]">Välkommen till Borrow!</h1>
+
+          <p className="text-xl">
+            Logga in eller{" "}
+            <span className="text-[#46649D]">registrera dig</span>
+          </p>
+        </Link>
+
+        <div className=" justify-center ml-2 mt-12 ">
+          <div className="border-[#7BAEAB] border w-[265px] py-4 my-3">
             <a href={"/"}>
               <div className="mx-5 text-3xl outline-blue-500 flex flex-row ">
                 <FcGoogle />
@@ -48,7 +60,7 @@ const LogIn = ({}) => {
             </a>
           </div>
 
-          <div className="border-[#7BAEAB] border w-[250px] py-4">
+          <div className="border-[#7BAEAB] border w-[265px] py-4">
             <a href={"/"}>
               <div className="mx-5 text-3xl text-[#46649D] flex flex-row  ">
                 <BsFacebook />
@@ -59,55 +71,71 @@ const LogIn = ({}) => {
             </a>
           </div>
         </div>
-        <p className="mt-12 ">eller</p>
+        <p className="mt-12">eller logga in med</p>
+        {/*<div className=" ml-2 justify-center mt-16">
+          <button>
+            <div className="mx-4 text-2xl text-[#7BAEAB]  flex flex-row space-x-[126px] my-2">
+              <p className=" text-base text-[#020617]">Logga in</p>
+              <IoIosArrowDown />
+            </div>
+          </button>
+          <br />
+          <button className="mt-6">
+            <div className="mx-4 text-2xl text-[#7BAEAB]  flex flex-row space-x-[100px] ">
+              <p className=" text-base text-[#020617]">Skapa konto</p>
+              <IoIosArrowDown />
+            </div>
+          </button>
+  </div>*/}
         {
-          <form className=" my-12">
+          <form className=" my-12 border-[#7BAEAB]">
             <label>
               <input
-                className="rounded py-4 px-7"
-                placeholder="Epost..."
+                className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000]"
+                placeholder="E-post..."
                 type="email"
-                value={epost}
-                onChange={(e) => setEpost(e.target.value)}
+                required
+                /*pattern="/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i"*/
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </label>
+
             <br />
             {validMessageEmail}
             <label>
               <br />
               <input
-                className="rounded py-4 px-7"
+                className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] "
                 placeholder="Lösenord..."
                 type="password"
+                required
+                /*pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"*/
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
             <br />
             {validMessagePassword}
-            <div className="flex items-top justify-center my-12">
+
+            <div className="flex items-top justify-center my-12 ">
               <Link href={"/products"}>
                 <div
                   className=" text-xl mb-2 
-      rounded bg-[#7BAEAB] py-3 w-[221px] "
+        rounded bg-[#9EBB9D] py-3 border w-[265px] "
                 >
                   <button
                     /*onClick={validation}*/
                     type="submit"
                     className=" 
-        rounded-sm font-bold text-white 
-       "
+          rounded-sm text-[17px] text-black 
+         "
                   >
                     Logga in
                   </button>
                 </div>
               </Link>
             </div>
-            <Link href={"/"}>
-              <p className="underline">
-                Har du inte ett konto? Registrera dig här
-              </p>
-            </Link>
           </form>
         }
       </div>
