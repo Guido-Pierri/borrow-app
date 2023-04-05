@@ -6,29 +6,34 @@ import { SyntheticEvent, useState } from "react"
 import ReactDOM from "react-dom/client"
 
 const LogIn = ({}) => {
-  const [epost, setEpost] = useState("")
-  const [password, setPassword] = useState("")
-  const [validMessageEmail, setValidMessagEmail] = useState("")
-  const [validMessagePassword, setValidMessagePassword] = useState("")
+  const [epost, setEpost] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+  const [validMessageEmail, setValidMessagEmail] = useState<string>("")
+  const [validMessagePassword, setValidMessagePassword] = useState<string>("")
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     console.log(epost, password)
   }
 
-  const validation = () => {
-    const emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  /*const validation = () => {
+    const emailRegEx =
+      /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/i
+
     const passwordRegEx = new RegExp(
       "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
     )
 
-    if (!emailRegEx.test(epost) || epost === "") {
-      setValidMessagEmail("Epost är inte i giltig format!")
-    } else if (emailRegEx) {
+    if (epost === "") {
+      setValidMessagEmail("Epost är obligatoriskt!")
+    } else if (!emailRegEx.test(epost)) {
+      setValidMessagEmail("Epost ej giltigt!")
     }
-    if (!passwordRegEx.test(password) || password === "") {
-      setValidMessagePassword("Lösenord är inte i giltig format!")
+    if (password === "") {
+      setValidMessagePassword("Lösenord är obligatoriskt!")
+    } else if (!passwordRegEx.test(password)) {
+      setValidMessagePassword("Lösenord ej giltigt!")
     }
-  }
+  }*/
 
   return (
     <div className=" flex items-center justify-center text-center bg-[#F3F0EC]">
@@ -82,14 +87,12 @@ const LogIn = ({}) => {
             {validMessagePassword}
             <div className="flex items-top justify-center my-12">
               <Link href={"/products"}>
-                {" "}
-                {/*Regex fungerar, det syns inte i och med att länken leder till en annan sida*/}
                 <div
                   className=" text-xl mb-2 
       rounded bg-[#7BAEAB] py-3 w-[221px] "
                 >
                   <button
-                    onClick={validation}
+                    /*onClick={validation}*/
                     type="submit"
                     className=" 
         rounded-sm font-bold text-white 
