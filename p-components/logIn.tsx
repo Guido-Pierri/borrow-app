@@ -72,21 +72,7 @@ const LogIn = ({}) => {
           </div>
         </div>
         <p className="mt-12">eller logga in med</p>
-        {/*<div className=" ml-2 justify-center mt-16">
-          <button>
-            <div className="mx-4 text-2xl text-[#7BAEAB]  flex flex-row space-x-[126px] my-2">
-              <p className=" text-base text-[#020617]">Logga in</p>
-              <IoIosArrowDown />
-            </div>
-          </button>
-          <br />
-          <button className="mt-6">
-            <div className="mx-4 text-2xl text-[#7BAEAB]  flex flex-row space-x-[100px] ">
-              <p className=" text-base text-[#020617]">Skapa konto</p>
-              <IoIosArrowDown />
-            </div>
-          </button>
-  </div>*/}
+
         {
           <form className=" my-12 border-[#7BAEAB]">
             <label>
