@@ -39,7 +39,7 @@ const LogIn = ({}) => {
   }*/
 
   return (
-    <div className=" flex items-center justify-center text-center ">
+    <div className=" flex items-center justify-center text-center bg-[#F5F5F5] ">
       <div className="" onSubmit={handleSubmit}>
         <Link href={"/"}>
           <h1 className="text-xl font-[500]">Välkommen till Borrow!</h1>
