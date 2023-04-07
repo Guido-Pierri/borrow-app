@@ -7,7 +7,7 @@ const Header2 = ({}) => {
       {/*Title does not want to center*/}
       <nav className="w-full">
         <div className="flex space-x-16 p-3 rounded-sm">
-          <div className="p-3 mt-3 text-3xl">
+          <div className="p-3 mt-3 text-3xl text-[#000000]">
             <button>
               <RxHamburgerMenu />
             </button>

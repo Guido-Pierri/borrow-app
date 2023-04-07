@@ -42,9 +42,11 @@ const LogIn = ({}) => {
     <div className=" flex items-center justify-center text-center bg-[#F5F5F5] ">
       <div className="" onSubmit={handleSubmit}>
         <Link href={"/"}>
-          <h1 className="text-xl font-[500]">Välkommen till Borrow!</h1>
+          <h1 className="text-xl font-[500] text-black">
+            Välkommen till Borrow!
+          </h1>
 
-          <p className="text-xl">
+          <p className="text-xl text-black">
             Logga in eller{" "}
             <span className="text-[#46649D]">registrera dig</span>
           </p>
@@ -64,34 +66,20 @@ const LogIn = ({}) => {
             <a href={"/"}>
               <div className="mx-5 text-3xl text-[#46649D] flex flex-row  ">
                 <BsFacebook />
-                <p className="text-base text-[#020617] ml-4">
+                <p className="text-base text-black ml-4">
                   Fortsätt med Facebook
                 </p>
               </div>
             </a>
           </div>
         </div>
-        <p className="mt-12">eller logga in med</p>
-        {/*<div className=" ml-2 justify-center mt-16">
-          <button>
-            <div className="mx-4 text-2xl text-[#7BAEAB]  flex flex-row space-x-[126px] my-2">
-              <p className=" text-base text-[#020617]">Logga in</p>
-              <IoIosArrowDown />
-            </div>
-          </button>
-          <br />
-          <button className="mt-6">
-            <div className="mx-4 text-2xl text-[#7BAEAB]  flex flex-row space-x-[100px] ">
-              <p className=" text-base text-[#020617]">Skapa konto</p>
-              <IoIosArrowDown />
-            </div>
-          </button>
-  </div>*/}
+        <p className="mt-12 text-black">eller logga in med</p>
+
         {
           <form className=" my-12 border-[#7BAEAB]">
             <label>
               <input
-                className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000]"
+                className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#fff]"
                 placeholder="E-post..."
                 type="email"
                 required
@@ -106,7 +94,7 @@ const LogIn = ({}) => {
             <label>
               <br />
               <input
-                className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] "
+                className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#fff]"
                 placeholder="Lösenord..."
                 type="password"
                 required
