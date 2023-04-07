@@ -3,7 +3,7 @@ import { BsChatLeftText } from "react-icons/bs"
 
 const Header2 = ({}) => {
   return (
-    <div className="flex items-top justify-center py-6 ">
+    <div className="flex items-top justify-center py-6 bg-[#F5F5F5]">
       {/*Title does not want to center*/}
       <nav className="w-full">
         <div className="flex space-x-16 p-3 rounded-sm">

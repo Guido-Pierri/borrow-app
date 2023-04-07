@@ -1,26 +1,38 @@
-import { log } from "console"
-import React from "react"
-import useSWR from "swr"
+import { NextPage } from "next"
 
-const fetcher = (url: RequestInfo | URL) => fetch(url).then((res) => res.json())
+interface Props {}
 
-export default function App() {
-  const { data, error, isLoading } = useSWR(
-    "https://firestore.googleapis.com/v1/projects/borrow-1fd2b/databases/(default)/documents/products",
-    fetcher
-  )
+import { useState, useEffect } from "react"
 
-  if (error) return "An error has occurred."
-  if (isLoading) return "Loading..."
-  console.log(data)
+function MyComponent() {
+  const [documents, setDocuments] = useState([])
+
+  useEffect(() => {
+    fetch(
+      "https://firestore.googleapis.com/v1/projects/borrow-1fd2b/databases/(default)/documents/products"
+    )
+      .then((response) => response.json())
+      .then((data) => setDocuments(data.documents))
+  }, [])
 
   return (
     <div>
-      <h1>{data.name}</h1>
-      <p>{data.description}</p>
-      <strong>👁 {data.subscribers_count}</strong>{" "}
-      <strong>✨ {data.stargazers_count}</strong>{" "}
-      <strong>🍴 {data.forks_count}</strong>
+      {documents.map((document, index) => (
+        <div key={index}>
+          console.log(document.index);
+          <h2>{document}</h2>
+        </div>
+      ))}
     </div>
   )
 }
+
+const Index: NextPage<Props> = ({}) => {
+  return (
+    <div>
+      <MyComponent></MyComponent>
+    </div>
+  )
+}
+
+export default Index

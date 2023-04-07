@@ -6,7 +6,7 @@ interface Props {}
 
 const Index: NextPage<Props> = ({}) => {
   return (
-    <div className="bg-[#F3F0EC] max-w-sm h-screen">
+    <div className="bg-[#F5F5F5] max-w-sm h-screen">
       <Header></Header>
 
       <section className="flex flex-column justify-center font-sans">
