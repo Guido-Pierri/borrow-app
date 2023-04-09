@@ -61,7 +61,6 @@ const AddProduct = ({}) => {
                 required
                 /*pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"*/
                 value={email}
-                onChange={(e) => setPassword(e.target.value)}
               />
             </label>
             <div className="flex items-top justify-center my-12 ">
