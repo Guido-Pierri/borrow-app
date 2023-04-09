@@ -4,13 +4,22 @@ import Link from "next/link"
 
 import { SyntheticEvent, useState } from "react"
 import ReactDOM from "react-dom/client"
+import Products from "./products"
 
-const AddProduct = ({}) => {
+interface Annons {
+  name: string
+  description: string
+}
+const CreateAdd = ({}) => {
+  const [rubrik, setRubrik] = useState("")
+  const [beskrivning, setBeskrivning] = useState("")
+  const [namn, setNamn] = useState("")
   const [email, setEmail] = useState("")
+
   const [validMessageEmail, setValidMessagEmail] = useState("")
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
-    console.log(email)
+    // console.log(email)
   }
   return (
     <div className=" flex items-center justify-center text-center bg-[#F5F5F5] font-sans">
@@ -25,13 +34,13 @@ const AddProduct = ({}) => {
                 placeholder="Rubrik..."
                 type="text"
                 required
-                /*pattern="/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i"*/
-                onChange={(e) => setEmail(e.target.value)}
+                value={rubrik}
+                onChange={(e) => setRubrik(e.target.value)}
               />
             </label>
 
             <br />
-            {validMessageEmail}
+
             <label>
               <br />
               <input
@@ -39,6 +48,8 @@ const AddProduct = ({}) => {
                 placeholder="Beskrivning..."
                 type="text"
                 required
+                value={beskrivning}
+                onChange={(e) => setBeskrivning(e.target.value)}
               />
             </label>
             <br />
@@ -61,6 +72,7 @@ const AddProduct = ({}) => {
                 required
                 /*pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"*/
                 value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </label>
             <div className="flex items-top justify-center my-12 ">
@@ -70,11 +82,16 @@ const AddProduct = ({}) => {
         rounded bg-[#9EBB9D] py-3 border w-[265px] "
                 >
                   <button
-                    /*onClick={validation}*/
                     type="submit"
                     className=" 
           rounded-sm text-[17px] text-black 
          "
+                    onClick={function addData() {
+                      return {
+                        name: { rubrik },
+                        description: { beskrivning },
+                      }
+                    }}
                   >
                     Spara annonsen
                   </button>
@@ -88,4 +105,4 @@ const AddProduct = ({}) => {
   )
 }
 
-export default AddProduct
+export default CreateAdd
