@@ -1,5 +1,5 @@
 import { IoIosArrowDown } from "react-icons/io"
-import RegEx from "react"
+import RegEx, { useEffect } from "react"
 import Link from "next/link"
 
 import { SyntheticEvent, useState } from "react"
@@ -7,34 +7,11 @@ import ReactDOM from "react-dom/client"
 
 const AddProduct = ({}) => {
   const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
   const [validMessageEmail, setValidMessagEmail] = useState("")
-  const [validMessagePassword, setValidMessagePassword] = useState("")
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
-    console.log(email, password)
+    console.log(email)
   }
-
-  /*const validation = () => {
-    const emailRegEx =
-      /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/i
-
-    const passwordRegEx = new RegExp(
-      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
-    )
-
-    if (email === "") {
-      setValidMessagEmail("Epost är obligatoriskt!")
-    } else if (!emailRegEx.test(email)) {
-      setValidMessagEmail("Vänligen ange en giltig Epost!")
-    }
-    if (password === "") {
-      setValidMessagePassword("Lösenord är obligatoriskt!")
-    } else if (!passwordRegEx.test(password)) {
-      setValidMessagePassword("Vänligen ange ett giltigt lösenord!")
-    }
-  }*/
-
   return (
     <div className=" flex items-center justify-center text-center bg-[#F5F5F5] font-sans">
       <div>
@@ -62,12 +39,9 @@ const AddProduct = ({}) => {
                 placeholder="Beskrivning..."
                 type="text"
                 required
-                /*pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"*/
-                onChange={(e) => setPassword(e.target.value)}
               />
             </label>
             <br />
-            {validMessagePassword}
             <label>
               <br />
               <input
@@ -75,8 +49,6 @@ const AddProduct = ({}) => {
                 placeholder="Ditt namn..."
                 type="text"
                 required
-                /*pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"*/
-                onChange={(e) => setPassword(e.target.value)}
               />
             </label>
             <br />
