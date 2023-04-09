@@ -10,7 +10,7 @@ interface Annons {
   name: string
   description: string
 }
-const CreateAdd = ({}) => {
+const CreateAd = ({}) => {
   const [rubrik, setRubrik] = useState("")
   const [beskrivning, setBeskrivning] = useState("")
   const [namn, setNamn] = useState("")
@@ -105,4 +105,4 @@ const CreateAdd = ({}) => {
   )
 }
 
-export default CreateAdd
+export default CreateAd

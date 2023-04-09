@@ -1,4 +1,4 @@
-import CreateAd from "@/p-components/creatAd"
+import CreateAd from "@/p-components/createAd"
 import Header from "@/p-components/header"
 import { NextPage } from "next"
 interface Props {}
