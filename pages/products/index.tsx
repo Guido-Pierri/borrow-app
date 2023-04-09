@@ -1,6 +1,7 @@
 import Products from "@/p-components/products"
 import Header from "@/p-components/header"
 import { NextPage } from "next"
+import Link from "next/link"
 
 interface Props {}
 
@@ -52,6 +53,11 @@ const Index: NextPage<Props> = ({}) => {
       <section className="bg-[#F5F5F5]">
         <h1 className="flex justify-center">Borrow something</h1>
         <Products></Products>
+        <div className="flex justify-center">
+          <Link href={"/createAd"}>
+            <p className="pt-10 text-gray-900">Skapa en annons</p>
+          </Link>
+        </div>
       </section>
     </div>
   )
