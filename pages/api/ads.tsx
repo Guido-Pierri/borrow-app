@@ -5,7 +5,7 @@ export default async (req: any, res: any) => {
     const client = await clientPromise
     const db = client.db("borrow")
 
-    const ads = await db.collection("products").find({}).toArray()
+    const ads = await db.collection("ads").find({}).toArray()
 
     res.json(ads)
   } catch (e) {
