@@ -23,18 +23,16 @@ export default function Ads({ ads }: Props) {
       </ul> */}
       <p className="font-sans text-4xl ">Annonser</p>
       <div className=" font-sans">
-        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-          <h2 className="sr-only text-gray-900">Products</h2>
-
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <div className="flex-column">
             {ads.map((ad) => (
               <a className="group">
-                <div className="grid grid-cols-2 py-4 ">
-                  <h3 className="mt-4 px-4 text-sm text-gray-700 bg-slate-400">
+                <div className="">
+                  <div className="mt-4 text-gray-700 bg-slate-400">
                     {ad.name}
                     <br />
                     {ad.description}
-                  </h3>
+                  </div>
                 </div>
               </a>
             ))}
