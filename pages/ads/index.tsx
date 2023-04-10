@@ -1,5 +1,6 @@
 import { ObjectId } from "mongodb"
 import clientPromise from "../../lib/mongodb"
+import Header from "@/p-components/header"
 
 interface Ad {
   id: any
@@ -11,7 +12,7 @@ interface Props {
 }
 export default function Ads({ ads }: Props) {
   return (
-    <div className="bg-[#F5F5F5] text-center ">
+    <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
       {/* <h1 className="font-sans">Annonser</h1>
 
       <ul>
@@ -22,6 +23,7 @@ export default function Ads({ ads }: Props) {
           </li>
         ))}
       </ul> */}
+      <Header></Header>
       <p className="font-sans text-4xl ">Annonser</p>
       <div className=" font-sans">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -30,9 +32,10 @@ export default function Ads({ ads }: Props) {
               <a key={ad.id} className="group">
                 <div className="">
                   <div className="mt-4 text-gray-700 bg-slate-400">
-                    {ad.name}
+                    <p className="bold"> Namn: {ad.name}</p>
+
                     <br />
-                    {ad.description}
+                    <p>Beskrivning: {ad.description}</p>
                   </div>
                 </div>
               </a>
