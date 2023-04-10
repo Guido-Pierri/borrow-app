@@ -1,67 +1,60 @@
-import { FcGoogle } from "react-icons/fc"
-import { BsFacebook, BsApple } from "react-icons/bs"
-
-import { IoIosArrowDown } from "react-icons/io"
-import RegEx from "react"
+import { NextPage } from "next"
 import Link from "next/link"
+import { SyntheticEvent, use, useState } from "react"
+import { BsFacebook } from "react-icons/bs"
+import { FcGoogle } from "react-icons/fc"
+import validation from "./validation"
 
-import { SyntheticEvent, useState } from "react"
-import ReactDOM from "react-dom/client"
+interface Props {
+  email: string
+  password: string
+}
 
-const LogIn = ({}) => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [validMessageEmail, setValidMessagEmail] = useState("")
-  const [validMessagePassword, setValidMessagePassword] = useState("")
-  const handleSubmit = (e: SyntheticEvent) => {
+function LogIn() {
+  const [input, setInput] = useState<string>("")
+  const [user, setUser] = useState<Props>({
+    email: "",
+    password: "",
+  })
+
+  const [errorMessages, setErrorMessages]: any = useState({}) //validation on change
+
+  function handleAndValidation(e: SyntheticEvent) {
     e.preventDefault()
-    console.log(email, password)
+    /*console.log("Email: " + user.email)
+    console.log("Password: " + user.password)*/
+    localStorage.setItem("Email", user.email)
+    localStorage.setItem("Password", user.password)
+    const getEmail = JSON.stringify(localStorage.getItem("Email"))
+    const getPassword = JSON.stringify(localStorage.getItem("Password"))
+    console.log("LocalStorage: " + getEmail + " and " + getPassword)
+
+    /*setErrorMessages(validation(user))*/
   }
 
-  /*const validation = () => {
-    const emailRegEx =
-      /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/i
-
-    const passwordRegEx = new RegExp(
-      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
-    )
-
-    if (email === "") {
-      setValidMessagEmail("Epost är obligatoriskt!")
-    } else if (!emailRegEx.test(email)) {
-      setValidMessagEmail("Vänligen ange en giltig Epost!")
-    }
-    if (password === "") {
-      setValidMessagePassword("Lösenord är obligatoriskt!")
-    } else if (!passwordRegEx.test(password)) {
-      setValidMessagePassword("Vänligen ange ett giltigt lösenord!")
-    }
-  }*/
-
   return (
-    <div className=" flex items-center justify-center text-center bg-[#F5F5F5] font-sans">
-      <div className="" onSubmit={handleSubmit}>
+    <div className=" flex items-center justify-center text-center font-sans bg-[#F5F5F5] ">
+      <div>
         <Link href={"/"}>
-          <h1 className="text-xl font-[500] text-black">
-            Välkommen till Borrow!
-          </h1>
-
-          <p className="text-xl text-black">
+          <h1 className="text-xl font-[500]">Välkommen till Borrow!</h1>
+          <p className="text-xl">
             Logga in eller{" "}
             <span className="text-[#46649D]">registrera dig</span>
           </p>
         </Link>
-
-        <div className=" justify-center ml-2 mt-12 ">
+        <br />
+        <br />
+        {/*<div className=" justify-center ml-2 mt-12 ">
           <div className="border-[#7BAEAB] border w-[265px] py-4 my-3">
             <a href={"/"}>
               <div className="mx-5 text-3xl outline-blue-500 flex flex-row ">
                 <FcGoogle />
-                <p className=" text-base ml-4">Fortsätt med Google</p>
+                <p className=" text-base ml-4 text-black">
+                  Fortsätt med Google
+                </p>
               </div>
             </a>
           </div>
-
           <div className="border-[#7BAEAB] border w-[265px] py-4">
             <a href={"/"}>
               <div className="mx-5 text-3xl text-[#46649D] flex flex-row  ">
@@ -73,59 +66,65 @@ const LogIn = ({}) => {
             </a>
           </div>
         </div>
-        <p className="mt-12 text-black">eller logga in med</p>
+  <p className="mt-12">eller logga in med</p>*/}
 
-        {
-          <form className=" my-12 border-[#7BAEAB]">
-            <label>
-              <input
-                className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#fff]"
-                placeholder="E-post..."
-                type="email"
-                required
-                /*pattern="/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i"*/
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </label>
+        <form
+          onSubmit={handleAndValidation}
+          className=" my-12 border-[#7BAEAB]"
+        >
+          <label>
+            <input
+              className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000]"
+              placeholder="E-post..."
+              type="email"
+              onChange={(e) => {
+                setInput(e.target.value)
+                setUser({ ...user, email: e.target.value })
+                console.log(e.target.value)
+              }}
+            />
 
+            {errorMessages.email && (
+              <p style={{ color: "red" }}>{errorMessages.email}</p>
+            )}
+          </label>
+          <br />
+
+          <label>
             <br />
-            {validMessageEmail}
-            <label>
-              <br />
-              <input
-                className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#fff]"
-                placeholder="Lösenord..."
-                type="password"
-                required
-                /*pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"*/
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </label>
-            <br />
-            {validMessagePassword}
+            <input
+              className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] "
+              placeholder="Lösenord..."
+              type="password"
+              onChange={(e) => {
+                setInput(e.target.value)
+                setUser({ ...user, password: e.target.value })
+                console.log(e.target.value)
+              }}
+            />
+            {errorMessages.password && (
+              <p style={{ color: "red" }}>{errorMessages.password}</p>
+            )}
+          </label>
+          <br />
 
-            <div className="flex items-top justify-center my-12 ">
-              <Link href={"/products"}>
-                <div
-                  className=" text-xl mb-2 
+          <div className="flex items-top justify-center my-12 ">
+            <Link href={"/products"}>
+              <div
+                className=" text-xl mb-2 
         rounded bg-[#9EBB9D] py-3 border w-[265px] "
+              >
+                <button
+                  type="submit"
+                  className=" 
+          rounded-sm text-[17px] text-black "
                 >
-                  <button
-                    /*onClick={validation}*/
-                    type="submit"
-                    className=" 
-          rounded-sm text-[17px] text-black 
-         "
-                  >
-                    Logga in
-                  </button>
-                </div>
-              </Link>
-            </div>
-          </form>
-        }
+                  Logga in
+                </button>
+              </div>
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   )
