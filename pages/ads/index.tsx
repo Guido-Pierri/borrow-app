@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb"
 import clientPromise from "../../lib/mongodb"
 
 interface Ad {
+  id: any
   name: string
   description: string
 }
@@ -26,7 +27,7 @@ export default function Ads({ ads }: Props) {
         <div className="mx-auto max-w-2xl px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <div className="flex-column">
             {ads.map((ad) => (
-              <a className="group">
+              <a key={ad.id} className="group">
                 <div className="">
                   <div className="mt-4 text-gray-700 bg-slate-400">
                     {ad.name}
