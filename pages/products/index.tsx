@@ -50,12 +50,16 @@ const Index: NextPage<Props> = ({}) => {
         </article>
       </section> */}
 
-      <section className="bg-[#F5F5F5]">
-        <h1 className="flex justify-center">Borrow something</h1>
+      <section className="bg-[#F5F5F5] pb-10">
+        <h1 className="flex justify-center text-xl font-[500] font-sans">
+          Borrow something
+        </h1>
         <Products></Products>
-        <div className="flex justify-center">
+        <div className="flex justify-center ">
           <Link href={"/createAd"}>
-            <p className="pt-10 text-gray-900">Skapa en annons</p>
+            <button className="flex items-top justify-center p-2 text-gray-900 bg-[#9EBB9D] rounded text-xl font-[500] font-sans">
+              <p className=""> Skapa en annons</p>
+            </button>
           </Link>
         </div>
       </section>
