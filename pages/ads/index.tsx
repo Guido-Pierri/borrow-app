@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb"
 import clientPromise from "../../lib/mongodb"
 import Header from "@/p-components/header"
+import Link from "next/link"
 
 interface Ad {
   id: any
@@ -31,7 +32,7 @@ export default function Ads({ ads }: Props) {
             {ads.map((ad) => (
               <a key={ad.id} className="group">
                 <div className="">
-                  <div className="mt-4 text-gray-700 bg-slate-400">
+                  <div className="mt-4  bg-[#9EBB9D]">
                     <p className="bold"> Namn: {ad.name}</p>
 
                     <br />
@@ -42,6 +43,13 @@ export default function Ads({ ads }: Props) {
             ))}
           </div>
         </div>
+      </div>
+      <div className="flex justify-center ">
+        <Link href={"/createAd"}>
+          <button className="flex items-top justify-center p-2 text-gray-900 bg-[#9EBB9D] rounded text-xl font-[500] font-sans">
+            <p className=""> Skapa en annons</p>
+          </button>
+        </Link>
       </div>
     </div>
   )
