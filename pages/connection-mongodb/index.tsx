@@ -28,12 +28,12 @@ export default function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className="container">
-      <h1>
+      <h1 className="font-sans">
         Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
       </h1>
 
       {isConnected ? (
-        <h2 className="subtitle">You are connected to MongoDB</h2>
+        <h2 className="subtitle font-sans">You are connected to MongoDB</h2>
       ) : (
         <h2 className="subtitle">
           You are NOT connected to MongoDB. Check the <code>README.md</code> for
