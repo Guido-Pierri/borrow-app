@@ -76,7 +76,7 @@ const CreateAd = ({}) => {
               />
             </label>
             <div className="flex items-top justify-center my-12 ">
-              <Link href={"/products"}>
+              <Link href={"/ads"}>
                 <div
                   className=" text-xl mb-2 
         rounded bg-[#9EBB9D] py-3 border w-[265px] "
