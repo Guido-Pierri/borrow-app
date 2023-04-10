@@ -1,7 +1,8 @@
 import { RxHamburgerMenu } from "react-icons/rx"
 import { BsChatLeftText } from "react-icons/bs"
+import Link from "next/link"
 
-const Header2 = ({}) => {
+const Header = ({}) => {
   return (
     <div className="flex items-top justify-center py-6 bg-[#F5F5F5]">
       {/*Title does not want to center*/}
@@ -14,7 +15,10 @@ const Header2 = ({}) => {
           </div>
 
           <div className="mt-4 text-[#C7784C]">
-            <b className="text-4xl">Borrow</b>
+            <Link href={"/ads"}>
+              {" "}
+              <b className="text-4xl">Borrow</b>
+            </Link>
           </div>
           {/*<a href="/">
             <div className="p-3 mt-3 text-3xl text-[#7BAEAB]">
@@ -27,4 +31,4 @@ const Header2 = ({}) => {
   )
 }
 
-export default Header2
+export default Header
