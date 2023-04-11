@@ -34,8 +34,8 @@ function LogIn() {
 
   return (
     <div className=" flex items-center justify-center text-center font-sans bg-[#F5F5F5] h-screen">
-      <div>
-        <div>
+      <div className="pb-16">
+        <div className="pb-8">
           <Link href={"/"}>
             <h1 className="text-xl font-[500] text-black">
               Välkommen till Borrow!
@@ -48,30 +48,6 @@ function LogIn() {
         </div>
         <br />
         <br />
-        {/*<div className=" justify-center ml-2 mt-12 ">
-          <div className="border-[#7BAEAB] border w-[265px] py-4 my-3">
-            <a href={"/"}>
-              <div className="mx-5 text-3xl outline-blue-500 flex flex-row ">
-                <FcGoogle />
-                <p className=" text-base ml-4 text-black">
-                  Fortsätt med Google
-                </p>
-              </div>
-            </a>
-          </div>
-          <div className="border-[#7BAEAB] border w-[265px] py-4">
-            <a href={"/"}>
-              <div className="mx-5 text-3xl text-[#46649D] flex flex-row  ">
-                <BsFacebook />
-                <p className="text-base text-black ml-4">
-                  Fortsätt med Facebook
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <p className="mt-12">eller logga in med</p>*/}
-
         <form
           onSubmit={handleAndValidation}
           className=" my-12 border-[#7BAEAB]"
