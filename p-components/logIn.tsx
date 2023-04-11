@@ -35,7 +35,7 @@ function LogIn() {
   return (
     <div className=" flex items-center justify-center text-center font-sans bg-[#F5F5F5] h-screen">
       <div className="pb-16">
-        <div className="pb-8">
+        <div className="">
           <Link href={"/"}>
             <h1 className="text-xl font-[500] text-black">
               Välkommen till Borrow!
@@ -48,9 +48,10 @@ function LogIn() {
         </div>
         <br />
         <br />
+
         <form
           onSubmit={handleAndValidation}
-          className=" my-12 border-[#7BAEAB]"
+          className=" my-12 border-[#7BAEAB] pb-8"
         >
           <label>
             <input
