@@ -1,10 +1,8 @@
-import { ObjectId } from "mongodb"
-import clientPromise from "../../lib/mongodb"
-import Header from "@/p-components/header"
 import Link from "next/link"
-
+import Header from "@/p-components/header"
+import clientPromise from "@/lib/mongodb"
 interface Ad {
-  id: any
+  id: string
   name: string
   description: string
   username: string
@@ -16,16 +14,6 @@ interface Props {
 export default function Ads({ ads }: Props) {
   return (
     <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
-      {/* <h1 className="font-sans">Annonser</h1>
-
-      <ul>
-        {ads.map((ad: any) => (
-          <li>
-            <h2>Namn: {ad.name}</h2>
-            <h3>Beskrivning: {ad.description}</h3>
-          </li>
-        ))}
-      </ul> */}
       <Header></Header>
       <p className="font-sans text-4xl ">Annonser</p>
       <div className=" font-sans">
@@ -57,12 +45,12 @@ export default function Ads({ ads }: Props) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const client = await clientPromise
     const db = client.db("borrow")
 
-    const ads = await db.collection("ads").find({}).toArray()
+    const ads = await db.collection("ads").find({}).limit(1000).toArray()
 
     return {
       props: { ads: JSON.parse(JSON.stringify(ads)) },
