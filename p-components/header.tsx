@@ -4,7 +4,7 @@ import Link from "next/link"
 
 const Header = ({}) => {
   return (
-    <div className="flex items-top justify-center py-6 bg-[#F5F5F5]">
+    <div className="flex items-top justify-center pt-6 bg-[#F5F5F5]">
       {/*Title does not want to center*/}
       <nav className="w-full">
         <div className="flex space-x-16 p-3 rounded-sm">
