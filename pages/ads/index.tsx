@@ -7,6 +7,8 @@ interface Ad {
   id: any
   name: string
   description: string
+  username: string
+  useremail: string
 }
 interface Props {
   ads: Ad[]
@@ -34,9 +36,9 @@ export default function Ads({ ads }: Props) {
                 <div className="">
                   <div className="mt-4  bg-[#9EBB9D]">
                     <p className="bold"> Namn: {ad.name}</p>
-
-                    <br />
                     <p>Beskrivning: {ad.description}</p>
+                    <p>Annonsör: {ad.username}</p>
+                    <p>Kontakt: {ad.useremail}</p>
                   </div>
                 </div>
               </a>
