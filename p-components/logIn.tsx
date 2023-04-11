@@ -33,15 +33,19 @@ function LogIn() {
   }
 
   return (
-    <div className=" flex items-center justify-center text-center font-sans bg-[#F5F5F5] ">
+    <div className=" flex items-center justify-center text-center font-sans bg-[#F5F5F5] h-screen">
       <div>
-        <Link href={"/"}>
-          <h1 className="text-xl font-[500]">Välkommen till Borrow!</h1>
-          <p className="text-xl">
-            Logga in eller{" "}
-            <span className="text-[#46649D]">registrera dig</span>
-          </p>
-        </Link>
+        <div>
+          <Link href={"/"}>
+            <h1 className="text-xl font-[500] text-black">
+              Välkommen till Borrow!
+            </h1>
+            <p className="text-xl text-black">
+              Logga in eller{" "}
+              <span className="text-[#46649D]">registrera dig</span>
+            </p>
+          </Link>
+        </div>
         <br />
         <br />
         {/*<div className=" justify-center ml-2 mt-12 ">
@@ -66,7 +70,7 @@ function LogIn() {
             </a>
           </div>
         </div>
-  <p className="mt-12">eller logga in med</p>*/}
+        <p className="mt-12">eller logga in med</p>*/}
 
         <form
           onSubmit={handleAndValidation}
@@ -74,7 +78,7 @@ function LogIn() {
         >
           <label>
             <input
-              className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000]"
+              className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#FFF]"
               placeholder="E-post..."
               type="email"
               onChange={(e) => {
@@ -93,7 +97,7 @@ function LogIn() {
           <label>
             <br />
             <input
-              className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] "
+              className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#FFF]"
               placeholder="Lösenord..."
               type="password"
               onChange={(e) => {
