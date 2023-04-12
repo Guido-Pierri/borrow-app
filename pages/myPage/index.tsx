@@ -1,12 +1,19 @@
 import { useState } from "react"
 
 interface FormData {
-  name: string
+  title: string
+  description: string
+  fullName: string
   email: string
 }
 
 export default function MyPage() {
-  const [formData, setFormData] = useState<FormData>({ name: "", email: "" })
+  const [formData, setFormData] = useState<FormData>({
+    title: "",
+    description: "",
+    fullName: "",
+    email: "",
+  })
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -29,13 +36,31 @@ export default function MyPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="font-sans" onSubmit={handleSubmit}>
       <label>
-        Name:
+        Titel:
         <input
           type="text"
-          name="name"
-          value={formData.name}
+          name="title"
+          value={formData.title}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Beskrivning:
+        <input
+          type="text"
+          name="description"
+          value={formData.description}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Fulla namn:
+        <input
+          type="text"
+          name="fullName"
+          value={formData.fullName}
           onChange={handleInputChange}
         />
       </label>

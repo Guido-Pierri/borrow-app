@@ -64,7 +64,7 @@ const CreateAd = ({}) => {
                 type="text"
                 required
                 value={fullName}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) => setFullName(e.target.value)}
               />
             </label>
             <br />
@@ -77,7 +77,7 @@ const CreateAd = ({}) => {
                 required
                 /*pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"*/
                 value={email}
-                onChange={(e) => setFullName(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </label>
             <div className="flex items-top justify-center my-12 ">
