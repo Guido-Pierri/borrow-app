@@ -7,13 +7,16 @@ import ReactDOM from "react-dom/client"
 import Products from "./products"
 
 interface Annons {
-  name: string
+  //Kajsaaa countinue, with this database
+  title: string
   description: string
+  username: string
+  email: string
 }
 const CreateAd = ({}) => {
-  const [rubrik, setRubrik] = useState("")
-  const [beskrivning, setBeskrivning] = useState("")
-  const [namn, setNamn] = useState("")
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [fullName, setFullName] = useState("")
   const [email, setEmail] = useState("")
 
   const [validMessageEmail, setValidMessagEmail] = useState("")
@@ -27,15 +30,15 @@ const CreateAd = ({}) => {
         <h1 className="text-xl font-[500] text-black">Skapa en annons</h1>
 
         {
-          <form className=" my-12 border-[#7BAEAB]">
+          <form className=" my-12 border-[#7BAEAB]" onSubmit={handleSubmit}>
             <label>
               <input
                 className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#fff]"
                 placeholder="Rubrik..."
                 type="text"
                 required
-                value={rubrik}
-                onChange={(e) => setRubrik(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </label>
 
@@ -48,8 +51,8 @@ const CreateAd = ({}) => {
                 placeholder="Beskrivning..."
                 type="text"
                 required
-                value={beskrivning}
-                onChange={(e) => setBeskrivning(e.target.value)}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </label>
             <br />
@@ -57,9 +60,11 @@ const CreateAd = ({}) => {
               <br />
               <input
                 className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#fff]"
-                placeholder="Ditt namn..."
+                placeholder="Ditt fulla namn..."
                 type="text"
                 required
+                value={fullName}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </label>
             <br />
@@ -72,7 +77,7 @@ const CreateAd = ({}) => {
                 required
                 /*pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"*/
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setFullName(e.target.value)}
               />
             </label>
             <div className="flex items-top justify-center my-12 ">
@@ -88,8 +93,10 @@ const CreateAd = ({}) => {
          "
                     onClick={function addData() {
                       return {
-                        name: { rubrik },
-                        description: { beskrivning },
+                        title: { title },
+                        description: { description },
+                        fullName: { fullName },
+                        email: { email },
                       }
                     }}
                   >
