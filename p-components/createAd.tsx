@@ -15,10 +15,17 @@ export default function MyPage() {
     email: "",
   })
 
+  console.log(formData)
+
+  /*const [title, setTitle] = useState<string>("")
+  const [description, setdescription] = useState<string>("")
+  const [fullName, setFullName] = useState<string>("")
+  const [email, setEmail] = useState<string>("")*/
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const response = await fetch("http://localhost:3000/api/my-endpoint", {
+    const response = await fetch("http://localhost:3000/api/test/test", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +34,6 @@ export default function MyPage() {
     })
 
     const data = await response.json()
-    console.log(data)
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
