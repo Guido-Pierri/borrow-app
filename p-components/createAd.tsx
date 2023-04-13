@@ -25,7 +25,7 @@ export default function MyPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const response = await fetch("http://localhost:3000/api/test/test", {
+    const response = await fetch("http://localhost:3000/api/post/myPage", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,6 +34,8 @@ export default function MyPage() {
     })
 
     const data = await response.json()
+
+    console.log(data)
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +49,7 @@ export default function MyPage() {
       <form className="font-sans" onSubmit={handleSubmit}>
         <label>
           <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             placeholder="Titel..."
             type="text"
             name="title"
@@ -57,7 +59,7 @@ export default function MyPage() {
         </label>
         <label>
           <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             placeholder="Beskrivning..."
             type="text"
             name="description"
@@ -67,7 +69,7 @@ export default function MyPage() {
         </label>
         <label>
           <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             placeholder="Ditt fulla namn..."
             type="text"
             name="fullName"
@@ -77,7 +79,7 @@ export default function MyPage() {
         </label>
         <label>
           <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             placeholder="Email..."
             type="email"
             name="email"
@@ -89,7 +91,7 @@ export default function MyPage() {
         <br />
         <button
           className="
-           rounded-sm text-[17px] text-black border-[#7BAEAB] bg-[#7BAEAB] border w-[265px]  py-3
+           rounded-sm text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[265px]  py-3
     "
           type="submit"
         >

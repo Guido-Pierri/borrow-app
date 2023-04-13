@@ -1,6 +1,7 @@
 // import { NextApiRequest, NextApiResponse } from "next"
 import { title } from "process"
 import clientPromise from "../../../lib/mongodb"
+import { NextApiRequest, NextApiResponse } from "next"
 // import MyPage from "@/p-components/createAd"
 /*import Formdata from "../myPage"
 import MyPage from "../myPage"*/
@@ -26,6 +27,8 @@ export default async (req: any, res: any) => {
     query: { myPage },
   } = req
 
+  res.status(200).json({ message: `Value of title is: ${myPage.title}` }) //myPage is undefined why?
+
   /*myPage.title
   myPage.description
   myPage.fullName
@@ -48,7 +51,7 @@ export default async (req: any, res: any) => {
       },
     ])
 
-    console.log(myPage.title)
+    console.log(users)
 
     res.json(users)
   } catch (e) {
