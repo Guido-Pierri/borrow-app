@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-interface FormData {
+export interface FormData {
   title: string
   description: string
   fullName: string
@@ -18,7 +18,7 @@ export default function MyPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const response = await fetch("/api/my-endpoint", {
+    const response = await fetch("http://localhost:3000/api/my-endpoint", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

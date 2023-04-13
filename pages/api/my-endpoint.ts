@@ -1,12 +1,33 @@
-import { NextApiRequest, NextApiResponse } from "next"
+// import { NextApiRequest, NextApiResponse } from "next"
 import clientPromise from "../../lib/mongodb"
+import Formdata from "../myPage"
+import MyPage from "../myPage"
+// export default async (req: NextApiRequest, res: NextApiResponse) => {
+//   // what to do here?
+//   console.log(req.body)
+//   const data = req.body
+//   res.json({
+//     status: "success",
+//     userCreateAd: data,
+//   })
+// }
+export default async (req: any, res: any) => {
+  try {
+    console.log(req.body)
+    const client = await clientPromise
+    const db = client.db("borrow")
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  // what to do here?
-  console.log(req.body)
-  const data = req.body
-  res.json({
-    status: "success",
-    userCreateAd: data,
-  })
+    const users = await db.collection("users").insertMany([
+      {
+        title: "Borr",
+        description: "Slagborr med bits",
+        fullName: "Kuz uz",
+        email: "kuzUz@gmail.com",
+      },
+    ])
+
+    res.json(users)
+  } catch (e) {
+    console.error(e)
+  }
 }
