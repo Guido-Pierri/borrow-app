@@ -1,4 +1,19 @@
-import { useState } from "react"
+import CreateAd from "@/p-components/createAd"
+import { NextPage } from "next"
+
+interface Props {}
+
+const Index: NextPage<Props> = ({}) => {
+  return (
+    <div>
+      <CreateAd></CreateAd>
+    </div>
+  )
+}
+
+export default Index
+
+/*import { useState } from "react"
 
 export interface FormData {
   title: string
@@ -76,4 +91,4 @@ export default function MyPage() {
       <button type="submit">Submit</button>
     </form>
   )
-}
+}*/

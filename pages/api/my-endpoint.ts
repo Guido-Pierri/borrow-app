@@ -1,7 +1,9 @@
 // import { NextApiRequest, NextApiResponse } from "next"
+import { title } from "process"
 import clientPromise from "../../lib/mongodb"
-import Formdata from "../myPage"
-import MyPage from "../myPage"
+import MyPage from "@/p-components/createAd"
+/*import Formdata from "../myPage"
+import MyPage from "../myPage"*/
 // export default async (req: NextApiRequest, res: NextApiResponse) => {
 //   // what to do here?
 //   console.log(req.body)
@@ -12,6 +14,10 @@ import MyPage from "../myPage"
 //   })
 // }
 export default async (req: any, res: any) => {
+  const title = req.body.title
+  const description = req.body.description
+  const fullName = req.body.fullName
+  const email = req.body.email
   try {
     console.log(req.body)
     const client = await clientPromise
@@ -19,10 +25,14 @@ export default async (req: any, res: any) => {
 
     const users = await db.collection("users").insertMany([
       {
-        title: "Borr",
+        title,
+        description,
+        fullName,
+        email,
+        /*title: "Borr",
         description: "Slagborr med bits",
         fullName: "Kuz uz",
-        email: "kuzUz@gmail.com",
+        email: "kuzUz@gmail.com",*/
       },
     ])
 

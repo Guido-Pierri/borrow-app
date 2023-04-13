@@ -23,7 +23,7 @@ export default function MyPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({ formData }),
     })
 
     const data = await response.json()
@@ -33,6 +33,7 @@ export default function MyPage() {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
+    console.log(event.target.value)
   }
 
   return (
