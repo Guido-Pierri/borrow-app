@@ -15,18 +15,18 @@ export default function Ads({ ads }: Props) {
   return (
     <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
       <Header></Header>
-      <p className="font-sans text-4xl ">Annonser</p>
+      <p className="font-sans text-4xl text-[#0f0e0e] ">Annonser</p>
       <div className=" font-sans">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <div className="flex-column">
             {ads.map((ad) => (
               <a key={ad.id} className="group">
                 <div className="">
-                  <div className="mt-4  bg-[#9EBB9D]">
-                    <p className="bold"> Namn: {ad.name}</p>
-                    <p>Beskrivning: {ad.description}</p>
-                    <p>Annonsör: {ad.username}</p>
-                    <p>Kontakt: {ad.useremail}</p>
+                  <div className="mt-4  bg-[#9EBB9D] rounded-md">
+                    <p className="bold text-[#0f0e0e]"> Namn: {ad.name}</p>
+                    <p className="text-[#0f0e0e]">Beskrivning: {ad.description}</p>
+                    <p className="text-[#0f0e0e]">Annonsör: {ad.username}</p>
+                    <p className="text-[#0f0e0e]">Kontakt: {ad.useremail}</p>
                   </div>
                 </div>
               </a>
@@ -34,9 +34,9 @@ export default function Ads({ ads }: Props) {
           </div>
         </div>
       </div>
-      <div className="flex justify-center ">
+      <div className="flex justify-center mt-5">
         <Link href={"/createAd"}>
-          <button className="flex items-top justify-center p-2 text-gray-900 bg-[#9EBB9D] rounded text-xl font-[500] font-sans">
+          <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] rounded-md text-xl font-[500] font-sans">
             <p className=""> Skapa en annons</p>
           </button>
         </Link>
