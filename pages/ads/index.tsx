@@ -87,7 +87,14 @@ export default function Ads({ ads }: Props) {
                       Beskrivning: {ad.description}
                     </p>
                     <p className="text-[#0f0e0e]">Annonsör: {ad.fullName}</p>
-                    <p className="text-[#0f0e0e]">Kontakt: {ad.email}</p>
+                    <Link href={"mailto:" + `${ad.email}`}>
+                      <button>
+                        <p style={{ color: "blue" }}>
+                          {" "}
+                          <b className="text-[#0f0e0e]">Kontakt:</b> {ad.email}
+                        </p>
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </a>
