@@ -26,13 +26,16 @@ export default function MyPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const apiData: ApiData = { name: formData.name, email: formData.email }
-    const response = await fetch("http://localhost:3000/api/users/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(apiData),
-    })
+    const response = await fetch(
+      "https://borrow-qoiwa2hkz-guido-pierri.vercel.app/api/users/users",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(apiData),
+      }
+    )
 
     const data = await response.json()
 
