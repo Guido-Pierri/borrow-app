@@ -4,10 +4,10 @@ import clientPromise from "@/lib/mongodb"
 import { GoSearch } from "react-icons/go"
 interface Ad {
   id: string
-  name: string
+  title: string
   description: string
-  username: string
-  useremail: string
+  fullName: string
+  email: string
 }
 interface Props {
   ads: Ad[]
@@ -80,12 +80,14 @@ export default function Ads({ ads }: Props) {
               <a key={ad.id} className="group">
                 <div className="">
                   <div className="mt-4 rounded-sm border-[#46649D] border-2">
-                    <p className="bold text-[#0f0e0e]"> Namn: {ad.name}</p>
+                    <p className="bold text-[#0f0e0e]">
+                      <b>{ad.title}</b>
+                    </p>
                     <p className="text-[#0f0e0e]">
                       Beskrivning: {ad.description}
                     </p>
-                    <p className="text-[#0f0e0e]">Annonsör: {ad.username}</p>
-                    <p className="text-[#0f0e0e]">Kontakt: {ad.useremail}</p>
+                    <p className="text-[#0f0e0e]">Annonsör: {ad.fullName}</p>
+                    <p className="text-[#0f0e0e]">Kontakt: {ad.email}</p>
                   </div>
                 </div>
               </a>
