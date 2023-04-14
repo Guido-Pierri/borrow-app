@@ -1,6 +1,6 @@
 import "@/styles/globals.css"
 import type { AppProps } from "next/app"
-import { Righteous } from "@next/font/google"
+import { Righteous } from "next/font/google"
 
 const righteous = Righteous({
   subsets: ["latin"],
