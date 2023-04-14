@@ -33,9 +33,9 @@ function LogIn() {
   }
 
   return (
-    <div className=" flex items-center justify-center text-center font-sans bg-[#F5F5F5] h-screen">
-      <div className="pb-16">
-        <div className="">
+    <div className="  flex items-start  justify-center text-center font-sans bg-[#F5F5F5] h-screen">
+      <div className="">
+        <div className="py-8">
           <Link href={"/"}>
             <h1 className="text-xl font-[500] text-black">
               Välkommen till Borrow!
@@ -55,7 +55,7 @@ function LogIn() {
         >
           <label>
             <input
-              className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#FFF]"
+              className="rounded py-4 px-7 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#FFF]"
               placeholder="E-post..."
               type="email"
               onChange={(e) => {
@@ -74,7 +74,7 @@ function LogIn() {
           <label>
             <br />
             <input
-              className="rounded py-4 px-7 border w-[265px] border-[#7BAEAB] placeholder-[#000000] bg-[#FFF]"
+              className="rounded py-4 px-7 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#FFF]"
               placeholder="Lösenord..."
               type="password"
               onChange={(e) => {
