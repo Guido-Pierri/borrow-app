@@ -28,6 +28,10 @@ export default function MyPage() {
   const [email, setEmail] = useState<string>("")*/
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    // if (!formData) {
+    //   return
+    //   ;<div></div>
+    // }
     event.preventDefault()
     const apiData: ApiData = {
       title: formData.title,
@@ -65,6 +69,7 @@ export default function MyPage() {
             type="text"
             name="title"
             value={formData.title}
+            required
             onChange={handleInputChange}
           />
         </label>
@@ -74,6 +79,7 @@ export default function MyPage() {
             placeholder="Beskrivning..."
             type="text"
             name="description"
+            required
             value={formData.description}
             onChange={handleInputChange}
           />
@@ -86,6 +92,7 @@ export default function MyPage() {
             name="fullName"
             value={formData.fullName}
             onChange={handleInputChange}
+            required
           />
         </label>
         <label>
@@ -94,6 +101,7 @@ export default function MyPage() {
             placeholder="Email..."
             type="email"
             name="email"
+            required
             value={formData.email}
             onChange={handleInputChange}
           />
