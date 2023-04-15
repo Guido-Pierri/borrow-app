@@ -40,7 +40,7 @@ export default function MyPage() {
       email: formData.email,
     }
 
-    const response = await fetch("http://localhost:3000/api/postAds/postAds", {
+    const response = await fetch("/api/postAds/postAds", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
