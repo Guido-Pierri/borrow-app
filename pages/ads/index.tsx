@@ -80,7 +80,7 @@ export default function Ads({ ads }: Props) {
 
                     <button>
                       <p style={{ color: 'blue' }}>
-                        <b className="text-[#0f0e0e]">Kontakt:</b>
+                        <b className="text-[#0f0e0e]">Kontakt: </b>
                         <Link href={'mailto:' + `${ad.email}`}>{ad.email}</Link>
                       </p>
                     </button>
