@@ -1,7 +1,7 @@
-import Link from "next/link"
-import Header from "@/p-components/header"
-import clientPromise from "@/lib/mongodb"
-import { GoSearch } from "react-icons/go"
+import Link from 'next/link'
+import Header from '@/p-components/header'
+import clientPromise from '@/lib/mongodb'
+import { GoSearch } from 'react-icons/go'
 interface Ad {
   id: string
   title: string
@@ -45,7 +45,7 @@ export default function Ads({ ads }: Props) {
       </form>
 
       <style jsx>{`
-        input[type="text"] {
+        input[type='text'] {
           background-repeat: no-repeat;
           background-size: 16px 16px;
           background-position: 8px 50%;
@@ -53,7 +53,7 @@ export default function Ads({ ads }: Props) {
       `}</style>
 
       <div className="flex justify-center mt-5">
-        <Link href={"/createAd"}>
+        <Link href={'/createAd'}>
           <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[263px] rounded-sm text-xl font-[500] font-sans">
             <p className=""> Skapa annons</p>
           </button>
@@ -87,10 +87,10 @@ export default function Ads({ ads }: Props) {
                       Beskrivning: {ad.description}
                     </p>
                     <p className="text-[#0f0e0e]">Annonsör: {ad.fullName}</p>
-                    <Link href={"mailto:" + `${ad.email}`}>
+                    <Link href={'mailto:' + `${ad.email}`}>
                       <button>
-                        <p style={{ color: "blue" }}>
-                          {" "}
+                        <p style={{ color: 'blue' }}>
+                          {' '}
                           <b className="text-[#0f0e0e]">Kontakt:</b> {ad.email}
                         </p>
                       </button>
@@ -106,12 +106,12 @@ export default function Ads({ ads }: Props) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
-    const ads = await db.collection("ads").find({}).limit(1000).toArray()
+    const ads = await db.collection('ads').find({}).limit(1000).toArray()
 
     return {
       props: { ads: JSON.parse(JSON.stringify(ads)) },
