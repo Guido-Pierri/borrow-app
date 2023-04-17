@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { useState } from "react"
+import Link from 'next/link'
+import { useState } from 'react'
 
 interface FormData {
   email: string
@@ -13,8 +13,8 @@ interface ApiData {
 
 export default function MyPage() {
   const [formData, setFormData] = useState<FormData>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   })
 
   console.log(formData)
@@ -25,20 +25,18 @@ export default function MyPage() {
       email: formData.email,
       password: formData.password,
     }
-    const response = await fetch(
-      "http://localhost:3000/api/loginUsers/loginUsers",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(apiData),
-      }
-    )
+    const response = await fetch('/api/loginUsers/loginUsers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(apiData),
+    })
 
     const data = await response.json()
 
     console.log(data)
+    window.location.href = '/ads'
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,12 +49,12 @@ export default function MyPage() {
     <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
       <div>
         <div className="py-8">
-          <Link href={"/"}>
+          <Link href={'/'}>
             <h1 className="text-xl font-[500] text-black">
               Välkommen till Borrow!
             </h1>
             <p className="text-xl text-black">
-              Logga in eller{" "}
+              Logga in eller{' '}
               <span className="text-[#46649D]">registrera dig</span>
             </p>
           </Link>
