@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 interface FormData {
   title: string
@@ -14,10 +14,10 @@ interface ApiData {
 }
 export default function MyPage() {
   const [formData, setFormData] = useState<FormData>({
-    title: "",
-    description: "",
-    fullName: "",
-    email: "",
+    title: '',
+    description: '',
+    fullName: '',
+    email: '',
   })
 
   console.log(formData)
@@ -40,15 +40,16 @@ export default function MyPage() {
       email: formData.email,
     }
 
-    const response = await fetch("/api/postAds/postAds", {
-      method: "POST",
+    const response = await fetch('/api/postAds/postAds', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(apiData),
     })
 
     const data = await response.json()
+    window.location.href = '/ads'
 
     console.log(data)
   }
