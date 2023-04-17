@@ -1,21 +1,60 @@
-import Link from 'next/link'
-import Header from '@/p-components/header'
-import clientPromise from '@/lib/mongodb'
-import { GoSearch } from 'react-icons/go'
+import Link from "next/link"
+import Header from "@/p-components/header"
+import clientPromise from "@/lib/mongodb"
+import { GoSearch } from "react-icons/go"
+import { useState } from "react"
+
 interface Ad {
-  id: string
+  _id: string
   title: string
   description: string
   fullName: string
   email: string
 }
+interface AdId {
+  _id: string
+}
+
+interface deleteData {
+  _id: string
+}
+
 interface Props {
   ads: Ad[]
 }
 function navigateTo() {
-  window.location.href = '/createAd'
+  window.location.href = "/createAd"
 }
+
 export default function Ads({ ads }: Props) {
+  const [addId, setAddId] = useState<AdId>({ _id: "" })
+
+  const handleDelete = async (event: any) => {
+    const { _id, value } = event.target
+    setAddId((prevAddId) => ({ ...prevAddId, [_id]: value }))
+  }
+
+  const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    console.log(addId._id)
+    const apiData: AdId = {
+      _id: addId._id,
+    }
+
+    const response = await fetch("/api/deleteAd/deleteAd", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(apiData),
+    })
+
+    const data = await response.json()
+    window.location.href = "/ads"
+
+    console.log(data)
+  }
+
   return (
     <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
       <Header></Header>
@@ -34,7 +73,7 @@ export default function Ads({ ads }: Props) {
       </form>
 
       <style jsx>{`
-        input[type='text'] {
+        input[type="text"] {
           background-repeat: no-repeat;
           background-size: 16px 16px;
           background-position: 8px 50%;
@@ -67,7 +106,7 @@ export default function Ads({ ads }: Props) {
         <div className="px-4">
           <div className="flex-column">
             {ads.map((ad) => (
-              <div key={ad.id} className="group">
+              <div key={ad._id} className="group">
                 <div className="text-left">
                   <div className="mt-4 rounded-sm border-[#46649D] border-2">
                     <p className="bold text-[#0f0e0e]">
@@ -79,11 +118,25 @@ export default function Ads({ ads }: Props) {
                     <p className="text-[#0f0e0e]">Annonsör: {ad.fullName}</p>
 
                     <button>
-                      <p style={{ color: 'blue' }}>
+                      <p style={{ color: "blue" }}>
                         <b className="text-[#0f0e0e]">Kontakt: </b>
-                        <Link href={'mailto:' + `${ad.email}`}>{ad.email}</Link>
+                        <Link href={"mailto:" + `${ad.email}`}>{ad.email}</Link>
                       </p>
                     </button>
+                    <br />
+                    <div className="text-right">
+                      <button
+                        className="border-[#46649D] rounded-sm border-2 mb-1 mx-1"
+                        value={ad._id}
+                        type="submit"
+                        onClick={() => {
+                          handleClick
+                          handleDelete
+                        }}
+                      >
+                        Ta bort annons
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -98,9 +151,9 @@ export default function Ads({ ads }: Props) {
 export async function getServerSideProps() {
   try {
     const client = await clientPromise
-    const db = client.db('borrow')
+    const db = client.db("borrow")
 
-    const ads = await db.collection('ads').find({}).limit(1000).toArray()
+    const ads = await db.collection("ads").find({}).limit(1000).toArray()
 
     return {
       props: { ads: JSON.parse(JSON.stringify(ads)) },
