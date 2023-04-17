@@ -12,25 +12,14 @@ interface Ad {
 interface Props {
   ads: Ad[]
 }
+function navigateTo() {
+  window.location.href = '/createAd'
+}
 export default function Ads({ ads }: Props) {
   return (
     <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
       <Header></Header>
-      {/* <form>
-        <div className="">
-          <label className="">
-            <input
-              className="bg-[#E6E6E6] font-sans
-              placeholder-black px-1 rounded-sm "
-              type="text"
-              placeholder="Sök..."
-            />
-            <div className="text-right">
-              <GoSearch />
-            </div>
-          </label>
-        </div>
-      </form> */}
+
       <form>
         <label className="relative">
           <input
@@ -53,11 +42,12 @@ export default function Ads({ ads }: Props) {
       `}</style>
 
       <div className="flex justify-center mt-5">
-        <Link href={'/createAd'}>
-          <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[263px] rounded-sm text-xl font-[500] font-sans">
-            <p className=""> Skapa annons</p>
-          </button>
-        </Link>
+        <button
+          className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[263px] rounded-sm text-xl font-[500] font-sans"
+          onClick={navigateTo}
+        >
+          <p className=""> Skapa annons</p>
+        </button>
       </div>
       <section className="flex justify-around mt-5 ">
         <button className="mt-4 font-sans font-semibold border-4 px-4 py-1 border-[#46649D]">
@@ -77,7 +67,7 @@ export default function Ads({ ads }: Props) {
         <div className="px-4">
           <div className="flex-column">
             {ads.map((ad) => (
-              <a key={ad.id} className="group">
+              <div key={ad.id} className="group">
                 <div className="">
                   <div className="mt-4 rounded-sm border-[#46649D] border-2">
                     <p className="bold text-[#0f0e0e]">
@@ -87,17 +77,16 @@ export default function Ads({ ads }: Props) {
                       Beskrivning: {ad.description}
                     </p>
                     <p className="text-[#0f0e0e]">Annonsör: {ad.fullName}</p>
-                    <Link href={'mailto:' + `${ad.email}`}>
-                      <button>
-                        <p style={{ color: 'blue' }}>
-                          {' '}
-                          <b className="text-[#0f0e0e]">Kontakt:</b> {ad.email}
-                        </p>
-                      </button>
-                    </Link>
+
+                    <button>
+                      <p style={{ color: 'blue' }}>
+                        <b className="text-[#0f0e0e]">Kontakt:</b>
+                        <Link href={'mailto:' + `${ad.email}`}>{ad.email}</Link>
+                      </p>
+                    </button>
                   </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         </div>
