@@ -1,4 +1,111 @@
-import { NextPage } from "next"
+import Link from 'next/link'
+import { useState } from 'react'
+
+interface FormData {
+  email: string
+  password: string
+}
+
+interface ApiData {
+  email: string
+  password: string
+}
+
+export default function MyPage() {
+  const [formData, setFormData] = useState<FormData>({
+    email: '',
+    password: '',
+  })
+
+  console.log(formData)
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const apiData: ApiData = {
+      email: formData.email,
+      password: formData.password,
+    }
+    const response = await fetch('/api/loginUsers/loginUsers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(apiData),
+    })
+
+    const data = await response.json()
+
+    console.log(data)
+    window.location.href = '/ads'
+  }
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
+    console.log(event.target.value)
+  }
+
+  return (
+    <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
+      <div>
+        <div className="py-8">
+          <Link href={'/'}>
+            <h1 className="text-xl font-[500] text-black">
+              Välkommen till Borrow!
+            </h1>
+            <p className="text-xl text-black">
+              Logga in eller{' '}
+              <span className="text-[#46649D]">registrera dig</span>
+            </p>
+          </Link>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <input
+              className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+              placeholder="E-post..."
+              type="email"
+              name="email"
+              pattern="^[A-Za-z0-9+_.-]+@(.+)$"
+              required
+              minLength={10}
+              value={formData.email}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            <input
+              className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+              placeholder="Lösenord..."
+              type="password"
+              name="password"
+              required
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              title="Måste innehålla minst en siffra och en stor och liten bokstav, och minst 8 eller fler tecken"
+              minLength={8}
+              value={formData.password}
+              onChange={handleInputChange}
+            />
+          </label>
+          {/*<Link href={"/ads"}>*/}
+          <div className="py-12">
+            <button
+              className=" 
+           rounded-sm text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[265px]  py-3
+    "
+              type="submit"
+            >
+              Logga in
+            </button>
+          </div>
+          {/*</Link>*/}
+        </form>
+      </div>
+    </div>
+  )
+}
+
+/*import { NextPage } from "next"
 import Link from "next/link"
 import { SyntheticEvent, use, useState } from "react"
 import { BsFacebook } from "react-icons/bs"
@@ -21,16 +128,12 @@ function LogIn() {
 
   function handleAndValidation(e: SyntheticEvent) {
     e.preventDefault()
-    /*console.log("Email: " + user.email)
-    console.log("Password: " + user.password)*/
-    localStorage.setItem("Email", user.email)
-    localStorage.setItem("Password", user.password)
-    const getEmail = JSON.stringify(localStorage.getItem("Email"))
-    const getPassword = JSON.stringify(localStorage.getItem("Password"))
-    console.log("LocalStorage: " + getEmail + " and " + getPassword)
+    console.log("Email: " + user.email)
+    console.log("Password: " + user.password)
+    
 
     /*setErrorMessages(validation(user))*/
-  }
+/*}
 
   return (
     <div className="  flex items-start  justify-center text-center font-sans bg-[#F5F5F5] h-screen">
@@ -111,4 +214,4 @@ function LogIn() {
   )
 }
 
-export default LogIn
+export default LogIn*/
