@@ -87,7 +87,6 @@ export default function MyPage() {
               onChange={handleInputChange}
             />
           </label>
-          {/*<Link href={"/ads"}>*/}
           <div className="py-12">
             <button
               className=" 
@@ -98,7 +97,6 @@ export default function MyPage() {
               Logga in
             </button>
           </div>
-          {/*</Link>*/}
         </form>
       </div>
     </div>
