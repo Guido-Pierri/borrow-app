@@ -5,9 +5,35 @@ interface Props {}
 
 const Index: NextPage<Props> = ({}) => {
   return (
-    <div className="font-sans h-screen bg-[#F5F5F5]">
+    <div className="h-screen bg-[#F5F5F5] max-w-sm">
       <Header></Header>
-      <h1>Välkommen till Info sidan!</h1>
+      <div className="font-sans">
+        <div className="px-4 ">
+          <h1 className="font-bold text-xl pt-4">Så fungerar Borrow</h1>
+        </div>
+        <div>
+          <p className="py-4">
+            Borrow är en tjänst som ger möjligheten för dig som student att
+            dryga ut kassan genom att låna och låna ut saker inom din
+            studentförening. Utöver detta bidrar du också till en mer hållbar
+            framtid och ökad gemenskap i ditt grannskap.
+          </p>
+        </div>
+        <div>
+          <h2 className="font-bold text-base pt-4">
+            För att använda Borrow behöver du:
+          </h2>
+          <p className="pt-4">
+            1. Först registrera sig som medlem på hemsidan och ansluta sig till
+            sin studentförening 2. Därefter kan man lägga upp saker som man vill
+            låna ut eller söka efter saker som man vill låna. Det kan vara allt
+            från böcker och kursmaterial till verktyg och sportutrustning. 3.
+            När man har hittat en sak som man vill låna eller låna ut så
+            kontaktar man personen genom Borrow och bestämmer tid och plats för
+            utlåning/lån.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
