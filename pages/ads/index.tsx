@@ -2,20 +2,107 @@ import Link from 'next/link'
 import Header from '@/p-components/header'
 import clientPromise from '@/lib/mongodb'
 import { GoSearch } from 'react-icons/go'
+import { useState } from 'react'
+
 interface Ad {
+  _id: string
   id: string
   title: string
   description: string
   fullName: string
   email: string
 }
+interface AdId {
+  id: string
+}
+
+// interface deleteData {
+//   _id: string
+// }
+
 interface Props {
   ads: Ad[]
 }
 function navigateTo() {
   window.location.href = '/createAd'
 }
+
 export default function Ads({ ads }: Props) {
+  // const [addId, setAddId] = useState<AdId>({ _id: "" })
+
+  // const { _id, value } = event.target
+  // const handleDelete = async (event: React.HTMLAttributeAnchorTarget) => {
+  //   setAddId((prevAddId) => ({ ...prevAddId, [_id]: value }))
+  // }
+
+  // const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault()
+  //   console.log(addId._id)
+  //   const apiData: AdId = {
+  //     _id: addId._id,
+  //   }
+
+  //   const response = await fetch("/api/deleteAd/deleteAd", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(apiData),
+  //   })
+
+  //   const data = await response.json()
+  //   window.location.href = "/ads"
+
+  //   console.log(data)
+  // }
+  // const handleDelete = async (id: string) => {
+  // //   try {
+  // //     const res = await fetch(`/api/ads/${id}`, {
+  // //       method: 'DELETE',
+  // //     })
+  // //     if (res.ok) {
+  // //       // Refresh the ads
+  // //       window.location.reload()
+  // //     } else {
+  // //       console.error(`Failed to delete ad with id ${id}`)
+  // //     }
+  // //   } catch (e) {
+  // //     console.error(e)
+  // //   }
+  // // }
+  // const [deletedAdId, setDeletedAdId] = useState('')
+
+  async function deleteAd(id: string) {
+    console.log('deleteAd')
+    const apiData: AdId = {
+      id: id,
+    }
+    console.log(apiData)
+
+    try {
+      console.log('try')
+      console.log(id)
+
+      const res = await fetch('/api/deleteAd', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(apiData),
+      })
+      console.log(res)
+      console.log(res.status)
+
+      if (res.ok) {
+        // setDeletedAdId(id)
+        window.location.reload()
+      } else {
+        console.error('Failed to delete ad')
+      }
+    } catch (e) {
+      console.error('Failed to delete ad', e)
+    }
+  }
   return (
     <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
       <Header></Header>
@@ -67,7 +154,7 @@ export default function Ads({ ads }: Props) {
         <div className="px-4">
           <div className="flex-column">
             {ads.map((ad) => (
-              <div key={ad.id} className="group">
+              <div key={ad._id} className="group">
                 <div className="text-left">
                   <div className="mt-4 rounded-sm border-[#46649D] border-2">
                     <p className="bold text-[#0f0e0e]">
@@ -84,6 +171,17 @@ export default function Ads({ ads }: Props) {
                         <Link href={'mailto:' + `${ad.email}`}>{ad.email}</Link>
                       </p>
                     </button>
+                    <br />
+                    <div className="text-right">
+                      <button
+                        className="border-[#46649D] rounded-sm border-2 mb-1 mx-1"
+                        value={ad._id}
+                        type="submit"
+                        onClick={() => deleteAd(ad.id)}
+                      >
+                        Ta bort annons
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
