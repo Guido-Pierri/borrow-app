@@ -188,7 +188,7 @@ export default function Ads({ ads }: Props) {
         <div className="px-4">
           <div className="flex-column">
             {ads.map((ad) => (
-              <div key={ad._id} className="group">
+              <div key={ad.id} className="group">
                 <div className="text-left">
                   <div className="mt-4 rounded-sm border-[#46649D] border-2">
                     <p className="bold text-[#0f0e0e]">
