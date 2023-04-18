@@ -103,6 +103,37 @@ export default function Ads({ ads }: Props) {
       console.error('Failed to delete ad', e)
     }
   }
+  async function updateAd(id: string) {
+    console.log('updateAd')
+    const apiData: AdId = {
+      id: id,
+    }
+    console.log(apiData)
+
+    try {
+      console.log('try')
+      console.log(id)
+
+      const res = await fetch(`/api/updateAd/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(apiData),
+      })
+      console.log(res)
+      console.log(res.status)
+
+      if (res.ok) {
+        // setDeletedAdId(id)
+        window.location.reload()
+      } else {
+        console.error('Failed to delete ad')
+      }
+    } catch (e) {
+      console.error('Failed to delete ad', e)
+    }
+  }
   return (
     <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
       <Header></Header>
@@ -171,16 +202,29 @@ export default function Ads({ ads }: Props) {
                         <Link href={'mailto:' + `${ad.email}`}>{ad.email}</Link>
                       </p>
                     </button>
-                    <br />
-                    <div className="text-right">
-                      <button
-                        className="border-[#46649D] rounded-sm border-2 mb-1 mx-1"
-                        value={ad._id}
-                        type="submit"
-                        onClick={() => deleteAd(ad.id)}
-                      >
-                        Ta bort annons
-                      </button>
+
+                    <div className="flex mt-4">
+                      <div className="">
+                        <button
+                          className="bg-[#9EBB9D] rounded-sm bg- mb-1 mx-1 px-2"
+                          value={ad._id}
+                          type="submit"
+                          onClick={() => deleteAd(ad.id)}
+                        >
+                          Redigera annons
+                        </button>
+                      </div>
+
+                      <div className="">
+                        <button
+                          className="bg-[#9EBB9D] rounded-sm border-2 mb-1 mx-1 px-2"
+                          value={ad._id}
+                          type="submit"
+                          onClick={() => updateAd(ad.id)}
+                        >
+                          Ta bort annons
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
