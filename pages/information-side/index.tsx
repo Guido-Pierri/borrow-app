@@ -12,7 +12,7 @@ const Index: NextPage<Props> = ({}) => {
           <h1 className="font-bold text-xl pt-4">Så fungerar Borrow</h1>
         </div>
         <div>
-          <p className="py-4">
+          <p className="py-4 px-1">
             Borrow är en tjänst som ger möjligheten för dig som student att
             dryga ut kassan genom att låna och låna ut saker inom din
             studentförening. Utöver detta bidrar du också till en mer hållbar
@@ -20,7 +20,7 @@ const Index: NextPage<Props> = ({}) => {
           </p>
         </div>
         <div>
-          <h2 className="font-bold text-base pt-4">
+          <h2 className="font-bold text-base pt-4 px-1">
             För att använda Borrow behöver du:
           </h2>
           <div className="pt-1">
