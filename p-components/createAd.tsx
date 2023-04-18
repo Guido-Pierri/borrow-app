@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
 uuidv4()
 interface FormData {
   id: string
@@ -17,11 +17,11 @@ interface ApiData {
 }
 export default function MyPage() {
   const [formData, setFormData] = useState<FormData>({
-    id: '',
-    title: '',
-    description: '',
-    fullName: '',
-    email: '',
+    id: "",
+    title: "",
+    description: "",
+    fullName: "",
+    email: "",
   })
 
   console.log(formData)
@@ -45,10 +45,10 @@ export default function MyPage() {
       email: formData.email,
     }
 
-    const response = await fetch('/api/postAds/postAds', {
-      method: 'POST',
+    const response = await fetch("/api/postAds/postAds", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
@@ -56,7 +56,7 @@ export default function MyPage() {
     const data = await response.json()
 
     console.log(data)
-    window.location.href = '/ads'
+    window.location.href = "/ads"
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,11 +64,11 @@ export default function MyPage() {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
     console.log(event.target.value)
   }
-  function generaterUuid() {
-    // const uuidv4 = require('uuid/v4')
-    uuidv4()
-    console.log(uuidv4())
-  }
+  // function generaterUuid() {
+  //   // const uuidv4 = require('uuid/v4')
+  //   uuidv4()
+  //   console.log(uuidv4())
+  // }
   return (
     <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
       <form className="font-sans" onSubmit={handleSubmit}>
@@ -123,7 +123,7 @@ export default function MyPage() {
            rounded-sm text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[265px]  py-3
     "
           type="submit"
-          onClick={generaterUuid}
+          // onClick={generaterUuid}
         >
           Submit
         </button>
