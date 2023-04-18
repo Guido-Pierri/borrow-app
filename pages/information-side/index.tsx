@@ -23,15 +23,22 @@ const Index: NextPage<Props> = ({}) => {
           <h2 className="font-bold text-base pt-4">
             För att använda Borrow behöver du:
           </h2>
-          <p className="pt-4">
-            1. Först registrera sig som medlem på hemsidan och ansluta sig till
-            sin studentförening 2. Därefter kan man lägga upp saker som man vill
-            låna ut eller söka efter saker som man vill låna. Det kan vara allt
-            från böcker och kursmaterial till verktyg och sportutrustning. 3.
-            När man har hittat en sak som man vill låna eller låna ut så
-            kontaktar man personen genom Borrow och bestämmer tid och plats för
-            utlåning/lån.
-          </p>
+          <div className="pt-1">
+            <p className="pt-3 px-3">
+              1. Först registrera sig som medlem på hemsidan och ansluta sig
+              till sin studentförening
+            </p>
+            <p className="pt-3 px-3">
+              2. Därefter kan man lägga upp saker som man vill låna ut eller
+              söka efter saker som man vill låna. Det kan vara allt från böcker
+              och kursmaterial till verktyg och sportutrustning.
+            </p>
+            <p className="px-3 pt-3">
+              3. När man har hittat en sak som man vill låna eller låna ut så
+              kontaktar man personen genom Borrow och bestämmer tid och plats
+              för utlåning/lån.
+            </p>
+          </div>
         </div>
       </div>
     </div>
