@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
+import { User } from '@/types/user'
+import { v4 as uuidv4 } from 'uuid'
+
 interface FormData {
   email: string
   password: string
@@ -21,9 +24,10 @@ export default function MyPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const apiData: ApiData = {
+    const apiData: User = {
       email: formData.email,
       password: formData.password,
+      userId: uuidv4(),
     }
     const response = await fetch('/api/loginUsers/loginUsers', {
       method: 'POST',
