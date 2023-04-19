@@ -4,6 +4,7 @@ import { Ad } from '@/types/ads'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { v4 as uuidv4 } from 'uuid'
+import Header from '@/p-components/header'
 
 interface Props {
   ads: Ad
@@ -19,28 +20,33 @@ export default function Post({ ads }: Props) {
 
   console.log(ads?.id)
   return (
-    <div className="bg-[#F5F5F5] text-center max-w-sm  ">
-      <div className=" font-sans">
-        <div className="flex-column">
-          <div className="text-left">
-            <div className="mt-6 rounded-sm border-[#46649D] border-2">
-              <p className="bold text-[#0f0e0e] mt-2">
-                <b>Titel: {ads.title}</b>
-              </p>
-              <p className="text-[#0f0e0e] mt-2">
-                Beskrivning: {ads.description}
-              </p>
-              <p className="text-[#0f0e0e] mt-2">Annonsör: {ads.description}</p>
-              <button>
-                <p style={{ color: 'blue' }}>
-                  <b className="text-[#0f0e0e] mt-2 ">Kontakt: {ads.email}</b>
+    <>
+      <div className="bg-[#F5F5F5] text-center max-w-sm h-screen">
+        <Header></Header>
+        <div className=" font-sans">
+          <div className="flex-column">
+            <div className="text-left">
+              <div className="mt-6 rounded-sm border-[#46649D] border-2">
+                <p className="bold text-[#0f0e0e] mt-2">
+                  <b>Titel: {ads.title}</b>
                 </p>
-              </button>
+                <p className="text-[#0f0e0e] mt-2">
+                  Beskrivning: {ads.description}
+                </p>
+                <p className="text-[#0f0e0e] mt-2">
+                  Annonsör: {ads.description}
+                </p>
+                <button>
+                  <p style={{ color: 'blue' }}>
+                    <b className="text-[#0f0e0e] mt-2 ">Kontakt: {ads.email}</b>
+                  </p>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
