@@ -38,7 +38,10 @@ export default function Post({ ads }: Props) {
                 </p>
                 <button>
                   <p style={{ color: 'blue' }}>
-                    <b className="text-[#0f0e0e] mt-2 ">Kontakt: {ads.email}</b>
+                    <b className="text-[#0f0e0e] mt-2 ">
+                      Kontakt:{' '}
+                      <Link href={'mailto:' + `${ads.email}`}>{ads.email}</Link>
+                    </b>
                   </p>
                 </button>
               </div>
