@@ -117,10 +117,7 @@ export default function Ads({ ads }: Props) {
                 <div className="text-left">
                   <div className="mt-4 rounded-sm border-[#46649D] border-2">
                     <p className="bold text-[#0f0e0e]">
-                      <b>
-                        {ad.title} <br />
-                        {ad.id}
-                      </b>
+                      <b>{ad.title}</b>
                     </p>
                     <p className="text-[#0f0e0e]">
                       Beskrivning: {ad.description}
