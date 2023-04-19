@@ -12,18 +12,43 @@ export default async function handler(
   res: NextApiResponse
 ) {
   console.log(req.body)
-  const { title, description, fullName, email } = req.body as FormValues
+  const { id, title, description, fullName, email } = req.body
   const client = await clientPromise
   const database = client.db("borrow")
   const collection = database.collection("ads")
   try {
-    console.log(req.body)
-    // const name = req.body.name
-    // const email = req.body.email
-    const result = await collection.insertOne(req.body)
+    if (req.method === "PATCH") {
+      console.log(req.body)
+      console.log(id)
+      // const name = req.body.name
+      // const email = req.body.email
+      const result = await collection.insertOne(req.body)
 
-    // res.json(result)
-    res.status(201).json({ message: "Ad created successfully." })
+      await collection.updateOne(
+        { id: id },
+        {
+          $set: {
+            title: title,
+            description: description,
+            fullName: fullName,
+            email: email,
+          },
+        }
+      )
+
+      // res.json(result)
+      res.status(201).json({ message: "Update was successfull." })
+    }
+    if (req.method === "POST") {
+      console.log(req.body)
+      // const name = req.body.name
+      // const email = req.body.email
+      const result = await collection.insertOne(req.body)
+
+      res.json(result)
+
+      res.status(201).json({ message: "Ad created successfully." })
+    }
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: "An error occurred." })
