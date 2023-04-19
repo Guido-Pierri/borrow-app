@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { useState } from 'react'
+import Link from "next/link"
+import { useState } from "react"
 
 interface FormData {
   email: string
@@ -10,11 +10,13 @@ interface ApiData {
   email: string
   password: string
 }
-
+function navigateTo() {
+  window.location.href = "/register-site"
+}
 export default function MyPage() {
   const [formData, setFormData] = useState<FormData>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   })
 
   console.log(formData)
@@ -25,10 +27,10 @@ export default function MyPage() {
       email: formData.email,
       password: formData.password,
     }
-    const response = await fetch('/api/loginUsers/loginUsers', {
-      method: 'POST',
+    const response = await fetch("/api/loginUsers/loginUsers", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
@@ -36,7 +38,7 @@ export default function MyPage() {
     const data = await response.json()
 
     console.log(data)
-    window.location.href = '/ads'
+    window.location.href = "/register-site"
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,17 +52,16 @@ export default function MyPage() {
       <div>
         <div className="py-8">
           {/*<Link href={'/'}>*/}
-            <h1 className="text-xl font-[500] text-black">
-              Välkommen till Borrow!
-            </h1>
-            {/*</Link>*/}
-            <p className="text-xl text-black">
-              Logga in eller{' '}
-              <Link href={"/register-site"}>
-              {" "}
-              <span className="text-[#46649D]">registrera dig</span>
-            </Link>
-            </p>
+          <h1 className="text-xl font-[500] text-black">
+            Välkommen till Borrow!
+          </h1>
+          {/*</Link>*/}
+          <p className="text-xl text-black">
+            Logga in eller{" "}
+            <span className="text-[#46649D]" onClick={navigateTo}>
+              registrera dig
+            </span>
+          </p>
         </div>
         <form onSubmit={handleSubmit}>
           <label>
