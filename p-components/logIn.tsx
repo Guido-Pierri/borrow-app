@@ -49,15 +49,18 @@ export default function MyPage() {
     <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
       <div>
         <div className="py-8">
-          <Link href={'/'}>
+          {/*<Link href={'/'}>*/}
             <h1 className="text-xl font-[500] text-black">
               Välkommen till Borrow!
             </h1>
+            {/*</Link>*/}
             <p className="text-xl text-black">
               Logga in eller{' '}
+              <Link href={"/register-site"}>
+              {" "}
               <span className="text-[#46649D]">registrera dig</span>
+            </Link>
             </p>
-          </Link>
         </div>
         <form onSubmit={handleSubmit}>
           <label>
