@@ -1,9 +1,9 @@
-import clientPromise from "@/lib/mongodb"
-import { useRouter } from "next/router"
-import { Ad } from "@/types/ads"
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import { v4 as uuidv4 } from "uuid"
+import clientPromise from '@/lib/mongodb'
+import { useRouter } from 'next/router'
+import { Ad } from '@/types/ads'
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { v4 as uuidv4 } from 'uuid'
 
 interface Props {
   ads: Ad
@@ -33,19 +33,14 @@ export default function Post({ ads }: Props) {
   a object formData that contains following properties*/
 
   const [formData, setFormData] = useState<FormData>({
-    id: ads?.id || "",
-    title: ads?.title || "",
-    description: ads?.description || "",
-    fullName: ads?.fullName || "",
-    email: ads?.email || "",
+    id: ads?.id || '',
+    title: ads?.title || '',
+    description: ads?.description || '',
+    fullName: ads?.fullName || '',
+    email: ads?.email || '',
   })
 
   console.log(formData)
-
-  /*const [title, setTitle] = useState<string>("")
-    const [description, setdescription] = useState<string>("")
-    const [fullName, setFullName] = useState<string>("")
-    const [email, setEmail] = useState<string>("")*/
 
   /*Creating apiData object that contains the formData
     to be submitted to server.This is sent through POST
@@ -56,18 +51,19 @@ export default function Post({ ads }: Props) {
     //   ;<div></div>
     // }
     event.preventDefault()
+
     const apiData: ApiData = {
-      id: uuidv4(),
+      id: formData.id,
       title: formData.title,
       description: formData.description,
       fullName: formData.fullName,
       email: formData.email,
     }
 
-    const response = await fetch("/api/postAds/postAds", {
-      method: "PATCH",
+    const response = await fetch('/api/postAds/postAds', {
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(apiData),
     })
@@ -104,6 +100,7 @@ export default function Post({ ads }: Props) {
                       <input
                         className="bg-[#F5F5F5] placeholder-black"
                         // placeholder={`${ads.title}`}
+                        name="title"
                         onChange={handleInputChange}
                         value={formData.title}
                       ></input>
@@ -114,6 +111,7 @@ export default function Post({ ads }: Props) {
                     <input
                       className="bg-[#F5F5F5] mt-2 placeholder-black"
                       // placeholder={`${ads.description}`}
+                      name="description"
                       onChange={handleInputChange}
                       value={formData.description}
                     ></input>
@@ -125,17 +123,19 @@ export default function Post({ ads }: Props) {
                       // placeholder={`${ads.fullName}`}
                       onChange={handleInputChange}
                       value={formData.fullName}
+                      name="fullName"
                     ></input>
                   </p>
 
                   <button>
-                    <p style={{ color: "blue" }}>
+                    <p style={{ color: 'blue' }}>
                       <b className="text-[#0f0e0e] ">Kontakt: </b>
                       <input
                         className="bg-[#F5F5F5] mt-2 placeholder-blue-950"
                         // placeholder={`${ads.email}`}
                         onChange={handleInputChange}
                         value={formData.email}
+                        name="email"
                       ></input>
                     </p>
                   </button>
@@ -166,9 +166,9 @@ export async function getServerSideProps(context: any) {
   try {
     const { adId } = context.query
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
-    const ads = await db.collection("ads").findOne({ id: adId })
+    const ads = await db.collection('ads').findOne({ id: adId })
     console.log(ads)
 
     return {
