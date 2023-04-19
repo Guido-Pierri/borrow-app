@@ -1,8 +1,8 @@
-import Link from "next/link"
-import { useState } from "react"
+import Link from 'next/link'
+import { useState } from 'react'
 
-import { User } from "@/types/user"
-import { v4 as uuidv4 } from "uuid"
+import { User } from '@/types/user'
+import { v4 as uuidv4 } from 'uuid'
 
 interface FormData {
   email: string
@@ -11,8 +11,8 @@ interface FormData {
 
 export default function MyPage() {
   const [formData, setFormData] = useState<FormData>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   })
 
   console.log(formData)
@@ -24,10 +24,10 @@ export default function MyPage() {
       password: formData.password,
       userId: uuidv4(),
     }
-    const response = await fetch("/api/loginUsers/loginUsers", {
-      method: "POST",
+    const response = await fetch('/api/loginUsers/loginUsers', {
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(apiData),
     })
@@ -35,7 +35,9 @@ export default function MyPage() {
     const data = await response.json()
 
     console.log(data)
-    window.location.href = "/ads"
+    console.log('data', data)
+
+    window.location.href = '/ads'
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,12 +50,12 @@ export default function MyPage() {
     <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
       <div>
         <div className="py-8">
-          <Link href={"/"}>
+          <Link href={'/'}>
             <h1 className="text-xl font-[500] text-black">
               Välkommen till Borrow!
             </h1>
             <p className="text-xl text-black">
-              Logga in eller{" "}
+              Logga in eller{' '}
               <span className="text-[#46649D]">registrera dig</span>
             </p>
           </Link>
