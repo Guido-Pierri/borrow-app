@@ -1,6 +1,11 @@
 import { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
+
+//function that generates random id:s
 uuidv4()
+
+/*Defining two interfaces,
+that describes shape of the data*/
 interface FormData {
   id: string
   title: string
@@ -15,6 +20,9 @@ interface ApiData {
   fullName: string
   email: string
 }
+
+/*Defining a function (pass to other files), that has 
+a object formData that contains following properties*/
 export default function MyPage() {
   const [formData, setFormData] = useState<FormData>({
     id: "",
@@ -31,6 +39,9 @@ export default function MyPage() {
   const [fullName, setFullName] = useState<string>("")
   const [email, setEmail] = useState<string>("")*/
 
+  /*Creating apiData object that contains the formData
+  to be submitted to server.This is sent through POST
+  to the server*/
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     // if (!formData) {
     //   return
@@ -59,6 +70,9 @@ export default function MyPage() {
     window.location.href = "/ads"
   }
 
+  /*Is called when user types something in the form
+  and it updates formData with the new values passed in
+  through setFormData*/
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
