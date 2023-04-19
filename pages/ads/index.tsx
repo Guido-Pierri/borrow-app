@@ -116,7 +116,7 @@ export default function Ads({ ads }: Props) {
       console.log('try')
       console.log(id)
 
-      const res = await fetch(`/api/updateAd/${id}`, {
+      const res = await fetch(`api/updateAd/${id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
