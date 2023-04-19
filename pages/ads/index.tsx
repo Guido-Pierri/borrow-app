@@ -107,35 +107,6 @@ export default function Ads({ ads }: Props) {
   async function updateAd(id: string) {
     window.location.href = `/updateAd/${id}`
     console.log('updateAd')
-    const apiData: AdId = {
-      id: id,
-    }
-    console.log(apiData)
-
-    try {
-      console.log('try')
-      console.log(id)
-
-      const res = await fetch(`api/updateAd/${id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(apiData),
-      })
-      console.log(res)
-      console.log(res.status)
-
-      if (res.ok) {
-        // setDeletedAdId(id)
-
-        window.location.reload()
-      } else {
-        console.error('Failed to delete ad')
-      }
-    } catch (e) {
-      console.error('Failed to delete ad', e)
-    }
   }
   return (
     <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
