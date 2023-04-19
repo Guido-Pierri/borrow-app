@@ -19,6 +19,7 @@ export default async function handler(
         const collection = database.collection('users')
         const users = await collection.find().toArray()
         const convertedUsers: User[] = users.map((userDoc) => {
+          //what does this code do?
           return {
             name: userDoc.name as string,
             password: userDoc.password as string,
