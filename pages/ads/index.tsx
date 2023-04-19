@@ -106,18 +106,20 @@ export default function Ads({ ads }: Props) {
           TAVLAN
         </button>
       </section>
-      <section className="font-sans ">
+      <section className="font-sans">
         <h2 className="text-left mt-4 px-4">Alla resultat:</h2>
       </section>
       <div className=" font-sans">
         <div className="px-4">
-          <div className="flex-column">
+          <div className="flex-column ">
             {ads.map((ad) => (
-              <div key={ad.id} className="group">
+              <div key={ad.id} className="group link">
                 <div className="text-left">
                   <div className="mt-4 rounded-sm border-[#46649D] border-2">
                     <p className="bold text-[#0f0e0e]">
-                      <b onClick={() => navigateToAd(ad.id)}>{ad.title}</b>
+                      <b className="link" onClick={() => navigateToAd(ad.id)}>
+                        {ad.title}
+                      </b>
                     </p>
                     <p
                       className="text-[#0f0e0e]"
@@ -169,6 +171,11 @@ export default function Ads({ ads }: Props) {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        .link {
+          cursor: pointer;
+        }
+      `}</style>
     </div>
   )
 }
