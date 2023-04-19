@@ -1,6 +1,8 @@
 import clientPromise from "@/lib/mongodb"
 import { Collection } from "mongodb"
 import { NextApiRequest, NextApiResponse } from "next"
+import { v4 as uuidv4 } from "uuid"
+import bcrypt from "bcrypt"
 
 interface FormValues {
   email: string
@@ -18,10 +20,16 @@ export default async function handler(
   const collection = database.collection("userLogin")
   try {
     console.log(req.body)
-    // const email = req.body.email
-    // const password = req.body.password
-    const result = await collection.insertOne(req.body)
 
+    const userId = uuidv4()
+    const haschedPassword = await bcrypt.hash(password, 10)
+    const result = await collection.insertOne({
+      userId,
+      email,
+      haschedPassword,
+    })
+
+    // res.json(haschedPassword)
     // res.json(result)
     res.status(201).json({ message: "User at login was created successfully." })
   } catch (error) {
