@@ -18,7 +18,7 @@ interface AdId {
 interface Props {
   ads: Ad[]
 }
-function navigateTo() {
+function navigateToCreateAd() {
   window.location.href = '/createAd'
 }
 
@@ -59,8 +59,8 @@ export default function Ads({ ads }: Props) {
     window.location.href = `/updateAd/${id}`
     console.log('updateAd')
   }
-  function navigateTo() {
-    window.location.href = `/createAd`
+  function navigateToAd(id: string) {
+    window.location.href = `/ads/${id}`
   }
   return (
     <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
@@ -90,7 +90,7 @@ export default function Ads({ ads }: Props) {
       <div className="flex justify-center mt-5">
         <button
           className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[263px] rounded-sm text-xl font-[500] font-sans"
-          onClick={navigateTo}
+          onClick={navigateToCreateAd}
         >
           <p className=""> Skapa annons</p>
         </button>
@@ -114,7 +114,7 @@ export default function Ads({ ads }: Props) {
           <div className="flex-column">
             {ads.map((ad) => (
               <div key={ad.id} className="group">
-                <div className="text-left">
+                <div className="text-left" onClick={() => navigateToAd(ad.id)}>
                   <div className="mt-4 rounded-sm border-[#46649D] border-2">
                     <p className="bold text-[#0f0e0e]">
                       <b>{ad.title}</b>
