@@ -39,6 +39,8 @@ export default function Post({ ads }: Props) {
     fullName: ads?.fullName || '',
     email: ads?.email || '',
   })
+  console.log('ads?.id', ads?.id)
+  console.log('adId', adId)
 
   console.log(formData)
 
@@ -53,12 +55,13 @@ export default function Post({ ads }: Props) {
     event.preventDefault()
 
     const apiData: ApiData = {
-      id: formData.id,
+      id: ads?.id,
       title: formData.title,
       description: formData.description,
       fullName: formData.fullName,
       email: formData.email,
     }
+    console.log('apiData:', apiData)
 
     const response = await fetch('/api/postAds/postAds', {
       method: 'PATCH',
@@ -73,7 +76,7 @@ export default function Post({ ads }: Props) {
     console.log(data)
     console.log(apiData)
 
-    // window.location.href = "/ads"
+    window.location.href = '/ads'
   }
 
   /*Is called when user types something in the form

@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Header from '@/p-components/header'
 import clientPromise from '@/lib/mongodb'
 import { GoSearch } from 'react-icons/go'
-import { useState } from 'react'
 
 interface Ad {
   _id: string
@@ -16,10 +15,6 @@ interface AdId {
   id: string
 }
 
-// interface deleteData {
-//   _id: string
-// }
-
 interface Props {
   ads: Ad[]
 }
@@ -28,50 +23,6 @@ function navigateTo() {
 }
 
 export default function Ads({ ads }: Props) {
-  // const [addId, setAddId] = useState<AdId>({ _id: "" })
-
-  // const { _id, value } = event.target
-  // const handleDelete = async (event: React.HTMLAttributeAnchorTarget) => {
-  //   setAddId((prevAddId) => ({ ...prevAddId, [_id]: value }))
-  // }
-
-  // const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault()
-  //   console.log(addId._id)
-  //   const apiData: AdId = {
-  //     _id: addId._id,
-  //   }
-
-  //   const response = await fetch("/api/deleteAd/deleteAd", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(apiData),
-  //   })
-
-  //   const data = await response.json()
-  //   window.location.href = "/ads"
-
-  //   console.log(data)
-  // }
-  // const handleDelete = async (id: string) => {
-  // //   try {
-  // //     const res = await fetch(`/api/ads/${id}`, {
-  // //       method: 'DELETE',
-  // //     })
-  // //     if (res.ok) {
-  // //       // Refresh the ads
-  // //       window.location.reload()
-  // //     } else {
-  // //       console.error(`Failed to delete ad with id ${id}`)
-  // //     }
-  // //   } catch (e) {
-  // //     console.error(e)
-  // //   }
-  // // }
-  // const [deletedAdId, setDeletedAdId] = useState('')
-
   async function deleteAd(id: string) {
     console.log('deleteAd')
     const apiData: AdId = {
@@ -107,6 +58,9 @@ export default function Ads({ ads }: Props) {
   async function updateAd(id: string) {
     window.location.href = `/updateAd/${id}`
     console.log('updateAd')
+  }
+  function navigateTo() {
+    window.location.href = `/createAd`
   }
   return (
     <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
@@ -163,7 +117,10 @@ export default function Ads({ ads }: Props) {
                 <div className="text-left">
                   <div className="mt-4 rounded-sm border-[#46649D] border-2">
                     <p className="bold text-[#0f0e0e]">
-                      <b>{ad.title}</b>
+                      <b>
+                        {ad.title} <br />
+                        {ad.id}
+                      </b>
                     </p>
                     <p className="text-[#0f0e0e]">
                       Beskrivning: {ad.description}

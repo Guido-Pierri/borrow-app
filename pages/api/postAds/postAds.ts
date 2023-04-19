@@ -1,6 +1,6 @@
-import clientPromise from "@/lib/mongodb"
-import { Collection } from "mongodb"
-import { NextApiRequest, NextApiResponse } from "next"
+import clientPromise from '@/lib/mongodb'
+import { Collection } from 'mongodb'
+import { NextApiRequest, NextApiResponse } from 'next'
 interface FormValues {
   title: string
   description: string
@@ -14,17 +14,15 @@ export default async function handler(
   console.log(req.body)
   const { id, title, description, fullName, email } = req.body
   const client = await clientPromise
-  const database = client.db("borrow")
-  const collection = database.collection("ads")
+  const database = client.db('borrow')
+  const collection = database.collection('ads')
   try {
-    if (req.method === "PATCH") {
+    if (req.method === 'PATCH') {
       console.log(req.body)
       console.log(id)
       // const name = req.body.name
       // const email = req.body.email
-      const result = await collection.insertOne(req.body)
-
-      await collection.updateOne(
+      const result = await collection.updateOne(
         { id: id },
         {
           $set: {
@@ -37,9 +35,9 @@ export default async function handler(
       )
 
       // res.json(result)
-      res.status(201).json({ message: "Update was successfull." })
+      res.status(201).json({ message: 'Update was successfull.' })
     }
-    if (req.method === "POST") {
+    if (req.method === 'POST') {
       console.log(req.body)
       // const name = req.body.name
       // const email = req.body.email
@@ -47,10 +45,10 @@ export default async function handler(
 
       res.json(result)
 
-      res.status(201).json({ message: "Ad created successfully." })
+      res.status(201).json({ message: 'Ad created successfully.' })
     }
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: "An error occurred." })
+    res.status(500).json({ message: 'An error occurred.' })
   }
 }
