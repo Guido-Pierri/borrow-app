@@ -25,33 +25,39 @@ function navigateToCreateAd() {
 export default function Ads({ ads }: Props) {
   async function deleteAd(id: string) {
     console.log('deleteAd')
-    const apiData: AdId = {
-      id: id,
-    }
-    console.log(apiData)
+    const confirmed = window.confirm(
+      'Är du säker att du vill ta bort din annons?'
+    )
 
-    try {
-      console.log('try')
-      console.log(id)
-
-      const res = await fetch('/api/deleteAd', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(apiData),
-      })
-      console.log(res)
-      console.log(res.status)
-
-      if (res.ok) {
-        // setDeletedAdId(id)
-        window.location.reload()
-      } else {
-        console.error('Failed to delete ad')
+    if (confirmed) {
+      const apiData: AdId = {
+        id: id,
       }
-    } catch (e) {
-      console.error('Failed to delete ad', e)
+      console.log(apiData)
+
+      try {
+        console.log('try')
+        console.log(id)
+
+        const res = await fetch('/api/deleteAd', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(apiData),
+        })
+        console.log(res)
+        console.log(res.status)
+
+        if (res.ok) {
+          // setDeletedAdId(id)
+          window.location.reload()
+        } else {
+          console.error('Failed to delete ad')
+        }
+      } catch (e) {
+        console.error('Failed to delete ad', e)
+      }
     }
   }
 
