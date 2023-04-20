@@ -22,9 +22,9 @@ const Header = ({}) => {
                 <RxHamburgerMenu />
               </button>
               {hide && (
-                <div className="bg-white border-2 min-h-screen text-sm">
-                  <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-                    <ul>
+                <div className="bg-white border-2 min-h-screen text-sm text-left">
+                  <div className="max-w-7xl py-6 px-20">
+                    <ul className="pl-0">
                       <li className="py-1">
                         <a href={"/information-side"}>Så fungerar Borrow</a>
                       </li>
