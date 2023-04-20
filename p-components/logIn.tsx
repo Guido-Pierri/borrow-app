@@ -11,7 +11,7 @@ interface FormData {
 // function navigateTo() {
 //   window.location.href = "/register-site"
 // }
-export default function MyPage() {
+export default function Login() {
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
