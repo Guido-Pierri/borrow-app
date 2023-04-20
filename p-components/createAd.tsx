@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { useRouter } from 'next/router'
 
 //function that generates random id:s
 uuidv4()
@@ -33,7 +34,13 @@ export default function MyPage() {
   })
 
   console.log(formData)
+  const router = useRouter()
 
+  function handleClick() {
+    console.log('handleClick')
+
+    router.push('/ads')
+  }
   /*const [title, setTitle] = useState<string>("")
   const [description, setdescription] = useState<string>("")
   const [fullName, setFullName] = useState<string>("")
@@ -63,11 +70,10 @@ export default function MyPage() {
       },
       body: JSON.stringify(apiData),
     })
-
     const data = await response.json()
+    handleClick()
 
     console.log(data)
-    window.location.href = './ads'
   }
 
   /*Is called when user types something in the form
