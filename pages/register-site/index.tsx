@@ -1,41 +1,21 @@
 import Header from "@/p-components/header"
+import { User } from "@/types/user"
 import { NextPage } from "next"
 import { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
-uuidv4()
-interface FormData {
-  id: string
-  firstName: string
-  lastName: string
-  adress: string
-  email: string
-  mobileNumber: number
-  password: string
-  samePassword: string
-}
-interface ApiData {
-  id: string
-  title: string
-  description: string
-  fullName: string
-  email: string
-  mobileNumber: number
-  password: string
-  samePassword: string
-}
+
 function navigateTo() {
   window.location.href = "/ads"
 }
 export default function MyPage() {
-  const [formData, setFormData] = useState<FormData>({
-    id: "",
+  const [formData, setFormData] = useState<User>({
+    userId: uuidv4(),
     firstName: "",
     lastName: "",
     adress: "",
     email: "",
-    mobileNumber: 0,
+    mobileNumber: "",
     password: "",
-    samePassword: ""
   })
 
   console.log(formData)
@@ -157,7 +137,7 @@ export default function MyPage() {
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
             title="Måste innehålla minst en siffra och en stor och liten bokstav, och minst 8 eller fler tecken"
             minLength={8}
-            value={formData.samePassword}
+            // value={formData.samePassword}
             onChange={handleInputChange}
             style={{ color: "#000000" }}
           />
