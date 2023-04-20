@@ -1,27 +1,21 @@
 import clientPromise from '@/lib/mongodb'
 import { Collection } from 'mongodb'
 import { NextApiRequest, NextApiResponse } from 'next'
-interface FormValues {
-  title: string
-  description: string
-  fullName: string
-  email: string
-}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   console.log(req.body)
-  const { id, title, description, fullName, email } = req.body
-  const client = await clientPromise
-  const database = client.db('borrow')
-  const collection = database.collection('ads')
+
   try {
     if (req.method === 'PATCH') {
+      const { id, title, description, fullName, email } = req.body
+      const client = await clientPromise
+      const database = client.db('borrow')
+      const collection = database.collection('ads')
       console.log(req.body)
       console.log(id)
-      // const name = req.body.name
-      // const email = req.body.email
       const result = await collection.updateOne(
         { id: id },
         {
@@ -35,17 +29,27 @@ export default async function handler(
       )
 
       // res.json(result)
-      res.status(201).json({ message: 'Update was successfull.' })
+      res.status(201).json({ message: 'Update was successfull.', result })
     }
     if (req.method === 'POST') {
       console.log(req.body)
+      const { id, title, description, fullName, email } = req.body
+      const client = await clientPromise
+      const database = client.db('borrow')
+      const collection = database.collection('ads')
       // const name = req.body.name
       // const email = req.body.email
-      const result = await collection.insertOne(req.body)
+      const result = await collection.insertOne({
+        id: id,
+        title: title,
+        description: description,
+        fullName: fullName,
+        email: email,
+      })
 
-      res.json(result)
+      // res.json(result)
 
-      res.status(201).json({ message: 'Ad created successfully.', result })
+      res.status(201).json({ message: 'Ad created successfully.' })
     }
   } catch (error) {
     console.error(error)
