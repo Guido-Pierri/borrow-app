@@ -41,19 +41,8 @@ export default function MyPage() {
 
     router.push('/ads')
   }
-  /*const [title, setTitle] = useState<string>("")
-  const [description, setdescription] = useState<string>("")
-  const [fullName, setFullName] = useState<string>("")
-  const [email, setEmail] = useState<string>("")*/
 
-  /*Creating apiData object that contains the formData
-  to be submitted to server.This is sent through POST
-  to the server*/
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    // if (!formData) {
-    //   return
-    //   ;<div></div>
-    // }
     event.preventDefault()
     const apiData: ApiData = {
       id: uuidv4(),
