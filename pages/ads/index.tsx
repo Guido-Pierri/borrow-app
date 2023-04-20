@@ -79,7 +79,7 @@ export default function Ads({ ads }: Props) {
             type="text"
             placeholder="Sök..."
           />
-          <div className="absolute inset-y-0 right-0 flex items-center px-2">
+          <div className="absolute inset-y-0 right-0 flex items-center px-2 text-black">
             <GoSearch />
           </div>
         </label>
@@ -113,7 +113,7 @@ export default function Ads({ ads }: Props) {
         </button>
       </section>
       <section className="font-sans">
-        <h2 className="text-left mt-4 px-4">Alla resultat:</h2>
+        <h2 className="text-left mt-4 px-4 text-black">Alla resultat:</h2>
       </section>
       <div className=" font-sans">
         <div className="px-4">
