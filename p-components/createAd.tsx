@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { v4 as uuidv4 } from "uuid"
+import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 //function that generates random id:s
 uuidv4()
@@ -25,11 +25,11 @@ interface ApiData {
 a object formData that contains following properties*/
 export default function MyPage() {
   const [formData, setFormData] = useState<FormData>({
-    id: "",
-    title: "",
-    description: "",
-    fullName: "",
-    email: "",
+    id: '',
+    title: '',
+    description: '',
+    fullName: '',
+    email: '',
   })
 
   console.log(formData)
@@ -56,10 +56,10 @@ export default function MyPage() {
       email: formData.email,
     }
 
-    const response = await fetch("/api/postAds/postAds", {
-      method: "POST",
+    const response = await fetch('/api/postAds/postAds', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(apiData),
     })
@@ -67,7 +67,7 @@ export default function MyPage() {
     const data = await response.json()
 
     console.log(data)
-    window.location.href = "/ads"
+    window.location.href = './ads'
   }
 
   /*Is called when user types something in the form
