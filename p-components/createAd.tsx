@@ -52,7 +52,7 @@ export default function MyPage() {
       email: formData.email,
     }
 
-    const response = await fetch('/api/postAds', {
+    const response = await fetch('/api/ad', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -60,9 +60,10 @@ export default function MyPage() {
       body: JSON.stringify(apiData),
     })
     const data = await response.json()
-    handleClick()
-
     console.log(data)
+    if (data) {
+    }
+    handleClick()
   }
 
   /*Is called when user types something in the form
@@ -73,11 +74,7 @@ export default function MyPage() {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
     console.log(event.target.value)
   }
-  // function generaterUuid() {
-  //   // const uuidv4 = require('uuid/v4')
-  //   uuidv4()
-  //   console.log(uuidv4())
-  // }
+
   return (
     <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
       <form className="font-sans" onSubmit={handleSubmit}>
