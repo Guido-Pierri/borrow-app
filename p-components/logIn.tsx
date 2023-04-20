@@ -10,6 +10,10 @@ interface FormData {
   password: string
 }
 
+// function navigateTo() {
+//   window.location.href = "/register-site"
+// }
+
 export default function Login() {
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -23,6 +27,14 @@ export default function Login() {
     const apiData: LogIn = {
       email: formData.email,
       password: formData.password,
+
+
+      userId: uuidv4(),
+      firstName: "",
+      lastName: "",
+      adress: "",
+      mobileNumber: "",
+
     }
 
     const response = await fetch('/api/user', {
@@ -35,6 +47,7 @@ export default function Login() {
 
     const data = await response.json()
 
+
     console.log('data', data)
     if (data === 'User found') {
       window.location.href = '/ads'
@@ -45,6 +58,7 @@ export default function Login() {
     //     <div>Register</div>
     //   </>
     // )
+
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,15 +71,21 @@ export default function Login() {
     <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
       <div>
         <div className="py-8">
-          <Link href={'/'}>
-            <h1 className="text-xl font-[500] text-black">
-              Välkommen till Borrow!
-            </h1>
-            <p className="text-xl text-black">
-              Logga in eller{' '}
+
+      
+
+          {/*<Link href={'/'}>*/}
+          <h1 className="text-xl font-[500] text-black">
+            Välkommen till Borrow!
+          </h1>
+          {/*</Link>*/}
+          <p className="text-xl text-black">
+            Logga in eller{" "}
+            <Link href={"/register-site"}>
+
               <span className="text-[#46649D]">registrera dig</span>
-            </p>
-          </Link>
+            </Link>
+          </p>
         </div>
         <form onSubmit={handleSubmit}>
           <label>
