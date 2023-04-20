@@ -1,6 +1,7 @@
 import Header from '@/p-components/header'
 import { User } from '@/types/user'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -8,6 +9,8 @@ import { v4 as uuidv4 } from 'uuid'
 //   window.location.href = "/ads"
 // }
 export default function MyPage() {
+  const router = useRouter()
+
   const [formData, setFormData] = useState<User>({
     userId: uuidv4(),
     firstName: '',
@@ -21,7 +24,11 @@ export default function MyPage() {
   console.log(formData)
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    function handleClick() {
+      console.log('handleClick')
 
+      router.push('/ads')
+    }
     const apiData: User = {
       userId: formData.userId,
       firstName: formData.firstName,
@@ -42,6 +49,9 @@ export default function MyPage() {
 
     const data = await response.json()
 
+    if (data === 'New User') {
+      handleClick()
+    }
     console.log(data)
     // window.location.href = "/ads"
   }
