@@ -1,16 +1,15 @@
-
-import { RxHamburgerMenu } from "react-icons/rx";
-import { BsChatLeftText } from "react-icons/bs";
-import Link from "next/link";
-import { useState } from "react";
+import { RxHamburgerMenu } from 'react-icons/rx'
+import { BsChatLeftText } from 'react-icons/bs'
+import Link from 'next/link'
+import { useState } from 'react'
 
 const Header = ({}) => {
-  const [hide, setHide] = useState(false);
+  const [hide, setHide] = useState(false)
 
   const hideData = () => {
-    console.log("HideData was triggered");
-    setHide(!hide);
-  };
+    console.log('HideData was triggered')
+    setHide(!hide)
+  }
 
   return (
     <div className="flex items-top justify-center pt-6 bg-[#F5F5F5]">
@@ -26,10 +25,10 @@ const Header = ({}) => {
                   <div className="max-w-7xl py-6 px-20">
                     <ul className="pl-0">
                       <li className="py-1">
-                        <a href={"/information-side"}>Så fungerar Borrow</a>
+                        <a href={'/information-side'}>Så fungerar Borrow</a>
                       </li>
                       <li className="py-1">
-                        <a href={"/contact"}>Kontakta oss</a>
+                        <a href={'/contact'}>Kontakta oss</a>
                       </li>
                       <div className="X_button_class">
                         <button onClick={hideData}>X</button>
@@ -41,11 +40,9 @@ const Header = ({}) => {
             </div>
           </div>
 
-          <div className="mt-4 text-[#C7784C] absolute m-auto left-16 right-0">
-            <Link href={"/ads"}>
-
+          <div className="mt-4 text-[#C7784C] absolute m-auto left-16">
+            <Link href={'/ads'}>
               <b className="text-4xl">Borrow</b>
-
             </Link>
           </div>
         </div>
