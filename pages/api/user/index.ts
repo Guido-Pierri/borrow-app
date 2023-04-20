@@ -1,7 +1,6 @@
 import clientPromise from '@/lib/mongodb'
 import { User } from '@/types/user'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { Elsie } from 'next/font/google'
 
 export default async function handler(
   req: NextApiRequest,

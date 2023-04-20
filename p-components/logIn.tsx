@@ -39,6 +39,12 @@ export default function Login() {
     if (data === 'User found') {
       window.location.href = '/ads'
     }
+    // else
+    // return (
+    //   <>
+    //     <div>Register</div>
+    //   </>
+    // )
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
