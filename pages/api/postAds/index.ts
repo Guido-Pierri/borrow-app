@@ -45,7 +45,7 @@ export default async function handler(
 
       res.json(result)
 
-      res.status(201).json({ message: 'Ad created successfully.' })
+      res.status(201).json({ message: 'Ad created successfully.', result })
     }
   } catch (error) {
     console.error(error)
