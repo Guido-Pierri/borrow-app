@@ -22,15 +22,18 @@ const Header = ({}) => {
                 <RxHamburgerMenu />
               </button>
               {hide && (
-                <div>
-                  <div className="border-2 border-black h-full px-10 hamburgare">
-                    <ul className="">
+                <div className="bg-white border-2 min-h-screen text-sm">
+                  <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+                    <ul>
                       <li className="py-1">
-                        <a href={"/information-side"}>Om oss!</a>
+                        <a href={"/information-side"}>Så fungerar Borrow</a>
                       </li>
                       <li className="py-1">
-                        <a href={"/contact"}>Kontakta oss!</a>
+                        <a href={"/contact"}>Kontakta oss</a>
                       </li>
+                      <div className="X_button_class">
+                        <button onClick={hideData}>X</button>
+                      </div>
                     </ul>
                   </div>
                 </div>
@@ -41,7 +44,7 @@ const Header = ({}) => {
           <div className="mt-4 text-[#C7784C] absolute m-auto left-16 right-0">
             <Link href={"/ads"}>
               {" "}
-              <b className="text-4xl text-center">Borrow</b>
+              <b className="text-4xl text-center flex fixed">Borrow</b>
             </Link>
           </div>
           {/*<a href="/">
