@@ -1,12 +1,10 @@
 import Link from "next/link"
 import { useState } from "react"
 
-interface FormData {
-  email: string
-  password: string
-}
+import { User } from "@/types/user"
+import { v4 as uuidv4 } from "uuid"
 
-interface ApiData {
+interface FormData {
   email: string
   password: string
 }
@@ -23,9 +21,10 @@ export default function MyPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const apiData: ApiData = {
+    const apiData: User = {
       email: formData.email,
       password: formData.password,
+      userId: uuidv4(),
     }
     const response = await fetch("/api/loginUsers/loginUsers", {
       method: "POST",
@@ -38,7 +37,8 @@ export default function MyPage() {
     const data = await response.json()
 
     console.log(data)
-    window.location.href = "/register-site"
+
+    window.location.href = "/ads"
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +51,7 @@ export default function MyPage() {
     <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
       <div>
         <div className="py-8">
+
           {/*<Link href={'/'}>*/}
           <h1 className="text-xl font-[500] text-black">
             Välkommen till Borrow!
@@ -62,6 +63,7 @@ export default function MyPage() {
               registrera dig
             </span>
           </p>
+
         </div>
         <form onSubmit={handleSubmit}>
           <label>

@@ -1,6 +1,6 @@
-import { RxHamburgerMenu } from "react-icons/rx"
-import { BsChatLeftText } from "react-icons/bs"
-import Link from "next/link"
+import { RxHamburgerMenu } from "react-icons/rx";
+import { BsChatLeftText } from "react-icons/bs";
+import Link from "next/link";
 
 const Header = ({}) => {
   return (
@@ -9,9 +9,11 @@ const Header = ({}) => {
       <nav className="w-full">
         <div className="flex space-x-16 p-3 rounded-sm">
           <div className="p-3 mt-3 text-3xl text-[#000000]">
-            <button>
-              <RxHamburgerMenu />
-            </button>
+            <Link href={"/information-side"}>
+              <button>
+                <RxHamburgerMenu />
+              </button>
+            </Link>
           </div>
 
           <div className="mt-4 text-[#C7784C]">
@@ -28,7 +30,7 @@ const Header = ({}) => {
         </div>
       </nav>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

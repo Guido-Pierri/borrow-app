@@ -1,8 +1,7 @@
-import Link from "next/link"
-import Header from "@/p-components/header"
-import clientPromise from "@/lib/mongodb"
-import { GoSearch } from "react-icons/go"
-import { useState } from "react"
+import Link from 'next/link'
+import Header from '@/p-components/header'
+import clientPromise from '@/lib/mongodb'
+import { GoSearch } from 'react-icons/go'
 
 interface Ad {
   _id: string
@@ -16,77 +15,29 @@ interface AdId {
   id: string
 }
 
-// interface deleteData {
-//   _id: string
-// }
-
 interface Props {
   ads: Ad[]
 }
-function navigateTo() {
-  window.location.href = "/createAd"
+function navigateToCreateAd() {
+  window.location.href = '/createAd'
 }
 
 export default function Ads({ ads }: Props) {
-  // const [addId, setAddId] = useState<AdId>({ _id: "" })
-
-  // const { _id, value } = event.target
-  // const handleDelete = async (event: React.HTMLAttributeAnchorTarget) => {
-  //   setAddId((prevAddId) => ({ ...prevAddId, [_id]: value }))
-  // }
-
-  // const handleClick = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault()
-  //   console.log(addId._id)
-  //   const apiData: AdId = {
-  //     _id: addId._id,
-  //   }
-
-  //   const response = await fetch("/api/deleteAd/deleteAd", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(apiData),
-  //   })
-
-  //   const data = await response.json()
-  //   window.location.href = "/ads"
-
-  //   console.log(data)
-  // }
-  // const handleDelete = async (id: string) => {
-  // //   try {
-  // //     const res = await fetch(`/api/ads/${id}`, {
-  // //       method: 'DELETE',
-  // //     })
-  // //     if (res.ok) {
-  // //       // Refresh the ads
-  // //       window.location.reload()
-  // //     } else {
-  // //       console.error(`Failed to delete ad with id ${id}`)
-  // //     }
-  // //   } catch (e) {
-  // //     console.error(e)
-  // //   }
-  // // }
-  // const [deletedAdId, setDeletedAdId] = useState('')
-
   async function deleteAd(id: string) {
-    console.log("deleteAd")
+    console.log('deleteAd')
     const apiData: AdId = {
       id: id,
     }
     console.log(apiData)
 
     try {
-      console.log("try")
+      console.log('try')
       console.log(id)
 
-      const res = await fetch("/api/deleteAd", {
-        method: "POST",
+      const res = await fetch('/api/deleteAd', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(apiData),
       })
@@ -97,43 +48,19 @@ export default function Ads({ ads }: Props) {
         // setDeletedAdId(id)
         window.location.reload()
       } else {
-        console.error("Failed to delete ad")
+        console.error('Failed to delete ad')
       }
     } catch (e) {
-      console.error("Failed to delete ad", e)
+      console.error('Failed to delete ad', e)
     }
   }
 
   async function updateAd(id: string) {
-    console.log("updateAd")
-    const apiData: AdId = {
-      id: id,
-    }
-    console.log(apiData)
-
-    try {
-      console.log("try")
-      console.log(id)
-
-      const res = await fetch(`/api/updateAd/${id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(apiData),
-      })
-      console.log(res)
-      console.log(res.status)
-
-      if (res.ok) {
-        // setDeletedAdId(id)
-        window.location.reload()
-      } else {
-        console.error("Failed to delete ad")
-      }
-    } catch (e) {
-      console.error("Failed to delete ad", e)
-    }
+    window.location.href = `/updateAd/${id}`
+    console.log('updateAd')
+  }
+  function navigateToAd(id: string) {
+    window.location.href = `/ads/${id}`
   }
   return (
     <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
@@ -153,7 +80,7 @@ export default function Ads({ ads }: Props) {
       </form>
 
       <style jsx>{`
-        input[type="text"] {
+        input[type='text'] {
           background-repeat: no-repeat;
           background-size: 16px 16px;
           background-position: 8px 50%;
@@ -163,7 +90,7 @@ export default function Ads({ ads }: Props) {
       <div className="flex justify-center mt-5">
         <button
           className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[263px] rounded-sm text-xl font-[500] font-sans"
-          onClick={navigateTo}
+          onClick={navigateToCreateAd}
         >
           <p className=""> Skapa annons</p>
         </button>
@@ -179,28 +106,38 @@ export default function Ads({ ads }: Props) {
           TAVLAN
         </button>
       </section>
-      <section className="font-sans ">
+      <section className="font-sans">
         <h2 className="text-left mt-4 px-4">Alla resultat:</h2>
       </section>
       <div className=" font-sans">
         <div className="px-4">
-          <div className="flex-column">
+          <div className="flex-column ">
             {ads.map((ad) => (
-              <div key={ad._id} className="group">
+              <div key={ad.id} className="group link">
                 <div className="text-left">
                   <div className="mt-4 rounded-sm border-[#46649D] border-2">
                     <p className="bold text-[#0f0e0e]">
-                      <b>{ad.title}</b>
+                      <b className="link" onClick={() => navigateToAd(ad.id)}>
+                        {ad.title}
+                      </b>
                     </p>
-                    <p className="text-[#0f0e0e]">
+                    <p
+                      className="text-[#0f0e0e]"
+                      onClick={() => navigateToAd(ad.id)}
+                    >
                       Beskrivning: {ad.description}
                     </p>
-                    <p className="text-[#0f0e0e]">Annonsör: {ad.fullName}</p>
+                    <p
+                      className="text-[#0f0e0e]"
+                      onClick={() => navigateToAd(ad.id)}
+                    >
+                      Annonsör: {ad.fullName}
+                    </p>
 
                     <button>
-                      <p style={{ color: "blue" }}>
+                      <p style={{ color: 'blue' }}>
                         <b className="text-[#0f0e0e]">Kontakt: </b>
-                        <Link href={"mailto:" + `${ad.email}`}>{ad.email}</Link>
+                        <Link href={'mailto:' + `${ad.email}`}>{ad.email}</Link>
                       </p>
                     </button>
 
@@ -234,6 +171,11 @@ export default function Ads({ ads }: Props) {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        .link {
+          cursor: pointer;
+        }
+      `}</style>
     </div>
   )
 }
@@ -241,9 +183,9 @@ export default function Ads({ ads }: Props) {
 export async function getServerSideProps() {
   try {
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
-    const ads = await db.collection("ads").find({}).limit(1000).toArray()
+    const ads = await db.collection('ads').find({}).limit(1000).toArray()
 
     return {
       props: { ads: JSON.parse(JSON.stringify(ads)) },
