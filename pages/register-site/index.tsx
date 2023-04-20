@@ -4,12 +4,12 @@ import { NextPage } from "next"
 import { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
 
-function navigateTo() {
-  window.location.href = "/ads"
-}
+// function navigateTo() {
+//   window.location.href = "/ads"
+// }
 export default function MyPage() {
   const [formData, setFormData] = useState<User>({
-    userId: uuidv4(),
+    userId: "",
     firstName: "",
     lastName: "",
     adress: "",
@@ -22,7 +22,17 @@ export default function MyPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const response = await fetch("/api/postAds/postAds", {
+    const apiData: User = {
+      userId: uuidv4(),
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      adress: formData.adress,
+      email: formData.email,
+      mobileNumber: formData.mobileNumber,
+      password: formData.password,
+    }
+
+    const response = await fetch(`/api/registration`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +42,7 @@ export default function MyPage() {
     const data = await response.json()
 
     console.log(data)
-    window.location.href = "/ads"
+    // window.location.href = "/ads"
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,7 +137,7 @@ export default function MyPage() {
             style={{ color: "#000000" }}
           />
         </label>
-        <label>
+        {/* <label>
           <input
             className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             placeholder="Bekräfta lösenord..."
@@ -141,7 +151,7 @@ export default function MyPage() {
             onChange={handleInputChange}
             style={{ color: "#000000" }}
           />
-        </label>
+        </label> */}
         <br />
         <br />
         <div className="bg-[#F5F5F5]">
@@ -150,7 +160,7 @@ export default function MyPage() {
            rounded-sm text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[265px]  py-3
     "
             type="submit"
-            onClick={navigateTo}
+            // onClick={navigateTo}
           >
             Registrera
           </button>

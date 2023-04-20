@@ -139,7 +139,7 @@ export default function MyPage() {
           type="submit"
           // onClick={generaterUuid}
         >
-          Submit
+          Skapa annons
         </button>
       </form>
     </div>
