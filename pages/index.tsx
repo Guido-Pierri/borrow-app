@@ -6,12 +6,10 @@ import { NextPage } from "next"
 interface Props {}
 
 const Index: NextPage<Props> = () => {
-  const router = useRouter()
-
   useEffect(() => {
     const timeout = setTimeout(() => {
-      router.push("/login")
-    }, 1800)
+      window.location.href = "/login"
+    }, 1900)
 
     return () => clearTimeout(timeout)
   }, [])
@@ -21,7 +19,7 @@ const Index: NextPage<Props> = () => {
       <div className=" flex-column justify-items-center pl-16">
         <h1 className="text-[#C7784C] text-7xl ">Borrow</h1>
 
-        <section className="font-sans py-2 mt-2 pl-8 font-medium text-lg">
+        <section className="font-sans py-2 mt-2 pl-8 font-medium text-lg text-black">
           Låna och låna inom din <br />
           bostandsförening!
         </section>
