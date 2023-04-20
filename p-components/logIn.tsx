@@ -8,7 +8,9 @@ interface FormData {
   email: string
   password: string
 }
-
+function navigateTo() {
+  window.location.href = "/register-site"
+}
 export default function MyPage() {
   const [formData, setFormData] = useState<FormData>({
     email: "",
@@ -35,6 +37,7 @@ export default function MyPage() {
     const data = await response.json()
 
     console.log(data)
+
     window.location.href = "/ads"
   }
 
@@ -48,15 +51,19 @@ export default function MyPage() {
     <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
       <div>
         <div className="py-8">
-          <Link href={"/"}>
-            <h1 className="text-xl font-[500] text-black">
-              Välkommen till Borrow!
-            </h1>
-            <p className="text-xl text-black">
-              Logga in eller{" "}
-              <span className="text-[#46649D]">registrera dig</span>
-            </p>
-          </Link>
+
+          {/*<Link href={'/'}>*/}
+          <h1 className="text-xl font-[500] text-black">
+            Välkommen till Borrow!
+          </h1>
+          {/*</Link>*/}
+          <p className="text-xl text-black">
+            Logga in eller{" "}
+            <span className="text-[#46649D]" onClick={navigateTo}>
+              registrera dig
+            </span>
+          </p>
+
         </div>
         <form onSubmit={handleSubmit}>
           <label>
