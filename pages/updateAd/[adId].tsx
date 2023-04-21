@@ -63,7 +63,7 @@ export default function Post({ ads }: Props) {
     }
     console.log('apiData:', apiData)
 
-    const response = await fetch('/api/postAds', {
+    const response = await fetch('/api/ad', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
