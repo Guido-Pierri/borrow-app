@@ -1,10 +1,10 @@
-import clientPromise from '@/lib/mongodb'
-import { useRouter } from 'next/router'
-import { Ad } from '@/types/ads'
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { v4 as uuidv4 } from 'uuid'
-import Header from '@/p-components/header'
+import clientPromise from "@/lib/mongodb"
+import { useRouter } from "next/router"
+import { Ad } from "@/types/ads"
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { v4 as uuidv4 } from "uuid"
+import Header from "@/p-components/header"
 
 interface Props {
   ads: Ad
@@ -21,7 +21,7 @@ export default function Post({ ads }: Props) {
   console.log(ads?.id)
   return (
     <>
-      <div className="bg-[#F5F5F5] text-center max-w-sm h-screen">
+      <div className="bg-[#FFFFFF] text-center max-w-sm h-screen">
         <Header></Header>
         <div className=" font-sans">
           <div className="flex-column">
@@ -37,10 +37,10 @@ export default function Post({ ads }: Props) {
                   Annonsör: {ads.description}
                 </p>
                 <button>
-                  <p style={{ color: 'blue' }}>
+                  <p style={{ color: "blue" }}>
                     <b className="text-[#0f0e0e] mt-2 ">
-                      Kontakt:{' '}
-                      <Link href={'mailto:' + `${ads.email}`}>{ads.email}</Link>
+                      Kontakt:{" "}
+                      <Link href={"mailto:" + `${ads.email}`}>{ads.email}</Link>
                     </b>
                   </p>
                 </button>
@@ -57,9 +57,9 @@ export async function getServerSideProps(context: any) {
   try {
     const { adId } = context.query
     const client = await clientPromise
-    const db = client.db('borrow')
+    const db = client.db("borrow")
 
-    const ads = await db.collection('ads').findOne({ id: adId })
+    const ads = await db.collection("ads").findOne({ id: adId })
     console.log(ads)
 
     return {

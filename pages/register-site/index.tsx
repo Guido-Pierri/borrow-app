@@ -1,8 +1,8 @@
-import Header from '@/p-components/header'
-import { User } from '@/types/user'
-import { NextPage } from 'next'
-import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import Header from "@/p-components/header"
+import { User } from "@/types/user"
+import { NextPage } from "next"
+import { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
 
 // function navigateTo() {
 //   window.location.href = "/ads"
@@ -10,12 +10,12 @@ import { v4 as uuidv4 } from 'uuid'
 export default function MyPage() {
   const [formData, setFormData] = useState<User>({
     userId: uuidv4(),
-    firstName: '',
-    lastName: '',
-    adress: '',
-    email: '',
-    mobileNumber: '',
-    password: '',
+    firstName: "",
+    lastName: "",
+    adress: "",
+    email: "",
+    mobileNumber: "",
+    password: "",
   })
 
   console.log(formData)
@@ -33,9 +33,9 @@ export default function MyPage() {
     }
 
     const response = await fetch(`/api/registration`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
@@ -52,14 +52,14 @@ export default function MyPage() {
     console.log(event.target.value)
   }
   return (
-    <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
+    <div className="bg-[#FFFFFF] text-center max-w-sm h-screen ">
       <Header></Header>
       <form className="font-sans bg-[#F5F5F5]" onSubmit={handleSubmit}>
         <h1
           className="text-xl font-[500] text-black"
-          style={{ marginBottom: '1rem' }}
+          style={{ marginBottom: "1rem" }}
         >
-          {' '}
+          {" "}
           Registrera konto:
         </h1>
 
@@ -72,7 +72,7 @@ export default function MyPage() {
             value={formData.firstName}
             required
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
@@ -84,7 +84,7 @@ export default function MyPage() {
             required
             value={formData.lastName}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
@@ -95,7 +95,7 @@ export default function MyPage() {
             name="adress"
             value={formData.adress}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
             required
           />
         </label>
@@ -108,7 +108,7 @@ export default function MyPage() {
             required
             value={formData.email}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
@@ -119,7 +119,7 @@ export default function MyPage() {
             name="mobileNumber"
             value={formData.mobileNumber}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
             required
           />
         </label>
@@ -135,7 +135,7 @@ export default function MyPage() {
             minLength={8}
             value={formData.password}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         {/* <label>

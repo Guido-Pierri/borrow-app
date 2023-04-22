@@ -1,19 +1,18 @@
-
-import { RxHamburgerMenu } from "react-icons/rx";
-import { BsChatLeftText } from "react-icons/bs";
-import Link from "next/link";
-import { useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx"
+import { BsChatLeftText } from "react-icons/bs"
+import Link from "next/link"
+import { useState } from "react"
 
 const Header = ({}) => {
-  const [hide, setHide] = useState(false);
+  const [hide, setHide] = useState(false)
 
   const hideData = () => {
-    console.log("HideData was triggered");
-    setHide(!hide);
-  };
+    console.log("HideData was triggered")
+    setHide(!hide)
+  }
 
   return (
-    <div className="flex items-top justify-center pt-6 bg-[#F5F5F5]">
+    <div className="flex items-top justify-center pt-6 bg-[#FFFFFF]">
       <nav className="w-full">
         <div className="flex space-x-16 p-3 rounded-sm">
           <div className="p-3 mt-3 text-3xl text-[#000000]">
@@ -43,9 +42,7 @@ const Header = ({}) => {
 
           <div className="mt-4 text-[#C7784C] absolute m-auto left-16 right-0">
             <Link href={"/ads"}>
-
               <b className="text-4xl">Borrow</b>
-
             </Link>
           </div>
         </div>

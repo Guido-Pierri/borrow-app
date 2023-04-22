@@ -10,47 +10,46 @@ const Index: NextPage<Props> = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       window.location.href = "/login"
-    }, 50000)
+    }, 2000)
 
     return () => clearTimeout(timeout)
   }, [])
 
   return (
-    <div className="bg-[#F5F5F5] max-w-sm">
-      <div className="max-w-sm ">
-        <Wave
-          fill="#46649D"
-          paused={true}
-          options={{
-            height: 1,
-            amplitude: 50,
-            points: 3,
-          }}
-          style={{ transform: "rotate(180deg)" }}
-        />
+    <div className="bg-[#FFFFFF] max-w-sm ">
+      <Wave
+        fill="#46649D"
+        paused={true}
+        options={{
+          height: -10,
+          amplitude: 200,
+          points: 2,
+        }}
+        style={{ transform: "rotate(180deg)", position: "relative" }}
+      />
 
-        <div className="max-w-sm h-screen flex items-center">
-          <div className=" flex-column justify-items-center pl-16">
-            <h1 className="text-[#C7784C] text-7xl ">Borrow</h1>
+      <span className="max-w-sm flex items-center h-screen mt-[-162px] mb-[-162px]">
+        <div className=" flex-column justify-items-center pl-12 ">
+          <h1 className="text-[#C7784C] text-[84px]">Borrow</h1>
 
-            <section className="font-sans py-2 mt-2 pl-4 font-medium text-lg text-black">
-              Låna och låna ut inom din <br />
-              bostandsförening!
-            </section>
-          </div>
+          <section className="font-sans pl-2 font-bold mb-6 text-[22.2px] text-black">
+            Låna och låna ut inom din <br />
+            <span className="ml-10">bostandsförening!</span>
+          </section>
         </div>
-      </div>
-      <div>
-        <Wave
-          fill="#9EBB9D"
-          paused={true}
-          options={{
-            height: 1,
-            amplitude: 50,
-            points: 3,
-          }}
-        />
-      </div>
+      </span>
+
+      <Wave
+        className=""
+        fill="#9EBB9D"
+        paused={true}
+        options={{
+          height: -10,
+          amplitude: 200,
+          points: 2,
+        }}
+        style={{ position: "relative" }}
+      />
     </div>
   )
 }

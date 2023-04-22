@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
-import { useRouter } from 'next/router'
+import { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
+import { useRouter } from "next/router"
 
 //function that generates random id:s
 uuidv4()
@@ -26,20 +26,20 @@ interface ApiData {
 a object formData that contains following properties*/
 export default function MyPage() {
   const [formData, setFormData] = useState<FormData>({
-    id: '',
-    title: '',
-    description: '',
-    fullName: '',
-    email: '',
+    id: "",
+    title: "",
+    description: "",
+    fullName: "",
+    email: "",
   })
 
   console.log(formData)
   const router = useRouter()
 
   function handleClick() {
-    console.log('handleClick')
+    console.log("handleClick")
 
-    router.push('/ads')
+    router.push("/ads")
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -52,10 +52,10 @@ export default function MyPage() {
       email: formData.email,
     }
 
-    const response = await fetch('/api/postAds', {
-      method: 'POST',
+    const response = await fetch("/api/postAds", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
@@ -79,7 +79,7 @@ export default function MyPage() {
   //   console.log(uuidv4())
   // }
   return (
-    <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
+    <div className=" flex items-start justify-center text-center bg-[#FFFFFF] h-screen font-sans">
       <form className="font-sans" onSubmit={handleSubmit}>
         <label>
           <input

@@ -5,7 +5,7 @@ interface Props {}
 
 const Index: NextPage<Props> = ({}) => {
   return (
-    <div className="bg-[#F5F5F5] max-w-sm">
+    <div className="bg-[#FFFFFF] max-w-sm">
       <Header></Header>
       <CreateAd></CreateAd>
     </div>

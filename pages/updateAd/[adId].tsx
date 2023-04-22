@@ -1,9 +1,9 @@
-import clientPromise from '@/lib/mongodb'
-import { useRouter } from 'next/router'
-import { Ad } from '@/types/ads'
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { v4 as uuidv4 } from 'uuid'
+import clientPromise from "@/lib/mongodb"
+import { useRouter } from "next/router"
+import { Ad } from "@/types/ads"
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { v4 as uuidv4 } from "uuid"
 
 interface Props {
   ads: Ad
@@ -33,14 +33,14 @@ export default function Post({ ads }: Props) {
   a object formData that contains following properties*/
 
   const [formData, setFormData] = useState<FormData>({
-    id: ads?.id || '',
-    title: ads?.title || '',
-    description: ads?.description || '',
-    fullName: ads?.fullName || '',
-    email: ads?.email || '',
+    id: ads?.id || "",
+    title: ads?.title || "",
+    description: ads?.description || "",
+    fullName: ads?.fullName || "",
+    email: ads?.email || "",
   })
-  console.log('ads?.id', ads?.id)
-  console.log('adId', adId)
+  console.log("ads?.id", ads?.id)
+  console.log("adId", adId)
 
   console.log(formData)
 
@@ -61,12 +61,12 @@ export default function Post({ ads }: Props) {
       fullName: formData.fullName,
       email: formData.email,
     }
-    console.log('apiData:', apiData)
+    console.log("apiData:", apiData)
 
-    const response = await fetch('/api/postAds', {
-      method: 'PATCH',
+    const response = await fetch("/api/postAds", {
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
@@ -76,7 +76,7 @@ export default function Post({ ads }: Props) {
     console.log(data)
     console.log(apiData)
 
-    window.location.href = '/ads'
+    window.location.href = "/ads"
   }
 
   /*Is called when user types something in the form
@@ -90,7 +90,7 @@ export default function Post({ ads }: Props) {
 
   console.log(ads?.id)
   return (
-    <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
+    <div className="bg-[#FFFFFF] text-center max-w-sm h-screen ">
       <div className=" font-sans">
         <div className="px-4">
           <div className="flex-column">
@@ -131,7 +131,7 @@ export default function Post({ ads }: Props) {
                   </p>
 
                   <button>
-                    <p style={{ color: 'blue' }}>
+                    <p style={{ color: "blue" }}>
                       <b className="text-[#0f0e0e] ">Kontakt: </b>
                       <input
                         className="bg-[#F5F5F5] mt-2 placeholder-blue-950"
@@ -169,9 +169,9 @@ export async function getServerSideProps(context: any) {
   try {
     const { adId } = context.query
     const client = await clientPromise
-    const db = client.db('borrow')
+    const db = client.db("borrow")
 
-    const ads = await db.collection('ads').findOne({ id: adId })
+    const ads = await db.collection("ads").findOne({ id: adId })
     console.log(ads)
 
     return {
