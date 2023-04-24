@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { CldImage, CldUploadWidget } from 'next-cloudinary'
+import Image from 'next/image'
 
 //function that generates random id:s
 uuidv4()
@@ -8,6 +11,7 @@ uuidv4()
 /*Defining two interfaces,
 that describes shape of the data*/
 interface FormData {
+  image: string
   id: string
   title: string
   description: string
@@ -15,6 +19,7 @@ interface FormData {
   email: string
 }
 interface ApiData {
+  image: string
   id: string
   title: string
   description: string
@@ -24,8 +29,11 @@ interface ApiData {
 
 /*Defining a function (pass to other files), that has 
 a object formData that contains following properties*/
-export default function MyPage() {
+export default function CreateAd() {
+  const [info, updateInfo] = useState<Object>()
+  const [error, updateError] = useState<Error>()
   const [formData, setFormData] = useState<FormData>({
+    image: '',
     id: '',
     title: '',
     description: '',
@@ -44,7 +52,27 @@ export default function MyPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    // if (!file) {
+    //   return
+    // }
+
+    // const imageData = new FormData()
+    // imageData.append('file', file)
+
+    // const imageResponse = await fetch('/api/upload', {
+    //   method: 'POST',
+    //   body: imageData,
+    // })
+
+    // if (imageResponse.ok) {
+    //   const data = await imageResponse.json()
+    //   console.log(data)
+    // } else {
+    //   console.error(imageResponse.statusText)
+    // }
+
     const apiData: ApiData = {
+      image: formData.image,
       id: uuidv4(),
       title: formData.title,
       description: formData.description,
@@ -74,7 +102,9 @@ export default function MyPage() {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
     console.log(event.target.value)
   }
-
+  // function handleOnUpload(info){
+  //   updateInfo(info)
+  // }
   return (
     <div className=" flex items-start justify-center text-center bg-[#FFFFFF] h-screen font-sans">
       <form className="font-sans" onSubmit={handleSubmit}>
@@ -122,6 +152,53 @@ export default function MyPage() {
             onChange={handleInputChange}
           />
         </label>
+
+        {/* <CldUploadWidget uploadPreset="ml_default" onUpload={handleOnUpload}>
+          {({ open }) => {
+            function handleOnClick(e: { preventDefault: () => void }) {
+              e.preventDefault()
+              
+              open()
+              
+            }
+            return (
+              <button
+                className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+                onClick={handleOnClick}
+              >
+                Ladda upp en bild
+              </button>
+            )
+          }}
+        </CldUploadWidget>
+        {info && (
+          <div>
+            {info.resource_type === 'image' && (
+              <p>
+                <CldImage
+                  width={info?.width}
+                  height={info?.height}
+                  src={info?.secure_url}
+                  alt="Uploaded image"
+                />
+              </p>
+            )}
+
+            <p>{info?.secure_url}</p>
+          </div>
+        )} */}
+
+        {/* <div>
+          <CldImage
+            className="mt-4"
+            alt={''}
+            src={
+              'https://res.cloudinary.com/dqrn5bc0b/image/upload/v1682251834/20210224_125945_opi6tq.jpg'
+            }
+            width="85"
+            height="75"
+          />
+        </div> */}
         <br />
         <br />
         <button
@@ -129,7 +206,6 @@ export default function MyPage() {
            rounded-sm text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[265px]  py-3
     "
           type="submit"
-          // onClick={generaterUuid}
         >
           Skapa annons
         </button>
