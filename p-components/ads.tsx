@@ -113,36 +113,18 @@ const Ads = ({ ads }: Props) => {
       <section>
         <div className="px-4 font-sans text-left grid grid-cols-2 gap-x-4 gap-y-2">
           {ads.map((ad) => (
-            <div key={ad.id} className="group link  ">
-              <div className="mt-4 rounded-md border-[#9EBB9D] ">
-                <div className="border-2">
-                  <div
-                    onClick={() => navigateToAd(ad.id)}
-                    className="inline-flex "
-                  >
-                    <Image
-                      className="mt-4"
-                      alt={''}
-                      src={ad.image}
-                      width="100"
-                      height="75"
-                    />
-                  </div>
-                  <div>
-                    <p
-                      className="bold text-[#0f0e0e] mt-1 link"
-                      onClick={() => navigateToAd(ad.id)}
-                    >
-                      {ad.title}
-                    </p>
-                    {/* <p
-                          className="text-[#0f0e0e]"
-                          onClick={() => navigateToAd(ad.id)}
-                        >
-                          Beskrivning: {ad.description}
-                        </p> */}
-                  </div>
-                  {/* <div className=" mt-2">
+            <div key={ad.id} className="group  ">
+              <div className="mt-4 rounded-md">
+                <Image
+                  onClick={() => navigateToAd(ad.id)}
+                  className=""
+                  alt={ad.description}
+                  src={ad.image}
+                  width="100"
+                  height="0"
+                />
+
+                {/* <div className=" mt-2">
                         <div className="">
                           <button
                             className="underline rounded-sm bg- mb-1  text-black"
@@ -165,7 +147,20 @@ const Ads = ({ ads }: Props) => {
                           </button>
                         </div> 
                       </div> */}
-                </div>
+              </div>
+              <div>
+                <p
+                  className="bold text-[#0f0e0e] mt-1 link"
+                  onClick={() => navigateToAd(ad.id)}
+                >
+                  {ad.title}
+                </p>
+                {/* <p
+                          className="text-[#0f0e0e]"
+                          onClick={() => navigateToAd(ad.id)}
+                        >
+                          Beskrivning: {ad.description}
+                        </p> */}
               </div>
             </div>
           ))}
