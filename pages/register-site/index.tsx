@@ -1,8 +1,8 @@
-import Header from '@/p-components/header'
-import { User } from '@/types/user'
-import { NextPage } from 'next'
-import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import Header from "@/p-components/header"
+import { User } from "@/types/user"
+import { NextPage } from "next"
+import { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
 
 // function navigateTo() {
 //   window.location.href = "/ads"
@@ -12,19 +12,19 @@ export default function MyPage() {
 
   const [formData, setFormData] = useState<User>({
     userId: uuidv4(),
-    firstName: '',
-    lastName: '',
-    adress: '',
-    email: '',
-    mobileNumber: '',
-    password: '',
+    firstName: "",
+    lastName: "",
+    adress: "",
+    email: "",
+    mobileNumber: "",
+    password: "",
   })
 
   console.log(formData)
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     function handleClick() {
-      console.log('handleClick')
+      console.log("handleClick")
 
       // router.push('/ads')
     }
@@ -39,16 +39,16 @@ export default function MyPage() {
     }
 
     const response = await fetch(`/api/registration`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
 
     const data = await response.json()
 
-    if (data === 'New User') {
+    if (data === "New User") {
       handleClick()
     }
     console.log(data)
@@ -63,12 +63,12 @@ export default function MyPage() {
   return (
     <div className="bg-[#FFFFFF] text-center max-w-sm h-screen ">
       <Header></Header>
-      <form className="font-sans bg-[#F5F5F5]" onSubmit={handleSubmit}>
+      <form className="font-sans bg-[#FFFFFF]" onSubmit={handleSubmit}>
         <h1
           className="text-xl font-[500] text-black"
-          style={{ marginBottom: '1rem' }}
+          style={{ marginBottom: "1rem" }}
         >
-          {' '}
+          {" "}
           Registrera konto:
         </h1>
 
@@ -81,7 +81,7 @@ export default function MyPage() {
             value={formData.firstName}
             required
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
@@ -93,7 +93,7 @@ export default function MyPage() {
             required
             value={formData.lastName}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
@@ -104,7 +104,7 @@ export default function MyPage() {
             name="adress"
             value={formData.adress}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
             required
           />
         </label>
@@ -117,7 +117,7 @@ export default function MyPage() {
             required
             value={formData.email}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
@@ -128,7 +128,7 @@ export default function MyPage() {
             name="mobileNumber"
             value={formData.mobileNumber}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
             required
           />
         </label>
@@ -144,7 +144,7 @@ export default function MyPage() {
             minLength={8}
             value={formData.password}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         {/* <label>
