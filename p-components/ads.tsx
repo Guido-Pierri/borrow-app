@@ -99,32 +99,29 @@ const Ads = ({ ads }: Props) => {
       </section>
 
       <div className="bg-[#46649D] h-2"></div>
-      <div className="flex justify-center mt-5">
+      <div className="flex justify-center mt-5 ">
         <button
-          className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[263px] rounded-sm text-xl font-[500] font-sans"
+          className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
           onClick={navigateToCreateAd}
         >
           <p className="text-black"> Skapa annons</p>
         </button>
       </div>
-      <section className="font-sans">
-        <h2 className="text-left mt-4 px-4 text-black">Alla resultat:</h2>
-      </section>
-      <section>
-        <div className="px-4 font-sans text-left grid grid-cols-2 gap-x-4 gap-y-2">
-          {ads.map((ad) => (
-            <div key={ad.id} className="group  ">
-              <div className="mt-4 rounded-md">
-                <Image
-                  onClick={() => navigateToAd(ad.id)}
-                  className=""
-                  alt={ad.description}
-                  src={ad.image}
-                  width="100"
-                  height="0"
-                />
 
-                {/* <div className=" mt-2">
+      <section>
+        <div className=" font-sans text-left grid grid-cols-2 gap-y-2 gap-x-4">
+          {ads.map((ad) => (
+            <div key={ad.id} className="">
+              <Image
+                onClick={() => navigateToAd(ad.id)}
+                className="mt-4  w-full aspect-square"
+                alt={ad.description}
+                src={ad.image}
+                width="1000"
+                height="0"
+              />
+
+              {/* <div className=" mt-2">
                         <div className="">
                           <button
                             className="underline rounded-sm bg- mb-1  text-black"
@@ -147,10 +144,9 @@ const Ads = ({ ads }: Props) => {
                           </button>
                         </div> 
                       </div> */}
-              </div>
               <div>
                 <p
-                  className="bold text-[#0f0e0e] mt-1 link"
+                  className="bold text-[#0f0e0e] mt-1 link "
                   onClick={() => navigateToAd(ad.id)}
                 >
                   {ad.title}
