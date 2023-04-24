@@ -56,10 +56,10 @@ export default function Login() {
             Välkommen till Borrow!
           </h1>
           <p className="text-xl text-black">
-            Logga in eller{" "}
-            <Link href={"/register-site"}>
+            Börja med att logga in
+            {/* <Link href={"/register-site"}>
               <span className="text-[#46649D]">registrera dig</span>
-            </Link>
+            </Link> */}
           </p>
         </div>
         <form onSubmit={handleSubmit}>
@@ -90,6 +90,7 @@ export default function Login() {
               onChange={handleInputChange}
             />
           </label>
+
           <div className="py-12">
             <button
               className=" 
@@ -99,6 +100,13 @@ export default function Login() {
             >
               Logga in
             </button>
+            <p className="mt-6">
+              <Link href={"/register-site"}>
+                <p className="text-[#3970d5] text-sm">
+                  Har du inte redan ett konto? Registrera dig här
+                </p>
+              </Link>
+            </p>
           </div>
         </form>
       </div>
