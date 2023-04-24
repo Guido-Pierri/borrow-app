@@ -2,15 +2,8 @@ import Link from 'next/link'
 import Header from '@/p-components/header'
 import { GoSearch } from 'react-icons/go'
 import { Ad } from '@/types/ads'
+import { CldImage } from 'next-cloudinary'
 
-// interface Ad {
-//   _id: string
-//   id: string
-//   title: string
-//   description: string
-//   fullName: string
-//   email: string
-// }
 interface AdId {
   id: string
 }
@@ -92,6 +85,19 @@ const Ads = ({ ads }: Props) => {
         }
       `}</style>
 
+      <section className="flex justify-around mt-5 ">
+        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 bg-[#46649D] text-white">
+          Låna
+        </button>
+        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 text-black">
+          Mina annonser
+        </button>
+        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
+          Tavlan
+        </button>
+      </section>
+
+      <div className="bg-[#46649D] h-2"></div>
       <div className="flex justify-center mt-5">
         <button
           className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[263px] rounded-sm text-xl font-[500] font-sans"
@@ -100,84 +106,70 @@ const Ads = ({ ads }: Props) => {
           <p className="text-black"> Skapa annons</p>
         </button>
       </div>
-      <section className="flex justify-around mt-5 ">
-        <button className="mt-4 font-sans font-semibold border-4 px-4 py-1 border-[#46649D] text-black">
-          LÅNA
-        </button>
-        <button className="mt-4 font-sans font-semibold border-2 px-4 py-1 border-black text-black">
-          MINA ANNONSER
-        </button>
-        <button className="mt-4 font-sans font-semibold border-2 px-4 py-1 border-black text-black">
-          TAVLAN
-        </button>
-      </section>
       <section className="font-sans">
         <h2 className="text-left mt-4 px-4 text-black">Alla resultat:</h2>
       </section>
       <section>
-        <div className=" font-sans">
-          <div className="px-4">
-            <div className="flex-column ">
-              {ads.map((ad) => (
-                <div key={ad.id} className="group link">
-                  <div className="text-left">
-                    <div className="mt-4 rounded-sm border-[#46649D] border-2">
-                      <p className="bold text-[#0f0e0e]">
-                        <b className="link" onClick={() => navigateToAd(ad.id)}>
-                          {ad.title}
-                        </b>
-                      </p>
-                      <p
-                        className="text-[#0f0e0e]"
-                        onClick={() => navigateToAd(ad.id)}
-                      >
-                        Beskrivning: {ad.description}
-                      </p>
-                      <p
-                        className="text-[#0f0e0e]"
-                        onClick={() => navigateToAd(ad.id)}
-                      >
-                        Annonsör: {ad.fullName}
-                      </p>
-
-                      <button>
-                        <p style={{ color: 'blue' }}>
-                          <b className="text-[#0f0e0e]">Kontakt: </b>
-                          <Link href={'mailto:' + `${ad.email}`}>
-                            {ad.email}
-                          </Link>
-                        </p>
-                      </button>
-
-                      <div className="flex mt-4">
+        <div className="px-4 font-sans text-left grid grid-cols-2 gap-x-4 gap-y-2">
+          {ads.map((ad) => (
+            <div key={ad.id} className="group link  ">
+              <div className="mt-4 rounded-md border-[#9EBB9D] ">
+                <div className="border-2">
+                  <div
+                    onClick={() => navigateToAd(ad.id)}
+                    className="inline-flex "
+                  >
+                    <CldImage
+                      className="mt-4"
+                      alt={''}
+                      src={
+                        'https://res.cloudinary.com/dqrn5bc0b/image/upload/v1682142726/samples/cloudinary-icon.png'
+                      }
+                      width="100"
+                      height="75"
+                    />
+                  </div>
+                  <div>
+                    <p
+                      className="bold text-[#0f0e0e] mt-1 link"
+                      onClick={() => navigateToAd(ad.id)}
+                    >
+                      {ad.title}
+                    </p>
+                    {/* <p
+                          className="text-[#0f0e0e]"
+                          onClick={() => navigateToAd(ad.id)}
+                        >
+                          Beskrivning: {ad.description}
+                        </p> */}
+                  </div>
+                  {/* <div className=" mt-2">
                         <div className="">
                           <button
-                            className="bg-[#9EBB9D] rounded-sm bg- mb-1 mx-1 px-2 text-black"
+                            className="underline rounded-sm bg- mb-1  text-black"
                             value={ad._id}
                             type="submit"
                             onClick={() => updateAd(ad.id)}
                           >
-                            Redigera annons
+                            Redigera
                           </button>
                         </div>
 
-                        <div className="">
+                        {/* <div className="">
                           <button
                             className="bg-[#9EBB9D] rounded-sm border-2 mb-1 mx-1 px-2 text-black"
                             value={ad._id}
                             type="submit"
                             onClick={() => deleteAd(ad.id)}
                           >
-                            Ta bort annons
+                            Ta bort
                           </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                        </div> 
+                      </div> */}
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
       <style jsx>{`

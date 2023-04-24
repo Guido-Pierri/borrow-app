@@ -1,6 +1,6 @@
-import CreateAd from "@/p-components/createAd"
-import Header from "@/p-components/header"
-import { NextPage } from "next"
+import CreateAd from '@/p-components/createAd'
+import Header from '@/p-components/header'
+import { NextPage } from 'next'
 interface Props {}
 
 const Index: NextPage<Props> = ({}) => {
