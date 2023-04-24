@@ -5,7 +5,6 @@ import { useState } from 'react'
 
 const Header = ({}) => {
   const [hide, setHide] = useState(false)
-  const [hide, setHide] = useState(false)
 
   const hideData = () => {
     console.log('HideData was triggered')

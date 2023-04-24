@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid'
 //   window.location.href = "/ads"
 // }
 export default function MyPage() {
-  const router = useRouter()
+  // const router = useRouter()
 
   const [formData, setFormData] = useState<User>({
     userId: uuidv4(),
@@ -26,7 +26,7 @@ export default function MyPage() {
     function handleClick() {
       console.log('handleClick')
 
-      router.push('/ads')
+      // router.push('/ads')
     }
     const apiData: User = {
       userId: formData.userId,
