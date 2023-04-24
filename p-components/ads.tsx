@@ -3,6 +3,7 @@ import Header from '@/p-components/header'
 import { GoSearch } from 'react-icons/go'
 import { Ad } from '@/types/ads'
 import { CldImage } from 'next-cloudinary'
+import Image from 'next/image'
 
 interface AdId {
   id: string
@@ -61,7 +62,7 @@ const Ads = ({ ads }: Props) => {
     window.location.href = `/ads/view/${id}`
   }
   return (
-    <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
+    <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header></Header>
 
       <form>
@@ -119,12 +120,10 @@ const Ads = ({ ads }: Props) => {
                     onClick={() => navigateToAd(ad.id)}
                     className="inline-flex "
                   >
-                    <CldImage
+                    <Image
                       className="mt-4"
                       alt={''}
-                      src={
-                        'https://res.cloudinary.com/dqrn5bc0b/image/upload/v1682142726/samples/cloudinary-icon.png'
-                      }
+                      src={ad.image}
                       width="100"
                       height="75"
                     />
