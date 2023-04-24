@@ -50,6 +50,9 @@ export default function CreateAd({ imageUrl }: any) {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (!imgUrl) {
+      return alert('ladda upp en bild!')
+    }
     // if (!file) {
     //   return
     // }
