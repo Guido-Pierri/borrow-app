@@ -69,7 +69,7 @@ export default function Ads({ ads }: Props) {
     window.location.href = `/ads/view/${id}`
   }
   return (
-    <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
+    <div className="bg-[#FFFFFF] text-center max-w-sm h-screen ">
       <Header></Header>
 
       <form>

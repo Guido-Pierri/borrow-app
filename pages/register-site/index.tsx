@@ -1,7 +1,6 @@
 import Header from '@/p-components/header'
 import { User } from '@/types/user'
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -62,7 +61,7 @@ export default function MyPage() {
     console.log(event.target.value)
   }
   return (
-    <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
+    <div className="bg-[#FFFFFF] text-center max-w-sm h-screen ">
       <Header></Header>
       <form className="font-sans bg-[#F5F5F5]" onSubmit={handleSubmit}>
         <h1

@@ -49,17 +49,17 @@ export default function Login() {
   }
 
   return (
-    <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
+    <div className=" flex items-start justify-center text-center bg-[#FFFFFF] h-screen font-sans">
       <div>
         <div className="py-8">
           <h1 className="text-xl font-[500] text-black">
             Välkommen till Borrow!
           </h1>
           <p className="text-xl text-black">
-            Logga in eller{" "}
-            <Link href={"/register-site"}>
+            Börja med att logga in
+            {/* <Link href={"/register-site"}>
               <span className="text-[#46649D]">registrera dig</span>
-            </Link>
+            </Link> */}
           </p>
         </div>
         <form onSubmit={handleSubmit}>
@@ -90,6 +90,7 @@ export default function Login() {
               onChange={handleInputChange}
             />
           </label>
+
           <div className="py-12">
             <button
               className=" 
@@ -99,6 +100,14 @@ export default function Login() {
             >
               Logga in
             </button>
+            <p className="mt-6 text-sm">
+              Har du inte redan ett konto?
+              <Link href={"/register-site"}>
+                <span className="text-[#3970d5] text-md">
+                  Registrera dig här
+                </span>
+              </Link>
+            </p>
           </div>
         </form>
       </div>

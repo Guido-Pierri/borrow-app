@@ -76,7 +76,7 @@ export default function MyPage() {
   }
 
   return (
-    <div className=" flex items-start justify-center text-center bg-[#F5F5F5] h-screen font-sans">
+    <div className=" flex items-start justify-center text-center bg-[#FFFFFF] h-screen font-sans">
       <form className="font-sans" onSubmit={handleSubmit}>
         <label>
           <input

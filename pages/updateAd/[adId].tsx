@@ -90,7 +90,7 @@ export default function Post({ ads }: Props) {
 
   console.log(ads?.id)
   return (
-    <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
+    <div className="bg-[#FFFFFF] text-center max-w-sm h-screen ">
       <div className=" font-sans">
         <div className="px-4">
           <div className="flex-column">
