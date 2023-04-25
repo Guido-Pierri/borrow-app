@@ -7,6 +7,7 @@ import Image from "next/image"
 import { Suspense } from "react"
 import Categories from "@/p-components/categories"
 import clientPromise from "@/lib/mongodb"
+import { useRouter } from "next/router"
 
 interface AdId {
   id: string
@@ -19,11 +20,30 @@ interface Props {
   ads: Ad[]
 }
 const Ads = ({ ads }: Props) => {
+  const router = useRouter()
+
+  const { userId } = router.query
   async function deleteAd(id: string) {
     console.log("deleteAd")
     const confirmed = window.confirm(
       "Är du säker att du vill ta bort din annons?"
     )
+
+    // async function handleClick() {
+    //   const response = await fetch("/api/user", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ userId }),
+    //   })
+
+    //   const data = await response.json()
+
+    //   console.log("data", data)
+    //   if (data) {
+    //   }
+    // }
 
     if (confirmed) {
       const apiData: AdId = {
@@ -64,6 +84,23 @@ const Ads = ({ ads }: Props) => {
   function navigateToAd(id: string) {
     window.location.href = `/ads/view/${id}`
   }
+  const handleClick = async () => {
+    const response = await fetch("/api/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId }),
+    })
+
+    const data = await response.json()
+
+    console.log("data", data)
+    if (data) {
+    }
+    throw new Error("Function not implemented.")
+  }
+
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header></Header>
@@ -94,7 +131,12 @@ const Ads = ({ ads }: Props) => {
         <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 bg-[#46649D] text-white">
           Låna
         </button>
-        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 text-black">
+        <button
+          onClick={() => {
+            handleClick()
+          }}
+          className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 text-black"
+        >
           Mina annonser
         </button>
         <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
