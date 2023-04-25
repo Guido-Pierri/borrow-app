@@ -7,7 +7,7 @@ interface Props {} //add link and other functionalities when needed
 const Categories = ({}) => {
   return (
     <div className="bg-[#FFFFFF]">
-      <h1 className="font-sans text-black text-[14px] font-bold text-left pt-6 pl-4 ">
+      <h1 className="font-sans text-black text-[14px] font-bold text-left pt-6 pl-8 ">
         Kategorier
       </h1>
       <div className="flex flex-row py-8 justify-between ">
@@ -26,7 +26,7 @@ const Categories = ({}) => {
             </Link>
           </button>
 
-          <p className="font-sans text-[14px] font-bold text-black pt-[12px]">
+          <p className="font-sans text-[14px] font-bold text-black pt-[19px]">
             Städ
           </p>
         </div>
@@ -101,7 +101,7 @@ const Categories = ({}) => {
               </div>
             </Link>
           </button>
-          <p className="font-sans text-[14px] font-bold text-black pt-[13px]">
+          <p className="font-sans text-[14px] font-bold text-black pt-[19px]">
             Grill
           </p>
         </div>
