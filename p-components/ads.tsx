@@ -4,6 +4,7 @@ import { GoSearch } from 'react-icons/go'
 import { Ad } from '@/types/ads'
 import { CldImage } from 'next-cloudinary'
 import Image from 'next/image'
+import { Suspense } from 'react'
 
 interface AdId {
   id: string
@@ -64,7 +65,6 @@ const Ads = ({ ads }: Props) => {
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header></Header>
-
       <form>
         <label className="relative">
           <input
@@ -109,7 +109,7 @@ const Ads = ({ ads }: Props) => {
       </div>
 
       <section>
-        <div className=" font-sans text-left grid grid-cols-2 gap-y-2 gap-x-4">
+        <div className=" font-sans text-left grid grid-cols-2 gap-y-2 gap-x-4 p-4">
           {ads.map((ad) => (
             <div key={ad.id} className="">
               <Image
@@ -117,8 +117,8 @@ const Ads = ({ ads }: Props) => {
                 className="mt-4  w-full aspect-square"
                 alt={ad.description}
                 src={ad.image}
-                width="1000"
-                height="0"
+                width={'1000'}
+                height={'0'}
               />
 
               {/* <div className=" mt-2">
