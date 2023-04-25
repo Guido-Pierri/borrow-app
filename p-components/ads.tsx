@@ -1,26 +1,27 @@
-import Link from 'next/link'
-import Header from '@/p-components/header'
-import { GoSearch } from 'react-icons/go'
-import { Ad } from '@/types/ads'
-import { CldImage } from 'next-cloudinary'
-import Image from 'next/image'
-import { Suspense } from 'react'
+import Link from "next/link"
+import Header from "@/p-components/header"
+import { GoSearch } from "react-icons/go"
+import { Ad } from "@/types/ads"
+import { CldImage } from "next-cloudinary"
+import Image from "next/image"
+import { Suspense } from "react"
+import Categories from "./categories"
 
 interface AdId {
   id: string
 }
 
 function navigateToCreateAd() {
-  window.location.href = '/createAd'
+  window.location.href = "/createAd"
 }
 interface Props {
   ads: Ad[]
 }
 const Ads = ({ ads }: Props) => {
   async function deleteAd(id: string) {
-    console.log('deleteAd')
+    console.log("deleteAd")
     const confirmed = window.confirm(
-      'Är du säker att du vill ta bort din annons?'
+      "Är du säker att du vill ta bort din annons?"
     )
 
     if (confirmed) {
@@ -30,13 +31,13 @@ const Ads = ({ ads }: Props) => {
       console.log(apiData)
 
       try {
-        console.log('try')
+        console.log("try")
         console.log(id)
 
-        const res = await fetch('/api/deleteAd', {
-          method: 'POST',
+        const res = await fetch("/api/deleteAd", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(apiData),
         })
@@ -47,17 +48,17 @@ const Ads = ({ ads }: Props) => {
           // setDeletedAdId(id)
           window.location.reload()
         } else {
-          console.error('Failed to delete ad')
+          console.error("Failed to delete ad")
         }
       } catch (e) {
-        console.error('Failed to delete ad', e)
+        console.error("Failed to delete ad", e)
       }
     }
   }
 
   async function updateAd(id: string) {
     window.location.href = `/updateAd/${id}`
-    console.log('updateAd')
+    console.log("updateAd")
   }
   function navigateToAd(id: string) {
     window.location.href = `/ads/view/${id}`
@@ -78,8 +79,10 @@ const Ads = ({ ads }: Props) => {
         </label>
       </form>
 
+      <Categories></Categories>
+
       <style jsx>{`
-        input[type='text'] {
+        input[type="text"] {
           background-repeat: no-repeat;
           background-size: 16px 16px;
           background-position: 8px 50%;
@@ -117,8 +120,8 @@ const Ads = ({ ads }: Props) => {
                 className="mt-4  w-full aspect-square"
                 alt={ad.description}
                 src={ad.image}
-                width={'1000'}
-                height={'0'}
+                width={"1000"}
+                height={"0"}
               />
 
               {/* <div className=" mt-2">
