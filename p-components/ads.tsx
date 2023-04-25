@@ -1,9 +1,12 @@
-import Link from "next/link"
-import Header from "@/p-components/header"
-import { GoSearch } from "react-icons/go"
-import { Ad } from "@/types/ads"
-import { CldImage } from "next-cloudinary"
-import Categories from "./categories"
+
+import Link from 'next/link'
+import Header from '@/p-components/header'
+import { GoSearch } from 'react-icons/go'
+import { Ad } from '@/types/ads'
+import { CldImage } from 'next-cloudinary'
+import Image from 'next/image'
+import { Suspense } from 'react'
+
 
 interface AdId {
   id: string
@@ -62,9 +65,8 @@ const Ads = ({ ads }: Props) => {
     window.location.href = `/ads/view/${id}`
   }
   return (
-    <div className="bg-[#F5F5F5] text-center max-w-sm h-screen ">
+    <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header></Header>
-
       <form>
         <label className="relative">
           <input
@@ -101,19 +103,17 @@ const Ads = ({ ads }: Props) => {
       </section>
 
       <div className="bg-[#46649D] h-2"></div>
-      <div className="flex justify-center mt-5">
+      <div className="flex justify-center mt-5 ">
         <button
-          className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[263px] rounded-sm text-xl font-[500] font-sans"
+          className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
           onClick={navigateToCreateAd}
         >
           <p className="text-black"> Skapa annons</p>
         </button>
       </div>
-      <section className="font-sans">
-        <h2 className="text-left mt-4 px-4 text-black">Alla resultat:</h2>
-      </section>
+
       <section>
-        <div className="px-4 font-sans text-left grid grid-cols-2 gap-x-4 gap-y-2">
+        <div className=" font-sans text-left grid grid-cols-2 gap-y-2 gap-x-4 p-4">
           {ads.map((ad) => (
             <div key={ad.id} className="group link  ">
               <div className="mt-4 rounded-md border-[#9EBB9D] ">
@@ -147,6 +147,7 @@ const Ads = ({ ads }: Props) => {
                         </p> */}
                   </div>
                   {/* <div className=" mt-2">
+
                         <div className="">
                           <button
                             className="underline rounded-sm bg- mb-1  text-black"
@@ -169,7 +170,19 @@ const Ads = ({ ads }: Props) => {
                           </button>
                         </div> 
                       </div> */}
-                </div>
+              <div>
+                <p
+                  className="bold text-[#0f0e0e] mt-1 link "
+                  onClick={() => navigateToAd(ad.id)}
+                >
+                  {ad.title}
+                </p>
+                {/* <p
+                          className="text-[#0f0e0e]"
+                          onClick={() => navigateToAd(ad.id)}
+                        >
+                          Beskrivning: {ad.description}
+                        </p> */}
               </div>
             </div>
           ))}

@@ -10,7 +10,7 @@ export default async function handler(
 
   try {
     if (req.method === 'PATCH') {
-      const { id, title, description, fullName, email } = req.body
+      const { image, id, title, description, fullName, email } = req.body
       const client = await clientPromise
       const database = client.db('borrow')
       const collection = database.collection('ads')
@@ -20,6 +20,7 @@ export default async function handler(
         { id: id },
         {
           $set: {
+            image: image,
             title: title,
             description: description,
             fullName: fullName,
@@ -33,7 +34,7 @@ export default async function handler(
     }
     if (req.method === 'POST') {
       console.log(req.body)
-      const { id, title, description, fullName, email } = req.body
+      const { image, id, title, description, fullName, email } = req.body
       const client = await clientPromise
       const database = client.db('borrow')
       const collection = database.collection('ads')
@@ -45,6 +46,7 @@ export default async function handler(
         description: description,
         fullName: fullName,
         email: email,
+        image: image,
       })
 
       // res.json(result)

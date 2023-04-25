@@ -7,7 +7,7 @@ interface Props {
 const Index = ({ ads }: Props) => {
   const myProps = { ads }
   return (
-    <div>
+    <div className="bg-[ffffff]">
       <Ads ads={ads}></Ads>
     </div>
   )
