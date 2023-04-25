@@ -1,3 +1,6 @@
+//TODO
+//add userId to ads dynamically from login-->ads--->createAds
+
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useRouter } from 'next/router'
@@ -79,6 +82,7 @@ export default function CreateAd({ imageUrl }: any) {
       description: formData.description,
       fullName: formData.fullName,
       email: formData.email,
+      // userId:
     }
     console.log(apiData)
 

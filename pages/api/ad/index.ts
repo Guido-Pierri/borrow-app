@@ -20,11 +20,15 @@ export default async function handler(
         { id: id },
         {
           $set: {
-            image: image,
-            title: title,
-            description: description,
-            fullName: fullName,
-            email: email,
+            ads: [
+              {
+                image: image,
+                title: title,
+                description: description,
+                fullName: fullName,
+                email: email,
+              },
+            ],
           },
         }
       )
@@ -34,7 +38,8 @@ export default async function handler(
     }
     if (req.method === 'POST') {
       console.log(req.body)
-      const { image, id, title, description, fullName, email } = req.body
+      const { image, id, title, description, fullName, email, userId } =
+        req.body
       const client = await clientPromise
       const database = client.db('borrow')
       const collection = database.collection('ads')
@@ -47,6 +52,7 @@ export default async function handler(
         fullName: fullName,
         email: email,
         image: image,
+        userId: userId,
       })
 
       // res.json(result)
