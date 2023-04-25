@@ -37,8 +37,8 @@ export default function Login() {
     const data = await response.json()
 
     console.log("data", data)
-    if (data === "User found") {
-      window.location.href = "/ads"
+    if (data) {
+      window.location.href = `/ads/${data}`
     }
   }
 
