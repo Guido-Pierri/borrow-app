@@ -2,6 +2,7 @@ import clientPromise from "@/lib/mongodb"
 import { User } from "@/types/user"
 import { ObjectId } from "mongodb"
 import { NextApiRequest, NextApiResponse } from "next"
+import { useRouter } from "next/router"
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,9 +13,9 @@ export default async function handler(
     // interface ObjectId {
     //   _id:
     // }
-    const { id } = req.body
     switch (req.method) {
       case "POST": {
+        const { id } = req.body
         console.log(req.body)
         const client = await clientPromise
         const database = client.db("borrow")
@@ -22,11 +23,11 @@ export default async function handler(
 
         try {
           console.log(req.body)
-          // const name = req.body.name
-          // const email = req.body.email
-          const result = await collection.findOne(id)
 
-          // res.json(result)
+          const result = await collection.findOne({
+            _id: new ObjectId(req.body),
+          })
+
           if (result) {
             res.status(200).json({ message: "user", result })
           } else res.status(500).json({ message: "Error", result })

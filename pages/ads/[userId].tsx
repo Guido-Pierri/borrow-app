@@ -13,9 +13,6 @@ interface AdId {
   id: string
 }
 
-function navigateToCreateAd() {
-  window.location.href = "/createAd"
-}
 interface Props {
   ads: Ad[]
 }
@@ -24,6 +21,10 @@ const Ads = ({ ads }: Props) => {
 
   const { userId } = router.query
   console.log(userId)
+
+  const navigateToCreateAd = () => {
+    router.push(`/createAd/${userId}`)
+  }
 
   // async function deleteAd(id: string) {
   //   console.log('deleteAd')
@@ -88,6 +89,7 @@ const Ads = ({ ads }: Props) => {
   }
   const handleClick = async () => {
     console.log("insede handleClick")
+    console.log(`${userId}`)
 
     const response = await fetch(`/api/user/${userId}`, {
       method: "POST",
@@ -96,12 +98,11 @@ const Ads = ({ ads }: Props) => {
       },
       body: JSON.stringify(`${userId}`),
     })
-    console.log(`${userId}`)
 
-    const data = await response.json()
+    const dataResponse = await response.json()
 
-    console.log("data", data)
-    if (data) {
+    console.log("dataResponse", dataResponse)
+    if (dataResponse) {
     }
   }
 

@@ -1,13 +1,13 @@
 //TODO
 //add userId to ads dynamically from login-->ads--->createAds
 
-import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { CldImage, CldUploadWidget } from 'next-cloudinary'
-import Image from 'next/image'
-import Upload from '@/p-components/upload'
+import { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
+import { useRouter } from "next/router"
+import Link from "next/link"
+import { CldImage, CldUploadWidget } from "next-cloudinary"
+import Image from "next/image"
+import Upload from "@/p-components/upload"
 //function that generates random id:s
 uuidv4()
 
@@ -27,34 +27,35 @@ interface ApiData {
   description: string
   fullName: string
   email: string
+  publisher: string
 }
 
 /*Defining a function (pass to other files), that has 
 a object formData that contains following properties*/
-export default function CreateAd({ imageUrl }: any) {
-  const [imgUrl, setImgUrl] = useState('')
+export default function CreateAd({ imageUrl, userId }: any) {
+  const [imgUrl, setImgUrl] = useState("")
 
   const [formData, setFormData] = useState<FormData>({
-    id: '',
-    title: '',
-    description: '',
-    fullName: '',
-    email: '',
+    id: "",
+    title: "",
+    description: "",
+    fullName: "",
+    email: "",
   })
 
   console.log(formData)
   const router = useRouter()
 
   function handleClick() {
-    console.log('handleClick')
+    console.log("handleClick")
 
-    router.push('/ads')
+    router.push(`/ads/${userId}`)
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!imgUrl) {
-      return alert('ladda upp en bild!')
+      return alert("ladda upp en bild!")
     }
     // if (!file) {
     //   return
@@ -82,14 +83,15 @@ export default function CreateAd({ imageUrl }: any) {
       description: formData.description,
       fullName: formData.fullName,
       email: formData.email,
+      publisher: userId,
       // userId:
     }
     console.log(apiData)
 
-    const response = await fetch('/api/ad', {
-      method: 'POST',
+    const response = await fetch("/api/ad", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
