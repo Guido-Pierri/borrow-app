@@ -12,7 +12,7 @@ export default async function handler(
     // interface ObjectId {
     //   _id:
     // }
-    const { _id } = req.body
+    const { id } = req.body
     switch (req.method) {
       case 'POST': {
         console.log(req.body)
@@ -24,11 +24,11 @@ export default async function handler(
           console.log(req.body)
           // const name = req.body.name
           // const email = req.body.email
-          const result = await collection.findOne(_id)
+          const result = await collection.findOne(id)
 
           // res.json(result)
           if (result) {
-            res.status(200).json(result)
+            res.status(200).json({ message: 'user', __filename })
           } else res.status(500).json({ message: 'Error', result })
         } catch (error) {
           console.error(error)

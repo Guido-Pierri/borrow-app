@@ -23,6 +23,8 @@ const Ads = ({ ads }: Props) => {
   const router = useRouter()
 
   const { userId } = router.query
+  console.log(userId)
+
   async function deleteAd(id: string) {
     console.log('deleteAd')
     const confirmed = window.confirm(
@@ -92,8 +94,9 @@ const Ads = ({ ads }: Props) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ userId }),
+      body: JSON.stringify(`${userId}`),
     })
+    console.log(`${userId}`)
 
     const data = await response.json()
 
