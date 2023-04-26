@@ -17,6 +17,7 @@ function navigateToCreateAd() {
 interface Props {
   ads: Ad[]
 }
+
 const Ads = ({ ads }: Props) => {
   async function deleteAd(id: string) {
     console.log('deleteAd')

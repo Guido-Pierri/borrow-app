@@ -7,63 +7,105 @@ import Image from "next/image"
 import { Suspense } from "react"
 import Categories from "@/p-components/categories"
 import clientPromise from "@/lib/mongodb"
+import { useRouter } from "next/router"
 
 interface AdId {
   id: string
 }
 
-function navigateToCreateAd() {
-  window.location.href = "/createAd"
-}
 interface Props {
   ads: Ad[]
 }
 const Ads = ({ ads }: Props) => {
-  async function deleteAd(id: string) {
-    console.log("deleteAd")
-    const confirmed = window.confirm(
-      "Är du säker att du vill ta bort din annons?"
-    )
+  const router = useRouter()
 
-    if (confirmed) {
-      const apiData: AdId = {
-        id: id,
-      }
-      console.log(apiData)
+  const { userId } = router.query
+  console.log(userId)
 
-      try {
-        console.log("try")
-        console.log(id)
-
-        const res = await fetch("/api/deleteAd", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(apiData),
-        })
-        console.log(res)
-        console.log(res.status)
-
-        if (res.ok) {
-          // setDeletedAdId(id)
-          window.location.reload()
-        } else {
-          console.error("Failed to delete ad")
-        }
-      } catch (e) {
-        console.error("Failed to delete ad", e)
-      }
-    }
+  const navigateToCreateAd = () => {
+    router.push(`/createAd/${userId}`)
   }
 
-  async function updateAd(id: string) {
-    window.location.href = `/updateAd/${id}`
-    console.log("updateAd")
-  }
+  // async function deleteAd(id: string) {
+  //   console.log('deleteAd')
+  //   const confirmed = window.confirm(
+  //     'Är du säker att du vill ta bort din annons?'
+  //   )
+
+  // async function handleClick() {
+  //   const response = await fetch("/api/user", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ userId }),
+  //   })
+
+  //   const data = await response.json()
+
+  //   console.log("data", data)
+  //   if (data) {
+  //   }
+  // }
+
+  //   if (confirmed) {
+  //     const apiData: AdId = {
+  //       id: id,
+  //     }
+  //     console.log(apiData)
+
+  //     try {
+  //       console.log('try')
+  //       console.log(id)
+
+  //       const res = await fetch('/api/deleteAd', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify(apiData),
+  //       })
+  //       console.log(res)
+  //       console.log(res.status)
+
+  //       if (res.ok) {
+  //         // setDeletedAdId(id)
+  //         window.location.reload()
+  //       } else {
+  //         console.error('Failed to delete ad')
+  //       }
+  //     } catch (e) {
+  //       console.error('Failed to delete ad', e)
+  //     }
+  //   }
+  // }
+
+  // async function updateAd(id: string) {
+  //   window.location.href = `/updateAd/${id}`
+  //   console.log('updateAd')
+  // }
   function navigateToAd(id: string) {
     window.location.href = `/ads/view/${id}`
   }
+  const handleClick = async () => {
+    console.log("insede handleClick")
+    console.log(`${userId}`)
+
+    const response = await fetch(`/api/user/${userId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(`${userId}`),
+    })
+
+    const dataResponse = await response.json()
+
+    console.log("dataResponse", dataResponse)
+    if (dataResponse) {
+    }
+  }
+
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header></Header>
@@ -91,10 +133,15 @@ const Ads = ({ ads }: Props) => {
       `}</style>
 
       <section className="flex justify-around mt-5 ">
-        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 bg-[#46649D] text-white">
+        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
           Låna
         </button>
-        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 text-black">
+        <button
+          onClick={() => {
+            handleClick()
+          }}
+          className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 bg-[#46649D] text-white"
+        >
           Mina annonser
         </button>
         <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
