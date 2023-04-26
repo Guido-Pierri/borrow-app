@@ -33,9 +33,7 @@ export default function Post({ ads }: Props) {
                 <p className="text-[#0f0e0e] mt-2">
                   Beskrivning: {ads.description}
                 </p>
-                <p className="text-[#0f0e0e] mt-2">
-                  Annonsör: {ads.description}
-                </p>
+                <p className="text-[#0f0e0e] mt-2">Annonsör: {ads.fullName}</p>
                 <button>
                   <p style={{ color: "blue" }}>
                     <b className="text-[#0f0e0e] mt-2 ">
