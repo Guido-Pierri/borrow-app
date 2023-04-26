@@ -1,20 +1,20 @@
-import Link from 'next/link'
-import Header from '@/p-components/header'
-import { GoSearch } from 'react-icons/go'
-import { Ad } from '@/types/ads'
-import { CldImage } from 'next-cloudinary'
-import Image from 'next/image'
-import { Suspense } from 'react'
-import Categories from '@/p-components/categories'
-import clientPromise from '@/lib/mongodb'
-import { useRouter } from 'next/router'
+import Link from "next/link"
+import Header from "@/p-components/header"
+import { GoSearch } from "react-icons/go"
+import { Ad } from "@/types/ads"
+import { CldImage } from "next-cloudinary"
+import Image from "next/image"
+import { Suspense } from "react"
+import Categories from "@/p-components/categories"
+import clientPromise from "@/lib/mongodb"
+import { useRouter } from "next/router"
 
 interface AdId {
   id: string
 }
 
 function navigateToCreateAd() {
-  window.location.href = '/createAd'
+  window.location.href = "/createAd"
 }
 interface Props {
   ads: Ad[]
@@ -25,74 +25,74 @@ const Ads = ({ ads }: Props) => {
   const { userId } = router.query
   console.log(userId)
 
-  async function deleteAd(id: string) {
-    console.log('deleteAd')
-    const confirmed = window.confirm(
-      'Är du säker att du vill ta bort din annons?'
-    )
+  // async function deleteAd(id: string) {
+  //   console.log('deleteAd')
+  //   const confirmed = window.confirm(
+  //     'Är du säker att du vill ta bort din annons?'
+  //   )
 
-    // async function handleClick() {
-    //   const response = await fetch("/api/user", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ userId }),
-    //   })
+  // async function handleClick() {
+  //   const response = await fetch("/api/user", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ userId }),
+  //   })
 
-    //   const data = await response.json()
+  //   const data = await response.json()
 
-    //   console.log("data", data)
-    //   if (data) {
-    //   }
-    // }
+  //   console.log("data", data)
+  //   if (data) {
+  //   }
+  // }
 
-    if (confirmed) {
-      const apiData: AdId = {
-        id: id,
-      }
-      console.log(apiData)
+  //   if (confirmed) {
+  //     const apiData: AdId = {
+  //       id: id,
+  //     }
+  //     console.log(apiData)
 
-      try {
-        console.log('try')
-        console.log(id)
+  //     try {
+  //       console.log('try')
+  //       console.log(id)
 
-        const res = await fetch('/api/deleteAd', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(apiData),
-        })
-        console.log(res)
-        console.log(res.status)
+  //       const res = await fetch('/api/deleteAd', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify(apiData),
+  //       })
+  //       console.log(res)
+  //       console.log(res.status)
 
-        if (res.ok) {
-          // setDeletedAdId(id)
-          window.location.reload()
-        } else {
-          console.error('Failed to delete ad')
-        }
-      } catch (e) {
-        console.error('Failed to delete ad', e)
-      }
-    }
-  }
+  //       if (res.ok) {
+  //         // setDeletedAdId(id)
+  //         window.location.reload()
+  //       } else {
+  //         console.error('Failed to delete ad')
+  //       }
+  //     } catch (e) {
+  //       console.error('Failed to delete ad', e)
+  //     }
+  //   }
+  // }
 
-  async function updateAd(id: string) {
-    window.location.href = `/updateAd/${id}`
-    console.log('updateAd')
-  }
+  // async function updateAd(id: string) {
+  //   window.location.href = `/updateAd/${id}`
+  //   console.log('updateAd')
+  // }
   function navigateToAd(id: string) {
     window.location.href = `/ads/view/${id}`
   }
   const handleClick = async () => {
-    console.log('insede handleClick')
+    console.log("insede handleClick")
 
     const response = await fetch(`/api/user/${userId}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(`${userId}`),
     })
@@ -100,7 +100,7 @@ const Ads = ({ ads }: Props) => {
 
     const data = await response.json()
 
-    console.log('data', data)
+    console.log("data", data)
     if (data) {
     }
   }
@@ -124,7 +124,7 @@ const Ads = ({ ads }: Props) => {
       <Categories></Categories>
 
       <style jsx>{`
-        input[type='text'] {
+        input[type="text"] {
           background-repeat: no-repeat;
           background-size: 16px 16px;
           background-position: 8px 50%;
@@ -167,8 +167,8 @@ const Ads = ({ ads }: Props) => {
                 className="mt-4  w-full aspect-square"
                 alt={ad.description}
                 src={ad.image}
-                width={'1000'}
-                height={'0'}
+                width={"1000"}
+                height={"0"}
               />
 
               {/* <div className=" mt-2">
@@ -223,9 +223,9 @@ const Ads = ({ ads }: Props) => {
 export async function getServerSideProps() {
   try {
     const client = await clientPromise
-    const db = client.db('borrow')
+    const db = client.db("borrow")
 
-    const ads = await db.collection('ads').find({}).limit(1000).toArray()
+    const ads = await db.collection("ads").find({}).limit(1000).toArray()
     console.log(ads)
 
     return {
