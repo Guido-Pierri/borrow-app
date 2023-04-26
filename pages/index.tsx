@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useRouter } from "next/router"
 import Header from "@/p-components/header"
 import { NextPage } from "next"
+import Image from "next/image"
 
 interface Props {}
 
@@ -26,9 +27,10 @@ const Index: NextPage<Props> = () => {
 
       <span className="max-w-sm flex items-center h-screen mt-[-145px]">
         <div className=" mt-32 flex-column justify-items-center pl-10 ">
-          <h1 className="text-[#C7784C] text-[84px]">Borrow</h1>
+          {/* <h1 className="text-[#C7784C] text-[84px]">Borrow</h1> */}
+          <Image src={"/Borrow.svg"} height={82} width={298} alt={"#"}></Image>
 
-          <section className="font-sans pl-2 font-bold mb-6 text-[22.2px] text-black">
+          <section className="font-sans pl-2 font-bold mb-6 text-[22.2px] mt-4 text-black">
             Låna och låna ut inom din <br />
             <span className="ml-10">bostandsförening!</span>
           </section>
