@@ -1,13 +1,14 @@
-import { RxHamburgerMenu } from 'react-icons/rx'
-import { BsChatLeftText } from 'react-icons/bs'
-import Link from 'next/link'
-import { useState } from 'react'
+import { RxHamburgerMenu } from "react-icons/rx"
+import { BsChatLeftText } from "react-icons/bs"
+import Link from "next/link"
+import { useState } from "react"
+import Image from "next/image"
 
 const Header = ({}) => {
   const [hide, setHide] = useState(false)
 
   const hideData = () => {
-    console.log('HideData was triggered')
+    console.log("HideData was triggered")
     setHide(!hide)
   }
 
@@ -25,10 +26,10 @@ const Header = ({}) => {
                   <div className="max-w-7xl py-6 px-20">
                     <ul className="pl-0">
                       <li className="py-1">
-                        <a href={'/information-side'}>Så fungerar Borrow</a>
+                        <a href={"/information-side"}>Så fungerar Borrow</a>
                       </li>
                       <li className="py-1">
-                        <a href={'/contact'}>Kontakta oss</a>
+                        <a href={"/contact"}>Kontakta oss</a>
                       </li>
                       <div className="X_button_class">
                         <button onClick={hideData}>X</button>
@@ -40,10 +41,18 @@ const Header = ({}) => {
             </div>
           </div>
 
-          <div className="mt-4 text-[#C7784C] z-0 m-auto left-16">
-            <Link href={'/ads'}>
-              <b className="text-4xl">Borrow</b>
+          <div className="mt-6 text-[#C7784C] z-0 m-auto left-16">
+            <Link href={"/ads"}>
+              <Image
+                src={"/Borrow.svg"}
+                height={61}
+                width={135}
+                alt={"#"}
+              ></Image>
             </Link>
+            {/* <Link href={'/ads'}>
+              <b className="text-4xl">Borrow</b>
+            </Link> */}
           </div>
         </div>
       </nav>
