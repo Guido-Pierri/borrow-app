@@ -84,7 +84,9 @@ const Ads = ({ ads }: Props) => {
   //   window.location.href = `/updateAd/${id}`
   //   console.log('updateAd')
   // }
-  function navigateToAd(id: string) {}
+  function navigateToAd(id: string) {
+    window.location.href = `/ads/view/${id}`
+  }
   const handleClick = async (id: string) => {
     console.log("insede handleClick")
     console.log(`${userId}`)

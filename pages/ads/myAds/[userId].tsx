@@ -169,15 +169,15 @@ export async function getServerSideProps() {
     const client = await clientPromise
     const db = client.db("borrow")
 
-    const ads1 = await db.collection("ads").find({}).limit(1000).toArray()
-    console.log(ads1)
+    const ads = await db.collection("ads").find({}).limit(1000).toArray()
+    // console.log(ads1)
 
     // const ads = await db.collection("ads").find({
     //   _id: new ObjectId(userId),
     // })
 
     return {
-      props: { ads: JSON.parse(JSON.stringify(ads1)) },
+      props: { ads: JSON.parse(JSON.stringify(ads)) },
     }
   } catch (e) {
     console.error(e)
