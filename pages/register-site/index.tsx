@@ -1,8 +1,8 @@
-import Header from "@/p-components/header"
-import { User } from "@/types/user"
-import { NextPage } from "next"
-import { useState } from "react"
-import { v4 as uuidv4 } from "uuid"
+import Header from "@/p-components/header";
+import { User } from "@/types/user";
+import { NextPage } from "next";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // function navigateTo() {
 //   window.location.href = "/ads"
@@ -18,13 +18,13 @@ export default function MyPage() {
     email: "",
     mobileNumber: "",
     password: "",
-  })
+  });
 
-  console.log(formData)
+  console.log(formData);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+    event.preventDefault();
     function handleClick() {
-      console.log("handleClick")
+      console.log("handleClick");
 
       // router.push('/ads')
     }
@@ -36,7 +36,7 @@ export default function MyPage() {
       email: formData.email,
       mobileNumber: formData.mobileNumber,
       password: formData.password,
-    }
+    };
 
     const response = await fetch(`/api/registration`, {
       method: "POST",
@@ -44,38 +44,38 @@ export default function MyPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
-    })
+    });
 
-    const data = await response.json()
+    const data = await response.json();
 
     if (data === "New User") {
-      handleClick()
+      handleClick();
     }
-    console.log(data)
+    console.log(data);
     // window.location.href = "/ads"
-  }
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
-    console.log(event.target.value)
-  }
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    console.log(event.target.value);
+  };
   return (
     <div className="bg-[#FFFFFF] text-center max-w-sm h-screen ">
       <Header></Header>
       <form className="font-sans bg-[#FFFFFF]" onSubmit={handleSubmit}>
         <h1
-          className="text-xl font-[500] text-black"
+          className="text-xl font-[500] text-black flex justify-start"
           style={{ marginBottom: "1rem" }}
         >
           {" "}
-          Registrera konto:
+          Registrera
         </h1>
 
         <label>
           <input
             className="rounded py-4 px-7 mt-800 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="Förnamn..."
+            placeholder="För- och efternamn"
             type="text"
             name="firstName"
             value={formData.firstName}
@@ -87,11 +87,11 @@ export default function MyPage() {
         <label>
           <input
             className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fdfdfd]"
-            placeholder="Efternamn..."
+            placeholder="Postnummer"
             type="text"
-            name="lastName"
+            name="postnumber"
             required
-            value={formData.lastName}
+            value={formData.adress}
             onChange={handleInputChange}
             style={{ color: "#000000" }}
           />
@@ -99,39 +99,16 @@ export default function MyPage() {
         <label>
           <input
             className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="Adress..."
-            type="text"
-            name="adress"
+            placeholder="E-post"
+            type="email"
+            name="email"
             value={formData.adress}
             onChange={handleInputChange}
             style={{ color: "#000000" }}
             required
           />
         </label>
-        <label>
-          <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="Epost..."
-            type="email"
-            name="email"
-            required
-            value={formData.email}
-            onChange={handleInputChange}
-            style={{ color: "#000000" }}
-          />
-        </label>
-        <label>
-          <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="Mobilnummer..."
-            type="text"
-            name="mobileNumber"
-            value={formData.mobileNumber}
-            onChange={handleInputChange}
-            style={{ color: "#000000" }}
-            required
-          />
-        </label>
+
         <label>
           <input
             className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
@@ -147,6 +124,19 @@ export default function MyPage() {
             style={{ color: "#000000" }}
           />
         </label>
+        <label>
+          <input
+            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            placeholder="Bekräfta lösenord"
+            type="password"
+            name="confirmpassword"
+            value={formData.password}
+            onChange={handleInputChange}
+            style={{ color: "#000000" }}
+            required
+          />
+        </label>
+
         {/* <label>
           <input
             className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
@@ -177,5 +167,5 @@ export default function MyPage() {
         </div>
       </form>
     </div>
-  )
+  );
 }
