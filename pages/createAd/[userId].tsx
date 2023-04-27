@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Head from 'next/head'
 import Upload from '@/p-components/upload'
 import CreateAd from '@/p-components/createAd'
 import Header from '@/p-components/header'
