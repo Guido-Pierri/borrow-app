@@ -164,16 +164,21 @@ const Ads = ({ ads }: Props) => {
     </div>
   )
 }
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
   try {
+    const { userId } = context.query
     const client = await clientPromise
     const db = client.db("borrow")
 
-    const ads = await db.collection("ads").find({}).limit(1000).toArray()
+    const ads = await db
+      .collection("ads")
+      .find({ publisher: userId })
+      .limit(1000)
+      .toArray()
     // console.log(ads1)
 
-    // const ads = await db.collection("ads").find({
-    //   _id: new ObjectId(userId),
+    // const ads2 = await db.collection("ads").find({
+    //   publisher: new ObjectId(ads.id),
     // })
 
     return {
