@@ -100,7 +100,7 @@ export default function Login() {
             >
               Logga in
             </button>
-            <p className="mt-20 text-sm">
+            <p className="mt-20 text-sm text-black">
               Har du inget konto än?{" "}
               <Link href={"/register-site"}>
                 <span className="text-[#0074B6] font-medium underline text-md">
