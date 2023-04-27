@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import Head from 'next/head'
-import TransformImage from './image'
-import { CldImage } from 'next-cloudinary'
+import React, { useState } from "react"
+import Head from "next/head"
+import TransformImage from "./image"
+import { CldImage } from "next-cloudinary"
+import Image from "next/image"
 
 const Upload = ({ setImageUrl }) => {
-  const [imagePublicId, setImagePublicId] = useState('')
-  const [alt, setAlt] = useState('')
-  const [crop, setCrop] = useState('scale')
+  const [imagePublicId, setImagePublicId] = useState("")
+  const [alt, setAlt] = useState("")
+  const [crop, setCrop] = useState("scale")
   const [height, setHeight] = useState(100)
   const [width, setWidth] = useState(100)
   // const [imageUrl, setImageUrl] = useState('')
@@ -15,13 +16,13 @@ const Upload = ({ setImageUrl }) => {
     // create the widget
     const widget = window.cloudinary.createUploadWidget(
       {
-        cloudName: 'dqrn5bc0b',
-        uploadPreset: 'ml_default',
+        cloudName: "dqrn5bc0b",
+        uploadPreset: "ml_default",
       },
       (error, result) => {
         if (
-          result.event === 'success' &&
-          result.info.resource_type === 'image'
+          result.event === "success" &&
+          result.info.resource_type === "image"
         ) {
           console.log(result.info)
           setImagePublicId(result.info.public_id)
@@ -51,7 +52,10 @@ const Upload = ({ setImageUrl }) => {
           className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
           onClick={openWidget}
         >
-          Ladda upp en bild
+          <div className="flex justify-evenly">
+            <Image alt={"#"} src={"/image.svg"} width={"25"} height={"25"} />
+            Ladda upp en bild
+          </div>
         </button>
         <div className="flex justify-center">
           <div className="w-40 mt-4 mx-4 ">

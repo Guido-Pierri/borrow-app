@@ -116,9 +116,12 @@ export default function CreateAd({ imageUrl, userId }: any) {
   return (
     <div className=" flex items-start justify-center text-center bg-[#FFFFFF] h-screen font-sans">
       <form className="font-sans" onSubmit={handleSubmit}>
+        <div>
+          <Upload setImageUrl={setImgUrl} />
+        </div>
         <label>
           <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-7 mt-4 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             placeholder="Titel..."
             type="text"
             name="title"
@@ -141,7 +144,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <input
             className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="Ditt fulla namn..."
+            placeholder="För- och efternamn..."
             type="text"
             name="fullName"
             value={formData.fullName}
@@ -161,10 +164,6 @@ export default function CreateAd({ imageUrl, userId }: any) {
           />
         </label>
 
-        <div>
-          <Upload setImageUrl={setImgUrl} />
-        </div>
-
         <br />
         <br />
         <button
@@ -173,7 +172,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
     "
           type="submit"
         >
-          Skapa annons
+          Publicera annons
         </button>
       </form>
     </div>
