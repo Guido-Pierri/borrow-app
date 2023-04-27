@@ -1,3 +1,4 @@
+import CloseIcon from "@/p-components/closeIcon"
 import Header from "@/p-components/header"
 import { User } from "@/types/user"
 import { NextPage } from "next"
@@ -62,7 +63,13 @@ export default function MyPage() {
   }
   return (
     <div className="bg-[#FFFFFF] text-center max-w-sm h-screen ">
-      <Header></Header>
+      <div className="flex">
+        <Header></Header>
+        <div className="mt-16 ml-8">
+          <CloseIcon adress={"/login"}></CloseIcon>
+        </div>
+      </div>
+
       <form className="font-sans bg-[#FFFFFF]" onSubmit={handleSubmit}>
         <h1
           className="text-xl font-[500] text-black"
