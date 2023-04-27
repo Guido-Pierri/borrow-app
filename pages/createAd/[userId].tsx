@@ -4,6 +4,7 @@ import Upload from "@/p-components/upload"
 import CreateAd from "@/p-components/createAd"
 import Header from "@/p-components/header"
 import { useRouter } from "next/router"
+import CloseIcon from "@/p-components/closeIcon"
 
 const App = () => {
   const [imageUrl, setImageUrl] = useState("")
@@ -19,7 +20,12 @@ const App = () => {
   return (
     <div>
       <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
-        <Header></Header>
+        <div className="flex">
+          <Header></Header>
+          <div className="mt-16 ml-8">
+            <CloseIcon adress={"/ads"}></CloseIcon>
+          </div>
+        </div>
         <CreateAd userId={userId} imageUrl={imageUrl} />
       </div>
     </div>

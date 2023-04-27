@@ -3,6 +3,7 @@ import { BsChatLeftText } from "react-icons/bs"
 import Link from "next/link"
 import { useState } from "react"
 import Image from "next/image"
+import CloseIcon from "./closeIcon"
 
 const Header = ({}) => {
   const [hide, setHide] = useState(false)
@@ -41,7 +42,7 @@ const Header = ({}) => {
             </div>
           </div>
 
-          <div className="mt-6 text-[#C7784C] z-0 m-auto left-16">
+          <div className="mt-6 text-[#C7784C] z-0 m-auto left-16 flex ">
             <Image
               src={"/Borrow.svg"}
               height={61}
