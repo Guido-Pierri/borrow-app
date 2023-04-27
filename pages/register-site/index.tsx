@@ -66,7 +66,7 @@ export default function MyPage() {
       <div className="flex">
         <Header></Header>
         <div className="mt-16 ml-8">
-          <CloseIcon adress={'/login'}></CloseIcon>
+          <CloseIcon adress={'ads'}>{/*Eller login */}</CloseIcon>
         </div>
       </div>
 
