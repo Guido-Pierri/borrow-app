@@ -1,14 +1,14 @@
-import Link from "next/link"
-import Header from "@/p-components/header"
-import { GoSearch } from "react-icons/go"
-import { Ad } from "@/types/ads"
-import { CldImage } from "next-cloudinary"
-import Image from "next/image"
-import { Suspense } from "react"
-import Categories from "@/p-components/categories"
-import clientPromise from "@/lib/mongodb"
-import { useRouter } from "next/router"
-import { ObjectId } from "mongodb"
+import Link from 'next/link'
+import Header from '@/p-components/header'
+import { GoSearch } from 'react-icons/go'
+import { Ad } from '@/types/ads'
+import { CldImage } from 'next-cloudinary'
+import Image from 'next/image'
+import { Suspense } from 'react'
+import Categories from '@/p-components/categories'
+import clientPromise from '@/lib/mongodb'
+import { useRouter } from 'next/router'
+import { ObjectId } from 'mongodb'
 
 interface AdId {
   id: string
@@ -28,23 +28,26 @@ const Ads = ({ ads }: Props) => {
   }
 
   function navigateToAd(id: string) {
-    window.location.href = `/ads/view/${id}`
+    router.push(`/ads/view/${id}`)
+  }
+  function navigateToAllAds(id: string) {
+    window.location.href = `/ads/${id}`
   }
   const handleClick = async () => {
-    console.log("insede handleClick")
+    console.log('insede handleClick')
     console.log(`${userId}`)
 
     const response = await fetch(`/api/user/${userId}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(`${userId}`),
     })
 
     const dataResponse = await response.json()
 
-    console.log("dataResponse", dataResponse)
+    console.log('dataResponse', dataResponse)
     if (dataResponse) {
     }
   }
@@ -68,7 +71,7 @@ const Ads = ({ ads }: Props) => {
       <Categories></Categories>
 
       <style jsx>{`
-        input[type="text"] {
+        input[type='text'] {
           background-repeat: no-repeat;
           background-size: 16px 16px;
           background-position: 8px 50%;
@@ -76,7 +79,12 @@ const Ads = ({ ads }: Props) => {
       `}</style>
 
       <section className="flex justify-around mt-5 ">
-        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
+        <button
+          className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black "
+          onClick={() => {
+            navigateToAllAds(`${userId}`)
+          }}
+        >
           Låna
         </button>
         <button
@@ -111,8 +119,8 @@ const Ads = ({ ads }: Props) => {
                 className="mt-4  w-full aspect-square"
                 alt={ad.description}
                 src={ad.image}
-                width={"1000"}
-                height={"0"}
+                width={'1000'}
+                height={'0'}
               />
 
               {/* <div className=" mt-2">
@@ -168,10 +176,10 @@ export async function getServerSideProps(context: any) {
   try {
     const { userId } = context.query
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
     const ads = await db
-      .collection("ads")
+      .collection('ads')
       .find({ publisher: userId })
       .limit(1000)
       .toArray()
