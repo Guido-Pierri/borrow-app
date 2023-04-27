@@ -8,6 +8,7 @@ import { Suspense } from "react"
 import Categories from "@/p-components/categories"
 import clientPromise from "@/lib/mongodb"
 import { useRouter } from "next/router"
+import { ObjectId } from "mongodb"
 
 interface AdId {
   id: string
@@ -169,14 +170,14 @@ export async function getServerSideProps() {
     const db = client.db("borrow")
 
     const ads1 = await db.collection("ads").find({}).limit(1000).toArray()
-    console.log(ads)
+    console.log(ads1)
 
-    const ads = await db.collection("ads").find(
-      _id: new ObjectId(req.body),
-    )
+    // const ads = await db.collection("ads").find({
+    //   _id: new ObjectId(userId),
+    // })
 
     return {
-      props: { ads: JSON.parse(JSON.stringify(ads)) },
+      props: { ads: JSON.parse(JSON.stringify(ads1)) },
     }
   } catch (e) {
     console.error(e)
