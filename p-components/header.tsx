@@ -42,14 +42,13 @@ const Header = ({}) => {
           </div>
 
           <div className="mt-6 text-[#C7784C] z-0 m-auto left-16">
-            <Link href={"/ads"}>
-              <Image
-                src={"/Borrow.svg"}
-                height={61}
-                width={135}
-                alt={"#"}
-              ></Image>
-            </Link>
+            <Image
+              src={"/Borrow.svg"}
+              height={61}
+              width={135}
+              alt={"#"}
+            ></Image>
+
             {/* <Link href={'/ads'}>
               <b className="text-4xl">Borrow</b>
             </Link> */}
