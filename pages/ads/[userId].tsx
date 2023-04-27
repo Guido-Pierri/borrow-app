@@ -84,13 +84,11 @@ const Ads = ({ ads }: Props) => {
   //   window.location.href = `/updateAd/${id}`
   //   console.log('updateAd')
   // }
-  function navigateToAd(id: string) {
-    window.location.href = `/ads/view/${id}`
-  }
-  const handleClick = async () => {
+  function navigateToAd(id: string) {}
+  const handleClick = async (id: string) => {
     console.log("insede handleClick")
     console.log(`${userId}`)
-
+    window.location.href = `/ads/myAds/${id}`
     const response = await fetch(`/api/user/${userId}`, {
       method: "POST",
       headers: {
@@ -133,14 +131,14 @@ const Ads = ({ ads }: Props) => {
       `}</style>
 
       <section className="flex justify-around mt-5 ">
-        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
+        <button className="rounded-t-md -md mt-4 font-sans font-semibold bg-[#46649D]  px-4 py-1  text-white">
           Låna
         </button>
         <button
           onClick={() => {
-            handleClick()
+            handleClick(`${userId}`)
           }}
-          className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 bg-[#46649D] text-white"
+          className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1  text-black"
         >
           Mina annonser
         </button>
