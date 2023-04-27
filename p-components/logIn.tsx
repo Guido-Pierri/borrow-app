@@ -36,8 +36,8 @@ export default function Login() {
 
     const data = await response.json()
 
-    console.log('data', data)
-    if (data.ok) {
+    console.log('data', response)
+    if (response.ok) {
       window.location.href = `/ads/${data}`
     } else {
       alert('Inloggning mysslyckades')
