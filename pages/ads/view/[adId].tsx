@@ -36,6 +36,7 @@ export default function Post({ ads }: Props, { publisher }: any) {
               onClick={() => {
                 navigateBack()
               }}
+              className="clickable"
             ></Image>
             {/* </Link> */}
           </div>
