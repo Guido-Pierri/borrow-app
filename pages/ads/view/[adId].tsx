@@ -1,9 +1,7 @@
 import clientPromise from '@/lib/mongodb'
 import { useRouter } from 'next/router'
 import { Ad } from '@/types/ads'
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { v4 as uuidv4 } from 'uuid'
 import Header from '@/p-components/header'
 import Image from 'next/image'
 
@@ -11,14 +9,16 @@ interface Props {
   ads: Ad
 }
 
-export default function Post({ ads }: Props) {
+export default function Post({ ads }: Props, { publisher }: any) {
   const router = useRouter()
   const { adId } = router.query
   console.log(adId)
 
   /*Defining a function (pass to other files), that has
   a object formData that contains following properties*/
-
+  function navigateBack() {
+    router.back()
+  }
   console.log(ads?.id)
   return (
     <>
@@ -27,14 +27,18 @@ export default function Post({ ads }: Props) {
 
         <div className="mt-6 rounded-md border-[#9EBB9D] border-2 text-left flex-column font-sans px-5 pb-20 shadow-md">
           <div className="flex justify-end mt-5 mb-5">
-            <Link href={'/ads'}>
-              <Image
-                src={'/kryss_annons.svg'}
-                height={25}
-                width={25}
-                alt={'Kryss'}
-              ></Image>
-            </Link>
+            {/* <Link href={}> */}
+            <Image
+              src={'/kryss_annons.svg'}
+              height={25}
+              width={25}
+              alt={'Kryss'}
+              onClick={() => {
+                navigateBack()
+              }}
+              className="clickable"
+            ></Image>
+            {/* </Link> */}
           </div>
           <div className="flex justify-center">
             <Image

@@ -6,4 +6,5 @@ export type Ad = {
   fullName: string
   email: string
   image: string
+  publisher: string
 }

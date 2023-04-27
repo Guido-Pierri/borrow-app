@@ -1,11 +1,11 @@
-import Link from "next/link"
-import { useState } from "react"
-import { createHash } from "crypto"
+import Link from 'next/link'
+import { useState } from 'react'
+import { createHash } from 'crypto'
 
-import { v4 as uuidv4 } from "uuid"
-import { LogIn } from "@/types/logIns"
-import bcrypt from "bcryptjs"
-import { User } from "@/types/user"
+import { v4 as uuidv4 } from 'uuid'
+import { LogIn } from '@/types/logIns'
+import bcrypt from 'bcryptjs'
+import { User } from '@/types/user'
 interface FormData {
   email: string
   password: string
@@ -13,8 +13,8 @@ interface FormData {
 
 export default function Login() {
   const [formData, setFormData] = useState<LogIn>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   })
 
   console.log(formData)
@@ -26,19 +26,21 @@ export default function Login() {
       password: formData.password,
     }
 
-    const response = await fetch("/api/user", {
-      method: "POST",
+    const response = await fetch('/api/user', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(apiData),
     })
 
     const data = await response.json()
 
-    console.log("data", data)
-    if (data) {
+    console.log('data', response)
+    if (response.ok) {
       window.location.href = `/ads/${data}`
+    } else {
+      alert('Inloggning mysslyckades')
     }
   }
 
@@ -101,8 +103,8 @@ export default function Login() {
               Logga in
             </button>
             <p className="mt-20 text-sm text-black">
-              Har du inget konto än?{" "}
-              <Link href={"/register-site"}>
+              Har du inget konto än?{' '}
+              <Link href={'/register-site'}>
                 <span className="text-[#0074B6] font-medium underline text-md">
                   Registrera dig här
                 </span>
