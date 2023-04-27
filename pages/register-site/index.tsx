@@ -52,7 +52,7 @@ export default function MyPage() {
       handleClick()
     }
     console.log(data)
-    // window.location.href = "/ads"
+    window.location.href = "/login"
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
