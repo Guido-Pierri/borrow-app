@@ -110,6 +110,13 @@ export default function CreateAd({ imageUrl, userId }: any) {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
     console.log(event.target.value)
   }
+  const handleInputChangeTextArea = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
+    console.log(event.target.value)
+  }
   // function handleOnUpload(info){
   //   updateInfo(info)
   // }
@@ -136,8 +143,8 @@ export default function CreateAd({ imageUrl, userId }: any) {
           />
         </label>
         <label className="">
-          <legend className="mb-[-32px] mt-5 ">Beskrivning</legend>
-          <input
+          <legend className="mb-[2px] mt-5 ">Beskrivning</legend>
+          {/* <input
             className="rounded py-4 px-7 mt-8 border w-[265px] h-28 border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             // placeholder="Beskrivning..."
             type="text"
@@ -145,17 +152,16 @@ export default function CreateAd({ imageUrl, userId }: any) {
             required
             value={formData.description}
             onChange={handleInputChange}
-          />
-          {/* <textarea
+          /> */}
+          <textarea
             className="border border-[#9EBB9D]"
             name="description"
-            type="text"
             required
             value={formData.description}
-            onChange={handleInputChange}
+            onChange={handleInputChangeTextArea}
             rows={4}
             cols={35}
-          /> */}
+          />
         </label>
 
         <label>
