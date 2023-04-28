@@ -51,7 +51,10 @@ const Ads = ({ ads }: Props) => {
     if (dataResponse) {
     }
   }
-
+  async function updateAd(id: string) {
+    window.location.href = `/updateAd/${id}`
+    console.log('updateAd')
+  }
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header></Header>
@@ -101,39 +104,32 @@ const Ads = ({ ads }: Props) => {
       </section>
 
       <div className="bg-[#46649D] h-2"></div>
-      <div className="flex justify-center mt-5 ">
+      {/* <div className="flex justify-center mt-5 ">
         <button
           className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
           onClick={navigateToCreateAd}
         >
           <p className="text-black"> Skapa annons</p>
         </button>
-      </div>
+      </div> */}
 
       <section>
-        <div className=" font-sans text-left grid grid-cols-2 gap-y-2 gap-x-4 p-4">
+        <div className=" font-sans text-left  mt-4">
           {ads.map((ad) => (
-            <div key={ad.id} className="">
-              <Image
-                onClick={() => navigateToAd(ad.id)}
-                className="mt-4  w-full aspect-square"
-                alt={ad.description}
-                src={ad.image}
-                width={'1000'}
-                height={'0'}
-              />
+            <div key={ad.id} className=" grid grid-cols-3">
+              <div className="">
+                <Image
+                  onClick={() => navigateToAd(ad.id)}
+                  className="w-full rounded-md"
+                  alt={ad.description}
+                  src={ad.image}
+                  width={'100'}
+                  height={'100'}
+                />
 
-              {/* <div className=" mt-2">
-                        <div className="">
-                          <button
-                            className="underline rounded-sm bg- mb-1  text-black"
-                            value={ad._id}
-                            type="submit"
-                            onClick={() => updateAd(ad.id)}
-                          >
-                            Redigera
-                          </button>
-                        </div>
+                {/* 
+                <div className=" mt-2">
+                        
 
                         {/* <div className="">
                           <button
@@ -146,19 +142,28 @@ const Ads = ({ ads }: Props) => {
                           </button>
                         </div> 
                       </div> */}
-              <div>
-                <p
-                  className="bold text-[#0f0e0e] mt-1 link "
-                  onClick={() => navigateToAd(ad.id)}
-                >
+              </div>
+              <div className=" bold text-[#0f0e0e] mt-1 ml-2 link justify-between">
+                <p className="" onClick={() => navigateToAd(ad.id)}>
                   {ad.title}
                 </p>
+                <p>{ad.description}</p>
                 {/* <p
                           className="text-[#0f0e0e]"
                           onClick={() => navigateToAd(ad.id)}
                         >
                           Beskrivning: {ad.description}
                         </p> */}
+              </div>
+              <div className="text-right">
+                <button
+                  className="underline rounded-sm bg- mb-1  text-black "
+                  value={ad._id}
+                  type="submit"
+                  onClick={() => updateAd(ad.id)}
+                >
+                  Redigera
+                </button>
               </div>
             </div>
           ))}
