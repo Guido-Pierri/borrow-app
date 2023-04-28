@@ -14,7 +14,7 @@ const Header = ({}) => {
   }
 
   return (
-    <div className="flex flex-row py-8 justify-between pt-6 bg-[#FFFFFF]">
+    <div className="flex flex-row py-4 justify-between pt-6 bg-[#FFFFFF]">
       <nav className="w-full">
         <div className="flex space-x-14 p-3 rounded-sm">
           <div className="p-3 mt-3 text-3xl text-[#000000] z-10">
