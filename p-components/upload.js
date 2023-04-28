@@ -49,12 +49,13 @@ const Upload = ({ setImageUrl }) => {
       </Head>
       <div>
         <button
-          className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+          style={{ borderStyle: "dashed" }}
+          className="rounded py-4 px-7 mt-8 border w-[265px]  border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
           onClick={openWidget}
         >
-          <div className="flex justify-evenly">
-            <Image alt={"#"} src={"/image.svg"} width={"25"} height={"25"} />
-            Ladda upp en bild
+          <div className="flex justify-center ">
+            <Image alt={"#"} src={"/image.svg"} width={"45"} height={"45"} />
+            {/* Ladda upp en bild */}
           </div>
         </button>
         <div className="flex justify-center">
