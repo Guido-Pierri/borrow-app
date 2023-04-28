@@ -115,14 +115,19 @@ export default function CreateAd({ imageUrl, userId }: any) {
   // }
   return (
     <div className=" flex items-start justify-center text-center bg-[#FFFFFF] h-screen font-sans">
-      <form className="font-sans" onSubmit={handleSubmit}>
+      <form className="font-sans text-left" onSubmit={handleSubmit}>
+        <h1 className="text-black text-xl mb-7 font-bold text-center">
+          Skapa annons
+        </h1>
         <div>
+          <legend className="mb-[-32px]">Bilder</legend>
           <Upload setImageUrl={setImgUrl} />
         </div>
         <label>
+          <legend className="mb-[-16px] ">Titel</legend>
           <input
-            className="rounded py-4 px-7 mt-4 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="Titel..."
+            className="rounded py-4 px-7 mt-4 border w-[265px]  border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            // placeholder="Titel..."
             type="text"
             name="title"
             value={formData.title}
@@ -130,21 +135,34 @@ export default function CreateAd({ imageUrl, userId }: any) {
             onChange={handleInputChange}
           />
         </label>
-        <label>
+        <label className="">
+          <legend className="mb-[-32px] mt-5 ">Beskrivning</legend>
           <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="Beskrivning..."
+            className="rounded py-4 px-7 mt-8 border w-[265px] h-28 border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            // placeholder="Beskrivning..."
             type="text"
             name="description"
             required
             value={formData.description}
             onChange={handleInputChange}
           />
+          {/* <textarea
+            className="border border-[#9EBB9D]"
+            name="description"
+            type="text"
+            required
+            value={formData.description}
+            onChange={handleInputChange}
+            rows={4}
+            cols={35}
+          /> */}
         </label>
+
         <label>
+          <legend className="mb-[-32px] mt-5">Namn</legend>
           <input
             className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="För- och efternamn..."
+            // placeholder="För- och efternamn..."
             type="text"
             name="fullName"
             value={formData.fullName}
@@ -153,9 +171,10 @@ export default function CreateAd({ imageUrl, userId }: any) {
           />
         </label>
         <label>
+          <legend className="mb-[-32px] mt-5">E-post</legend>
           <input
             className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="Email..."
+            // placeholder="Email..."
             type="email"
             name="email"
             required
