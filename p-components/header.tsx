@@ -14,9 +14,9 @@ const Header = ({}) => {
   }
 
   return (
-    <div className="flex items-top justify-center pt-6 bg-[#FFFFFF]">
+    <div className="flex flex-row py-8 justify-between pt-6 bg-[#FFFFFF]">
       <nav className="w-full">
-        <div className="flex space-x-16 p-3 rounded-sm">
+        <div className="flex space-x-14 p-3 rounded-sm">
           <div className="p-3 mt-3 text-3xl text-[#000000] z-10">
             <div className="btn">
               <button onClick={hideData}>
@@ -42,18 +42,19 @@ const Header = ({}) => {
             </div>
           </div>
 
-          <div className="mt-6 text-[#C7784C] z-0 m-auto left-16 flex ">
-            <Image
-              src={"/Borrow.svg"}
-              height={61}
-              width={135}
-              alt={"#"}
-            ></Image>
+          {/* <div className="mt-6 text-[#C7784C] z-0 m-auto left-16 flex "> */}
+          <Image
+            className="mt-2"
+            src={"/Borrow.svg"}
+            height={61}
+            width={135}
+            alt={"#"}
+          ></Image>
 
-            {/* <Link href={'/ads'}>
+          {/* <Link href={'/ads'}>
               <b className="text-4xl">Borrow</b>
             </Link> */}
-          </div>
+          {/* </div> */}
         </div>
       </nav>
     </div>
