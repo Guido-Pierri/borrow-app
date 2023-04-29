@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { v4 as uuidv4 } from "uuid"
 import CloseIcon from "@/p-components/closeIcon"
+import Icons from "@/p-components/icons"
 
 interface Props {
   ads: Ad
@@ -104,13 +105,17 @@ export default function Post({ ads }: Props) {
           <div className="flex-column">
             <div className="text-left">
               <form className="text-left" onSubmit={handleSubmit}>
-                <div className="mt-2 rounded-md border-[#9EBB9D] border-2 ">
+                <div className="mt-2 rounded-md  ">
                   <div className="mt-6 mr-4 flex justify-end">
                     <CloseIcon adress={"/ads/" + `${adId}`}></CloseIcon>
                   </div>
+
                   <h1 className="text-black text-xl py-4 mb-4 font-bold text-center">
                     Redigera annons
                   </h1>
+                  <div>
+                    <Icons></Icons>
+                  </div>
                   {/* <p className="bold text-[#0f0e0e] mt-2">
                     Titel: {""} */}
                   <div className="text-center">
@@ -142,7 +147,7 @@ export default function Post({ ads }: Props) {
             onChange={handleInputChange}
           /> */}
                       <textarea
-                        className="border border-[#9EBB9D] px-2 w-[298px] resize-none rounded"
+                        className="border border-[#9EBB9D] px-2 w-[298px] h-[113px] resize-none rounded"
                         name="description"
                         required
                         value={formData.description}
@@ -206,6 +211,7 @@ export default function Post({ ads }: Props) {
                         >
                           Ta bort annons
                         </button>
+                        <br />
                       </div>
                     </div>
                   </div>
