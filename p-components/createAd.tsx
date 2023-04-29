@@ -133,7 +133,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <legend className="mb-[-16px] ">Titel</legend>
           <input
-            className="rounded py-4 px-7 mt-4 border w-[265px]  border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-7 mt-4 border w-[298px]  border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             // placeholder="Titel..."
             type="text"
             name="title"
@@ -154,7 +154,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
             onChange={handleInputChange}
           /> */}
           <textarea
-            className="border border-[#9EBB9D] w-[265px] resize-none rounded"
+            className="border border-[#9EBB9D] w-[298px] resize-none rounded"
             name="description"
             required
             value={formData.description}
@@ -167,7 +167,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <legend className="mb-[-32px] mt-5">Namn</legend>
           <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-7 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             // placeholder="För- och efternamn..."
             type="text"
             name="fullName"
@@ -179,7 +179,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <legend className="mb-[-32px] mt-5">E-post</legend>
           <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-7 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             // placeholder="Email..."
             type="email"
             name="email"
@@ -193,7 +193,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <br />
         <button
           className="
-           rounded-sm text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[265px]  py-3
+           rounded-sm text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[298px]  py-3
     "
           type="submit"
         >
