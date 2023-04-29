@@ -50,7 +50,7 @@ const Upload = ({ setImageUrl }) => {
       <div>
         <button
           style={{ borderStyle: "dashed" }}
-          className="rounded py-4 px-7 mt-8 border w-[265px]  border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+          className="rounded py-4 px-7 mt-8 border w-[298px]  border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
           onClick={openWidget}
         >
           <div className="flex justify-center ">
