@@ -154,7 +154,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
             onChange={handleInputChange}
           /> */}
           <textarea
-            className="border border-[#9EBB9D]"
+            className="border border-[#9EBB9D] w-[265px] resize-none rounded"
             name="description"
             required
             value={formData.description}
