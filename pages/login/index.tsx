@@ -1,6 +1,6 @@
-import { NextPage } from "next"
-import LogIn from "@/p-components/logIn"
-import Header from "@/p-components/header"
+import { NextPage } from 'next'
+import LogIn from '@/p-components/logIn'
+import Header from '@/p-components/header'
 interface Props {}
 
 const Index: NextPage<Props> = ({}) => {

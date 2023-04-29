@@ -51,7 +51,7 @@ export default function Login() {
   }
 
   return (
-    <div className=" flex items-start justify-center text-center bg-[#FFFFFF] h-screen font-sans">
+    <div className="w-full flex items-start justify-center text-center bg-[#FFFFFF] h-screen font-sans">
       <div>
         <div className="py-8">
           <h1 className="text-xl font-[500] text-black">
