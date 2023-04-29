@@ -1,9 +1,10 @@
-import clientPromise from '@/lib/mongodb'
-import { useRouter } from 'next/router'
-import { Ad } from '@/types/ads'
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { v4 as uuidv4 } from 'uuid'
+import clientPromise from "@/lib/mongodb"
+import { useRouter } from "next/router"
+import { Ad } from "@/types/ads"
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { v4 as uuidv4 } from "uuid"
+import CloseIcon from "@/p-components/closeIcon"
 
 interface Props {
   ads: Ad
@@ -33,14 +34,14 @@ export default function Post({ ads }: Props) {
   a object formData that contains following properties*/
 
   const [formData, setFormData] = useState<FormData>({
-    id: ads?.id || '',
-    title: ads?.title || '',
-    description: ads?.description || '',
-    fullName: ads?.fullName || '',
-    email: ads?.email || '',
+    id: ads?.id || "",
+    title: ads?.title || "",
+    description: ads?.description || "",
+    fullName: ads?.fullName || "",
+    email: ads?.email || "",
   })
-  console.log('ads?.id', ads?.id)
-  console.log('adId', adId)
+  console.log("ads?.id", ads?.id)
+  console.log("adId", adId)
 
   console.log(formData)
 
@@ -61,12 +62,12 @@ export default function Post({ ads }: Props) {
       fullName: formData.fullName,
       email: formData.email,
     }
-    console.log('apiData:', apiData)
+    console.log("apiData:", apiData)
 
-    const response = await fetch('/api/ad', {
-      method: 'PATCH',
+    const response = await fetch("/api/ad", {
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
@@ -76,13 +77,20 @@ export default function Post({ ads }: Props) {
     console.log(data)
     console.log(apiData)
 
-    window.location.href = '/ads'
+    window.location.href = "/ads"
   }
 
   /*Is called when user types something in the form
     and it updates formData with the new values passed in
     through setFormData*/
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setFormData((prevFormData: any) => ({ ...prevFormData, [name]: value }))
+    console.log(event.target.value)
+  }
+  const handleInputChangeTextArea = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const { name, value } = event.target
     setFormData((prevFormData: any) => ({ ...prevFormData, [name]: value }))
     console.log(event.target.value)
@@ -95,64 +103,110 @@ export default function Post({ ads }: Props) {
         <div className="px-4">
           <div className="flex-column">
             <div className="text-left">
-              <form onSubmit={handleSubmit}>
-                <div className="mt-6 rounded-sm border-[#46649D] border-2">
-                  <p className="bold text-[#0f0e0e] mt-2">
-                    <b>
-                      Ändra titeln:
+              <form className="text-left" onSubmit={handleSubmit}>
+                <div className="mt-2 rounded-md border-[#9EBB9D] border-2 ">
+                  <div className="mt-6 mr-4 flex justify-end">
+                    <CloseIcon adress={"/ads/" + `${adId}`}></CloseIcon>
+                  </div>
+                  <h1 className="text-black text-xl py-4 mb-4 font-bold text-center">
+                    Redigera annons
+                  </h1>
+                  {/* <p className="bold text-[#0f0e0e] mt-2">
+                    Titel: {""} */}
+                  <div className="text-center">
+                    <label>
+                      <legend className="mb-[-16px] text-left ml-7">
+                        Titel
+                      </legend>
                       <input
-                        className="bg-[#F5F5F5] placeholder-black"
-                        // placeholder={`${ads.title}`}
+                        className="rounded py-4 px-2 mt-4 border w-[298px]  border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+                        // placeholder="Titel..."
+                        type="text"
                         name="title"
-                        onChange={handleInputChange}
                         value={formData.title}
-                      ></input>
-                    </b>
-                  </p>
-                  <p className="text-[#0f0e0e] mt-2 placeholder-black">
-                    Ändra Beskrivning:
-                    <input
-                      className="bg-[#F5F5F5] mt-2 placeholder-black"
-                      // placeholder={`${ads.description}`}
-                      name="description"
-                      onChange={handleInputChange}
-                      value={formData.description}
-                    ></input>
-                  </p>
-                  <p className="text-[#0f0e0e] mt-2 placeholder-black">
-                    Ändra Annonsör:
-                    <input
-                      className="bg-[#F5F5F5] mt-2 placeholder-black"
-                      // placeholder={`${ads.fullName}`}
-                      onChange={handleInputChange}
-                      value={formData.fullName}
-                      name="fullName"
-                    ></input>
-                  </p>
-
-                  <button>
-                    <p style={{ color: 'blue' }}>
-                      <b className="text-[#0f0e0e] ">Kontakt: </b>
-                      <input
-                        className="bg-[#F5F5F5] mt-2 placeholder-blue-950"
-                        // placeholder={`${ads.email}`}
+                        required
                         onChange={handleInputChange}
-                        value={formData.email}
-                        name="email"
-                      ></input>
-                    </p>
-                  </button>
+                      />
+                    </label>
+                    <label className="">
+                      <legend className="mb-[2px] mt-5 text-left  ml-7">
+                        Beskrivning
+                      </legend>
+                      {/* <input
+            className="rounded py-4 px-7 mt-8 border w-[265px] h-28 border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            // placeholder="Beskrivning..."
+            type="text"
+            name="description"
+            required
+            value={formData.description}
+            onChange={handleInputChange}
+          /> */}
+                      <textarea
+                        className="border border-[#9EBB9D] px-2 w-[298px] resize-none rounded"
+                        name="description"
+                        required
+                        value={formData.description}
+                        onChange={handleInputChangeTextArea}
+                        rows={4}
+                        cols={35}
+                      />
+                    </label>
 
-                  <div className="flex mt-4">
-                    <div className="">
-                      <button
-                        className="bg-[#9EBB9D] rounded-sm bg- mb-1 mx-1 px-2"
-                        value={ads._id}
-                        type="submit"
-                        //   onClick={() => updateAd(ad.id)}
-                      >
-                        Bekräfta ändring
-                      </button>
+                    <label>
+                      <legend className="mb-[-32px] mt-5 text-left  ml-7">
+                        Annonsör
+                      </legend>
+                      <input
+                        className="rounded py-4 px-2 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+                        // placeholder="För- och efternamn..."
+                        type="text"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </label>
+                    <label>
+                      <legend className="mb-[-32px] mt-5 text-left  ml-7">
+                        E-post
+                      </legend>
+                      <input
+                        className="rounded py-4 px-2 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+                        // placeholder="Email..."
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                      />
+                    </label>
+                  </div>
+                  {/* </p> */}
+                  {/* </button> */}
+                  <div className="py-2 mb-6">
+                    <div className="flex mt-4 justify-center">
+                      <div className="">
+                        <button
+                          className="rounded-sm  text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[298px]  py-3"
+                          value={ads._id}
+                          type="submit"
+                          //   onClick={() => updateAd(ad.id)}
+                        >
+                          Spara annons
+                        </button>
+                      </div>
+                    </div>
+                    <div className="flex mt-4 justify-center">
+                      <div className="">
+                        <button
+                          className="rounded-sm text-[17px] text-black border-[#9EBB9D]  border w-[298px]  py-3"
+                          value={ads._id}
+                          type="submit"
+                          //   onClick={() => updateAd(ad.id)}
+                        >
+                          Ta bort annons
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -169,9 +223,9 @@ export async function getServerSideProps(context: any) {
   try {
     const { adId } = context.query
     const client = await clientPromise
-    const db = client.db('borrow')
+    const db = client.db("borrow")
 
-    const ads = await db.collection('ads').findOne({ id: adId })
+    const ads = await db.collection("ads").findOne({ id: adId })
     console.log(ads)
 
     return {
