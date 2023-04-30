@@ -65,67 +65,68 @@ const Ads = ({ ads }: Props) => {
     window.location.href = `/ads/view/${id}`
   }
   return (
-    <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
+    <>
       <Header></Header>
-      <form>
-        <label className="relative">
-          <input
-            className="bg-[#E6E6E6] font-sans placeholder-black px-6 py-2 rounded-sm w-80"
-            type="text"
-            placeholder="Sök..."
-          />
-          <div className="absolute inset-y-0 right-0 flex items-center px-2 text-black">
-            <GoSearch />
-          </div>
-        </label>
-      </form>
+      <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
+        <form>
+          <label className="relative">
+            <input
+              className="bg-[#E6E6E6] font-sans placeholder-black px-6 py-2 rounded-sm w-80"
+              type="text"
+              placeholder="Sök..."
+            />
+            <div className="absolute inset-y-0 right-0 flex items-center px-2 text-black">
+              <GoSearch />
+            </div>
+          </label>
+        </form>
 
-      <Categories></Categories>
+        <Categories></Categories>
 
-      <style jsx>{`
-        input[type='text'] {
-          background-repeat: no-repeat;
-          background-size: 16px 16px;
-          background-position: 8px 50%;
-        }
-      `}</style>
+        <style jsx>{`
+          input[type='text'] {
+            background-repeat: no-repeat;
+            background-size: 16px 16px;
+            background-position: 8px 50%;
+          }
+        `}</style>
 
-      <section className="flex justify-around mt-5 ">
-        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 bg-[#46649D] text-white">
-          Låna
-        </button>
-        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 text-black">
-          Mina annonser
-        </button>
-        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
-          Tavlan
-        </button>
-      </section>
+        <section className="flex justify-around mt-5 ">
+          <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 bg-[#46649D] text-white">
+            Låna
+          </button>
+          <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 text-black">
+            Mina annonser
+          </button>
+          <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
+            Tavlan
+          </button>
+        </section>
 
-      <div className="bg-[#46649D] h-2"></div>
-      <div className="flex justify-center mt-5 ">
-        <button
-          className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
-          onClick={navigateToCreateAd}
-        >
-          <p className="text-black"> Skapa annons</p>
-        </button>
-      </div>
+        <div className="bg-[#46649D] h-2"></div>
+        <div className="flex justify-center mt-5 ">
+          <button
+            className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
+            onClick={navigateToCreateAd}
+          >
+            <p className="text-black"> Skapa annons</p>
+          </button>
+        </div>
 
-      <section>
-        <div className=" font-sans text-left grid grid-cols-2 gap-y-2 gap-x-4 p-4">
-          {ads.map((ad) => (
-            <div key={ad.id} className="">
-              <Image
-                onClick={() => navigateToAd(ad.id)}
-                className="mt-4  w-full aspect-square rounded-md"
-                alt={ad.description}
-                src={ad.image}
-                width={'1000'}
-                height={'1000'}
-              />
+        <section>
+          <div className=" font-sans text-left grid grid-cols-2 gap-y-2 gap-x-4 p-4">
+            {ads.map((ad) => (
+              <div key={ad.id} className="">
+                <Image
+                  onClick={() => navigateToAd(ad.id)}
+                  className="mt-4  w-full aspect-square rounded-md"
+                  alt={ad.description}
+                  src={ad.image}
+                  width={'1000'}
+                  height={'1000'}
+                />
 
-              {/* <div className=" mt-2">
+                {/* <div className=" mt-2">
                         <div className="">
                           <button
                             className="underline rounded-sm bg- mb-1  text-black"
@@ -148,30 +149,31 @@ const Ads = ({ ads }: Props) => {
                           </button>
                         </div> 
                       </div> */}
-              <div>
-                <p
-                  className="bold text-[#0f0e0e] mt-1 link "
-                  onClick={() => navigateToAd(ad.id)}
-                >
-                  {ad.title}
-                </p>
-                {/* <p
+                <div>
+                  <p
+                    className="bold text-[#0f0e0e] mt-1 link "
+                    onClick={() => navigateToAd(ad.id)}
+                  >
+                    {ad.title}
+                  </p>
+                  {/* <p
                           className="text-[#0f0e0e]"
                           onClick={() => navigateToAd(ad.id)}
                         >
                           Beskrivning: {ad.description}
                         </p> */}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
-      <style jsx>{`
-        .link {
-          cursor: pointer;
-        }
-      `}</style>
-    </div>
+            ))}
+          </div>
+        </section>
+        <style jsx>{`
+          .link {
+            cursor: pointer;
+          }
+        `}</style>
+      </div>
+    </>
   )
 }
 export default Ads
