@@ -1,7 +1,6 @@
 // import Link from 'next/link'
 import Link from 'next/link'
 import { slide as Menu } from 'react-burger-menu'
-import Image from 'next/image'
 const HamburgerMenu = () => (
   <div className="relative">
     <Menu
@@ -68,7 +67,7 @@ const CrossIcon = () => (
 )
 export const Links = () => (
   <>
-    <div className="bg-inherit text-white text-xl text-left ml-6 mt-40 h-screen">
+    <div className="bg-inherit text-white text-xl text-left ml-6 mt-40">
       <Link href="/information-side">
         <p className="pr-24 mb-8">Så fungerar Borrow</p>
       </Link>
