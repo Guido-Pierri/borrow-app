@@ -1,8 +1,5 @@
 import { BsChatLeftText } from 'react-icons/bs'
-import Link from 'next/link'
 import { useState } from 'react'
-import Image from 'next/image'
-import CloseIcon from './closeIcon'
 import HamburgerMenu, { Links } from './hamburgerMenu'
 import BorrowLogo from './borrowLogo'
 
@@ -35,24 +32,6 @@ const Header = ({}) => {
         <Links />
       </div>
     </div>
-
-    // <div className="justify-between  bg-[#FFFFFF] border border-red-700">
-    //   <nav className="w-full border border-black flex flex-row">
-    //     <HamburgerMenu></HamburgerMenu>
-    //     <Image
-    //       className="mt-2 border-teal-200 border"
-    //       src={'/Borrow.svg'}
-    //       height={61}
-    //       width={135}
-    //       alt={'#'}
-    //     ></Image>
-
-    //     {/* <Link href={'/ads'}>
-    //           <b className="text-4xl">Borrow</b>
-    //         </Link> */}
-    //     {/* </div> */}
-    //   </nav>
-    // </div>
   )
 }
 
