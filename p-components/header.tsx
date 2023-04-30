@@ -15,11 +15,20 @@ const Header = ({}) => {
   }
 
   return (
-    <div className="max-w-full h-12  bg-[#FFFFFF] mb-4 text-black rounded-md flex justify-center text-center ">
-      <div className="flex-initial">
+    <div
+      className="max-w-full h-14  
+    bg-[#FFFFFF] 
+    text-black 
+    rounded-md 
+    flex justify-center 
+    text-center 
+    mb-14 
+    relative"
+    >
+      <div className="pt-12 absolute left-5">
         <HamburgerMenu />
       </div>
-      <div className="mx-auto mt-9">
+      <div className="mx-auto mt-12">
         <BorrowLogo></BorrowLogo>
       </div>
       <div className="hidden md:flex">

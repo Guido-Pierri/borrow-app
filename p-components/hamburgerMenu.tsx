@@ -18,14 +18,36 @@ const HamburgerMenu = () => (
 )
 
 const HamburgerIcon = () => (
-  <div className="ml-5">
-    <Image
-      className="mt-12"
-      src={'/menuhamburger.svg'}
-      height={35}
-      width={35}
-      alt={'#'}
-    ></Image>
+  <div className="">
+    <svg
+      width="35"
+      height="35"
+      viewBox="0 0 35 35"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6.47662 24.7917H29.81"
+        stroke="black"
+        stroke-width="1.625"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.47662 17.5H29.81"
+        stroke="black"
+        stroke-width="1.625"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.47664 10.2084H29.81"
+        stroke="black"
+        stroke-width="1.625"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
   </div>
 )
 const CrossIcon = () => (
