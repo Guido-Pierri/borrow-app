@@ -28,7 +28,7 @@ const Ads = ({ ads }: Props) => {
   }
 
   function navigateToAd(id: string) {
-    router.push(`/ads/view/${id}`)
+    router.push(`/ads/viewMyAds/${id}`)
   }
   function navigateToAllAds(id: string) {
     window.location.href = `/ads/${id}`
