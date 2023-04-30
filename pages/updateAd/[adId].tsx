@@ -7,6 +7,10 @@ import { v4 as uuidv4 } from "uuid"
 import CloseIcon from "@/p-components/closeIcon"
 import Icons from "@/p-components/icons"
 
+interface AdId {
+  id: string
+}
+
 interface Props {
   ads: Ad
 }
@@ -45,6 +49,60 @@ export default function Post({ ads }: Props) {
   console.log("adId", adId)
 
   console.log(formData)
+
+  async function deleteAd(id: string) {
+    console.log("deleteAd")
+    const confirmed = window.confirm(
+      "Är du säker att du vill ta bort din annons?"
+    )
+
+    async function handleClick() {
+      const response = await fetch("/api/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ adId }),
+      })
+
+      const data = await response.json()
+
+      console.log("data", data)
+      if (data) {
+      }
+    }
+
+    if (confirmed) {
+      const apiData: AdId = {
+        id: id,
+      }
+      console.log(apiData)
+
+      try {
+        console.log("try")
+        console.log(id)
+
+        const res = await fetch("/api/deleteAd", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(apiData),
+        })
+        console.log(res)
+        console.log(res.status)
+
+        if (res.ok) {
+          // setDeletedAdId(id)
+          window.location.reload()
+        } else {
+          console.error("Failed to delete ad")
+        }
+      } catch (e) {
+        console.error("Failed to delete ad", e)
+      }
+    }
+  }
 
   /*Creating apiData object that contains the formData
     to be submitted to server.This is sent through POST
@@ -193,9 +251,9 @@ export default function Post({ ads }: Props) {
                       <div className="">
                         <button
                           className="rounded-sm  text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[298px]  py-3"
-                          value={ads._id}
+                          value={ads.id}
                           type="submit"
-                          //   onClick={() => updateAd(ad.id)}
+                          // onClick={() => updateAd(ads?.id)}
                         >
                           Spara annons
                         </button>
@@ -207,7 +265,7 @@ export default function Post({ ads }: Props) {
                           className="rounded-sm text-[17px] text-black border-[#9EBB9D]  border w-[298px]  py-3"
                           value={ads._id}
                           type="submit"
-                          //   onClick={() => updateAd(ad.id)}
+                          onClick={() => deleteAd(ads?.id)}
                         >
                           Ta bort annons
                         </button>
