@@ -16,22 +16,22 @@ const Header = ({}) => {
 
   return (
     <div
-      className="max-w-full h-14  
+      className="h-14  
     bg-[#FFFFFF] 
     text-black 
     rounded-md 
     flex justify-center 
     text-center 
     mb-14 
-    relative"
+    relative max-w-sm"
     >
-      <div className="pt-12 absolute left-5">
+      <div className="pt-12 absolute left-5 ">
         <HamburgerMenu />
       </div>
-      <div className="mx-auto mt-12">
+      <div className="mx-auto mt-12 ">
         <BorrowLogo></BorrowLogo>
       </div>
-      <div className="hidden md:flex">
+      <div className="hidden h-screen">
         <Links />
       </div>
     </div>
