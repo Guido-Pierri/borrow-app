@@ -10,7 +10,7 @@ const HamburgerMenu = () => (
       className="left-0 top-0 bg-[#46649D]"
       noOverlay={false}
       customCrossIcon={<CrossIcon></CrossIcon>}
-      overlayClassName="bg-[#ffffff]"
+      overlayClassName="bg-[#000000]  top-0"
     >
       <Links />
     </Menu>
