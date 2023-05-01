@@ -1,11 +1,11 @@
-import clientPromise from "@/lib/mongodb"
-import { useRouter } from "next/router"
-import { Ad } from "@/types/ads"
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import { v4 as uuidv4 } from "uuid"
-import CloseIcon from "@/p-components/closeIcon"
-import Icons from "@/p-components/icons"
+import clientPromise from '@/lib/mongodb'
+import { useRouter } from 'next/router'
+import { Ad } from '@/types/ads'
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { v4 as uuidv4 } from 'uuid'
+import CloseIcon from '@/p-components/closeIcon'
+import Icons from '@/p-components/icons'
 
 interface AdId {
   id: string
@@ -33,41 +33,43 @@ export default function Post({ ads }: Props) {
     description: string
     fullName: string
     email: string
+    publisher: string
+    image: string
   }
 
   /*Defining a function (pass to other files), that has 
   a object formData that contains following properties*/
 
   const [formData, setFormData] = useState<FormData>({
-    id: ads?.id || "",
-    title: ads?.title || "",
-    description: ads?.description || "",
-    fullName: ads?.fullName || "",
-    email: ads?.email || "",
+    id: ads?.id || '',
+    title: ads?.title || '',
+    description: ads?.description || '',
+    fullName: ads?.fullName || '',
+    email: ads?.email || '',
   })
-  console.log("ads?.id", ads?.id)
-  console.log("adId", adId)
+  console.log('ads?.id', ads?.id)
+  console.log('adId', adId)
 
-  console.log(formData)
+  console.log('formData', formData)
 
   async function deleteAd(id: string) {
-    console.log("deleteAd")
+    console.log('deleteAd')
     const confirmed = window.confirm(
-      "Är du säker att du vill ta bort din annons?"
+      'Är du säker att du vill ta bort din annons?'
     )
 
     async function handleClick() {
-      const response = await fetch("/api/user", {
-        method: "POST",
+      const response = await fetch('/api/user', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ adId }),
       })
 
       const data = await response.json()
 
-      console.log("data", data)
+      console.log('data', data)
       if (data) {
       }
     }
@@ -79,13 +81,13 @@ export default function Post({ ads }: Props) {
       console.log(apiData)
 
       try {
-        console.log("try")
+        console.log('try')
         console.log(id)
 
-        const res = await fetch("/api/deleteAd", {
-          method: "POST",
+        const res = await fetch('/api/deleteAd', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(apiData),
         })
@@ -96,10 +98,10 @@ export default function Post({ ads }: Props) {
           // setDeletedAdId(id)
           window.location.reload()
         } else {
-          console.error("Failed to delete ad")
+          console.error('Failed to delete ad')
         }
       } catch (e) {
-        console.error("Failed to delete ad", e)
+        console.error('Failed to delete ad', e)
       }
     }
   }
@@ -141,22 +143,24 @@ export default function Post({ ads }: Props) {
 
   async function updateAd(id: string) {
     const confirmed = window.confirm(
-      "Din annons kommer updateras, vill du fortsätta?"
+      'Din annons kommer updateras, vill du fortsätta?'
     )
 
     const apiData: ApiData = {
       id: ads?.id,
+      image: ads?.image,
       title: formData.title,
       description: formData.description,
       fullName: formData.fullName,
       email: formData.email,
+      publisher: ads?.publisher,
     }
-    console.log("apiData:", apiData)
+    console.log('apiData:', apiData)
 
-    const response = await fetch("/api/ad", {
-      method: "PATCH",
+    const response = await fetch('/api/ad', {
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(apiData),
     })
@@ -195,7 +199,9 @@ export default function Post({ ads }: Props) {
               <form className="text-left" onSubmit={handleSubmit}>
                 <div className="mt-2 rounded-md  ">
                   <div className="mt-6 mr-4 flex justify-end">
-                    <CloseIcon adress={"/ads/" + `${adId}`}></CloseIcon>
+                    <CloseIcon
+                      adress={'/ads/' + `${ads.publisher}`}
+                    ></CloseIcon>
                   </div>
 
                   <h1 className="text-black text-xl py-4 mb-4 font-bold text-center">
@@ -317,9 +323,9 @@ export async function getServerSideProps(context: any) {
   try {
     const { adId } = context.query
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
-    const ads = await db.collection("ads").findOne({ id: adId })
+    const ads = await db.collection('ads').findOne({ id: adId })
     console.log(ads)
 
     return {
