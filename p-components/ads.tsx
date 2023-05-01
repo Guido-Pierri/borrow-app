@@ -1,10 +1,7 @@
-import Link from 'next/link'
 import Header from '@/p-components/header'
 import { GoSearch } from 'react-icons/go'
 import { Ad } from '@/types/ads'
-import { CldImage } from 'next-cloudinary'
 import Image from 'next/image'
-import { Suspense } from 'react'
 import Categories from './categories'
 
 interface AdId {

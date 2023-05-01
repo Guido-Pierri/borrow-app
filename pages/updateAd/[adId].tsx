@@ -34,6 +34,7 @@ export default function Post({ ads }: Props) {
     fullName: string
     email: string
     publisher: string
+    image: string
   }
 
   /*Defining a function (pass to other files), that has 
@@ -147,6 +148,7 @@ export default function Post({ ads }: Props) {
 
     const apiData: ApiData = {
       id: ads?.id,
+      image: ads?.image,
       title: formData.title,
       description: formData.description,
       fullName: formData.fullName,
@@ -197,7 +199,9 @@ export default function Post({ ads }: Props) {
               <form className="text-left" onSubmit={handleSubmit}>
                 <div className="mt-2 rounded-md  ">
                   <div className="mt-6 mr-4 flex justify-end">
-                    <CloseIcon adress={'/ads/' + `${adId}`}></CloseIcon>
+                    <CloseIcon
+                      adress={'/ads/' + `${ads.publisher}`}
+                    ></CloseIcon>
                   </div>
 
                   <h1 className="text-black text-xl py-4 mb-4 font-bold text-center">

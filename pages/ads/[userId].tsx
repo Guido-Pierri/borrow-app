@@ -1,10 +1,7 @@
-import Link from 'next/link'
 import Header from '@/p-components/header'
 import { GoSearch } from 'react-icons/go'
 import { Ad } from '@/types/ads'
-import { CldImage } from 'next-cloudinary'
 import Image from 'next/image'
-import { Suspense } from 'react'
 import Categories from '@/p-components/categories'
 import clientPromise from '@/lib/mongodb'
 import { useRouter } from 'next/router'
@@ -166,6 +163,8 @@ const Ads = ({ ads }: Props) => {
           <div className=" font-sans text-left grid grid-cols-2 gap-y-2 gap-x-4 p-4">
             {ads.map((ad) => (
               <div key={ad.id} className="">
+                {/* <p className="p-12 text-xs">{ad.image}</p> */}
+
                 <Image
                   onClick={() => navigateToAd(ad.id)}
                   className="mt-4  w-full aspect-square"
@@ -231,7 +230,7 @@ export async function getServerSideProps() {
     const client = await clientPromise
     const db = client.db('borrow')
 
-    const ads = await db.collection('ads').find({}).limit(1000).toArray()
+    const ads = await db.collection('ads').find({}).toArray()
     console.log(ads)
 
     return {
