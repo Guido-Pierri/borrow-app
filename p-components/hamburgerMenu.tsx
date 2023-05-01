@@ -5,10 +5,11 @@ const HamburgerMenu = () => (
     <Menu
       customBurgerIcon={<HamburgerIcon />}
       width={'auto'}
-      className="left-0 top-0 bg-[#46649D]"
+      className="left-0 top-0"
       noOverlay={false}
-      customCrossIcon={<CrossIcon></CrossIcon>}
-      overlayClassName="bg-[#000000]  top-0"
+      customCrossIcon={<CrossIcon />}
+      overlayClassName="bg-[#000000] top-0"
+      id={'crossBtn'}
     >
       <Links />
     </Menu>
@@ -27,29 +28,29 @@ const HamburgerIcon = () => (
       <path
         d="M6.47662 24.7917H29.81"
         stroke="black"
-        stroke-width="1.625"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.625"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M6.47662 17.5H29.81"
         stroke="black"
-        stroke-width="1.625"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.625"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M6.47664 10.2084H29.81"
         stroke="black"
-        stroke-width="1.625"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.625"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   </div>
 )
 const CrossIcon = () => (
-  <div className="p-1/2">
+  <div className="">
     <svg
       width="25"
       height="25"

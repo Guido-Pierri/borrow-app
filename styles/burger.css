@@ -15,13 +15,14 @@
 }
 
 .bm-cross-button {
-  height: 24px;
-  width: 24px;
+  height: 25px;
+  width: 25px;
+  top: 8% !important;
 }
-
+/* 
 .bm-cross {
   background: #bdc3c7;
-}
+} */
 
 .bm-menu-wrap {
   position: fixed;
@@ -30,8 +31,8 @@
 
 .bm-menu {
   background: #46649d;
-  padding: 0.3rem 0.3rem 0;
-  font-size: 1.15em;
+  /* padding: 0.3rem 0.3rem 0; */
+  /* font-size: 1.15rem; */
 }
 
 .bm-morph-shape {
@@ -39,8 +40,10 @@
 }
 
 .bm-item-list {
-  color: #b8b7ad;
-  padding: 0.8em;
+  /* color: #b8b7ad; */
+  padding: 0.8rem;
+  top: 0%;
+  left: 0%;
 }
 
 .bm-item {
@@ -51,7 +54,7 @@
   background: rgba(0, 0, 0, 0.3);
 }
 /* styling next link component so that will be a column list of links*/
-.bm-item-list a {
+.bm-item-list p {
   display: flex;
   flex-direction: column;
 }
