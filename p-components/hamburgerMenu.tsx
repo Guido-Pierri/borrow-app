@@ -1,4 +1,3 @@
-// import Link from 'next/link'
 import Link from 'next/link'
 import { slide as Menu } from 'react-burger-menu'
 const HamburgerMenu = () => (
