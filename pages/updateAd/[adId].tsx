@@ -114,6 +114,36 @@ export default function Post({ ads }: Props) {
     // }
     event.preventDefault()
 
+    // const apiData: ApiData = {
+    //   id: ads?.id,
+    //   title: formData.title,
+    //   description: formData.description,
+    //   fullName: formData.fullName,
+    //   email: formData.email,
+    // }
+    // console.log("apiData:", apiData)
+
+    // const response = await fetch("/api/ad", {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(apiData),
+    // })
+
+    // const data = await response.json()
+
+    // console.log(data)
+    // console.log(apiData)
+
+    // window.location.href = "/ads"
+  }
+
+  async function updateAd(id: string) {
+    const confirmed = window.confirm(
+      "Din annons kommer updateras, vill du fortsätta?"
+    )
+
     const apiData: ApiData = {
       id: ads?.id,
       title: formData.title,
@@ -136,7 +166,7 @@ export default function Post({ ads }: Props) {
     console.log(data)
     console.log(apiData)
 
-    window.location.href = "/ads"
+    // window.location.href = "/ads"
   }
 
   /*Is called when user types something in the form
@@ -251,9 +281,9 @@ export default function Post({ ads }: Props) {
                       <div className="">
                         <button
                           className="rounded-sm  text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[298px]  py-3"
-                          value={ads.id}
+                          value={ads?.id}
                           type="submit"
-                          // onClick={() => updateAd(ads?.id)}
+                          onClick={() => updateAd(ads?.id)}
                         >
                           Spara annons
                         </button>
@@ -263,7 +293,7 @@ export default function Post({ ads }: Props) {
                       <div className="">
                         <button
                           className="rounded-sm text-[17px] text-black border-[#9EBB9D]  border w-[298px]  py-3"
-                          value={ads._id}
+                          value={ads?.id}
                           type="submit"
                           onClick={() => deleteAd(ads?.id)}
                         >
