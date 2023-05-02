@@ -14,11 +14,7 @@ const Categories = ({}) => {
         <div>
           <button>
             {/* <Link href={"/"}> */}
-            <div
-              style={{ overflowX: "hidden" }}
-              className="pl-5 pt-2  border-[#9EBB9D] border-2 w-[74px] h-[76px] rounded-full flex justify-between
-             overflow-x-scroll whitespace-nowrap"
-            >
+            <div className="pl-5 pt-2  border-[#9EBB9D] border-2 w-[74px] h-[76px] rounded-full flex justify-between ">
               <Image
                 src={"/vaccum2.png"}
                 alt={"#"}
@@ -38,9 +34,8 @@ const Categories = ({}) => {
           <button>
             {/* <Link href={"/"}> */}
             <div
-              style={{ overflowX: "hidden" }}
               className="pl-3 pt-5 border-2  border-[#9EBB9D] w-[74px] h-[76px] rounded-full 
-            overflow-x-scroll whitespace-nowrap"
+           "
             >
               <Image
                 src={"/pickaxe.svg"}
@@ -62,9 +57,8 @@ const Categories = ({}) => {
           <button>
             {/* <Link href={"/"}> */}
             <div
-              style={{ overflowX: "hidden" }}
               className=" pl-2 pt-6 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full 
-            overflow-x-scroll whitespace-nowrap"
+          "
             >
               <Image
                 src={"/bike.svg"}
@@ -85,9 +79,8 @@ const Categories = ({}) => {
           <button>
             {/* <Link href={"/"}> */}
             <div
-              style={{ overflowX: "hidden" }}
               className=" pl-2 pt-4 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full 
-            overflow-x-scroll whitespace-nowrap"
+           "
             >
               <Image
                 src={"/tv.svg"}
@@ -107,9 +100,8 @@ const Categories = ({}) => {
           <button>
             {/* <Link href={"/"}> */}
             <div
-              style={{ overflowX: "hidden" }}
               className="pl-3 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full flex justify-between 
-            overflow-x-scroll whitespace-nowrap"
+           "
             >
               <Image
                 src={"/grill2.png"}
