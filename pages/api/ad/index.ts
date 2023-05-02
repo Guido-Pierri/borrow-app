@@ -36,8 +36,16 @@ export default async function handler(
     }
     if (req.method === 'POST') {
       console.log(req.body)
-      const { image, id, title, description, fullName, email, publisher } =
-        req.body
+      const {
+        image,
+        id,
+        title,
+        description,
+        fullName,
+        email,
+        publisher,
+        category,
+      } = req.body
       const client = await clientPromise
       const database = client.db('borrow')
       const collection = database.collection('ads')
@@ -51,6 +59,7 @@ export default async function handler(
         email: email,
         image: image,
         publisher: publisher,
+        category: category,
       })
 
       // res.json(result)

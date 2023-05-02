@@ -1,13 +1,13 @@
 //TODO
 //add userId to ads dynamically from login-->ads--->createAds
 
-import { useState } from "react"
-import { v4 as uuidv4 } from "uuid"
-import { useRouter } from "next/router"
-import Link from "next/link"
-import { CldImage, CldUploadWidget } from "next-cloudinary"
-import Image from "next/image"
-import Upload from "@/p-components/upload"
+import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { CldImage, CldUploadWidget } from 'next-cloudinary'
+import Image from 'next/image'
+import Upload from '@/p-components/upload'
 //function that generates random id:s
 uuidv4()
 
@@ -19,6 +19,7 @@ interface FormData {
   description: string
   fullName: string
   email: string
+  category: string
 }
 interface ApiData {
   image: string
@@ -27,27 +28,29 @@ interface ApiData {
   description: string
   fullName: string
   email: string
+  category: string
   publisher: string
 }
 
 /*Defining a function (pass to other files), that has 
 a object formData that contains following properties*/
 export default function CreateAd({ imageUrl, userId }: any) {
-  const [imgUrl, setImgUrl] = useState("")
+  const [imgUrl, setImgUrl] = useState('')
 
   const [formData, setFormData] = useState<FormData>({
-    id: "",
-    title: "",
-    description: "",
-    fullName: "",
-    email: "",
+    id: '',
+    title: '',
+    description: '',
+    fullName: '',
+    email: '',
+    category: '',
   })
 
   console.log(formData)
   const router = useRouter()
 
   function handleClick() {
-    console.log("handleClick")
+    console.log('handleClick')
 
     router.push(`/ads/${userId}`)
   }
@@ -55,7 +58,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!imgUrl) {
-      return alert("ladda upp en bild!")
+      return alert('ladda upp en bild!')
     }
     // if (!file) {
     //   return
@@ -83,15 +86,16 @@ export default function CreateAd({ imageUrl, userId }: any) {
       description: formData.description,
       fullName: formData.fullName,
       email: formData.email,
+      category: formData.category,
       publisher: userId,
       // userId:
     }
     console.log(apiData)
 
-    const response = await fetch("/api/ad", {
-      method: "POST",
+    const response = await fetch('/api/ad', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(apiData),
     })
@@ -113,6 +117,12 @@ export default function CreateAd({ imageUrl, userId }: any) {
   const handleInputChangeTextArea = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
+    const { name, value } = event.target
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
+    console.log(event.target.value)
+  }
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
     console.log(event.target.value)
@@ -163,7 +173,23 @@ export default function CreateAd({ imageUrl, userId }: any) {
             cols={35}
           />
         </label>
-
+        <label>
+          <legend className="mb-[2px] mt-5 ">Välj en kategori</legend>
+          <select
+            className="rounded py-4 px-7 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            id="simple"
+            name="category"
+            value={formData.category}
+            onChange={handleSelectChange}
+          >
+            <option disabled>Kategorier</option>
+            <option>Städ</option>
+            <option>Verktyg</option>
+            <option>Cyklar</option>
+            <option>Elektronik</option>
+            <option>Grill</option>
+          </select>
+        </label>
         <label>
           <legend className="mb-[-32px] mt-5">Namn</legend>
           <input
