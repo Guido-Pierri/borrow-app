@@ -1,10 +1,12 @@
-import type { AppProps } from 'next/app'
-import { Props } from 'react-burger-menu'
 import { GoSearch } from 'react-icons/go'
 
-export default function SearchBar({ Component, setQuery, query }: any) {
+export default function SearchBar({ setQuery, query }: any) {
+  function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    // handle form submission
+  }
   return (
-    <form>
+    <form onSubmit={handleFormSubmit}>
       <label className="relative">
         <input
           className="bg-gray-300 font-sans placeholder-black px-6 py-2 rounded-sm w-80"
