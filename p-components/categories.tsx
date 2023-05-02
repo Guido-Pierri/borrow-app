@@ -6,11 +6,14 @@ interface Props {} //add link and other functionalities when needed
 
 const Categories = ({}) => {
   return (
-    <div className="bg-[#FFFFFF]">
+    <div className="bg-[#FFFFFF] ">
       {/* <h1 className="font-sans text-black text-[14px] font-bold text-left pt-6 pl-8 ">
         Kategorier
       </h1> */}
-      <div className="flex flex-row py-12 pb-8 justify-between ">
+      <div
+        style={{ overflowX: "hidden" }}
+        className="flex flex-row py-12 pb-8 justify-between overflow-x-scroll whitespace-nowrap "
+      >
         <div>
           <button>
             {/* <Link href={"/"}> */}
