@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Categories from '@/p-components/categories'
 import clientPromise from '@/lib/mongodb'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 interface AdId {
   id: string
@@ -15,77 +16,30 @@ interface Props {
 }
 const Ads = ({ ads }: Props) => {
   const router = useRouter()
-
-  const { userId } = router.query
-  console.log(userId)
+  const [query, setQuery] = useState('')
+  // const [selectedCategory, setSelectedCategory] = useState('')
+  const filteredAds = ads.filter((ad) =>
+    ad.title.includes(
+      query
+        .charAt(0)
+        .toLocaleUpperCase()
+        .concat(query.charAt(1).toLocaleLowerCase())
+    )
+  )
+  // .filter((ad) => !selectedCategory || ad.category === selectedCategory)
 
   const navigateToCreateAd = () => {
     router.push(`/createAd/${userId}`)
   }
 
-  // async function deleteAd(id: string) {
-  //   console.log('deleteAd')
-  //   const confirmed = window.confirm(
-  //     'Är du säker att du vill ta bort din annons?'
-  //   )
+  const { userId } = router.query
+  console.log(userId)
 
-  // async function handleClick() {
-  //   const response = await fetch("/api/user", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ userId }),
-  //   })
-
-  //   const data = await response.json()
-
-  //   console.log("data", data)
-  //   if (data) {
-  //   }
-  // }
-
-  //   if (confirmed) {
-  //     const apiData: AdId = {
-  //       id: id,
-  //     }
-  //     console.log(apiData)
-
-  //     try {
-  //       console.log('try')
-  //       console.log(id)
-
-  //       const res = await fetch('/api/deleteAd', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify(apiData),
-  //       })
-  //       console.log(res)
-  //       console.log(res.status)
-
-  //       if (res.ok) {
-  //         // setDeletedAdId(id)
-  //         window.location.reload()
-  //       } else {
-  //         console.error('Failed to delete ad')
-  //       }
-  //     } catch (e) {
-  //       console.error('Failed to delete ad', e)
-  //     }
-  //   }
-  // }
-
-  // async function updateAd(id: string) {
-  //   window.location.href = `/updateAd/${id}`
-  //   console.log('updateAd')
-  // }
   function navigateToAd(id: string) {
     window.location.href = `/ads/view/${id}`
   }
   const handleClick = async (id: string) => {
-    console.log('insede handleClick')
+    console.log('inside handleClick')
     console.log(`${userId}`)
     window.location.href = `/ads/myAds/${id}`
     const response = await fetch(`/api/user/${userId}`, {
@@ -102,6 +56,7 @@ const Ads = ({ ads }: Props) => {
     if (dataResponse) {
     }
   }
+  console.log('filteredAds', filteredAds)
 
   return (
     <>
@@ -112,9 +67,11 @@ const Ads = ({ ads }: Props) => {
         <form>
           <label className="relative">
             <input
-              className="bg-[#E6E6E6] font-sans placeholder-black px-6 py-2 rounded-sm w-80"
+              className="bg-gray-300 font-sans placeholder-black px-6 py-2 rounded-sm w-80"
               type="text"
               placeholder="Sök..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
             />
             <div className="absolute inset-y-0 right-0 flex items-center px-2 text-black">
               <GoSearch />
@@ -161,7 +118,7 @@ const Ads = ({ ads }: Props) => {
 
         <section className="pb-40">
           <div className=" font-sans text-left grid grid-cols-2 gap-y-2 gap-x-4 p-4">
-            {ads.map((ad) => (
+            {filteredAds.map((ad) => (
               <div key={ad.id} className="">
                 {/* <p className="p-12 text-xs">{ad.image}</p> */}
 
