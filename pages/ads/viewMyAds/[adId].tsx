@@ -1,9 +1,11 @@
-import clientPromise from "@/lib/mongodb"
-import { useRouter } from "next/router"
-import { Ad } from "@/types/ads"
-import Link from "next/link"
-import Header from "@/p-components/header"
-import Image from "next/image"
+import clientPromise from '@/lib/mongodb'
+import { useRouter } from 'next/router'
+import { Ad } from '@/types/ads'
+import Link from 'next/link'
+import Header from '@/p-components/header'
+import Image from 'next/image'
+import { Query } from 'mongoose'
+import { Context } from 'vm'
 
 interface Props {
   ads: Ad
@@ -29,10 +31,10 @@ export default function Post({ ads }: Props, { publisher }: any) {
           <div className="flex justify-end mt-5 mb-5">
             {/* <Link href={}> */}
             <Image
-              src={"/kryss_annons.svg"}
+              src={'/kryss_annons.svg'}
               height={25}
               width={25}
-              alt={"Kryss"}
+              alt={'Kryss'}
               onClick={() => {
                 navigateBack()
               }}
@@ -40,10 +42,10 @@ export default function Post({ ads }: Props, { publisher }: any) {
             ></Image>
             {/* </Link> */}
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center pb-40">
             <Image
               src={ads.image}
-              alt={"#"}
+              alt={'#'}
               width={250}
               height={250}
               className="aspect-auto w-full rounded-[4px]"
@@ -58,12 +60,12 @@ export default function Post({ ads }: Props, { publisher }: any) {
           <p className="font-normal text-[14px]">{ads.description}</p>
           <div className="flex flex-col w-fit mt-6">
             <Image
-              src={"/profile.svg"}
-              alt={"#"}
+              src={'/profile.svg'}
+              alt={'#'}
               width={75}
               height={75}
               className="aspect-auto"
-              style={{ alignSelf: "center" }}
+              style={{ alignSelf: 'center' }}
             ></Image>
             <p className="text-[#0f0e0e] text-center"> {ads.fullName}</p>
           </div>
@@ -88,13 +90,13 @@ export default function Post({ ads }: Props, { publisher }: any) {
   )
 }
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: Context) {
   try {
     const { adId } = context.query
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
-    const ads = await db.collection("ads").findOne({ id: adId })
+    const ads = await db.collection('ads').findOne({ id: adId })
     console.log(ads)
 
     return {

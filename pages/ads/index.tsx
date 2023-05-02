@@ -145,7 +145,7 @@ const Ads = ({ ads }: Props) => {
         </button>
       </div>
 
-      <section>
+      <section className="pb-40">
         <div className=" font-sans text-left grid grid-cols-2 gap-y-2 gap-x-4 p-4">
           {ads.map((ad) => (
             <div key={ad.id} className="">
