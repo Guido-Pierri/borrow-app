@@ -6,6 +6,8 @@ import Categories from '@/p-components/categories'
 import clientPromise from '@/lib/mongodb'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import SerchBar from '@/p-components/searchBar'
+import SearchBar from '@/p-components/searchBar'
 
 interface AdId {
   id: string
@@ -16,6 +18,8 @@ interface Props {
 }
 const Ads = ({ ads }: Props) => {
   const router = useRouter()
+
+  //search through ads using the query in SearchBar
   const [query, setQuery] = useState('')
   // const [selectedCategory, setSelectedCategory] = useState('')
   const filteredAds = ads.filter((ad) =>
@@ -28,6 +32,7 @@ const Ads = ({ ads }: Props) => {
   )
   // .filter((ad) => !selectedCategory || ad.category === selectedCategory)
 
+  // navigate to the ad creation
   const navigateToCreateAd = () => {
     router.push(`/createAd/${userId}`)
   }
@@ -64,30 +69,8 @@ const Ads = ({ ads }: Props) => {
         <Header></Header>
       </div>
       <div className="bg-[#ffffff] text-center max-w-sm h-screen pt-4">
-        <form>
-          <label className="relative">
-            <input
-              className="bg-gray-300 font-sans placeholder-black px-6 py-2 rounded-sm w-80"
-              type="text"
-              placeholder="Sök..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <div className="absolute inset-y-0 right-0 flex items-center px-2 text-black">
-              <GoSearch />
-            </div>
-          </label>
-        </form>
-
+        <SearchBar query={query} setQuery={setQuery}></SearchBar>
         <Categories></Categories>
-
-        <style jsx>{`
-          input[type='text'] {
-            background-repeat: no-repeat;
-            background-size: 16px 16px;
-            background-position: 8px 50%;
-          }
-        `}</style>
 
         <section className="flex justify-around mt-5 ">
           <button className="rounded-t-md -md mt-4 font-sans font-semibold bg-[#46649D]  px-4 py-1  text-white">
