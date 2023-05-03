@@ -6,18 +6,14 @@ interface Props {} //add link and other functionalities when needed
 
 const Categories = ({ setSelectedCategory }: any) => {
   return (
-    <div className="bg-[#FFFFFF] ">
+    <div className="bg-[#FFFFFF]">
       {/* <h1 className="font-sans text-black text-[14px] font-bold text-left pt-6 pl-8 ">
         Kategorier
       </h1> */}
       <div className="flex flex-row py-12 pb-8 justify-between ">
         <div>
-
           <button onClick={() => setSelectedCategory('Städ')}>
             <div className="pl-5 pt-2  border-[#9EBB9D] border-2 w-[74px] h-[76px] rounded-full flex justify-between">
-
-          <button>
-            
               <Image
                 src={'/vaccum2.png'}
                 alt={'#'}
@@ -35,10 +31,7 @@ const Categories = ({ setSelectedCategory }: any) => {
         <div>
           <button onClick={() => setSelectedCategory('Verktyg')}>
             {/* <Link href={"/"}> */}
-            <div
-              className="pl-3 pt-5 border-2  border-[#9EBB9D] w-[74px] h-[76px] rounded-full 
-           "
-            >
+            <div className="pl-3 pt-5 border-2  border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
               <Image
                 src={'/pickaxe.svg'}
                 alt={'#'}
@@ -58,10 +51,7 @@ const Categories = ({ setSelectedCategory }: any) => {
         <div>
           <button onClick={() => setSelectedCategory('Cyklar')}>
             {/* <Link href={"/"}> */}
-            <div
-              className=" pl-2 pt-6 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full 
-          "
-            >
+            <div className=" pl-2 pt-6 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
               <Image
                 src={'/bike.svg'}
                 alt={'#'}
@@ -80,10 +70,7 @@ const Categories = ({ setSelectedCategory }: any) => {
         <div>
           <button onClick={() => setSelectedCategory('Elektronik')}>
             {/* <Link href={"/"}> */}
-            <div
-              className=" pl-2 pt-4 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full 
-           "
-            >
+            <div className=" pl-2 pt-4 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
               <Image
                 src={'/tv.svg'}
                 alt={'#'}
@@ -101,10 +88,7 @@ const Categories = ({ setSelectedCategory }: any) => {
         <div>
           <button onClick={() => setSelectedCategory('Grill')}>
             {/* <Link href={"/"}> */}
-            <div
-              className="pl-3 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full flex justify-between 
-           "
-            >
+            <div className="pl-3 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full flex justify-between">
               <Image
                 src={'/grill2.png'}
                 alt={'#'}
