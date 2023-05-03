@@ -1,13 +1,13 @@
 //TODO
 //add userId to ads dynamically from login-->ads--->createAds
 
-import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { CldImage, CldUploadWidget } from 'next-cloudinary'
-import Image from 'next/image'
-import Upload from '@/p-components/upload'
+import { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
+import { useRouter } from "next/router"
+import Link from "next/link"
+import { CldImage, CldUploadWidget } from "next-cloudinary"
+import Image from "next/image"
+import Upload from "@/p-components/upload"
 //function that generates random id:s
 uuidv4()
 
@@ -35,22 +35,22 @@ interface ApiData {
 /*Defining a function (pass to other files), that has 
 a object formData that contains following properties*/
 export default function CreateAd({ imageUrl, userId }: any) {
-  const [imgUrl, setImgUrl] = useState('')
+  const [imgUrl, setImgUrl] = useState("")
 
   const [formData, setFormData] = useState<FormData>({
-    id: '',
-    title: '',
-    description: '',
-    fullName: '',
-    email: '',
-    category: '',
+    id: "",
+    title: "",
+    description: "",
+    fullName: "",
+    email: "",
+    category: "",
   })
 
   console.log(formData)
   const router = useRouter()
 
   function handleClick() {
-    console.log('handleClick')
+    console.log("handleClick")
 
     router.push(`/ads/${userId}`)
   }
@@ -58,7 +58,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!imgUrl) {
-      return alert('ladda upp en bild!')
+      return alert("ladda upp en bild!")
     }
     // if (!file) {
     //   return
@@ -92,10 +92,10 @@ export default function CreateAd({ imageUrl, userId }: any) {
     }
     console.log(apiData)
 
-    const response = await fetch('/api/ad', {
-      method: 'POST',
+    const response = await fetch("/api/ad", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
@@ -143,7 +143,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <legend className="mb-[-16px] ">Titel</legend>
           <input
-            className="rounded py-4 px-7 mt-4 border w-[298px]  border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-2 mt-4 border w-[298px]  border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             // placeholder="Titel..."
             type="text"
             name="title"
@@ -164,7 +164,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
             onChange={handleInputChange}
           /> */}
           <textarea
-            className="border border-[#9EBB9D] w-[298px] resize-none rounded"
+            className="border border-[#9EBB9D] w-[298px] px-2 resize-none rounded"
             name="description"
             required
             value={formData.description}
@@ -193,7 +193,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <legend className="mb-[-32px] mt-5">Namn</legend>
           <input
-            className="rounded py-4 px-7 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-2 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             // placeholder="För- och efternamn..."
             type="text"
             name="fullName"
@@ -205,7 +205,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <legend className="mb-[-32px] mt-5">E-post</legend>
           <input
-            className="rounded py-4 px-7 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-2 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             // placeholder="Email..."
             type="email"
             name="email"
