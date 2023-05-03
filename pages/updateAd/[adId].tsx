@@ -218,7 +218,7 @@ export default function Post({ ads }: Props) {
                     Redigera annons
                   </h1>
                   <div>
-                    <Icons></Icons>
+                    <Icons image={ads.image}></Icons>
                   </div>
                   {/* <p className="bold text-[#0f0e0e] mt-2">
                     Titel: {""} */}
