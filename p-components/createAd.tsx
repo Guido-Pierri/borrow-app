@@ -4,9 +4,6 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { CldImage, CldUploadWidget } from 'next-cloudinary'
-import Image from 'next/image'
 import Upload from '@/p-components/upload'
 //function that generates random id:s
 uuidv4()

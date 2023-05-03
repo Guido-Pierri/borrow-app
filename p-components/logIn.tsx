@@ -1,15 +1,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
-import { createHash } from 'crypto'
 
-import { v4 as uuidv4 } from 'uuid'
 import { LogIn } from '@/types/logIns'
-import bcrypt from 'bcryptjs'
-import { User } from '@/types/user'
-interface FormData {
-  email: string
-  password: string
-}
 
 export default function Login() {
   const [formData, setFormData] = useState<LogIn>({
