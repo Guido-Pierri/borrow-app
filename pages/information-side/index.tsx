@@ -1,12 +1,14 @@
-import Header from "@/p-components/header"
-import { NextPage } from "next"
+import CloseIcon from '@/p-components/closeIcon'
+import Header from '@/p-components/header'
+import HeaderWithCloseIcon from '@/p-components/headerWithCloseIcon'
+import { NextPage } from 'next'
 
 interface Props {}
 
-const Index: NextPage<Props> = ({}) => {
+const Index: NextPage<Props> = ({ userId }: any) => {
   return (
     <div className="h-screen bg-[#FFFFFF] max-w-sm">
-      <Header></Header>
+      <HeaderWithCloseIcon />
       <div className="font-sans">
         <div className="px-4 ">
           <h1 className="font-bold text-xl pt-4 text-black">

@@ -1,12 +1,12 @@
-import React, { useState } from "react"
-import Upload from "@/p-components/upload"
-import CreateAd from "@/p-components/createAd"
-import Header from "@/p-components/header"
-import { useRouter } from "next/router"
-import CloseIcon from "@/p-components/closeIcon"
+import React, { useState } from 'react'
+import Upload from '@/p-components/upload'
+import CreateAd from '@/p-components/createAd'
+import Header from '@/p-components/header'
+import { useRouter } from 'next/router'
+import CloseIcon from '@/p-components/closeIcon'
 
 const App = () => {
-  const [imageUrl, setImageUrl] = useState("")
+  const [imageUrl, setImageUrl] = useState('')
 
   const router = useRouter()
 
@@ -22,7 +22,9 @@ const App = () => {
         <div className="">
           {/* <Header></Header> */}
           <div className="mt-6 mr-4 flex justify-end ">
-            <CloseIcon adress={"/ads/" + `${userId}`}></CloseIcon>
+            <CloseIcon
+            // adress={"/ads/" + `${userId}`}
+            />
           </div>
         </div>
         <CreateAd userId={userId} imageUrl={imageUrl} />
