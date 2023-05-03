@@ -1,5 +1,6 @@
 import CloseIcon from '@/p-components/closeIcon'
 import Header from '@/p-components/header'
+import HeaderWithCloseIcon from '@/p-components/headerWithCloseIcon'
 import { User } from '@/types/user'
 import { NextPage } from 'next'
 import { useState } from 'react'
@@ -63,12 +64,7 @@ export default function MyPage() {
   }
   return (
     <>
-      <div className="relative">
-        <Header></Header>
-        <div className="absolute right-5 top-12">
-          <CloseIcon adress={'login'}>{/*Eller login */}</CloseIcon>
-        </div>
-      </div>
+      <HeaderWithCloseIcon />
       <div className="bg-[#FFFFFF] text-center max-w-sm h-screen ">
         <div className="flex"></div>
 
