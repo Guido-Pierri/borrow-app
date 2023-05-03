@@ -1,12 +1,10 @@
 import Header from '@/p-components/header'
-import { GoSearch } from 'react-icons/go'
 import { Ad } from '@/types/ads'
 import Image from 'next/image'
 import Categories from '@/p-components/categories'
 import clientPromise from '@/lib/mongodb'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import SerchBar from '@/p-components/searchBar'
 import SearchBar from '@/p-components/searchBar'
 
 interface AdId {
@@ -18,19 +16,22 @@ interface Props {
 }
 const Ads = ({ ads }: Props) => {
   const router = useRouter()
+  const [selectedCategory, setSelectedCategory] = useState('')
 
   //search through ads using the query in SearchBar
   const [query, setQuery] = useState('')
-  // const [selectedCategory, setSelectedCategory] = useState('')
-  const filteredAds = ads.filter((ad) =>
-    ad.title.includes(
-      query
-        .charAt(0)
-        .toLocaleUpperCase()
-        .concat(query.charAt(1).toLocaleLowerCase())
+  const filteredAds = ads
+    // .filter((ad) => !selectedCategory || ad?.category.match(selectedCategory))
+    .filter((ad) =>
+      ad.title.includes(
+        query
+          .charAt(0)
+          .toLocaleUpperCase()
+          .concat(query.charAt(1).toLocaleLowerCase())
+      )
     )
-  )
-  // .filter((ad) => !selectedCategory || ad.category === selectedCategory)
+    .filter((ad) => !selectedCategory || ad.category === selectedCategory)
+  console.log('selectedCategory:', selectedCategory)
 
   // navigate to the ad creation
   const navigateToCreateAd = () => {
@@ -70,7 +71,6 @@ const Ads = ({ ads }: Props) => {
       </div>
       <div className="bg-[#ffffff] text-center max-w-sm h-screen pt-4">
         <SearchBar query={query} setQuery={setQuery}></SearchBar>
-        <Categories></Categories>
 
         <section className="flex justify-around mt-5 ">
           <button className="rounded-t-md -md mt-4 font-sans font-semibold bg-[#46649D]  px-4 py-1  text-white">
@@ -90,6 +90,8 @@ const Ads = ({ ads }: Props) => {
         </section>
 
         <div className="bg-[#46649D] h-2"></div>
+        <Categories setSelectedCategory={setSelectedCategory} />
+
         <div className="flex justify-center mt-5 ">
           <button
             className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
