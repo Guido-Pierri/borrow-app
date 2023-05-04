@@ -1,3 +1,4 @@
+
 import Header from "@/p-components/header"
 import { Ad } from "@/types/ads"
 import Image from "next/image"
@@ -68,7 +69,7 @@ const Ads = ({ ads }: Props) => {
   return (
     <>
       <div className="mb-4">
-        <Header></Header>
+        <Header />
       </div>
       <div className="bg-[#ffffff] text-center max-w-sm h-screen pt-4">
         <SearchBar query={query} setQuery={setQuery}></SearchBar>

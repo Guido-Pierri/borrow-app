@@ -1,8 +1,8 @@
-import Link from "next/link";
-// import { slide as Menu } from 'react-burger-menu'
+import Link from 'next/link'
+import { slide as Menu } from 'react-burger-menu'
 const HamburgerMenu = () => (
   <div className="relative">
-    {/* <Menu
+    <Menu
       customBurgerIcon={<HamburgerIcon />}
       width={'auto'}
       className="left-0 top-0"
@@ -12,9 +12,9 @@ const HamburgerMenu = () => (
       id={'crossBtn'}
     >
       <Links />
-    </Menu> */}
+    </Menu>
   </div>
-);
+)
 
 const HamburgerIcon = () => (
   <div className="">
@@ -48,7 +48,7 @@ const HamburgerIcon = () => (
       />
     </svg>
   </div>
-);
+)
 const CrossIcon = () => (
   <div className="">
     <svg
@@ -64,10 +64,13 @@ const CrossIcon = () => (
       />
     </svg>
   </div>
-);
+)
 export const Links = () => (
   <>
     <div className="bg-inherit text-white text-xl text-left ml-6 mt-40">
+      <Link href="/">
+        <p className="pr-24 mb-8">Min profil</p>
+      </Link>
       <Link href="/information-side">
         <p className="pr-24 mb-8">Så fungerar Borrow</p>
       </Link>
@@ -76,6 +79,6 @@ export const Links = () => (
       </Link>
     </div>
   </>
-);
+)
 
-export default HamburgerMenu;
+export default HamburgerMenu
