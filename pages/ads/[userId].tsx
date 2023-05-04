@@ -1,11 +1,12 @@
-import Header from '@/p-components/header'
-import { Ad } from '@/types/ads'
-import Image from 'next/image'
-import Categories from '@/p-components/categories'
-import clientPromise from '@/lib/mongodb'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import SearchBar from '@/p-components/searchBar'
+import Header from "@/p-components/header"
+import { Ad } from "@/types/ads"
+import Image from "next/image"
+import Categories from "@/p-components/categories"
+import clientPromise from "@/lib/mongodb"
+import { useRouter } from "next/router"
+import { useState } from "react"
+import SearchBar from "@/p-components/searchBar"
+import ButtonCreateAd from "@/p-components/buttonCreateAd"
 
 interface AdId {
   id: string
@@ -16,10 +17,10 @@ interface Props {
 }
 const Ads = ({ ads }: Props) => {
   const router = useRouter()
-  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState("")
 
   //search through ads using the query in SearchBar
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState("")
   const filteredAds = ads
     // .filter((ad) => !selectedCategory || ad?.category.match(selectedCategory))
     .filter((ad) =>
@@ -31,7 +32,7 @@ const Ads = ({ ads }: Props) => {
       )
     )
     .filter((ad) => !selectedCategory || ad.category === selectedCategory)
-  console.log('selectedCategory:', selectedCategory)
+  console.log("selectedCategory:", selectedCategory)
 
   // navigate to the ad creation
   const navigateToCreateAd = () => {
@@ -45,24 +46,24 @@ const Ads = ({ ads }: Props) => {
     window.location.href = `/ads/view/${id}`
   }
   const handleClick = async (id: string) => {
-    console.log('inside handleClick')
+    console.log("inside handleClick")
     console.log(`${userId}`)
     window.location.href = `/ads/myAds/${id}`
     const response = await fetch(`/api/user/${userId}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(`${userId}`),
     })
 
     const dataResponse = await response.json()
 
-    console.log('dataResponse', dataResponse)
+    console.log("dataResponse", dataResponse)
     if (dataResponse) {
     }
   }
-  console.log('filteredAds', filteredAds)
+  console.log("filteredAds", filteredAds)
 
   return (
     <>
@@ -92,13 +93,17 @@ const Ads = ({ ads }: Props) => {
         <div className="bg-[#46649D] h-2"></div>
         <Categories setSelectedCategory={setSelectedCategory} />
 
-        <div className="flex justify-center mt-5 ">
-          <button
+        <div
+          onClick={navigateToCreateAd}
+          className="flex justify-center mt-[-2] "
+        >
+          <ButtonCreateAd></ButtonCreateAd>
+          {/* <button
             className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
             onClick={navigateToCreateAd}
           >
             <p className="text-black"> Skapa annons</p>
-          </button>
+          </button> */}
         </div>
 
         <section className="pb-40">
@@ -112,8 +117,8 @@ const Ads = ({ ads }: Props) => {
                   className="mt-4  w-full aspect-square"
                   alt={ad.description}
                   src={ad.image}
-                  width={'1000'}
-                  height={'0'}
+                  width={"1000"}
+                  height={"0"}
                   // property={userId}
                 />
 
@@ -170,9 +175,9 @@ const Ads = ({ ads }: Props) => {
 export async function getServerSideProps() {
   try {
     const client = await clientPromise
-    const db = client.db('borrow')
+    const db = client.db("borrow")
 
-    const ads = await db.collection('ads').find({}).toArray()
+    const ads = await db.collection("ads").find({}).toArray()
     console.log(ads)
 
     return {
