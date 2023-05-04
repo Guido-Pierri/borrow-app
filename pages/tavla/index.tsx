@@ -7,7 +7,7 @@ import { GoSearch } from "react-icons/go";
 interface Props {}
 
 function navigateToCreateAd() {
-  window.location.href = "/createAd";
+  window.location.href = "/createAdBoard";
 }
 
 const Index: NextPage<Props> = ({}) => {
@@ -26,8 +26,6 @@ const Index: NextPage<Props> = ({}) => {
           </div>
         </label>
       </form>
-
-      <Categories></Categories>
 
       <style jsx>{`
         input[type="text"] {
@@ -64,6 +62,7 @@ const Index: NextPage<Props> = ({}) => {
           <p className="text-black"> Skapa annons</p>
         </button>
       </div>
+      <section></section>
     </div>
   );
 };
