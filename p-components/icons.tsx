@@ -1,4 +1,4 @@
-
+import { useState } from "react"
 import Image from 'next/image'
 
 interface Props {} //add link and other functionalities when needed
