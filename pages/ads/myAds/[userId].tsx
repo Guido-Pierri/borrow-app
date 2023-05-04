@@ -10,6 +10,7 @@ import clientPromise from "@/lib/mongodb"
 import { useRouter } from "next/router"
 import { ObjectId } from "mongodb"
 import DesignLine from "@/p-components/designLine"
+import ButtonCreateAd from "@/p-components/buttonCreateAd"
 
 interface AdId {
   id: string
@@ -106,13 +107,14 @@ const Ads = ({ ads }: Props) => {
 
       <div className="bg-[#46649D] h-2"></div>
       <Categories></Categories>
-      <div className="flex justify-center mt-5 ">
-        <button
+      <div onClick={navigateToCreateAd}>
+        <ButtonCreateAd></ButtonCreateAd>
+        {/* <button
           className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
           onClick={navigateToCreateAd}
         >
           <p className="text-black"> Skapa annons</p>
-        </button>
+        </button> */}
       </div>
 
       <section>
