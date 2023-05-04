@@ -58,8 +58,8 @@ const Icons = ({ image }: any) => {
           </div>
         </button>
         <button
-          style={{ borderStyle: "dashed" }}
-          className="border border-[#9EBB9D] w-[90px] h-[80px]"
+          // style={{ borderStyle: "dashed" }}
+          className=" w-[90px] h-[80px]"
         >
           <div className="aspect-auto w-[90px] h-[80px]">
             <div className="aspect-auto w-[90px] h-[80px]">

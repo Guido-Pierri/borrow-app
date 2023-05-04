@@ -33,15 +33,17 @@ const Upload2 = ({ setImageUrl }) => {
       }
     )
     widget.open() // open up the widget after creation
+    changeImage()
+    return true
   }
 
+  const [myImage, setMyImage] = useState("")
   const [confirmed, setConfirmed] = useState(false)
 
-  async function changeImage() {
-    const confirmed = window.confirm(
-      "Din bild kommer tas bort, vill du fortsätta?"
-    )
-    if (confirmed) {
+  function changeImage() {
+    // const confirmed = openWidget()
+    // setConfirmed(true)
+    if (true) {
       setConfirmed(true)
     } else {
       setConfirmed(false)
@@ -62,13 +64,45 @@ const Upload2 = ({ setImageUrl }) => {
       </Head>
       <div>
         <button
-          //   style={{ borderStyle: "dashed" }}
-          className=" px-7 mt-[-2] border w-[90px] h-[80px] placeholder-[#000000] bg-[#fff]"
+          style={{ borderStyle: "dashed" }}
+          className=" border border-[#9EBB9D]  w-[90px] h-[80px] placeholder-[#000000] bg-[#fff]"
           onClick={openWidget}
         >
           <div className="flex justify-center">
             {/* <TransformImage image={imagePublicId} width={10} /> */}
-            <Image
+            <div className=" w-[90px] h-[80px]">
+              {confirmed ? (
+                <TransformImage
+                  setImageUrl={setMyImage}
+                  image={imagePublicId}
+                  width={"100"}
+                  height={"100"}
+                  style={{
+                    alignSelf: "center",
+                    backgroundSize: "cover",
+                    width: "90px",
+                    height: "80px",
+                  }}
+                />
+              ) : (
+                // <Upload2 setImageUrl={setMyImage} />
+                <Image
+                  src={"/image.svg"}
+                  alt={"#"}
+                  width={"100"}
+                  height={"100"}
+                  style={{
+                    alignSelf: "center",
+                    backgroundSize: "cover",
+                    width: "90px",
+                    height: "80px",
+                  }}
+                  className="px-7 mt-[-2]"
+                />
+              )}
+            </div>
+
+            {/* <Image
               alt={"#"}
               src={"/image.svg"}
               width={"100"}
@@ -79,15 +113,15 @@ const Upload2 = ({ setImageUrl }) => {
                 width: "90px",
                 height: "80px",
               }}
-            />
+            /> */}
             {/* Ladda upp en bild */}
           </div>
         </button>
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           <div className=" w-[90px] h-[80px]">
             <TransformImage image={imagePublicId} width={10} />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   )
