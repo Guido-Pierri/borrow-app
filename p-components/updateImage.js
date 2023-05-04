@@ -4,7 +4,7 @@ import TransformImage from './image'
 import { CldImage } from 'next-cloudinary'
 import Image from 'next/image'
 
-const UpdateImage = ({ setImageUrl, setUIpdateImageUrl }) => {
+const UpdateImage = ({ setImageUrl }) => {
   const [imagePublicId, setImagePublicId] = useState('')
   const [alt, setAlt] = useState('')
   const [crop, setCrop] = useState('scale')
@@ -28,7 +28,7 @@ const UpdateImage = ({ setImageUrl, setUIpdateImageUrl }) => {
           setImagePublicId(result.info.public_id)
           setAlt(`A file of ${result.info.original_filename}`)
           setImageUrl(result.info.url)
-          setUIpdateImageUrl(result.info.url)
+          // setUIpdateImageUrl(result.info.url)
           console.log(result.info.url)
         }
       }

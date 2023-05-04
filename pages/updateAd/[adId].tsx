@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { v4 as uuidv4 } from 'uuid'
 import CloseIcon from '@/p-components/closeIcon'
 import Icons from '@/p-components/icons'
+import UpdateImage from '@/p-components/UpdateImage'
 
 interface AdId {
   id: string
@@ -14,7 +15,7 @@ interface Props {
   ads: Ad
 }
 
-export default function Post({ ads }: Props, { UpdateImage }) {
+export default function Post({ ads }: Props) {
   const router = useRouter()
   console.log('image:', ads?.image)
 
@@ -64,22 +65,6 @@ export default function Post({ ads }: Props, { UpdateImage }) {
     const confirmed = window.confirm(
       'Är du säker att du vill ta bort din annons?'
     )
-
-    // async function handleClick() {
-    //   const response = await fetch("/api/user", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ adId }),
-    //   })
-
-    //   const data = await response.json()
-
-    //   console.log("data", data)
-    //   if (data) {
-    //   }
-    // }
 
     if (confirmed) {
       console.log('in i if-satsen')
@@ -162,15 +147,15 @@ export default function Post({ ads }: Props, { UpdateImage }) {
 
     const apiData: ApiData = {
       id: ads?.id,
-      image: ads?.image,
+      image: imageUrl,
       title: formData.title,
       description: formData.description,
       fullName: formData.fullName,
       email: formData.email,
       publisher: ads?.publisher,
     }
-    console.log('imageUrl in updateAd:', ads?.image)
-    return
+    console.log('image in updateAd:', imageUrl)
+
     console.log('apiData:', apiData)
 
     const response = await fetch('/api/ad', {
@@ -224,7 +209,10 @@ export default function Post({ ads }: Props, { UpdateImage }) {
                     Redigera annons
                   </h1>
                   <div>
-                    <Icons setImageUrl={setImageUrl} image={ads.image}></Icons>
+                    <Icons
+                      setNewImageUrl={setImageUrl}
+                      image={ads.image}
+                    ></Icons>
                   </div>
                   {/* <p className="bold text-[#0f0e0e] mt-2">
                     Titel: {""} */}

@@ -9,8 +9,8 @@ import UpdateImage from '@/p-components/UpdateImage'
 
 interface Props {} //add link and other functionalities when needed
 
-const Icons = ({ image, setUIpdateImageUrl }: any) => {
-  const [myImage, setMyImage] = useState(image)
+const Icons = ({ image, setNewImageUrl }: any) => {
+  const [myImage, setMyImage] = useState('')
   const [confirmed, setConfirmed] = useState(false)
 
   async function changeImage() {
@@ -23,7 +23,8 @@ const Icons = ({ image, setUIpdateImageUrl }: any) => {
       setConfirmed(false)
     }
   }
-
+  console.log('myImage in icons:', myImage)
+  setNewImageUrl(myImage)
   return (
     <div className="bg-[#FFFFFF] justify-start ">
       {/* <p className="mb-[-32px] ml-6 text-left text-black">Bilder</p> */}
@@ -64,10 +65,7 @@ const Icons = ({ image, setUIpdateImageUrl }: any) => {
           <div className="aspect-auto w-[90px] h-[80px]">
             <div className="aspect-auto w-[90px] h-[80px]">
               {confirmed ? (
-                <UpdateImage
-                  setUIpdateImageUrl={setUIpdateImageUrl}
-                  setImageUrl={setMyImage}
-                />
+                <UpdateImage setImageUrl={setMyImage} />
               ) : (
                 <Image
                   src={image}
