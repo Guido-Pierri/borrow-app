@@ -2,6 +2,7 @@ import CloseIcon from '@/p-components/closeIcon'
 import Header from '@/p-components/header'
 import HeaderWithCloseIcon from '@/p-components/headerWithCloseIcon'
 import { User } from '@/types/user'
+import { ObjectId } from 'mongodb'
 import { NextPage } from 'next'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
@@ -13,6 +14,7 @@ export default function MyPage() {
   // const router = useRouter()
 
   const [formData, setFormData] = useState<User>({
+    // _id: ObjectId,
     userId: uuidv4(),
     firstName: '',
     lastName: '',
