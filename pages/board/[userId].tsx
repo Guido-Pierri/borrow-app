@@ -2,6 +2,7 @@ import Categories from "@/p-components/categories";
 import Header from "@/p-components/header";
 import { NextPage } from "next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { GoSearch } from "react-icons/go";
 
 interface Props {}
@@ -10,10 +11,13 @@ function navigateToCreateAd() {
   window.location.href = "/createAdBoard";
 }
 
-const Index: NextPage<Props> = ({}) => {
+const Board = ({}) => {
+  const router = useRouter();
+  const { userId } = router.query;
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header></Header>
+      <p>{userId}</p>
       <form>
         <label className="relative">
           <input
@@ -36,19 +40,21 @@ const Index: NextPage<Props> = ({}) => {
       `}</style>
 
       <section className="flex justify-around mt-5 ">
-        <Link href={"/ads"}>
+        <Link href={"/ads/" + `${userId}`}>
           <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
             Låna
           </button>
         </Link>
-        <button
-          className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1 text-black"
-          onClick={() => {
-            alert("Logga in för att se dina annonser");
-          }}
-        >
-          Mina annonser
-        </button>
+        <Link href={"/ads/myAds/" + `${userId}`}>
+          <button
+            className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1 text-black"
+            onClick={() => {
+              alert("Logga in för att se dina annonser");
+            }}
+          >
+            Mina annonser
+          </button>
+        </Link>
         <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 bg-[#46649D]  text-white">
           Tavlan
         </button>
@@ -59,12 +65,16 @@ const Index: NextPage<Props> = ({}) => {
           className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
           onClick={navigateToCreateAd}
         >
-          <p className="text-black"> Skapa annons</p>
+          <p className="text-black"> Skapa inlägg</p>
         </button>
+      </div>
+      <div className="text-left px-4">
+        <p className="font-medium">Hittar du inte det du söker?</p>
+        <p>Skriv på våran anslagstavla!</p>
       </div>
       <section></section>
     </div>
   );
 };
 
-export default Index;
+export default Board;

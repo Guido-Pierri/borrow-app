@@ -130,7 +130,7 @@ const Ads = ({ ads }: Props) => {
         >
           Mina annonser
         </button>
-        <Link href={"/tavla"}>
+        <Link href={"/board"}>
           <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
             Tavlan
           </button>
