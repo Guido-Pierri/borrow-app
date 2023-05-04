@@ -29,68 +29,68 @@
 // }
 // export default Index
 
-import Link from 'next/link'
-import Header from '@/p-components/header'
-import { GoSearch } from 'react-icons/go'
-import { Ad } from '@/types/ads'
-import { CldImage } from 'next-cloudinary'
-import Image from 'next/image'
-import { Suspense } from 'react'
-import Categories from '@/p-components/categories'
-import clientPromise from '@/lib/mongodb'
+import Link from "next/link";
+import Header from "@/p-components/header";
+import { GoSearch } from "react-icons/go";
+import { Ad } from "@/types/ads";
+import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { Suspense } from "react";
+import Categories from "@/p-components/categories";
+import clientPromise from "@/lib/mongodb";
 
 interface AdId {
-  id: string
+  id: string;
 }
 
 function navigateToCreateAd() {
-  window.location.href = '/createAd'
+  window.location.href = "/createAd";
 }
 interface Props {
-  ads: Ad[]
+  ads: Ad[];
 }
 
 const Ads = ({ ads }: Props) => {
   async function deleteAd(id: string) {
-    console.log('deleteAd')
+    console.log("deleteAd");
     const confirmed = window.confirm(
-      'Är du säker att du vill ta bort din annons?'
-    )
+      "Är du säker att du vill ta bort din annons?"
+    );
 
     if (confirmed) {
       const apiData: AdId = {
         id: id,
-      }
-      console.log(apiData)
+      };
+      console.log(apiData);
 
       try {
-        console.log('try')
-        console.log(id)
+        console.log("try");
+        console.log(id);
 
-        const res = await fetch('/api/deleteAd', {
-          method: 'POST',
+        const res = await fetch("/api/deleteAd", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(apiData),
-        })
-        console.log(res)
-        console.log(res.status)
+        });
+        console.log(res);
+        console.log(res.status);
 
         if (res.ok) {
           // setDeletedAdId(id)
-          window.location.reload()
+          window.location.reload();
         } else {
-          console.error('Failed to delete ad')
+          console.error("Failed to delete ad");
         }
       } catch (e) {
-        console.error('Failed to delete ad', e)
+        console.error("Failed to delete ad", e);
       }
     }
   }
 
   function navigateToAd(id: string) {
-    window.location.href = `/ads/view/${id}`
+    window.location.href = `/ads/view/${id}`;
   }
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
@@ -111,7 +111,7 @@ const Ads = ({ ads }: Props) => {
       <Categories></Categories>
 
       <style jsx>{`
-        input[type='text'] {
+        input[type="text"] {
           background-repeat: no-repeat;
           background-size: 16px 16px;
           background-position: 8px 50%;
@@ -125,14 +125,16 @@ const Ads = ({ ads }: Props) => {
         <button
           className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 text-black"
           onClick={() => {
-            alert('Logga in för att se dina annonser')
+            alert("Logga in för att se dina annonser");
           }}
         >
           Mina annonser
         </button>
-        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
-          Tavlan
-        </button>
+        <Link href={"/tavla"}>
+          <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
+            Tavlan
+          </button>
+        </Link>
       </section>
 
       <div className="bg-[#46649D] h-2"></div>
@@ -154,8 +156,8 @@ const Ads = ({ ads }: Props) => {
                 className="mt-4  w-full aspect-square rounded-md"
                 alt={ad.description}
                 src={ad.image}
-                width={'1000'}
-                height={'1000'}
+                width={"1000"}
+                height={"1000"}
               />
 
               {/* <div className=" mt-2">
@@ -205,21 +207,21 @@ const Ads = ({ ads }: Props) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 export async function getServerSideProps() {
   try {
-    const client = await clientPromise
-    const db = client.db('borrow')
+    const client = await clientPromise;
+    const db = client.db("borrow");
 
-    const ads = await db.collection('ads').find({}).limit(1000).toArray()
-    console.log(ads)
+    const ads = await db.collection("ads").find({}).limit(1000).toArray();
+    console.log(ads);
 
     return {
       props: { ads: JSON.parse(JSON.stringify(ads)) },
-    }
+    };
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 }
-export default Ads
+export default Ads;
