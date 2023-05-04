@@ -5,7 +5,7 @@ import Upload from '@/p-components/upload'
 
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import UpdateImage from '@/p-components/UpdateImage'
+import UpdateImage from '@/p-components/updateImage'
 
 interface Props {} //add link and other functionalities when needed
 

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { v4 as uuidv4 } from 'uuid'
 import CloseIcon from '@/p-components/closeIcon'
 import Icons from '@/p-components/icons'
-import UpdateImage from '@/p-components/UpdateImage'
+import UpdateImage from '@/p-components/updateImage'
 
 interface AdId {
   id: string
