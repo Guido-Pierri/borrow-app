@@ -1,13 +1,13 @@
-import React, { useState } from "react"
-import Head from "next/head"
-import TransformImage from "./image"
-import { CldImage } from "next-cloudinary"
-import Image from "next/image"
+import React, { useState } from 'react'
+import Head from 'next/head'
+import TransformImage from './image'
+import { CldImage } from 'next-cloudinary'
+import Image from 'next/image'
 
-const Upload2 = ({ setImageUrl }) => {
-  const [imagePublicId, setImagePublicId] = useState("")
-  const [alt, setAlt] = useState("")
-  const [crop, setCrop] = useState("scale")
+const UpdateImage = ({ setImageUrl }) => {
+  const [imagePublicId, setImagePublicId] = useState('')
+  const [alt, setAlt] = useState('')
+  const [crop, setCrop] = useState('scale')
   const [height, setHeight] = useState(100)
   const [width, setWidth] = useState(100)
   // const [imageUrl, setImageUrl] = useState('')
@@ -16,18 +16,19 @@ const Upload2 = ({ setImageUrl }) => {
     // create the widget
     const widget = window.cloudinary.createUploadWidget(
       {
-        cloudName: "dqrn5bc0b",
-        uploadPreset: "ml_default",
+        cloudName: 'dqrn5bc0b',
+        uploadPreset: 'ml_default',
       },
       (error, result) => {
         if (
-          result.event === "success" &&
-          result.info.resource_type === "image"
+          result.event === 'success' &&
+          result.info.resource_type === 'image'
         ) {
           console.log(result.info)
           setImagePublicId(result.info.public_id)
           setAlt(`A file of ${result.info.original_filename}`)
           setImageUrl(result.info.url)
+          // setUIpdateImageUrl(result.info.url)
           console.log(result.info.url)
         }
       }
@@ -37,7 +38,7 @@ const Upload2 = ({ setImageUrl }) => {
     return true
   }
 
-  const [myImage, setMyImage] = useState("")
+  const [myImage, setMyImage] = useState('')
   const [confirmed, setConfirmed] = useState(false)
 
   function changeImage() {
@@ -64,7 +65,7 @@ const Upload2 = ({ setImageUrl }) => {
       </Head>
       <div>
         <button
-          style={{ borderStyle: "dashed" }}
+          style={{ borderStyle: 'dashed' }}
           className=" border border-[#9EBB9D]  w-[90px] h-[80px] placeholder-[#000000] bg-[#fff]"
           onClick={openWidget}
         >
@@ -75,27 +76,27 @@ const Upload2 = ({ setImageUrl }) => {
                 <TransformImage
                   setImageUrl={setMyImage}
                   image={imagePublicId}
-                  width={"100"}
-                  height={"100"}
+                  width={'100'}
+                  height={'100'}
                   style={{
-                    alignSelf: "center",
-                    backgroundSize: "cover",
-                    width: "90px",
-                    height: "80px",
+                    alignSelf: 'center',
+                    backgroundSize: 'cover',
+                    width: '90px',
+                    height: '80px',
                   }}
                 />
               ) : (
                 // <Upload2 setImageUrl={setMyImage} />
                 <Image
-                  src={"/image.svg"}
-                  alt={"#"}
-                  width={"100"}
-                  height={"100"}
+                  src={'/image.svg'}
+                  alt={'#'}
+                  width={'100'}
+                  height={'100'}
                   style={{
-                    alignSelf: "center",
-                    backgroundSize: "cover",
-                    width: "90px",
-                    height: "80px",
+                    alignSelf: 'center',
+                    backgroundSize: 'cover',
+                    width: '90px',
+                    height: '80px',
                   }}
                   className="px-7 mt-[-2]"
                 />
@@ -126,4 +127,4 @@ const Upload2 = ({ setImageUrl }) => {
     </>
   )
 }
-export default Upload2
+export default UpdateImage
