@@ -38,11 +38,18 @@ import Image from 'next/image'
 import { Suspense } from 'react'
 import Categories from '@/p-components/categories'
 import clientPromise from '@/lib/mongodb'
-
+import { signOut, useSession } from 'next-auth/react'
+import { DefaultSession } from 'next-auth'
 interface AdId {
   id: string
 }
-
+interface Session {
+  user: {
+    /** The user's postal address. */
+    firstName: string
+    lastName: string
+  } & DefaultSession['user']
+}
 function navigateToCreateAd() {
   window.location.href = '/createAd'
 }
@@ -51,6 +58,13 @@ interface Props {
 }
 
 const Ads = ({ ads }: Props) => {
+  const { data: session } = useSession()
+
+  const handleSignOut = async () => {
+    await signOut({ redirect: true, callbackUrl: '/auth/signIn' })
+    console.log('Logged out')
+  }
+
   async function deleteAd(id: string) {
     console.log('deleteAd')
     const confirmed = window.confirm(
@@ -92,9 +106,19 @@ const Ads = ({ ads }: Props) => {
   function navigateToAd(id: string) {
     window.location.href = `/ads/view/${id}`
   }
+  if (!session) {
+    // If the user is not logged in, redirect to the login page
+    return <div>You are not logged in </div>
+  }
+  console.log(session.user?.name)
+
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header></Header>
+      <div>
+        <h1>Welcome {session?.user?.name}</h1>
+        <button onClick={handleSignOut}>Log out</button>
+      </div>
       <form>
         <label className="relative">
           <input

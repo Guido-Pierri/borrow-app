@@ -24,7 +24,9 @@
     "**/*.tsx",
     "pages/loading.js",
     "pages/uploadForm.js",
-    "pages/home.js"
+    "pages/home.js",
+    "models/user.js",
+    "utils/dbConnect.js"
   ],
   "exclude": ["node_modules"]
 }

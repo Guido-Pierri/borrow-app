@@ -1,17 +1,17 @@
 import '@/styles/globals.css'
 import '@/styles/burger.css'
+import '@/styles/globals.css'
+
 import type { AppProps } from 'next/app'
-import { Righteous } from 'next/font/google'
 
-// const righteous = Righteous({
-//   subsets: ["latin"],
-//   weight: "400",
-// })
-
-export default function App({ Component, pageProps }: AppProps) {
+import { SessionProvider } from 'next-auth/react'
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
-    // <h1 className={righteous.className}>
-    <Component {...pageProps} />
-    // </h1>
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
   )
 }

@@ -1,6 +1,9 @@
+import { ObjectId } from 'mongoose'
+
 export type User = {
-  userId: string
   firstName: string
+  _id: ObjectId
+  userId: string
   lastName: string
   adress: string
   email: string

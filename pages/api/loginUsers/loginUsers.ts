@@ -1,8 +1,9 @@
-import clientPromise from "@/lib/mongodb"
-import { Collection } from "mongodb"
-import { NextApiRequest, NextApiResponse } from "next"
-import { v4 as uuidv4 } from "uuid"
-import bcrypt from "bcrypt"
+import clientPromise from '@/lib/mongodb'
+import { Collection } from 'mongodb'
+import { NextApiRequest, NextApiResponse } from 'next'
+import { v4 as uuidv4 } from 'uuid'
+import bcrypt from 'bcrypt'
+import { useState } from 'react'
 
 interface FormValues {
   email: string
@@ -16,8 +17,8 @@ export default async function handler(
   console.log(req.body)
   const { email, password } = req.body as FormValues
   const client = await clientPromise
-  const database = client.db("borrow")
-  const collection = database.collection("userLogin")
+  const database = client.db('borrow')
+  const collection = database.collection('userLogin')
   try {
     console.log(req.body)
 
@@ -31,9 +32,9 @@ export default async function handler(
 
     // res.json(haschedPassword)
     // res.json(result)
-    res.status(201).json({ message: "User at login was created successfully." })
+    res.status(201).json({ message: 'User at login was created successfully.' })
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: "An error occurred." })
+    res.status(500).json({ message: 'An error occurred.' })
   }
 }
