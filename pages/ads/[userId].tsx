@@ -6,6 +6,8 @@ import clientPromise from '@/lib/mongodb'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import SearchBar from '@/p-components/searchBar'
+import HeaderWithCloseIcon from '@/p-components/headerWithCloseIcon'
+import HamburgerMenu from '@/p-components/hamburgerMenu'
 
 interface AdId {
   id: string
@@ -67,7 +69,7 @@ const Ads = ({ ads }: Props) => {
   return (
     <>
       <div className="mb-4">
-        <Header></Header>
+        <Header />
       </div>
       <div className="bg-[#ffffff] text-center max-w-sm h-screen pt-4">
         <SearchBar query={query} setQuery={setQuery}></SearchBar>
