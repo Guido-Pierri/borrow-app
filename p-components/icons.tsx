@@ -1,7 +1,28 @@
-import Image from 'next/image'
+import { NextPage } from "next"
+import Image from "next/image"
+import Link from "next/link"
+import Upload from "@/p-components/upload"
+import Upload2 from "@/p-components/upload2"
+import { useState } from "react"
+import { useRouter } from "next/router"
+
 interface Props {} //add link and other functionalities when needed
 
 const Icons = ({ image }: any) => {
+  const [myImage, setMyImage] = useState("")
+  const [confirmed, setConfirmed] = useState(false)
+
+  async function changeImage() {
+    const confirmed = window.confirm(
+      "Din bild kommer tas bort, vill du fortsätta?"
+    )
+    if (confirmed) {
+      setConfirmed(true)
+    } else {
+      setConfirmed(false)
+    }
+  }
+
   return (
     <div className="bg-[#FFFFFF] justify-start ">
       {/* <p className="mb-[-32px] ml-6 text-left text-black">Bilder</p> */}
@@ -26,11 +47,13 @@ const Icons = ({ image }: any) => {
         >
           <div className="flex justify-center">
             <Image
-              src={'/trachcan.svg'}
-              alt={'#'}
-              width={'24'}
-              height={'28'}
-              style={{ alignSelf: 'center' }}
+              src={"/trachcan.svg"}
+              alt={"#"}
+              width={"24"}
+              height={"28"}
+              style={{ alignSelf: "center" }}
+              onClick={() => changeImage()}
+
             ></Image>
           </div>
         </button>
@@ -39,7 +62,26 @@ const Icons = ({ image }: any) => {
           className="border border-[#9EBB9D] w-[90px] h-[80px]"
         >
           <div className="aspect-auto w-[90px] h-[80px]">
-            <Image
+            <div className="aspect-auto w-[90px] h-[80px]">
+              {confirmed ? (
+                <Upload2 setImageUrl={setMyImage} />
+              ) : (
+                <Image
+                  src={image}
+                  alt={"#"}
+                  width={"100"}
+                  height={"100"}
+                  style={{
+                    alignSelf: "center",
+                    backgroundSize: "cover",
+                    width: "90px",
+                    height: "80px",
+                  }}
+                />
+              )}
+            </div>
+
+            {/* <Image
               src={image}
               alt={'#'}
               width={'100'}
@@ -50,7 +92,7 @@ const Icons = ({ image }: any) => {
                 width: '90px',
                 height: '80px',
               }}
-            ></Image>
+            ></Image>  */}
           </div>
         </button>
       </div>
