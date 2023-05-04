@@ -40,7 +40,7 @@ const Board = ({}) => {
             Låna
           </button>
         </Link>
-        <Link href={`/myAds/` + `${userId}`}>
+        <Link href={`/ads/myAds/` + `${userId}`}>
           <button
             className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1 text-black"
             onClick={() => {
