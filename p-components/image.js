@@ -1,4 +1,4 @@
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react'
+import { CloudinaryContext, Image } from 'cloudinary-react'
 
 const TransformImage = ({ image }) => {
   return (

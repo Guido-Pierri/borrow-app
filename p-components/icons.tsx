@@ -1,7 +1,6 @@
 import { NextPage } from "next"
 import Image from "next/image"
 import Link from "next/link"
-
 import Upload from "@/p-components/upload"
 import Upload2 from "@/p-components/upload2"
 import { useState } from "react"
@@ -43,7 +42,7 @@ const Icons = ({ image }: any) => {
           </div>
         </button> */}
         <button
-          style={{ borderStyle: "dashed" }}
+          style={{ borderStyle: 'dashed' }}
           className="border border-[#9EBB9D] w-[90px] h-[80px]"
         >
           <div className="flex justify-center">
@@ -54,12 +53,15 @@ const Icons = ({ image }: any) => {
               height={"28"}
               style={{ alignSelf: "center" }}
               onClick={() => changeImage()}
+
             ></Image>
           </div>
         </button>
         <button
+
           // style={{ borderStyle: "dashed" }}
           className=" w-[90px] h-[80px]"
+
         >
           <div className="aspect-auto w-[90px] h-[80px]">
             <div className="aspect-auto w-[90px] h-[80px]">
@@ -83,14 +85,14 @@ const Icons = ({ image }: any) => {
 
             {/* <Image
               src={image}
-              alt={"#"}
-              width={"100"}
-              height={"100"}
+              alt={'#'}
+              width={'100'}
+              height={'100'}
               style={{
-                alignSelf: "center",
-                backgroundSize: "cover",
-                width: "90px",
-                height: "80px",
+                alignSelf: 'center',
+                backgroundSize: 'cover',
+                width: '90px',
+                height: '80px',
               }}
             ></Image>  */}
           </div>

@@ -1,6 +1,4 @@
-import { NextPage } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 
 interface Props {} //add link and other functionalities when needed
 

@@ -1,16 +1,8 @@
-import { BsChatLeftText } from 'react-icons/bs'
 import { useState } from 'react'
 import HamburgerMenu, { Links } from './hamburgerMenu'
 import BorrowLogo from './borrowLogo'
 
 const Header = ({}) => {
-  const [hide, setHide] = useState(false)
-
-  const hideData = () => {
-    console.log('HideData was triggered')
-    setHide(!hide)
-  }
-
   return (
     <div
       className="h-14  

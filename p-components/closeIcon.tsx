@@ -1,9 +1,5 @@
-import { Router } from 'express'
-import { NextPage } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import router from 'next/router'
-import { Props } from 'next/script'
 
 const CloseIcon = () => {
   return (
