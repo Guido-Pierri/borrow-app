@@ -1,5 +1,10 @@
+import { NextPage } from "next"
+import Image from "next/image"
+import Link from "next/link"
+import Upload from "@/p-components/upload"
+import Upload2 from "@/p-components/upload2"
 import { useState } from "react"
-import Image from 'next/image'
+import { useRouter } from "next/router"
 
 interface Props {} //add link and other functionalities when needed
 
