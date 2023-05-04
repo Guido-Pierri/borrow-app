@@ -35,19 +35,21 @@ const Board = ({}) => {
       `}</style>
 
       <section className="flex justify-around mt-5 ">
-        <Link href={"/ads"}>
+        <Link href={`/ads/` + `${userId}`}>
           <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
             Låna
           </button>
         </Link>
-        <button
-          className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1 text-black"
-          onClick={() => {
-            alert("Logga in för att se dina annonser");
-          }}
-        >
-          Mina annonser
-        </button>
+        <Link href={`/myAds/` + `${userId}`}>
+          <button
+            className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1 text-black"
+            onClick={() => {
+              alert("Logga in för att se dina annonser");
+            }}
+          >
+            Mina annonser
+          </button>
+        </Link>
         <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 bg-[#46649D]  text-white">
           Tavlan
         </button>
