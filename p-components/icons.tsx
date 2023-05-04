@@ -2,9 +2,10 @@ import { NextPage } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import Upload from "@/p-components/upload"
-import Upload2 from "@/p-components/upload2"
+
 import { useState } from "react"
 import { useRouter } from "next/router"
+import UpdateImage from "@/p-components/UpdateImage"
 
 interface Props {} //add link and other functionalities when needed
 
@@ -42,7 +43,7 @@ const Icons = ({ image }: any) => {
           </div>
         </button> */}
         <button
-          style={{ borderStyle: 'dashed' }}
+          style={{ borderStyle: "dashed" }}
           className="border border-[#9EBB9D] w-[90px] h-[80px]"
         >
           <div className="flex justify-center">
@@ -53,20 +54,17 @@ const Icons = ({ image }: any) => {
               height={"28"}
               style={{ alignSelf: "center" }}
               onClick={() => changeImage()}
-
             ></Image>
           </div>
         </button>
         <button
-
           // style={{ borderStyle: "dashed" }}
           className=" w-[90px] h-[80px]"
-
         >
           <div className="aspect-auto w-[90px] h-[80px]">
             <div className="aspect-auto w-[90px] h-[80px]">
               {confirmed ? (
-                <Upload2 setImageUrl={setMyImage} />
+                <UpdateImage setImageUrl={setMyImage} />
               ) : (
                 <Image
                   src={image}

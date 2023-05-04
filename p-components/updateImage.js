@@ -4,7 +4,7 @@ import TransformImage from "./image"
 import { CldImage } from "next-cloudinary"
 import Image from "next/image"
 
-const Upload2 = ({ setImageUrl }) => {
+const UpdateImage = ({ setImageUrl }) => {
   const [imagePublicId, setImagePublicId] = useState("")
   const [alt, setAlt] = useState("")
   const [crop, setCrop] = useState("scale")
@@ -126,4 +126,4 @@ const Upload2 = ({ setImageUrl }) => {
     </>
   )
 }
-export default Upload2
+export default UpdateImage
