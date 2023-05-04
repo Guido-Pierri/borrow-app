@@ -64,7 +64,7 @@ const Ads = ({ ads }: Props) => {
   };
 
   const handleClickBoard = async (id: string) => {
-    console.log("inside handleClick");
+    console.log("inside handleClickBoard");
     console.log(`${userId}`);
     window.location.href = `/board/${id}`;
     const response = await fetch(`/api/user/${userId}`, {

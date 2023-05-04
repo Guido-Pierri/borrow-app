@@ -1,42 +1,42 @@
-import Link from "next/link"
-import Header from "@/p-components/header"
-import { GoSearch } from "react-icons/go"
-import { Ad } from "@/types/ads"
-import { CldImage } from "next-cloudinary"
-import Image from "next/image"
-import { Suspense } from "react"
-import Categories from "@/p-components/categories"
-import clientPromise from "@/lib/mongodb"
-import { useRouter } from "next/router"
-import { ObjectId } from "mongodb"
-import DesignLine from "@/p-components/designLine"
+import Link from "next/link";
+import Header from "@/p-components/header";
+import { GoSearch } from "react-icons/go";
+import { Ad } from "@/types/ads";
+import { CldImage } from "next-cloudinary";
+import Image from "next/image";
+import { Suspense } from "react";
+import Categories from "@/p-components/categories";
+import clientPromise from "@/lib/mongodb";
+import { useRouter } from "next/router";
+import { ObjectId } from "mongodb";
+import DesignLine from "@/p-components/designLine";
 
 interface AdId {
-  id: string
+  id: string;
 }
 
 interface Props {
-  ads: Ad[]
+  ads: Ad[];
 }
 const Ads = ({ ads }: Props) => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const { userId } = router.query
-  console.log(userId)
+  const { userId } = router.query;
+  console.log(userId);
 
   const navigateToCreateAd = () => {
-    router.push(`/createAd/${userId}`)
-  }
+    router.push(`/createAd/${userId}`);
+  };
 
   function navigateToAd(id: string) {
-    router.push(`/ads/viewMyAds/${id}`)
+    router.push(`/ads/viewMyAds/${id}`);
   }
   function navigateToAllAds(id: string) {
-    window.location.href = `/ads/${id}`
+    window.location.href = `/ads/${id}`;
   }
   const handleClick = async () => {
-    console.log("insede handleClick")
-    console.log(`${userId}`)
+    console.log("insede handleClick");
+    console.log(`${userId}`);
 
     const response = await fetch(`/api/user/${userId}`, {
       method: "POST",
@@ -44,17 +44,17 @@ const Ads = ({ ads }: Props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(`${userId}`),
-    })
+    });
 
-    const dataResponse = await response.json()
+    const dataResponse = await response.json();
 
-    console.log("dataResponse", dataResponse)
+    console.log("dataResponse", dataResponse);
     if (dataResponse) {
     }
-  }
+  };
   async function updateAd(id: string) {
-    window.location.href = `/updateAd/${id}`
-    console.log("updateAd")
+    window.location.href = `/updateAd/${id}`;
+    console.log("updateAd");
   }
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
@@ -86,22 +86,24 @@ const Ads = ({ ads }: Props) => {
         <button
           className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black "
           onClick={() => {
-            navigateToAllAds(`${userId}`)
+            navigateToAllAds(`${userId}`);
           }}
         >
           Låna
         </button>
         <button
           onClick={() => {
-            handleClick()
+            handleClick();
           }}
           className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1 bg-[#46649D] text-white"
         >
           Mina annonser
         </button>
-        <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
-          Tavlan
-        </button>
+        <Link href={"/board/" + `${userId}`}>
+          <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
+            Tavlan
+          </button>
+        </Link>
       </section>
 
       <div className="bg-[#46649D] h-2"></div>
@@ -178,19 +180,19 @@ const Ads = ({ ads }: Props) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 export async function getServerSideProps(context: any) {
   try {
-    const { userId } = context.query
-    const client = await clientPromise
-    const db = client.db("borrow")
+    const { userId } = context.query;
+    const client = await clientPromise;
+    const db = client.db("borrow");
 
     const ads = await db
       .collection("ads")
       .find({ publisher: userId })
       .limit(1000)
-      .toArray()
+      .toArray();
     // console.log(ads1)
 
     // const ads2 = await db.collection("ads").find({
@@ -199,9 +201,9 @@ export async function getServerSideProps(context: any) {
 
     return {
       props: { ads: JSON.parse(JSON.stringify(ads)) },
-    }
+    };
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 }
-export default Ads
+export default Ads;

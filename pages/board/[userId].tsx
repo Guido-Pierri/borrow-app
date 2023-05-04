@@ -7,17 +7,12 @@ import { GoSearch } from "react-icons/go";
 
 interface Props {}
 
-function navigateToCreateAd() {
-  window.location.href = "/createAdBoard";
-}
-
 const Board = ({}) => {
   const router = useRouter();
   const { userId } = router.query;
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header></Header>
-      <p>{userId}</p>
       <form>
         <label className="relative">
           <input
@@ -40,37 +35,35 @@ const Board = ({}) => {
       `}</style>
 
       <section className="flex justify-around mt-5 ">
-        <Link href={"/ads/" + `${userId}`}>
+        <Link href={"/ads"}>
           <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
             Låna
           </button>
         </Link>
-        <Link href={"/ads/myAds/" + `${userId}`}>
-          <button
-            className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1 text-black"
-            onClick={() => {
-              alert("Logga in för att se dina annonser");
-            }}
-          >
-            Mina annonser
-          </button>
-        </Link>
+        <button
+          className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1 text-black"
+          onClick={() => {
+            alert("Logga in för att se dina annonser");
+          }}
+        >
+          Mina annonser
+        </button>
         <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1 bg-[#46649D]  text-white">
           Tavlan
         </button>
       </section>
       <div className="bg-[#46649D] h-2"></div>
       <div className="flex justify-center mt-5 ">
-        <button
-          className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
-          onClick={navigateToCreateAd}
-        >
-          <p className="text-black"> Skapa inlägg</p>
-        </button>
+        <Link href={`/createAdBoard/` + `${userId}`}>
+          <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans">
+            <p className="text-black"> Skapa inlägg</p>
+          </button>
+        </Link>
       </div>
       <div className="text-left px-4">
         <p className="font-medium">Hittar du inte det du söker?</p>
         <p>Skriv på våran anslagstavla!</p>
+        <p>Kanske en snäll granne har det du söker.</p>
       </div>
       <section></section>
     </div>
