@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { GetServerSideProps } from 'next'
 import clientPromise from '@/lib/mongodb'
 import { User } from '@/types/user'
+import ProfileImage from '@/p-components/profileImageChangeIcon'
 
 interface Props {
   user: User
@@ -18,7 +19,13 @@ export default function MyProfile({ user }: Props) {
       <div className="max-w-sm">
         <HeaderWithCloseIcon />
         <div className="flex ml-[8%] items-center">
-          <Image src={'/Ellipse 61.jpg'} width={100} height={100} alt="" />
+          <div className="relative">
+            <Image src={'/Ellipse 61.jpg'} width={100} height={100} alt="" />
+            <div className="absolute top-[65.5%] left-[71.42%]">
+              <ProfileImage />
+            </div>
+          </div>
+
           <p className="ml-[5.38%] font-bold text-xl">Min profil </p>
         </div>
         <div className="ml-[5.38%] mt-[5.15%]">
