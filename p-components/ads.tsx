@@ -63,7 +63,7 @@ const Ads = ({ ads }: Props) => {
   }
   return (
     <>
-      <Header></Header>
+      <Header userId={''} anotherUserId={''}></Header>
       <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
         <form>
           <label className="relative">
