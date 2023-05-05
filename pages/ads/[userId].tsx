@@ -179,7 +179,8 @@ export async function getServerSideProps() {
     const client = await clientPromise
     const db = client.db('borrow')
 
-    const ads = await db.collection('ads').find({}).toArray()
+    const ads = await db.collection("ads").find({}).sort({ _id: -1 }).toArray()
+
     console.log(ads)
 
     return {
