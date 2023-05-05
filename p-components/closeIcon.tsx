@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import router from 'next/router'
 
-const CloseIcon = () => {
+export default function closeIcon() {
   return (
-    <div>
+    <>
       <Image
         src={'/kryss_annons.svg'}
         height={25}
@@ -11,8 +11,6 @@ const CloseIcon = () => {
         alt={'Kryss'}
         onClick={() => router.back()}
       ></Image>
-    </div>
+    </>
   )
 }
-
-export default CloseIcon
