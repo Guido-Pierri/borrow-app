@@ -1,7 +1,8 @@
+import { UserId } from '@/types/userId'
 import CloseIcon from './closeIcon'
 import Header from './header'
 interface Props {
-  userId: string
+  userId: any
 }
 export default function HeaderWithCloseIcon({ userId }: Props) {
   return (

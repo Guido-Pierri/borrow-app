@@ -1,12 +1,17 @@
 import Header from '@/p-components/header'
 import HeaderWithCloseIcon from '@/p-components/headerWithCloseIcon'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 
 interface Props {
   userId: string
 }
 
-const Index: NextPage<Props> = ({ userId }: Props) => {
+const Index: NextPage<Props> = () => {
+  const router = useRouter()
+
+  const { userId } = router.query
+  console.log(userId)
   return (
     <div className="h-screen bg-[#FFFFFF] max-w-sm">
       <HeaderWithCloseIcon userId={userId} />
