@@ -196,7 +196,7 @@ export default function Post({ ads }: Props) {
 
   console.log(ads?.id)
   return (
-    <div className="bg-[#FFFFFF] text-center max-w-sm h-screen ">
+    <div className="bg-[#FFFFFF] text-center max-w-sm h-screen">
       <div className=" font-sans">
         <div className="px-4">
           <div className="flex-column">
@@ -313,6 +313,7 @@ export default function Post({ ads }: Props) {
                         >
                           Ta bort annons
                         </button>
+                        <br />
                         <br />
                       </div>
                     </div>
