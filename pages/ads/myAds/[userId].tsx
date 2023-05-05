@@ -120,10 +120,14 @@ const Ads = ({ ads }: Props) => {
       <section>
         <div className=" font-sans text-left  mt-8">
           {ads.map((ad) => (
-            <div key={ad.id} className=" grid grid-cols-3 under">
+            <div
+              key={ad.id}
+              onClick={() => navigateToAd(ad.id)}
+              className=" grid grid-cols-3 under"
+            >
               <div className="pl-6">
                 <Image
-                  onClick={() => navigateToAd(ad.id)}
+                  // onClick={() => navigateToAd(ad.id)}
                   className="w-full rounded-md"
                   alt={ad.description}
                   src={ad.image}
