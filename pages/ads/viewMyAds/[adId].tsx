@@ -6,13 +6,19 @@ import Header from "@/p-components/header"
 import Image from "next/image"
 import { Query } from "mongoose"
 import { Context } from "vm"
+import { useState } from "react"
 
 interface Props {
   ads: Ad
 }
 
+interface AdId {
+  id: string
+}
+
 export default function Post({ ads }: Props, { publisher }: any) {
   const router = useRouter()
+  const [userId, setUserId] = useState<string>("")
   const { adId } = router.query
   console.log(adId)
 
@@ -22,6 +28,60 @@ export default function Post({ ads }: Props, { publisher }: any) {
     router.back()
   }
   console.log(ads?.id)
+
+  async function updateAd(id: string) {
+    window.location.href = `/updateAd/${id}`
+    console.log("updateAd")
+  }
+
+  async function deleteAd(id: string, publisher: string) {
+    console.log("deleteAd")
+    console.log("id", id)
+    console.log("publisher", publisher)
+
+    const confirmed = window.confirm(
+      "Är du säker att du vill ta bort din annons?"
+    )
+
+    if (confirmed) {
+      console.log("in i if-satsen")
+      console.log(id)
+
+      const apiData: AdId = {
+        id: id,
+      }
+
+      console.log(apiData)
+      setUserId(publisher)
+      console.log("setUserId", setUserId)
+
+      try {
+        console.log("try")
+        console.log(id)
+
+        const res = await fetch("/api/deleteAd", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(apiData),
+        })
+        console.log(res)
+        console.log(res.status)
+
+        window.location.href = "/ads/myAds/" + `${publisher}`
+
+        if (res.ok) {
+          // setDeletedAdId(id)
+        } else {
+          console.error("Failed to delete ad")
+        }
+      } catch (e) {
+        console.error("Failed to delete ad", e)
+      }
+    }
+  }
+
   return (
     <>
       <div className="bg-[#FFFFFF] text-center max-w-sm h-screen">
@@ -58,7 +118,7 @@ export default function Post({ ads }: Props, { publisher }: any) {
             Beskrivning
           </p>
           <p className="font-normal text-[14px]">{ads.description}</p>
-          <div className="flex flex-col w-fit mt-6">
+          {/* <div className="flex flex-col w-fit mt-6">
             <Image
               src={"/profile.svg"}
               alt={"#"}
@@ -68,8 +128,35 @@ export default function Post({ ads }: Props, { publisher }: any) {
               style={{ alignSelf: "center" }}
             ></Image>
             <p className="text-[#0f0e0e] text-center"> {ads.fullName}</p>
-          </div>
-          <div className="w-full text-[#0f0e0e] mt-4  flex justify-center">
+          </div> */}
+          <div>
+            <div className="w-full text-[#0f0e0e] mt-4  flex justify-center">
+              <div className="text-right pr-4">
+                <button
+                  className="underline rounded-sm bg- mb-1  text-black "
+                  value={ads?.id}
+                  type="submit"
+                  onClick={() => updateAd(ads?.id)}
+                >
+                  Redigera
+                </button>
+              </div>
+
+              <div className="flex mt-4 justify-center">
+                <div className="">
+                  <button
+                    className="rounded-sm text-[17px] text-black border-[#9EBB9D]  border w-[298px]  py-3"
+                    value={ads?.id}
+                    type="submit"
+                    onClick={() => deleteAd(ads?.id, ads?.publisher)}
+                  >
+                    Ta bort annons
+                  </button>
+                  <br />
+                </div>
+              </div>
+            </div>
+
             {/* <button className="w-full bg-[#9EBB9D] font-normal text-base  h-[40px] rounded-sm">
               <div className="flex row justify-center">
                 <Image
