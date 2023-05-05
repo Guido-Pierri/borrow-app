@@ -3,8 +3,8 @@ import HamburgerMenu, { Links } from './hamburgerMenu'
 import BorrowLogo from './borrowLogo'
 import { UserId } from '@/types/userId'
 interface Props {
-  userId: any
-  anotherUserId: string
+  userId?: any
+  anotherUserId?: any
 }
 const Header = ({ userId, anotherUserId }: Props) => {
   return (
