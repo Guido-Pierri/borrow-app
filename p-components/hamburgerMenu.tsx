@@ -1,6 +1,9 @@
+import { UserId } from '@/types/userId'
 import Link from 'next/link'
+import router from 'next/router'
 import { slide as Menu } from 'react-burger-menu'
-const HamburgerMenu = () => (
+
+const HamburgerMenu = ({ userId }: UserId) => (
   <div className="relative">
     <Menu
       customBurgerIcon={<HamburgerIcon />}
@@ -11,7 +14,7 @@ const HamburgerMenu = () => (
       overlayClassName="bg-[#000000] top-0"
       id={'crossBtn'}
     >
-      <Links />
+      <Links userId={userId} />
     </Menu>
   </div>
 )
@@ -65,12 +68,15 @@ const CrossIcon = () => (
     </svg>
   </div>
 )
-export const Links = () => (
+export const Links = ({ userId }: UserId) => (
   <>
     <div className="bg-inherit text-white text-xl text-left ml-6 mt-40">
-      <Link href="/">
+      <div
+        className="clickable"
+        onClick={() => router.push(`/myProfile/${userId}`)}
+      >
         <p className="pr-24 mb-8">Min profil</p>
-      </Link>
+      </div>
       <Link href="/information-side">
         <p className="pr-24 mb-8">Så fungerar Borrow</p>
       </Link>

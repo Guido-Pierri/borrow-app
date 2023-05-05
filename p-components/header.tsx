@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import HamburgerMenu, { Links } from './hamburgerMenu'
 import BorrowLogo from './borrowLogo'
+import { UserId } from '@/types/userId'
 
-const Header = ({}) => {
+const Header = ({ userId }: UserId) => {
   return (
     <div
       className="h-14  
@@ -15,7 +16,7 @@ const Header = ({}) => {
     relative max-w-sm"
     >
       <div className="pt-12 absolute left-5 ">
-        <HamburgerMenu />
+        <HamburgerMenu userId={userId} />
       </div>
       <div className="mx-auto mt-12 ">
         <BorrowLogo></BorrowLogo>
