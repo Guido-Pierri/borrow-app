@@ -2,13 +2,19 @@ import CloseIcon from '@/p-components/closeIcon'
 import Header from '@/p-components/header'
 import HeaderWithCloseIcon from '@/p-components/headerWithCloseIcon'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 
 interface Props {}
 
-const Index: NextPage<Props> = ({ userId }: any) => {
+const Index: NextPage<Props> = () => {
+  const router = useRouter()
+
+  const { userId } = router.query
+  console.log(userId)
+
   return (
     <div className="h-screen bg-[#FFFFFF] max-w-sm">
-      <HeaderWithCloseIcon />
+      <HeaderWithCloseIcon userId={userId} />
       <div className="font-sans">
         <div className="px-4 ">
           <h1 className="font-bold text-xl pt-4 text-black">

@@ -70,7 +70,7 @@ const Ads = ({ ads }: Props) => {
   return (
     <>
       <div className="mb-4">
-        <Header userId={userId} />
+        <Header userId={userId} anotherUserId={''} />
       </div>
       <div className="bg-[#ffffff] text-center max-w-sm h-screen pt-4">
         <SearchBar query={query} setQuery={setQuery}></SearchBar>
@@ -179,7 +179,7 @@ export async function getServerSideProps() {
     const client = await clientPromise
     const db = client.db('borrow')
 
-    const ads = await db.collection("ads").find({}).sort({ _id: -1 }).toArray()
+    const ads = await db.collection('ads').find({}).sort({ _id: -1 }).toArray()
 
     console.log(ads)
 

@@ -1,13 +1,11 @@
-import { UserId } from '@/types/userId'
+import HeaderProfile from './HeaderProfile'
 import CloseIcon from './closeIcon'
 import Header from './header'
-interface Props {
-  userId: any
-}
-export default function HeaderWithCloseIcon({ userId }: Props) {
+
+export default function HeaderWithCloseIconProfile({ userId }: any) {
   return (
     <div className="relative">
-      <Header userId={userId} anotherUserId={userId}></Header>
+      <HeaderProfile userId={userId} anotherUserId={userId} />
       <div className="absolute right-5 top-12">
         <CloseIcon />
       </div>

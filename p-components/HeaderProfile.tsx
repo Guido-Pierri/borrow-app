@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import HamburgerMenu, { Links } from './hamburgerMenu'
 import BorrowLogo from './borrowLogo'
 import { UserId } from '@/types/userId'
+import HamburgerMenuProfile, { Links } from './HamburgerMenuProfile'
 interface Props {
-  userId?: any
-  anotherUserId?: any
+  userId: string
+  anotherUserId: number
 }
-const Header = ({ userId, anotherUserId }: Props) => {
+const HeaderProfile = ({ userId, anotherUserId }: Props) => {
   return (
     <div
       className="h-14  
@@ -19,7 +19,7 @@ const Header = ({ userId, anotherUserId }: Props) => {
     relative max-w-sm"
     >
       <div className="pt-12 absolute left-5 ">
-        <HamburgerMenu userId={userId} />
+        <HamburgerMenuProfile userId={userId} />
       </div>
       <div className="mx-auto mt-12 ">
         <BorrowLogo userId={anotherUserId}></BorrowLogo>
@@ -31,4 +31,4 @@ const Header = ({ userId, anotherUserId }: Props) => {
   )
 }
 
-export default Header
+export default HeaderProfile
