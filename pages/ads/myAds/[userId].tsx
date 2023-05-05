@@ -53,10 +53,10 @@ const Ads = ({ ads }: Props) => {
     if (dataResponse) {
     }
   }
-  async function updateAd(id: string) {
-    window.location.href = `/updateAd/${id}`
-    console.log("updateAd")
-  }
+  // async function updateAd(id: string) {
+  //   window.location.href = `/updateAd/${id}`
+  //   console.log("updateAd")
+  // }
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header></Header>
@@ -120,10 +120,14 @@ const Ads = ({ ads }: Props) => {
       <section>
         <div className=" font-sans text-left  mt-8">
           {ads.map((ad) => (
-            <div key={ad.id} className=" grid grid-cols-3 under">
+            <div
+              key={ad.id}
+              onClick={() => navigateToAd(ad.id)}
+              className=" grid grid-cols-3 under"
+            >
               <div className="pl-6">
                 <Image
-                  onClick={() => navigateToAd(ad.id)}
+                  // onClick={() => navigateToAd(ad.id)}
                   className="w-full rounded-md"
                   alt={ad.description}
                   src={ad.image}
@@ -159,7 +163,7 @@ const Ads = ({ ads }: Props) => {
                           Beskrivning: {ad.description}
                         </p> */}
               </div>
-              <div className="text-right pr-4">
+              {/* <div className="text-right pr-4">
                 <button
                   className="underline rounded-sm bg- mb-1  text-black "
                   value={ad._id}
@@ -168,7 +172,7 @@ const Ads = ({ ads }: Props) => {
                 >
                   Redigera
                 </button>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
