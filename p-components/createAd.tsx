@@ -1,11 +1,10 @@
 //TODO
 //add userId to ads dynamically from login-->ads--->createAds
 
-
-import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
-import { useRouter } from 'next/router'
-import Upload from '@/p-components/upload'
+import { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
+import { useRouter } from "next/router"
+import Upload from "@/p-components/upload"
 
 //function that generates random id:s
 uuidv4()
@@ -175,7 +174,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <legend className="mb-[2px] mt-5 ">Välj en kategori</legend>
           <select
-            className="rounded py-4 px-7 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-2 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             id="simple"
             name="category"
             value={formData.category}
@@ -224,6 +223,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         >
           Publicera annons
         </button>
+        <br />
       </form>
     </div>
   )

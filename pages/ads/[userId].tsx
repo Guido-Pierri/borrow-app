@@ -1,4 +1,3 @@
-
 import Header from "@/p-components/header"
 import { Ad } from "@/types/ads"
 import Image from "next/image"
