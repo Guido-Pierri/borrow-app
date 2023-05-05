@@ -129,11 +129,11 @@ export default function Post({ ads }: Props, { publisher }: any) {
             ></Image>
             <p className="text-[#0f0e0e] text-center"> {ads.fullName}</p>
           </div> */}
-          <div>
-            <div className="w-full text-[#0f0e0e] mt-4  flex justify-center">
-              <div className="text-right pr-4">
+          <div className="mb-10 py-8">
+            <div className="w-full text-[#0f0e0e] mt-4 ">
+              <div className="text-right flex justify-center">
                 <button
-                  className="underline rounded-sm bg- mb-1  text-black "
+                  className="border w-[298px] bg-[#9EBB9D] py-3 rounded-sm h-[55px] border-[#9EBB9D] text-black "
                   value={ads?.id}
                   type="submit"
                   onClick={() => updateAd(ads?.id)}
@@ -142,10 +142,10 @@ export default function Post({ ads }: Props, { publisher }: any) {
                 </button>
               </div>
 
-              <div className="flex mt-4 justify-center">
-                <div className="">
+              <div className=" mt-4 ">
+                <div className="flex justify-center">
                   <button
-                    className="rounded-sm text-[17px] text-black border-[#9EBB9D]  border w-[298px]  py-3"
+                    className="rounded-sm text-[17px] h-[55px] text-black border-[#9EBB9D]  border w-[298px]  py-3"
                     value={ads?.id}
                     type="submit"
                     onClick={() => deleteAd(ads?.id, ads?.publisher)}
