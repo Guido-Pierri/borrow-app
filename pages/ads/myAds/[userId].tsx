@@ -195,6 +195,7 @@ export async function getServerSideProps(context: any) {
     const ads = await db
       .collection("ads")
       .find({ publisher: userId })
+      .sort({ _id: -1 })
       .limit(1000)
       .toArray()
     // console.log(ads1)
