@@ -3,7 +3,7 @@ import Link from 'next/link'
 import router from 'next/router'
 import { slide as Menu } from 'react-burger-menu'
 
-const HamburgerMenu = ({ userId }: UserId) => (
+const HamburgerMenuProfile = ({ userId }: UserId) => (
   <div className="relative">
     <Menu
       customBurgerIcon={<HamburgerIcon />}
@@ -72,25 +72,19 @@ export const Links = ({ userId }: UserId) => (
   <>
     <div className="bg-inherit text-white text-xl text-left ml-6 mt-40">
       <div
-        className="clickable"
+        className="hidden"
         onClick={() => router.push(`/myProfile/${userId}`)}
       >
         <p className="pr-24 mb-8">Min profil</p>
       </div>
-      <div
-        className="clickable"
-        onClick={() => router.push(`/information-side/${userId}`)}
-      >
+      <Link href="/information-side">
         <p className="pr-24 mb-8">Så fungerar Borrow</p>
-      </div>
-      <div
-        className="clickable"
-        onClick={() => router.push(`/contact/${userId}`)}
-      >
+      </Link>
+      <Link href="/contact">
         <p className="">Kontakta oss</p>
-      </div>
+      </Link>
     </div>
   </>
 )
 
-export default HamburgerMenu
+export default HamburgerMenuProfile

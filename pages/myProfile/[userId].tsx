@@ -1,12 +1,11 @@
-import HeaderWithCloseIcon from '@/p-components/headerWithCloseIcon'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { GetServerSideProps } from 'next'
 import clientPromise from '@/lib/mongodb'
 import { User } from '@/types/user'
 import ProfileImage from '@/p-components/profileImageChangeIcon'
 import ProfileInfo from '@/p-components/profileInfo'
 import { useState } from 'react'
+import HeaderWithCloseIconProfile from '@/p-components/HeaderWithCloseIconProfile'
 
 interface Props {
   user: User
@@ -25,7 +24,7 @@ export default function MyProfile({ user }: Props) {
     <>
       <div className="max-w-sm">
         <section className={showHeader}>
-          <HeaderWithCloseIcon />
+          <HeaderWithCloseIconProfile userId={userId} />
         </section>
         <section>
           <div className={showInfo}>
