@@ -18,60 +18,40 @@ export default async function handler(
         const { userId, firstAndLastName, postCode, email, password } =
           req.body as User
 
-        // const crypto = require("crypto")
-
-        // // Generate a random salt
-        // const salt = 1010
-
-        // // The password to be hashed
-
-        // // Create a hash using SHA-256 with the salt
-        // const hash = crypto
-        //   .createHash("sha256")
-        //   .update(salt + password)
-        //   .digest("hex")
-
-        // console.log("Salt:", salt)
-        // console.log("Hash:", hash)
-
         try {
           console.log(req.body)
           // const name = req.body.name
           // const email = req.body.email
-
-          const bcrypt = require('bcryptjs')
-          const saltRounds = 10
-          const plainTextPassword = password
-          bcrypt
-            .hash(plainTextPassword, saltRounds)
-            .then(async (hash: any) => {
-              console.log(`Hash: ${hash}`)
-              const result = await collection.insertOne({
-                userId: userId,
-                firstAndLastName: firstAndLastName,
-                postCode: postCode,
-                email: email,
-                password: hash,
+          const user = await collection.findOne({ email: email })
+          if (user) {
+            res
+              .status(409)
+              .json({ message: 'User already exists, use another email' })
+          } else {
+            const bcrypt = require('bcryptjs')
+            const saltRounds = 10
+            const plainTextPassword = password
+            bcrypt
+              .hash(plainTextPassword, saltRounds)
+              .then(async (hash: any) => {
+                console.log(`Hash: ${hash}`)
+                const result = await collection.insertOne({
+                  userId: userId,
+                  firstAndLastName: firstAndLastName,
+                  postCode: postCode,
+                  email: email,
+                  password: hash,
+                })
+                if (result) {
+                  res.status(200).json('New User')
+                } else
+                  res
+                    .status(500)
+                    .json({ message: 'Wrong password.', result, hash })
               })
-              if (result) {
-                res.status(200).json('New User')
-              } else
-                res
-                  .status(500)
-                  .json({ message: 'Wrong password.', result, hash })
-            })
 
-            .catch((err: { message: any }) => console.log(err.message))
-
-          // const result = await collection.insertOne({
-          //   userId: userId,
-          //   firstAndLastName: firstAndLastName,
-          //   postCode: postCode,
-          //   email: email,
-          //   password: hash ,
-          // })
-
-          // res.json(result)
+              .catch((err: { message: any }) => console.log(err.message))
+          }
         } catch (error) {
           console.error(error)
           res.status(500).json({ message: 'An error occurred.' })

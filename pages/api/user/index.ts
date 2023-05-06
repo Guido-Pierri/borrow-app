@@ -16,39 +16,25 @@ export default async function handler(
         const client = await clientPromise
         const database = client.db('borrow')
         const collection = database.collection('users')
+        const user = await collection.findOne(
+          { email: email },
+          { projection: { password: 1 } }
+        )
+        const storedHash = user?.password
 
-        // const crypto = require("crypto")
-
-        // // Generate a random salt
-        // const salt = 1010
-
-        // // The password to be hashed
-
-        // // Create a hash using SHA-256 with the salt
-        // const hash = crypto
-        //   .createHash("sha256")
-        //   .update(salt + password)
-        //   .digest("hex")
-
-        // console.log("Salt:", salt)
-        // console.log("Hash:", hash)
-        const hashedPassword = hashning(password)
-        try {
-          console.log(req.body)
-
-          const result = await collection.findOne({
-            email: email,
-            password: hashedPassword,
+        const bcrypt = require('bcryptjs')
+        const plainTextPassword = password
+        const hash = storedHash
+        bcrypt
+          .compare(plainTextPassword, hash)
+          .then((result: any) => {
+            console.log(result)
+            if (result) {
+              res.status(200).json(user?._id)
+            } else res.status(500).json(user)
           })
+          .catch((err: { message: any }) => console.error(err.message))
 
-          // res.json(result)
-          if (result) {
-            res.status(200).json(result._id)
-          } else res.status(500).json(result)
-        } catch (error) {
-          console.error(error)
-          res.status(500).json({ message: 'An error occurred.' })
-        }
         break
       }
 

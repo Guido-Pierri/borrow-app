@@ -51,10 +51,14 @@ export default function MyPage() {
     const data = await response.json()
 
     if (data === 'New User') {
-      handleClick()
+      // handleClick()
+      window.location.href = '/login'
+    } else {
+      console.log(JSON.parse(JSON.stringify(data)))
+
+      alert(JSON.stringify(data))
     }
     console.log(data)
-    window.location.href = '/login'
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
