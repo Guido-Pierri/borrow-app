@@ -133,11 +133,20 @@ export default function Post({ ads }: Props, { publisher }: any) {
             <div className="w-full text-[#0f0e0e] mt-4 ">
               <div className="text-right flex justify-center">
                 <button
-                  className="border w-[298px] bg-[#9EBB9D] py-3 rounded-sm h-[55px] border-[#9EBB9D] text-black "
+                  className="border flex flex-row justify-center w-[298px] bg-[#9EBB9D] text-[17px] py-3 rounded-sm h-[55px] border-[#9EBB9D] text-black "
                   value={ads?.id}
                   type="submit"
                   onClick={() => updateAd(ads?.id)}
                 >
+                  <div className="mr-2 mt-1">
+                    <Image
+                      src={"/Pencil.svg"}
+                      alt={"#"}
+                      width={"18"}
+                      height={"18"}
+                      style={{ alignSelf: "center" }}
+                    ></Image>
+                  </div>
                   Redigera
                 </button>
               </div>
@@ -145,11 +154,20 @@ export default function Post({ ads }: Props, { publisher }: any) {
               <div className=" mt-4 ">
                 <div className="flex justify-center">
                   <button
-                    className="rounded-sm text-[17px] h-[55px] text-black border-[#9EBB9D]  border w-[298px]  py-3"
+                    className="rounded-sm text-[17px] h-[55px] flex flex-row justify-center text-black border-[#9EBB9D]  border w-[298px]  py-3"
                     value={ads?.id}
                     type="submit"
                     onClick={() => deleteAd(ads?.id, ads?.publisher)}
                   >
+                    <div className="mr-2">
+                      <Image
+                        src={"/trashcanBlack.svg"}
+                        alt={"#"}
+                        width={"19"}
+                        height={"22"}
+                        style={{ alignSelf: "center" }}
+                      ></Image>
+                    </div>
                     Ta bort annons
                   </button>
                   <br />
