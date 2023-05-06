@@ -28,7 +28,9 @@ export default function Login() {
 
     const data = await response.json()
 
-    console.log('data', response)
+    console.log('response from api', response)
+    console.log(data)
+
     if (response.ok) {
       window.location.href = `/ads/${data}`
     } else {

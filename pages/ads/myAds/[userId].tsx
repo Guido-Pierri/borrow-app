@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import { ObjectId } from 'mongodb'
 import DesignLine from '@/p-components/designLine'
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
+import hashning from '@/lib/functions/hashning'
 
 interface AdId {
   id: string
