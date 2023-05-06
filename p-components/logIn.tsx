@@ -1,12 +1,12 @@
-import Link from 'next/link'
-import { useState } from 'react'
+import Link from "next/link"
+import { useState } from "react"
 
-import { LogIn } from '@/types/logIns'
+import { LogIn } from "@/types/logIns"
 
 export default function Login() {
   const [formData, setFormData] = useState<LogIn>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   })
 
   console.log(formData)
@@ -18,10 +18,10 @@ export default function Login() {
       password: formData.password,
     }
 
-    const response = await fetch('/api/user', {
-      method: 'POST',
+    const response = await fetch("/api/user", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
@@ -34,7 +34,7 @@ export default function Login() {
     if (response.ok) {
       window.location.href = `/ads/${data}`
     } else {
-      alert('Inloggning mysslyckades')
+      alert("Inloggning mysslyckades")
     }
   }
 
@@ -61,7 +61,7 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
           <label>
             <input
-              className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+              className="rounded py-4 px-7 mt-8 border w-[265px] outline-[#9EBB9D] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
               placeholder="E-post..."
               type="email"
               name="email"
@@ -74,7 +74,7 @@ export default function Login() {
           </label>
           <label>
             <input
-              className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+              className="rounded py-4 px-7 mt-8 border w-[265px] outline-[#9EBB9D] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
               placeholder="Lösenord..."
               type="password"
               name="password"
@@ -97,8 +97,8 @@ export default function Login() {
               Logga in
             </button>
             <p className="mt-20 text-sm text-black">
-              Har du inget konto än?{' '}
-              <Link href={'/register-site'}>
+              Har du inget konto än?{" "}
+              <Link href={"/register-site"}>
                 <span className="text-[#0074B6] font-medium underline text-md">
                   Registrera dig här
                 </span>
