@@ -141,7 +141,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <legend className="mb-[-16px] ">Titel</legend>
           <input
-            className="rounded py-4 px-2 mt-4 border w-[298px]  border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-2 mt-4 border w-[298px] outline-[#9EBB9D] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             // placeholder="Titel..."
             type="text"
             name="title"
@@ -162,7 +162,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
             onChange={handleInputChange}
           /> */}
           <textarea
-            className="border border-[#9EBB9D] w-[298px] px-2 resize-none rounded"
+            className="border border-[#9EBB9D] outline-[#9EBB9D] w-[298px] px-2 resize-none rounded"
             name="description"
             required
             value={formData.description}
@@ -174,7 +174,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <legend className="mb-[2px] mt-5 ">Välj en kategori</legend>
           <select
-            className="rounded py-4 px-2 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-2 border w-[298px] outline-[#9EBB9D] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             id="simple"
             name="category"
             value={formData.category}
@@ -191,7 +191,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <legend className="mb-[-32px] mt-5">Namn</legend>
           <input
-            className="rounded py-4 px-2 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-2 mt-8 border w-[298px] outline-[#9EBB9D] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             // placeholder="För- och efternamn..."
             type="text"
             name="fullName"
@@ -203,7 +203,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <label>
           <legend className="mb-[-32px] mt-5">E-post</legend>
           <input
-            className="rounded py-4 px-2 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            className="rounded py-4 px-2 mt-8 border w-[298px] outline-[#9EBB9D] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
             // placeholder="Email..."
             type="email"
             name="email"

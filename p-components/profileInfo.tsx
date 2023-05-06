@@ -1,7 +1,7 @@
-import type { AppProps } from 'next/app'
-import CloseIcon from './closeIcon'
-import CloseIconStatic from './closeIconStatic'
-import { User } from '@/types/user'
+import type { AppProps } from "next/app"
+import CloseIcon from "./closeIcon"
+import CloseIconStatic from "./closeIconStatic"
+import { User } from "@/types/user"
 export default function ProfileInfo({
   user,
   setShowInfo,
@@ -30,37 +30,37 @@ export default function ProfileInfo({
         <label className="text-left">
           <p className="mt-[3.6%]">Ditt namn</p>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             type="text"
             name="firstName"
             //   value={formData.firstName}
             required
             //   onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
           <p className="mt-[0.56%]">E-post</p>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             type="email"
             name="email"
             required
             //   value={formData.email}
             //   onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
           <p className="mt-[0.56%]">Adress</p>
 
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             type="text"
             name="adress"
             //   value={formData.adress}
             //   onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
             required
           />
         </label>
@@ -69,12 +69,12 @@ export default function ProfileInfo({
           <p className="mt-[0.56%]">Ändra lösenord</p>
 
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             type="text"
             name="mobileNumber"
             //   value={formData.mobileNumber}
             //   onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
             required
           />
         </label>
@@ -82,7 +82,7 @@ export default function ProfileInfo({
 
         <label>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             type="password"
             name="password"
             required
@@ -91,7 +91,7 @@ export default function ProfileInfo({
             minLength={8}
             //   value={formData.password}
             //   onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <button className="mt-[1.56%]  rounded-[2px] bg-[#9EBB9D] placeholder-[#000000] w-full h-[55px] flex items-center justify-center">

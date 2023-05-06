@@ -1,4 +1,4 @@
-import { GoSearch } from 'react-icons/go'
+import { GoSearch } from "react-icons/go"
 
 export default function SearchBar({ setQuery, query }: any) {
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -9,7 +9,7 @@ export default function SearchBar({ setQuery, query }: any) {
     <form onSubmit={handleFormSubmit}>
       <label className="relative">
         <input
-          className="bg-gray-300 font-sans placeholder-black px-6 py-2 rounded-sm w-80"
+          className="bg-[#E6E6E6] font-sans placeholder-black outline-[#9EBB9D] px-6 py-2 rounded-sm w-80"
           type="text"
           placeholder="Sök..."
           value={query}
