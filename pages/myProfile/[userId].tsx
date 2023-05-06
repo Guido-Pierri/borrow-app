@@ -13,7 +13,7 @@ interface Props {
 export default function MyProfile({ user }: Props) {
   const router = useRouter()
   const { userId } = router.query
-  console.log(user.firstName)
+  console.log(user.firstAndLastName)
   const [showInfo, setShowInfo] = useState<string>('hidden')
   const [showHeader, setShowHeader] = useState<string>('')
   const [showProfile, setShowProfile] = useState<string>('')
