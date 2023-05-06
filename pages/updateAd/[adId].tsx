@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid"
 import CloseIcon from "@/p-components/closeIcon"
 import Icons from "@/p-components/icons"
 import UpdateImage from "@/p-components/updateImage"
+import Image from "next/image"
 
 interface AdId {
   id: string
@@ -294,11 +295,20 @@ export default function Post({ ads }: Props) {
                     <div className="flex mt-4 justify-center">
                       <div className="">
                         <button
-                          className="rounded-sm  text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[298px]  py-3"
+                          className="rounded-sm  text-[17px] flex flex-row justify-center text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[298px]  py-3"
                           value={ads?.id}
                           type="submit"
                           onClick={() => updateAd(ads?.id)}
                         >
+                          <div className="mr-2">
+                            <Image
+                              src={"/Downloading Updates.svg"}
+                              alt={"#"}
+                              width={"25"}
+                              height={"25"}
+                              style={{ alignSelf: "center" }}
+                            ></Image>
+                          </div>
                           Spara annons
                         </button>
                       </div>
@@ -306,11 +316,20 @@ export default function Post({ ads }: Props) {
                     <div className="flex mt-4 justify-center">
                       <div className="">
                         <button
-                          className="rounded-sm text-[17px] text-black border-[#9EBB9D]  border w-[298px]  py-3"
+                          className="rounded-sm text-[17px] text-black flex flex-row justify-center border-[#9EBB9D]  border w-[298px]  py-3"
                           value={ads?.id}
                           type="submit"
                           onClick={() => deleteAd(ads?.id, ads?.publisher)}
                         >
+                          <div className="mr-2">
+                            <Image
+                              src={"/trashcanBlack.svg"}
+                              alt={"#"}
+                              width={"19"}
+                              height={"22"}
+                              style={{ alignSelf: "center" }}
+                            ></Image>
+                          </div>
                           Ta bort annons
                         </button>
                         <br />
