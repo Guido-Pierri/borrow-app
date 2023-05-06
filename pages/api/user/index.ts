@@ -1,65 +1,51 @@
-import clientPromise from "@/lib/mongodb"
-import { User } from "@/types/user"
-import { NextApiRequest, NextApiResponse } from "next"
+import hashning from '@/lib/functions/hashning'
+import clientPromise from '@/lib/mongodb'
+import { LogIn } from '@/types/logIns'
+import { User } from '@/types/user'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const db = (await clientPromise).db
     switch (req.method) {
-      case "POST": {
+      case 'POST': {
         console.log(req.body)
-        const { email, password } = req.body as User
+        const { email, password } = req.body as LogIn
         const client = await clientPromise
-        const database = client.db("borrow")
-        const collection = database.collection("users")
+        const database = client.db('borrow')
+        const collection = database.collection('users')
+        const user = await collection.findOne(
+          { email: email },
+          { projection: { password: 1 } }
+        )
+        const storedHash = user?.password
 
-        const crypto = require("crypto")
-
-        // Generate a random salt
-        const salt = 1010
-
-        // The password to be hashed
-
-        // Create a hash using SHA-256 with the salt
-        const hash = crypto
-          .createHash("sha256")
-          .update(salt + password)
-          .digest("hex")
-
-        console.log("Salt:", salt)
-        console.log("Hash:", hash)
-
-        try {
-          console.log(req.body)
-          // const name = req.body.name
-          // const email = req.body.email
-          const result = await collection.findOne({
-            password: hash,
+        const bcrypt = require('bcryptjs')
+        const plainTextPassword = password
+        const hash = storedHash
+        bcrypt
+          .compare(plainTextPassword, hash)
+          .then((result: any) => {
+            console.log(result)
+            if (result) {
+              res.status(200).json(user?._id)
+            } else res.status(500).json(user)
           })
+          .catch((err: { message: any }) => console.error(err.message))
 
-          // res.json(result)
-          if (result) {
-            res.status(200).json(result._id)
-          } else
-            res.status(500).json({ message: "Wrong password.", result, hash })
-        } catch (error) {
-          console.error(error)
-          res.status(500).json({ message: "An error occurred." })
-        }
         break
       }
 
       default: {
         // Return a 405 Method Not Allowed error for all other HTTP methods
-        res.setHeader("Allow", ["GET", "POST"])
+        res.setHeader('Allow', ['GET', 'POST'])
         res.status(405).end(`Method ${req.method} Not Allowed`)
         break
       }
     }
   } catch (error) {
-    throw new Error("Something went wrong " + error)
+    throw new Error('Something went wrong ' + error)
   }
 }
