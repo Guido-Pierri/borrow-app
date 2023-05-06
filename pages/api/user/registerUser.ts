@@ -8,46 +8,24 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const db = (await clientPromise).db
+    // const db = (await clientPromise).db
+    const client = await clientPromise
+    const database = client.db('borrow')
+    const collection = database.collection('users')
     switch (req.method) {
       case 'POST': {
         console.log(req.body)
-        const {
-          userId,
-          firstName,
-          lastName,
-          adress,
-          email,
-          mobileNumber,
-          password,
-        } = req.body as User
-        const client = await clientPromise
-        const database = client.db('borrow')
-        const collection = database.collection('users')
+
+        const { userId, firstAndLastName, postCode, email, password } =
+          req.body as User
+
         hashning(password)
-        // const crypto = require("crypto")
-
-        // // Generate a random salt
-        // const salt = 1010
-
-        // // The password to be hashed
-
-        // // Create a hash using SHA-256 with the salt
-        // const hash = crypto
-        //   .createHash("sha256")
-        //   .update(salt + password)
-        //   .digest("hex")
-
-        // console.log("Salt:", salt)
-        // console.log("Hash:", hash)
 
         try {
           console.log(req.body)
-          // const name = req.body.name
-          // const email = req.body.email
+
           const result = await collection.insertOne(req.body)
 
-          // res.json(result)
           if (result) {
             res.status(200).json('New User')
           } else
