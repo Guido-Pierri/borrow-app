@@ -6,7 +6,7 @@ import Toggle from './toggle'
 export default function NotificationsContent() {
   return (
     <>
-      <div className="font-sans bg-[#FFFFFF] flex flex-col h-[640px] w-[345px] border-2 border-black rounded-lg">
+      <div className="font-sans bg-[#FFFFFF] flex flex-col h-[640px] w-[345px] rounded-lg">
         <div className="mt-[25px] ml-[10%] mr-[5.8%] flex flex-row justify-between ">
           <p className="text-xl font-[700] text-black flex justify-start">
             Mina uppgifter
