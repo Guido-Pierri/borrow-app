@@ -3,7 +3,18 @@ import CloseIconStatic from './closeIconStatic'
 import CloseIcon from './closeIcon'
 import { Switch } from '@headlessui/react'
 import Toggle from './toggle'
-export default function NotificationsContent() {
+import { FC } from 'react'
+import CloseIconWOLink from './closeIconWOLink'
+interface NotificationsContentProps {
+  onClose: () => void
+}
+
+const NotificationsContent: FC<NotificationsContentProps> = ({ onClose }) => {
+  const handleContentClick = (event: any) => {
+    // Stop the event from propagating up to the outer div
+    event.stopPropagation()
+  }
+
   return (
     <>
       <div className="font-sans bg-[#FFFFFF] flex flex-col h-[640px] w-[345px] rounded-lg">
@@ -11,7 +22,11 @@ export default function NotificationsContent() {
           <p className="text-xl font-[700] text-black flex justify-start">
             Mina uppgifter
           </p>
-          <CloseIcon />
+          <div>
+            <button onClick={onClose}>
+              <CloseIconWOLink />
+            </button>
+          </div>
         </div>
         <form
           className="ml-[10%] mr-[10%]
@@ -140,3 +155,4 @@ export default function NotificationsContent() {
     </>
   )
 }
+export default NotificationsContent

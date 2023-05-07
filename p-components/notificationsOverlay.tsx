@@ -6,14 +6,15 @@ interface OverlayProps {
 }
 
 const notificationsOverlay: FC<OverlayProps> = ({ onClose }) => {
-  const handleContentClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleContentClick = (event: any) => {
     // Stop the event from propagating up to the outer div
     event.stopPropagation()
   }
+
   return (
     <div className="overlay" onClick={onClose}>
       <div onClick={handleContentClick}>
-        <NotificationsContent />
+        <NotificationsContent onClose={onClose} />
       </div>
     </div>
   )
