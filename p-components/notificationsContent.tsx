@@ -91,8 +91,8 @@ const NotificationsContent: FC<NotificationsContentProps> = ({ onClose }) => {
               </label>
             </div>
 
-            <div className="mt-[225px] mb-[55px]">
-              <button className="w-full h-[55px] mt-[] rounded-[2px] bg-[#9EBB9D]  flex items-center justify-center">
+            <div className="">
+              <button className="mt-[225px] mb-[55px] w-full h-[55px] rounded-[2px] bg-[#9EBB9D]  flex items-center justify-center">
                 <div className="">
                   <svg
                     width="27"
