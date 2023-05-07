@@ -17,7 +17,7 @@ const NotificationsContent: FC<NotificationsContentProps> = ({ onClose }) => {
 
   return (
     <>
-      <div className="font-sans bg-[#FFFFFF] flex flex-col h-[640px] w-[full] rounded-lg mx-[11.5%]">
+      <div className="font-sans bg-[#FFFFFF] flex flex-col h-[full] w-[full] rounded-lg ml-[5.7%] mr-[5.7%] my-[12%]">
         <div className="mt-[25px] ml-[10%] mr-[5.8%] flex flex-row justify-between ">
           <p className="text-xl font-[700] text-black flex justify-start">
             Mina uppgifter
