@@ -1,0 +1,23 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-content {
+  /* set the desired width and height for the overlay */
+  /* width: 120%; */
+  /* center the content within the overlay */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* add a background color and some padding */
+  /* background-color: #fff; */
+  /* padding: 20px; */
+}

@@ -6,6 +6,7 @@ import ProfileImage from '@/p-components/profileImageChangeIcon'
 import ProfileInfo from '@/p-components/profileInfo'
 import { useState } from 'react'
 import HeaderWithCloseIconProfile from '@/p-components/HeaderWithCloseIconProfile'
+import NotificationsOverlay from '@/p-components/notificationsOverlay'
 
 interface Props {
   user: User
@@ -17,7 +18,13 @@ export default function MyProfile({ user }: Props) {
   const [showInfo, setShowInfo] = useState<string>('hidden')
   const [showHeader, setShowHeader] = useState<string>('')
   const [showProfile, setShowProfile] = useState<string>('')
-
+  const [showOverlay, setShowOverlay] = useState(false)
+  const handleElementClick = () => {
+    setShowOverlay(true)
+  }
+  const handleCloseOverlay = () => {
+    setShowOverlay(false)
+  }
   console.log(showInfo)
 
   return (
@@ -60,10 +67,15 @@ export default function MyProfile({ user }: Props) {
             </p>
             <p
               className="mt-[5.38%] text-base font-normal clickable"
-              onClick={() => {}}
+              onClick={handleElementClick}
             >
               Notiser
             </p>
+            <div>
+              {showOverlay && (
+                <NotificationsOverlay onClose={handleCloseOverlay} />
+              )}
+            </div>
             <p
               className="mt-[5.38%] text-base font-normal clickable"
               onClick={() => {

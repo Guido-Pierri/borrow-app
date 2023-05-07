@@ -1,5 +1,7 @@
 import '@/styles/globals.css'
 import '@/styles/burger.css'
+import '@/styles/overlay.css'
+
 import type { AppProps } from 'next/app'
 import { Righteous } from 'next/font/google'
 

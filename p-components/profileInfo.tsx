@@ -1,7 +1,4 @@
-import type { AppProps } from "next/app"
-import CloseIcon from "./closeIcon"
-import CloseIconStatic from "./closeIconStatic"
-import { User } from "@/types/user"
+import CloseIconStatic from './closeIconStatic'
 export default function ProfileInfo({
   user,
   setShowInfo,
@@ -36,7 +33,7 @@ export default function ProfileInfo({
             //   value={formData.firstName}
             required
             //   onChange={handleInputChange}
-            style={{ color: "#000000" }}
+            style={{ color: '#000000' }}
           />
         </label>
         <label>
@@ -48,7 +45,7 @@ export default function ProfileInfo({
             required
             //   value={formData.email}
             //   onChange={handleInputChange}
-            style={{ color: "#000000" }}
+            style={{ color: '#000000' }}
           />
         </label>
         <label>
@@ -60,7 +57,7 @@ export default function ProfileInfo({
             name="adress"
             //   value={formData.adress}
             //   onChange={handleInputChange}
-            style={{ color: "#000000" }}
+            style={{ color: '#000000' }}
             required
           />
         </label>
@@ -74,7 +71,7 @@ export default function ProfileInfo({
             name="mobileNumber"
             //   value={formData.mobileNumber}
             //   onChange={handleInputChange}
-            style={{ color: "#000000" }}
+            style={{ color: '#000000' }}
             required
           />
         </label>
@@ -91,7 +88,7 @@ export default function ProfileInfo({
             minLength={8}
             //   value={formData.password}
             //   onChange={handleInputChange}
-            style={{ color: "#000000" }}
+            style={{ color: '#000000' }}
           />
         </label>
         <button className="mt-[1.56%]  rounded-[2px] bg-[#9EBB9D] placeholder-[#000000] w-full h-[55px] flex items-center justify-center">
