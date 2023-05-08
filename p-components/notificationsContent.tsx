@@ -17,7 +17,7 @@ const NotificationsContent: FC<NotificationsContentProps> = ({ onClose }) => {
 
   return (
     <>
-      <div className="font-sans bg-[#FFFFFF] flex flex-col h-[640px] w-[full] rounded-lg ml-[5.7%] mr-[5.7%] my-[12%]">
+      <div className="font-sans bg-[#FFFFFF] flex flex-col h-[640px] w-[345px] rounded-lg">
         <div className="mt-[25px] ml-[10%] mr-[5.8%] flex flex-row justify-between ">
           <p className="text-xl font-[700] text-black flex justify-start">
             Mina uppgifter
@@ -91,8 +91,8 @@ const NotificationsContent: FC<NotificationsContentProps> = ({ onClose }) => {
               </label>
             </div>
 
-            <div className="">
-              <button className="mt-[225px] mb-[55px] w-full h-[55px] rounded-[2px] bg-[#9EBB9D]  flex items-center justify-center">
+            <div className="mt-[225px] ">
+              <button className="w-full h-[55px] mt-[] rounded-[2px] bg-[#9EBB9D]  flex items-center justify-center">
                 <div className="">
                   <svg
                     width="27"
