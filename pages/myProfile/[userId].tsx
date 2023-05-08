@@ -7,6 +7,7 @@ import ProfileInfo from '@/p-components/profileInfo'
 import { useState } from 'react'
 import HeaderWithCloseIconProfile from '@/p-components/HeaderWithCloseIconProfile'
 import NotificationsOverlay from '@/p-components/notificationsOverlay'
+import DeleteAccountOverlay from '@/p-components/deleteAccountOverlay'
 
 interface Props {
   user: User
@@ -84,6 +85,11 @@ export default function MyProfile({ user }: Props) {
             >
               Avsluta konto
             </p>
+            <div>
+              {showOverlay && (
+                <DeleteAccountOverlay onClose={handleCloseOverlay} />
+              )}
+            </div>
           </div>
         </section>
       </div>
