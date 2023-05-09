@@ -5,6 +5,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 import Upload from "@/p-components/upload";
+import Image from "next/image";
 
 //function that generates random id:s
 uuidv4();
@@ -187,14 +188,18 @@ export default function CreateAd({ imageUrl, userId }: any) {
 
         <br />
         <br />
-        <button
-          className="
-           rounded-sm text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[298px]  py-3
-    "
-          type="submit"
-        >
-          Publicera annons
-        </button>
+        <div className="flex">
+          <button className="relative rounded-sm text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[298px] py-3 text-center">
+            <Image
+              src={"/Pin.svg"}
+              width={24}
+              height={24}
+              alt={""}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 ml-4"
+            />
+            Publicera inlägg
+          </button>
+        </div>
       </form>
     </div>
   );

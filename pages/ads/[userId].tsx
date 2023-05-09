@@ -65,6 +65,26 @@ const Ads = ({ ads }: Props) => {
     if (dataResponse) {
     }
   }
+
+  const handleClickBoard = async (id: string) => {
+    console.log('inside handleClickBoard')
+    console.log(`${userId}`)
+    window.location.href = `/board/${id}`
+    const response = await fetch(`/api/user/${userId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(`${userId}`),
+    })
+
+    const dataResponse = await response.json()
+
+    console.log('dataResponse', dataResponse)
+    if (dataResponse) {
+    }
+  }
+
   console.log('filteredAds', filteredAds)
 
   return (
@@ -87,7 +107,12 @@ const Ads = ({ ads }: Props) => {
           >
             Mina annonser
           </button>
-          <button className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black">
+          <button
+            className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black"
+            onClick={() => {
+              handleClickBoard(`${userId}`)
+            }}
+          >
             Tavlan
           </button>
         </section>
