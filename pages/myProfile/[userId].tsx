@@ -19,12 +19,21 @@ export default function MyProfile({ user }: Props) {
   const [showInfo, setShowInfo] = useState<string>('hidden')
   const [showHeader, setShowHeader] = useState<string>('')
   const [showProfile, setShowProfile] = useState<string>('')
-  const [showOverlay, setShowOverlay] = useState(false)
-  const handleElementClick = () => {
-    setShowOverlay(true)
+  const [showNotificationsOverlay, setShowNotificationsOverlay] =
+    useState(false)
+  const [showDeleteAccountOverlay, setShowDeleteAccountOverlay] =
+    useState(false)
+  const handleNotificationsElementClick = () => {
+    setShowNotificationsOverlay(true)
   }
-  const handleCloseOverlay = () => {
-    setShowOverlay(false)
+  const handleCloseNotificationsOverlay = () => {
+    setShowNotificationsOverlay(false)
+  }
+  const handleDeleteAccountElementClick = () => {
+    setShowDeleteAccountOverlay(true)
+  }
+  const handleCloseDeleteAccountOverlay = () => {
+    setShowDeleteAccountOverlay(false)
   }
   console.log(showInfo)
 
@@ -68,26 +77,28 @@ export default function MyProfile({ user }: Props) {
             </p>
             <p
               className="mt-[5.38%] text-base font-normal clickable"
-              onClick={handleElementClick}
+              onClick={handleNotificationsElementClick}
             >
               Notiser
             </p>
             <div>
-              {showOverlay && (
-                <NotificationsOverlay onClose={handleCloseOverlay} />
+              {showNotificationsOverlay && (
+                <NotificationsOverlay
+                  onClose={handleCloseNotificationsOverlay}
+                />
               )}
             </div>
             <p
               className="mt-[5.38%] text-base font-normal clickable"
-              onClick={() => {
-                router.push('#')
-              }}
+              onClick={handleDeleteAccountElementClick}
             >
               Avsluta konto
             </p>
             <div>
-              {showOverlay && (
-                <DeleteAccountOverlay onClose={handleCloseOverlay} />
+              {showDeleteAccountOverlay && (
+                <DeleteAccountOverlay
+                  onClose={handleCloseDeleteAccountOverlay}
+                />
               )}
             </div>
           </div>
