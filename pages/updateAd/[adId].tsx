@@ -304,8 +304,8 @@ export default function Post({ ads }: Props) {
                             <Image
                               src={"/Downloading Updates.svg"}
                               alt={"#"}
-                              width={"25"}
-                              height={"25"}
+                              width={"27"}
+                              height={"27"}
                               style={{ alignSelf: "center" }}
                             ></Image>
                           </div>
