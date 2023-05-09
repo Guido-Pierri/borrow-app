@@ -1,6 +1,6 @@
 //TODO
 //add userId to ads dynamically from login-->ads--->createAds
-
+import Image from "next/image"
 import { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
 import { useRouter } from "next/router"
@@ -217,10 +217,19 @@ export default function CreateAd({ imageUrl, userId }: any) {
         <br />
         <button
           className="
-           rounded-sm text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[298px]  py-3
+           rounded-sm text-[17px] flex flex-row justify-center py-3 text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[298px]
     "
           type="submit"
         >
+          <div className="mr-2 mt-[-2]">
+            <Image
+              src={"/Paper Plane.svg"}
+              alt={"#"}
+              width={"27"}
+              height={"27"}
+              style={{ alignSelf: "center" }}
+            ></Image>
+          </div>
           Publicera annons
         </button>
         <br />
