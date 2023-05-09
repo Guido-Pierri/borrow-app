@@ -77,12 +77,18 @@ export const Links = ({ userId }: UserId) => (
       >
         <p className="pr-24 mb-8">Min profil</p>
       </div>
-      <Link href="/information-side">
+      <div
+        className="clickable"
+        onClick={() => router.push(`/information-side/${userId}`)}
+      >
         <p className="pr-24 mb-8">Så fungerar Borrow</p>
-      </Link>
-      <Link href="/contact">
+      </div>
+      <div
+        className="clickable"
+        onClick={() => router.push(`/contact/${userId}`)}
+      >
         <p className="">Kontakta oss</p>
-      </Link>
+      </div>
     </div>
   </>
 )

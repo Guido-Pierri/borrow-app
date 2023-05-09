@@ -12,7 +12,7 @@ const Board = ({}) => {
   const { userId } = router.query
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
-      <Header></Header>
+      <Header userId={userId} anotherUserId={userId}></Header>
       <form>
         <label className="relative">
           <input
