@@ -1,18 +1,17 @@
-
-import Link from 'next/link'
-import Header from '@/p-components/header'
-import { GoSearch } from 'react-icons/go'
-import { Ad } from '@/types/ads'
-import { CldImage } from 'next-cloudinary'
-import Image from 'next/image'
-import { Suspense } from 'react'
-import Categories from '@/p-components/categories'
-import clientPromise from '@/lib/mongodb'
-import { useRouter } from 'next/router'
-import { ObjectId } from 'mongodb'
-import DesignLine from '@/p-components/designLine'
-import ButtonCreateAd from '@/p-components/buttonCreateAd'
-import hashning from '@/lib/functions/hashning'
+import Link from "next/link"
+import Header from "@/p-components/header"
+import { GoSearch } from "react-icons/go"
+import { Ad } from "@/types/ads"
+import { CldImage } from "next-cloudinary"
+import Image from "next/image"
+import { Suspense } from "react"
+import Categories from "@/p-components/categories"
+import clientPromise from "@/lib/mongodb"
+import { useRouter } from "next/router"
+import { ObjectId } from "mongodb"
+import DesignLine from "@/p-components/designLine"
+import ButtonCreateAd from "@/p-components/buttonCreateAd"
+import hashning from "@/lib/functions/hashning"
 
 interface AdId {
   id: string
@@ -108,7 +107,7 @@ const Ads = ({ ads }: Props) => {
       </section>
 
       <div className="bg-[#46649D] h-2"></div>
-      <Categories></Categories>
+      {/* <Categories></Categories> */}
       <div onClick={navigateToCreateAd}>
         <ButtonCreateAd></ButtonCreateAd>
         {/* <button
