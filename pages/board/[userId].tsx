@@ -1,15 +1,15 @@
-import Categories from "@/p-components/categories";
-import Header from "@/p-components/header";
-import { NextPage } from "next";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { GoSearch } from "react-icons/go";
+import Categories from '@/p-components/categories'
+import Header from '@/p-components/header'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { GoSearch } from 'react-icons/go'
 
 interface Props {}
 
 const Board = ({}) => {
-  const router = useRouter();
-  const { userId } = router.query;
+  const router = useRouter()
+  const { userId } = router.query
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header></Header>
@@ -27,7 +27,7 @@ const Board = ({}) => {
       </form>
 
       <style jsx>{`
-        input[type="text"] {
+        input[type='text'] {
           background-repeat: no-repeat;
           background-size: 16px 16px;
           background-position: 8px 50%;
@@ -43,9 +43,7 @@ const Board = ({}) => {
         <Link href={`/ads/myAds/` + `${userId}`}>
           <button
             className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1 text-black"
-            onClick={() => {
-              alert("Logga in för att se dina annonser");
-            }}
+            onClick={() => {}}
           >
             Mina annonser
           </button>
@@ -69,7 +67,7 @@ const Board = ({}) => {
       </div>
       <section></section>
     </div>
-  );
-};
+  )
+}
 
-export default Board;
+export default Board
