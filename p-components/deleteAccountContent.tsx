@@ -6,6 +6,7 @@ import { ObjectId } from '@/types/objectId'
 import { NextPage, GetStaticPaths } from 'next'
 import Image from 'next/image'
 import { FC, FormEvent } from 'react'
+import router from 'next/router'
 
 interface DeleteAccountContentProps {
   onClose: () => void
@@ -45,6 +46,7 @@ const DeleteAccountContent: FC<DeleteAccountContentProps> = ({
       if (data) {
       }
       alert('Konto avslutat')
+      router.push('/login')
     } catch (error) {
       console.error(error)
       // handle error
