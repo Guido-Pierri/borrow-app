@@ -2,6 +2,7 @@ import clientPromise from '@/lib/mongodb'
 import { UserId } from '@/types/userId'
 import { ObjectId } from 'mongodb'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { useRouter } from 'next/router'
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,11 +13,11 @@ export default async function handler(
   const collection = database.collection('users')
   try {
     switch (req.method) {
-      case 'POST': {
-        const { userId } = req.body as UserId
+      case 'DELETE': {
+        const { userId } = req.query as UserId
         const objectId = new ObjectId(userId)
-        const result = await collection.findOne(objectId)
-        res.json({ result: [{ result }, { req: objectId }] })
+        const result = await collection.findOneAndDelete({ _id: objectId })
+        res.json(result)
         break
       }
     }

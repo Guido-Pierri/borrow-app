@@ -22,19 +22,20 @@ const DeleteAccountContent: FC<DeleteAccountContentProps> = ({
   const deleteAccount = async (userId: string) => {
     console.log('inside deleteAccount function')
 
-    console.log('_id:', userId)
+    console.log('userId:', userId)
+    const apiData = userId
 
-    console.log('apiData:', '645b402a1465885c42c6ba16')
-    const apiData = { _id: '645b402a1465885c42c6ba16' }
+    // console.log('apiData:', userId)
+    // const apiData = { _id: userId }
     try {
       console.log('apiData:', apiData)
 
-      const response = await fetch('/api/user', {
+      const response = await fetch(`/api/user/deleteUser/${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(apiData),
+        // body: JSON.stringify({ userId: userId }),
       })
       if (!response.ok) {
         throw new Error(`Failed to delete account with userId ${userId}`)
