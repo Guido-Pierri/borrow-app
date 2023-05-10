@@ -1,27 +1,29 @@
-import Link from "next/link"
-import { useState } from "react"
+import Link from 'next/link'
+import { useState } from 'react'
 
-import { LogIn } from "@/types/logIns"
+import { LogIn } from '@/types/logIns'
 
 export default function Login() {
   const [formData, setFormData] = useState<LogIn>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   })
 
   console.log(formData)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    console.log('in i handlesubmit')
+
     const apiData: LogIn = {
       email: formData.email,
       password: formData.password,
     }
 
-    const response = await fetch("/api/user", {
-      method: "POST",
+    const response = await fetch('/api/user', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(apiData),
     })
@@ -29,13 +31,14 @@ export default function Login() {
     const data = await response.json()
 
     console.log('response from api', response)
-    console.log(data)
+    console.log('data:', data)
 
     if (response.ok) {
       window.location.href = `/ads/${data}`
     } else {
-      alert("Inloggning mysslyckades")
+      alert('Inloggning mysslyckades')
     }
+    console.log(response)
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,8 +100,8 @@ export default function Login() {
               Logga in
             </button>
             <p className="mt-20 text-sm text-black">
-              Har du inget konto än?{" "}
-              <Link href={"/register-site"}>
+              Har du inget konto än?{' '}
+              <Link href={'/register-site'}>
                 <span className="text-[#0074B6] font-medium underline text-md">
                   Registrera dig här
                 </span>

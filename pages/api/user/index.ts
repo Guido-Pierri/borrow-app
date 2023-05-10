@@ -1,8 +1,7 @@
-import hashning from '@/lib/functions/hashning'
 import clientPromise from '@/lib/mongodb'
 import { LogIn } from '@/types/logIns'
-import { User } from '@/types/user'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { json } from 'stream/consumers'
 
 export default async function handler(
   req: NextApiRequest,
@@ -31,9 +30,14 @@ export default async function handler(
             console.log(result)
             if (result) {
               res.status(200).json(user?._id)
-            } else res.status(500).json(user)
+            } else res.status(500)
           })
           .catch((err: { message: any }) => console.error(err.message))
+        if (user) {
+          res.status(200).json(user._id)
+        } else {
+          res.status(404).json({ message: 'user not found' })
+        }
 
         break
       }

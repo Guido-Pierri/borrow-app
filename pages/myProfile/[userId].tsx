@@ -98,6 +98,7 @@ export default function MyProfile({ user }: Props) {
               {showDeleteAccountOverlay && (
                 <DeleteAccountOverlay
                   onClose={handleCloseDeleteAccountOverlay}
+                  userId={userId}
                 />
               )}
             </div>
