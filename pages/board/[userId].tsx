@@ -1,15 +1,16 @@
-import Categories from '@/p-components/categories'
-import Header from '@/p-components/header'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { GoSearch } from 'react-icons/go'
+import ButtonCreateAd from "@/p-components/buttonCreateAd";
+import Categories from "@/p-components/categories";
+import Header from "@/p-components/header";
+import { NextPage } from "next";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { GoSearch } from "react-icons/go";
 
 interface Props {}
 
 const Board = ({}) => {
-  const router = useRouter()
-  const { userId } = router.query
+  const router = useRouter();
+  const { userId } = router.query;
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header userId={userId} anotherUserId={userId}></Header>
@@ -27,7 +28,7 @@ const Board = ({}) => {
       </form>
 
       <style jsx>{`
-        input[type='text'] {
+        input[type="text"] {
           background-repeat: no-repeat;
           background-size: 16px 16px;
           background-position: 8px 50%;
@@ -55,9 +56,10 @@ const Board = ({}) => {
       <div className="bg-[#46649D] h-2"></div>
       <div className="flex justify-center mt-5 ">
         <Link href={`/createAdBoard/` + `${userId}`}>
-          <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans">
+          {/* <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans">
             <p className="text-black"> Skapa inlägg</p>
-          </button>
+          </button> */}
+          <ButtonCreateAd />
         </Link>
       </div>
       <div className="text-left px-4">
@@ -67,7 +69,7 @@ const Board = ({}) => {
       </div>
       <section></section>
     </div>
-  )
-}
+  );
+};
 
-export default Board
+export default Board;
