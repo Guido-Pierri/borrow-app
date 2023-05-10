@@ -1,25 +1,25 @@
-import CloseIcon from "@/p-components/closeIcon"
-import Header from "@/p-components/header"
-import HeaderWithCloseIcon from "@/p-components/headerWithCloseIcon"
-import { User } from "@/types/user"
-import { NextPage } from "next"
-import { useState } from "react"
-import { v4 as uuidv4 } from "uuid"
-import Link from "next/link"
-import hashning from "@/lib/functions/hashning"
+import CloseIcon from '@/p-components/closeIcon'
+import Header from '@/p-components/header'
+import HeaderWithCloseIcon from '@/p-components/headerWithCloseIcon'
+import { User } from '@/types/user'
+import { NextPage } from 'next'
+import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import Link from 'next/link'
+import hashning from '@/lib/functions/hashning'
 
 // function navigateTo() {
 //   window.location.href = "/ads"
 // }
 export default function MyPage() {
   // const router = useRouter()
-  const [confirmPassword, setConfirmedPassword] = useState<string>("")
+  const [confirmPassword, setConfirmedPassword] = useState<string>('')
   const [formData, setFormData] = useState<User>({
     userId: uuidv4(),
-    firstAndLastName: "",
-    postCode: "",
-    email: "",
-    password: "",
+    firstAndLastName: '',
+    postCode: '',
+    email: '',
+    password: '',
   })
 
   console.log(hashning(formData.password))
@@ -28,7 +28,7 @@ export default function MyPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     function handleClick() {
-      console.log("handleClick")
+      console.log('handleClick')
 
       // router.push('/ads')
     }
@@ -41,20 +41,21 @@ export default function MyPage() {
     }
 
     const response = await fetch(`/api/registration`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(apiData),
     })
 
     const data = await response.json()
 
-    if (!confirmYourPassword()) {
-      return false
+    if (confirmYourPassword() && data === 'New User') {
+      window.location.href = '/login'
     } else {
-      window.location.href = "/login"
       console.log(JSON.parse(JSON.stringify(data)))
+      alert('Det finns redan en användare med samma epost!')
+      return false
     }
 
     // const data = await response.json()
@@ -83,7 +84,7 @@ export default function MyPage() {
 
   function confirmYourPassword() {
     if (formData.password !== confirmPassword) {
-      alert("Lösenordet matchar inte!")
+      alert('Lösenordet matchar inte!')
       return false
     } else {
       return true
@@ -106,9 +107,9 @@ export default function MyPage() {
 
             <h1
               className="text-xl pl-10 font-[700] text-black flex justify-start"
-              style={{ marginBottom: "1rem" }}
+              style={{ marginBottom: '1rem' }}
             >
-              {" "}
+              {' '}
               Registrera
             </h1>
           </div>
@@ -124,7 +125,7 @@ export default function MyPage() {
               value={formData.firstAndLastName}
               required
               onChange={handleInputChange}
-              style={{ color: "#000000" }}
+              style={{ color: '#000000' }}
             />
           </label>
           {/* <label>
@@ -150,7 +151,7 @@ export default function MyPage() {
               name="postCode"
               value={formData.postCode}
               onChange={handleInputChange}
-              style={{ color: "#000000" }}
+              style={{ color: '#000000' }}
               required
             />
           </label>
@@ -164,7 +165,7 @@ export default function MyPage() {
               required
               value={formData.email}
               onChange={handleInputChange}
-              style={{ color: "#000000" }}
+              style={{ color: '#000000' }}
             />
           </label>
           {/* <label>
@@ -194,7 +195,7 @@ export default function MyPage() {
               minLength={8}
               value={formData.password}
               onChange={handleInputChange}
-              style={{ color: "#000000" }}
+              style={{ color: '#000000' }}
             />
           </label>
           <label>
@@ -217,7 +218,7 @@ export default function MyPage() {
                 handleInputChange(event)
                 setConfirmedPassword(event.target.value)
               }}
-              style={{ color: "#000000" }}
+              style={{ color: '#000000' }}
             />
           </label>
 
@@ -246,8 +247,8 @@ export default function MyPage() {
               Registrera
             </button>
             <p className="mt-2 text-left ml-11 text-sm text-black">
-              Har du redan ett konto?{" "}
-              <Link href={"/login"}>
+              Har du redan ett konto?{' '}
+              <Link href={'/login'}>
                 <span className="text-black font-medium underline text-md">
                   Logga in
                 </span>
