@@ -1,5 +1,5 @@
-import { NextPage } from "next"
-import { AiOutlinePlus } from "react-icons/ai"
+import { NextPage } from 'next'
+import { AiOutlinePlus } from 'react-icons/ai'
 
 interface Props {}
 
@@ -10,11 +10,11 @@ const ButtonCreateAd = ({}) => {
         <button
           className=" rounded-full drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]  w-[83px] h-[83px] bg-[#46649D] border-[#9EBB9D] border-2"
           style={{
-            position: "fixed",
-            bottom: "30px",
-            right: "30px",
-            left: "277px",
-            top: "731",
+            position: 'fixed',
+            bottom: '7.7%',
+            right: '7.7%',
+            // left: '277px',
+            // top: '731',
           }}
         >
           <div className="">
