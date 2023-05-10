@@ -91,7 +91,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
     };
     console.log(apiData);
 
-    const response = await fetch("/api/ad", {
+    const response = await fetch("/api/boardAd", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
