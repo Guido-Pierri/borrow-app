@@ -53,153 +53,160 @@ const Categories = ({ setSelectedCategory }: any) => {
       {/* <h1 className="font-sans text-black text-[14px] font-bold text-left pt-6 pl-8 ">
         Kategorier
       </h1> */}
-      <div className="flex flex-row py-4 pb-8 justify-between ">
-        <div>
-          <button
-            style={{
-              border: clean ? "3px solid #9EBB9D" : "",
-              borderRadius: "50%",
-            }}
-            onClick={() => {
-              setSelectedCategory("Städ")
-              setClean(!clean)
-              reset("clean")
-            }}
-            // onClick={() => setSelectedCategory("Städ")}
-          >
-            <div className="pl-5 pt-2  border-[#9EBB9D] border-2 w-[74px] h-[76px] rounded-full flex justify-between">
-              <Image
-                src={"/vaccum2.png"}
-                alt={"#"}
-                width={"25"}
-                height={"54"}
-                style={{ alignSelf: "center" }}
-              ></Image>
-            </div>
-          </button>
+      <div className=" overflow-x-scroll inline-block w-[90%] whitespace-nowrap scroll-smooth scrollbar-hide">
+        <div className="flex flex-row py-4 pb-8 ">
+          <div>
+            <button
+              style={{
+                border: clean ? "3px solid #9EBB9D" : "",
+                borderRadius: "50%",
+                paddingRight: "17px",
+              }}
+              onClick={() => {
+                setSelectedCategory("Städ")
+                setClean(!clean)
+                reset("clean")
+              }}
+              // onClick={() => setSelectedCategory("Städ")}
+            >
+              <div className="pl-5 pt-2  border-[#9EBB9D] border-2 w-[74px] h-[76px] rounded-full flex justify-between">
+                <Image
+                  src={"/vaccum2.png"}
+                  alt={"#"}
+                  width={"25"}
+                  height={"54"}
+                  style={{ alignSelf: "center" }}
+                ></Image>
+              </div>
+            </button>
 
-          <p className="font-sans text-[14px] font-bold text-black pt-[2px]">
-            Städ
-          </p>
-        </div>
-        <div>
-          <button
-            style={{
-              border: tools ? "3px solid #9EBB9D" : "",
-              borderRadius: "50%",
-            }}
-            onClick={() => {
-              setSelectedCategory("Verktyg")
-              setTools(!tools)
-              reset("tools")
-            }}
-            // onClick={() => setSelectedCategory("Verktyg")}
-          >
-            {/* <Link href={"/"}> */}
-            <div className="pl-3 pt-5 border-2  border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
-              <Image
-                src={"/pickaxe.svg"}
-                alt={"#"}
-                width={"47"}
-                height={"38"}
-                style={{
-                  alignSelf: "center",
-                }}
-              ></Image>
-            </div>
-            {/* </Link> */}
-          </button>
-          <p className=" font-sans text-[14px] font-bold text-black mt-[-3px]">
-            Verktyg
-          </p>
-        </div>
-        <div>
-          <button
-            style={{
-              border: bicykle ? "3px solid #9EBB9D" : "",
-              borderRadius: "50%",
-            }}
-            onClick={() => {
-              setSelectedCategory("Cyklar")
-              setBicykle(!bicykle)
-              reset("bicykle")
-            }}
-            // onClick={() => setSelectedCategory("Cyklar")}
-          >
-            {/* <Link href={"/"}> */}
-            <div className=" pl-2 pt-6 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
-              <Image
-                src={"/bike.svg"}
-                alt={"#"}
-                width={"54"}
-                height={"32"}
-                style={{ alignSelf: "center" }}
-              ></Image>
-            </div>
-            {/* </Link> */}
-          </button>
-          <p className=" font-sans text-[14px] font-bold text-black mt-[-3px]">
-            Cyklar
-          </p>
-        </div>
+            <p className="font-sans text-[14px] font-bold text-black pt-[2px] pr-[20px]">
+              Städ
+            </p>
+          </div>
+          <div>
+            <button
+              style={{
+                border: tools ? "3px solid #9EBB9D" : "",
+                borderRadius: "50%",
+                paddingRight: "17px",
+              }}
+              onClick={() => {
+                setSelectedCategory("Verktyg")
+                setTools(!tools)
+                reset("tools")
+              }}
+              // onClick={() => setSelectedCategory("Verktyg")}
+            >
+              {/* <Link href={"/"}> */}
+              <div className="pl-3 pt-5 border-2  border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
+                <Image
+                  src={"/pickaxe.svg"}
+                  alt={"#"}
+                  width={"47"}
+                  height={"38"}
+                  style={{
+                    alignSelf: "center",
+                  }}
+                ></Image>
+              </div>
+              {/* </Link> */}
+            </button>
+            <p className=" font-sans text-[14px] font-bold text-black mt-[-3px] pr-[18px]">
+              Verktyg
+            </p>
+          </div>
+          <div>
+            <button
+              style={{
+                border: bicykle ? "3px solid #9EBB9D" : "",
+                borderRadius: "50%",
+                paddingRight: "17px",
+              }}
+              onClick={() => {
+                setSelectedCategory("Cyklar")
+                setBicykle(!bicykle)
+                reset("bicykle")
+              }}
+              // onClick={() => setSelectedCategory("Cyklar")}
+            >
+              {/* <Link href={"/"}> */}
+              <div className=" pl-2 pt-6 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
+                <Image
+                  src={"/bike.svg"}
+                  alt={"#"}
+                  width={"54"}
+                  height={"32"}
+                  style={{ alignSelf: "center" }}
+                ></Image>
+              </div>
+              {/* </Link> */}
+            </button>
+            <p className=" font-sans text-[14px] font-bold text-black mt-[-3px] pr-[18px]">
+              Cyklar
+            </p>
+          </div>
 
-        <div>
-          <button
-            style={{
-              border: electronic ? "3px solid #9EBB9D" : "",
-              borderRadius: "50%",
-            }}
-            onClick={() => {
-              setSelectedCategory("Elektronik")
-              setElectronic(!electronic)
-              reset("electronic")
-            }}
-            // onClick={() => setSelectedCategory("Elektronik")}
-          >
-            {/* <Link href={"/"}> */}
-            <div className=" pl-2 pt-4 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
-              <Image
-                src={"/tv.svg"}
-                alt={"#"}
-                width={"47"}
-                height={"37"}
-                style={{ alignSelf: "center" }}
-              ></Image>
-            </div>
-            {/* </Link> */}
-          </button>
-          <p className="font-sans text-[14px] font-bold text-black mt-[-3px]">
-            Elektronik
-          </p>
-        </div>
-        <div>
-          <button
-            style={{
-              border: grill ? "3px solid #9EBB9D" : "",
-              borderRadius: "50%",
-            }}
-            onClick={() => {
-              setSelectedCategory("Grill")
-              setGrill(!grill)
-              reset("grill")
-            }}
-            // onClick={() => setSelectedCategory("Grill")}
-          >
-            {/* <Link href={"/"}> */}
-            <div className="pl-3 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full flex justify-between">
-              <Image
-                src={"/grill2.png"}
-                alt={"#"}
-                width={"37"}
-                height={"74"}
-                style={{ alignSelf: "center" }}
-              ></Image>
-            </div>
-            {/* </Link> */}
-          </button>
-          <p className="font-sans text-[14px] font-bold text-black pt-[2px]">
-            Grill
-          </p>
+          <div>
+            <button
+              style={{
+                border: electronic ? "3px solid #9EBB9D" : "",
+                borderRadius: "50%",
+                paddingRight: "17px",
+              }}
+              onClick={() => {
+                setSelectedCategory("Elektronik")
+                setElectronic(!electronic)
+                reset("electronic")
+              }}
+              // onClick={() => setSelectedCategory("Elektronik")}
+            >
+              {/* <Link href={"/"}> */}
+              <div className=" pl-2 pt-4 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
+                <Image
+                  src={"/tv.svg"}
+                  alt={"#"}
+                  width={"47"}
+                  height={"37"}
+                  style={{ alignSelf: "center" }}
+                ></Image>
+              </div>
+              {/* </Link> */}
+            </button>
+            <p className="font-sans text-[14px] font-bold text-black mt-[-3px] pr-[18px]">
+              Elektronik
+            </p>
+          </div>
+          <div>
+            <button
+              style={{
+                border: grill ? "3px solid #9EBB9D" : "",
+                borderRadius: "50%",
+                paddingRight: "17px",
+              }}
+              onClick={() => {
+                setSelectedCategory("Grill")
+                setGrill(!grill)
+                reset("grill")
+              }}
+              // onClick={() => setSelectedCategory("Grill")}
+            >
+              {/* <Link href={"/"}> */}
+              <div className="pl-3 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full flex justify-between">
+                <Image
+                  src={"/grill2.png"}
+                  alt={"#"}
+                  width={"37"}
+                  height={"74"}
+                  style={{ alignSelf: "center" }}
+                ></Image>
+              </div>
+              {/* </Link> */}
+            </button>
+            <p className="font-sans text-[14px] font-bold text-black pt-[2px] pr-[18px]">
+              Grill
+            </p>
+          </div>
         </div>
       </div>
     </div>
