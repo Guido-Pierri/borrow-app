@@ -1,18 +1,89 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import CloseIconStatic from './closeIconStatic'
 import { User } from '@/types/user'
 import CloseIconWOLink from './closeIconWOLink'
+// import { handleSubmit } from '@/lib/functions/preventDefault'
 
 interface ProfileInfoContentProps {
   onClose: () => void
   user: User
 }
-
+interface FormData {
+  userId: string
+  firstAndLastName: string
+  postCode: string
+  email: string
+  password: string
+}
 const ProfileInfoContent: FC<ProfileInfoContentProps> = ({ onClose, user }) => {
+  const [formData, setFormData] = useState<FormData>({
+    // id: user?.id || '',
+    userId: user.userId,
+    firstAndLastName: user?.firstAndLastName || '',
+    postCode: user.postCode || '',
+    email: user?.email || '',
+    password: undefined || '',
+  })
+  const [confirmPassword, setConfirmedPassword] = useState<string>('')
+  const [confirmPassword2, setConfirmedPassword2] = useState<string>('')
+
   const handleContentClick = (event: any) => {
     // Stop the event from propagating up to the outer div
     event.stopPropagation()
   }
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setFormData((prevFormData: any) => ({ ...prevFormData, [name]: value }))
+    // console.log(event.target.value)
+  }
+  console.log(formData)
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    function handleClick() {
+      console.log('handleClick')
+
+      // router.push('/ads')
+    }
+    const apiData: User = {
+      _id: user._id,
+      firstAndLastName: formData.firstAndLastName,
+      userId: user.userId,
+      postCode: formData.postCode,
+      email: formData.email,
+      password: formData.password,
+    }
+
+    const response = await fetch('/api/user/updateUser', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(apiData),
+    })
+
+    const data = await response.json()
+    console.log('Response:', response)
+
+    console.log(data)
+
+    if (confirmYourPassword()) {
+      alert('Lösenord ändrat')
+    } else {
+      console.log(data)
+      return false
+    }
+  }
+  function confirmYourPassword() {
+    if (formData.password !== confirmPassword) {
+      alert('Lösenordet matchar inte!')
+      return false
+    } else {
+      return true
+    }
+  }
+  console.log('userId:', user.userId)
+  console.log('user._id', user._id)
+
   return (
     <>
       <div className="font-sans bg-[#FFFFFF] flex flex-col  overlay-content rounded-lg">
@@ -29,9 +100,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({ onClose, user }) => {
         <form
           className="ml-[10%] mr-[10%]
         "
-          onSubmit={(event) => {
-            event.preventDefault()
-          }}
+          onSubmit={handleSubmit}
         >
           <label className="text-left">
             <p className="mt-[3.6%]">Ditt namn</p>
@@ -40,9 +109,9 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({ onClose, user }) => {
               type="text"
               name="firstName"
               placeholder={user.firstAndLastName}
-              //   value={formData.firstName}
+              value={formData.firstAndLastName}
               required
-              //   onChange={handleInputChange}
+              onChange={handleInputChange}
               style={{ color: '#000000' }}
             />
           </label>
@@ -54,8 +123,8 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({ onClose, user }) => {
               name="email"
               placeholder={user.email}
               required
-              //   value={formData.email}
-              //   onChange={handleInputChange}
+              value={formData.email}
+              onChange={handleInputChange}
               style={{ color: '#000000' }}
             />
           </label>
@@ -65,57 +134,69 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({ onClose, user }) => {
             <input
               className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
               type="text"
-              name="adress"
-              //   value={formData.adress}
-              //   onChange={handleInputChange}
+              name="postCode"
+              value={formData.postCode}
+              onChange={handleInputChange}
               placeholder={user.postCode}
               style={{ color: '#000000' }}
               required
             />
           </label>
           <label>
-            <p className="mt-[0.56%]">Ändra lösenord</p>
-
+            <legend className="">Ändra Lösenord</legend>
             <input
               className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
+              // placeholder="Lösenord..."
               type="password"
-              name="password1"
+              name="password"
               required
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               title="Måste innehålla minst en siffra och en stor och liten bokstav, och minst 8 eller fler tecken"
               minLength={8}
-              //   value={formData.password}
-              //   onChange={handleInputChange}
+              value={formData.password}
+              onChange={handleInputChange}
               style={{ color: '#000000' }}
             />
           </label>
-          <p className="mt-[0.56%]">Bekräfta nytt lösenord</p>
           <label>
+            <legend className="">Bekräfta lösenord</legend>
             <input
               className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
+              // placeholder="Bekräfta lösenord..."
               type="password"
-              name="password2"
+              name="confirmPassword"
               required
+              value={confirmPassword}
+              // value={formData.password}
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               title="Måste innehålla minst en siffra och en stor och liten bokstav, och minst 8 eller fler tecken"
               minLength={8}
-              //   value={formData.password}
-              //   onChange={handleInputChange}
+              // value={formData.samePassword}
+              onChange={(event) => {
+                handleInputChange(event)
+                setConfirmedPassword(event.target.value)
+              }}
               style={{ color: '#000000' }}
             />
           </label>
-          <p className="mt-[0.56%]">Bekräfta nytt lösenord</p>
           <label>
+            <legend className="">Bekräfta lösenord</legend>
             <input
               className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
+              // placeholder="Bekräfta lösenord..."
               type="password"
-              name="password2"
+              name="confirmPassword2"
               required
+              value={confirmPassword2}
+              // value={formData.password}
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               title="Måste innehålla minst en siffra och en stor och liten bokstav, och minst 8 eller fler tecken"
               minLength={8}
-              //   value={formData.password}
-              //   onChange={handleInputChange}
+              // value={formData.samePassword}
+              onChange={(event) => {
+                handleInputChange(event)
+                setConfirmedPassword2(event.target.value)
+              }}
               style={{ color: '#000000' }}
             />
           </label>

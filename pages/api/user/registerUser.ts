@@ -16,8 +16,15 @@ export default async function handler(
       case 'POST': {
         console.log(req.body)
 
-        const { userId, firstAndLastName, postCode, email, password } =
-          req.body as User
+        const {
+          _id = '',
+          userId = '',
+          firstAndLastName = '',
+          postCode = '',
+          email = '',
+          password = '',
+        } = req.body
+        req.body
 
         hashning(password)
 

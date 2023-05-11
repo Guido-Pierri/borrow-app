@@ -1,20 +1,21 @@
+import hashning from '@/lib/functions/hashning'
 import clientPromise from '@/lib/mongodb'
 import { LogIn } from '@/types/logIns'
+import { ObjectId } from 'mongodb'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { json } from 'stream/consumers'
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const client = await clientPromise
+  const database = client.db('borrow')
+  const collection = database.collection('users')
   try {
     switch (req.method) {
       case 'POST': {
         console.log(req.body)
         const { email, password } = req.body as LogIn
-        const client = await clientPromise
-        const database = client.db('borrow')
-        const collection = database.collection('users')
         const user = await collection.findOne(
           { email: email },
           { projection: { password: 1 } }
@@ -41,10 +42,33 @@ export default async function handler(
 
         break
       }
+      case 'GET': {
+        const { _id, userId, firstAndLastName, postCode, email, password } =
+          req.body
+        const objectId = new ObjectId(userId)
+        const result = await collection.findOne({ _id: _id })
+        res.status(200).json(result)
 
+        // updateOne(
+        //   { _id: _id },
+        //   {
+        //     $set: {
+        //       // image: image,
+        //       firstAndLastName: firstAndLastName,
+        //       email: email,
+        //       postCode: postCode,
+        //       password: hashning(password),
+        //     },
+        //   }
+        // )
+
+        // res.json(result)
+        // res.status(201).json({ message: 'Update was successfull.', result })
+        break
+      }
       default: {
         // Return a 405 Method Not Allowed error for all other HTTP methods
-        res.setHeader('Allow', ['GET', 'POST'])
+        res.setHeader('Allow', ['GET', 'POST', 'PATCH', 'PUT'])
         res.status(405).end(`Method ${req.method} Not Allowed`)
         break
       }
