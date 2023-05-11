@@ -80,7 +80,7 @@ const Categories = ({ setSelectedCategory }: any) => {
               </div>
             </button>
 
-            <p className="font-sans text-[14px] font-bold text-black pt-[2px] pr-[20px]">
+            <p className="font-sans text-[14px] font-bold text-black pt-[4px] pr-[20px]">
               Städ
             </p>
           </div>
@@ -203,7 +203,7 @@ const Categories = ({ setSelectedCategory }: any) => {
               </div>
               {/* </Link> */}
             </button>
-            <p className="font-sans text-[14px] font-bold text-black pt-[2px] pr-[18px]">
+            <p className="font-sans text-[14px] font-bold text-black pt-[4px] pr-[18px]">
               Grill
             </p>
           </div>
