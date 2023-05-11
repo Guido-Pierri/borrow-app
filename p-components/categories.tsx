@@ -1,8 +1,53 @@
 import Image from "next/image"
+import { useState } from "react"
 
 interface Props {} //add link and other functionalities when needed
 
 const Categories = ({ setSelectedCategory }: any) => {
+  const [clean, setClean] = useState(false)
+  const [tools, setTools] = useState(false)
+  const [bicykle, setBicykle] = useState(false)
+  const [electronic, setElectronic] = useState(false)
+  const [grill, setGrill] = useState(false)
+
+  function reset(category: string) {
+    switch (category) {
+      case "clean":
+        setTools(false)
+        setBicykle(false)
+        setElectronic(false)
+        setGrill(false)
+        break
+      case "tools":
+        setClean(false)
+        setBicykle(false)
+        setElectronic(false)
+        setGrill(false)
+        break
+      case "bicykle":
+        setTools(false)
+        setClean(false)
+        setElectronic(false)
+        setGrill(false)
+        break
+      case "electronic":
+        setClean(false)
+        setTools(false)
+        setBicykle(false)
+        setGrill(false)
+        break
+      case "grill":
+        setClean(false)
+        setTools(false)
+        setElectronic(false)
+        setBicykle(false)
+        break
+
+      default:
+        break
+    }
+  }
+
   return (
     <div className="bg-[#FFFFFF]">
       {/* <h1 className="font-sans text-black text-[14px] font-bold text-left pt-6 pl-8 ">
@@ -10,7 +55,18 @@ const Categories = ({ setSelectedCategory }: any) => {
       </h1> */}
       <div className="flex flex-row py-4 pb-8 justify-between ">
         <div>
-          <button onClick={() => setSelectedCategory("Städ")}>
+          <button
+            style={{
+              border: clean ? "3px solid #9EBB9D" : "",
+              borderRadius: "50%",
+            }}
+            onClick={() => {
+              setSelectedCategory("Städ")
+              setClean(!clean)
+              reset("clean")
+            }}
+            // onClick={() => setSelectedCategory("Städ")}
+          >
             <div className="pl-5 pt-2  border-[#9EBB9D] border-2 w-[74px] h-[76px] rounded-full flex justify-between">
               <Image
                 src={"/vaccum2.png"}
@@ -27,7 +83,18 @@ const Categories = ({ setSelectedCategory }: any) => {
           </p>
         </div>
         <div>
-          <button onClick={() => setSelectedCategory("Verktyg")}>
+          <button
+            style={{
+              border: tools ? "3px solid #9EBB9D" : "",
+              borderRadius: "50%",
+            }}
+            onClick={() => {
+              setSelectedCategory("Verktyg")
+              setTools(!tools)
+              reset("tools")
+            }}
+            // onClick={() => setSelectedCategory("Verktyg")}
+          >
             {/* <Link href={"/"}> */}
             <div className="pl-3 pt-5 border-2  border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
               <Image
@@ -47,7 +114,18 @@ const Categories = ({ setSelectedCategory }: any) => {
           </p>
         </div>
         <div>
-          <button onClick={() => setSelectedCategory("Cyklar")}>
+          <button
+            style={{
+              border: bicykle ? "3px solid #9EBB9D" : "",
+              borderRadius: "50%",
+            }}
+            onClick={() => {
+              setSelectedCategory("Cyklar")
+              setBicykle(!bicykle)
+              reset("bicykle")
+            }}
+            // onClick={() => setSelectedCategory("Cyklar")}
+          >
             {/* <Link href={"/"}> */}
             <div className=" pl-2 pt-6 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
               <Image
@@ -66,7 +144,18 @@ const Categories = ({ setSelectedCategory }: any) => {
         </div>
 
         <div>
-          <button onClick={() => setSelectedCategory("Elektronik")}>
+          <button
+            style={{
+              border: electronic ? "3px solid #9EBB9D" : "",
+              borderRadius: "50%",
+            }}
+            onClick={() => {
+              setSelectedCategory("Elektronik")
+              setElectronic(!electronic)
+              reset("electronic")
+            }}
+            // onClick={() => setSelectedCategory("Elektronik")}
+          >
             {/* <Link href={"/"}> */}
             <div className=" pl-2 pt-4 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
               <Image
@@ -84,7 +173,18 @@ const Categories = ({ setSelectedCategory }: any) => {
           </p>
         </div>
         <div>
-          <button onClick={() => setSelectedCategory("Grill")}>
+          <button
+            style={{
+              border: grill ? "3px solid #9EBB9D" : "",
+              borderRadius: "50%",
+            }}
+            onClick={() => {
+              setSelectedCategory("Grill")
+              setGrill(!grill)
+              reset("grill")
+            }}
+            // onClick={() => setSelectedCategory("Grill")}
+          >
             {/* <Link href={"/"}> */}
             <div className="pl-3 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full flex justify-between">
               <Image
