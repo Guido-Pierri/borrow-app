@@ -7,6 +7,7 @@ import CloseIconWOLink from './closeIconWOLink'
 interface ProfileInfoContentProps {
   onClose: () => void
   user: User
+  userId: any
 }
 interface FormData {
   userId: string
@@ -15,7 +16,11 @@ interface FormData {
   email: string
   password: string
 }
-const ProfileInfoContent: FC<ProfileInfoContentProps> = ({ onClose, user }) => {
+const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
+  onClose,
+  user,
+  userId,
+}) => {
   const [formData, setFormData] = useState<FormData>({
     // id: user?.id || '',
     userId: user.userId,
@@ -44,8 +49,8 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({ onClose, user }) => {
 
       // router.push('/ads')
     }
-    const apiData: User = {
-      _id: user._id,
+    const apiData = {
+      _id: userId,
       firstAndLastName: formData.firstAndLastName,
       userId: user.userId,
       postCode: formData.postCode,
@@ -82,7 +87,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({ onClose, user }) => {
     }
   }
   console.log('userId:', user.userId)
-  console.log('user._id', user._id)
+  console.log('user._id', userId)
 
   return (
     <>
