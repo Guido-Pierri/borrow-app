@@ -12,6 +12,7 @@ import { ObjectId } from 'mongodb'
 import DesignLine from '@/p-components/designLine'
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
 import hashning from '@/lib/functions/hashning'
+import IconAdsEmpty from '@/p-components/iconAdsEmpty'
 
 interface AdId {
   id: string
@@ -58,6 +59,7 @@ const Ads = ({ ads }: Props) => {
   //   window.location.href = `/updateAd/${id}`
   //   console.log("updateAd")
   // }
+
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
       <Header userId={userId} anotherUserId={userId}></Header>
@@ -110,8 +112,8 @@ const Ads = ({ ads }: Props) => {
 
       <div className="bg-[#46649D] h-2"></div>
       {/* <Categories></Categories> */}
-      <div onClick={navigateToCreateAd}>
-        <ButtonCreateAd></ButtonCreateAd>
+      <div>
+        <ButtonCreateAd userId={userId}></ButtonCreateAd>
         {/* <button
           className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
           onClick={navigateToCreateAd}
@@ -119,6 +121,8 @@ const Ads = ({ ads }: Props) => {
           <p className="text-black"> Skapa annons</p>
         </button> */}
       </div>
+
+      {ads.length === 0 ? <IconAdsEmpty></IconAdsEmpty> : ''}
 
       <section>
         <div className=" font-sans text-left  mt-8">
@@ -131,7 +135,7 @@ const Ads = ({ ads }: Props) => {
               <div className="pl-6">
                 <Image
                   // onClick={() => navigateToAd(ad.id)}
-                  className="w-full rounded-md"
+                  className="w-full rounded-sm"
                   alt={ad.description}
                   src={ad.image}
                   width={'100'}

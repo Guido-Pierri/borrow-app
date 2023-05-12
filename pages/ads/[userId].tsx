@@ -1,13 +1,14 @@
-import Header from "@/p-components/header";
-import { Ad } from "@/types/ads";
-import Image from "next/image";
-import Categories from "@/p-components/categories";
-import clientPromise from "@/lib/mongodb";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import SearchBar from "@/p-components/searchBar";
-import ButtonCreateAd from "@/p-components/buttonCreateAd";
-import { UserId } from "@/types/userId";
+
+import Header from "@/p-components/header"
+import { Ad } from "@/types/ads"
+import Image from "next/image"
+import Categories from "@/p-components/categories"
+import clientPromise from "@/lib/mongodb"
+import { useRouter } from "next/router"
+import { useState } from "react"
+import SearchBar from "@/p-components/searchBar"
+import ButtonCreateAd from "@/p-components/buttonCreateAd"
+import { UserId } from "@/types/userId"
 
 interface AdId {
   id: string;
@@ -20,10 +21,15 @@ const Ads = ({ ads }: Props) => {
   const router = useRouter();
   const { userId } = router.query as UserId;
 
-  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const [selectedCategory, setSelectedCategory] = useState("")
+
+  function setAllCategorys() {
+    window.location.href = `/ads/${userId}`
+  }
 
   //search through ads using the query in SearchBar
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("")
   const filteredAds = ads
     // .filter((ad) => !selectedCategory || ad?.category.match(selectedCategory))
     .filter((ad) =>
@@ -34,8 +40,10 @@ const Ads = ({ ads }: Props) => {
           .concat(query.charAt(1).toLocaleLowerCase())
       )
     )
-    .filter((ad) => !selectedCategory || ad.category === selectedCategory);
-  console.log("selectedCategory:", selectedCategory);
+
+    .filter((ad) => !selectedCategory || ad.category === selectedCategory)
+  console.log("selectedCategory:", selectedCategory)
+
 
   // navigate to the ad creation
   const navigateToCreateAd = () => {
@@ -48,9 +56,10 @@ const Ads = ({ ads }: Props) => {
     window.location.href = `/ads/view/${id}`;
   }
   const handleClick = async (id: string) => {
-    console.log("inside handleClick");
-    console.log(`${userId}`);
-    window.location.href = `/ads/myAds/${id}`;
+
+    console.log("inside handleClick")
+    console.log(`${userId}`)
+    window.location.href = `/ads/myAds/${id}`
     const response = await fetch(`/api/user/${userId}`, {
       method: "POST",
       headers: {
@@ -61,15 +70,17 @@ const Ads = ({ ads }: Props) => {
 
     const dataResponse = await response.json();
 
-    console.log("dataResponse", dataResponse);
+
+    console.log("dataResponse", dataResponse)
     if (dataResponse) {
     }
   };
 
   const handleClickBoard = async (id: string) => {
-    console.log("inside handleClickBoard");
-    console.log(`${userId}`);
-    window.location.href = `/board/${id}`;
+
+    console.log("inside handleClickBoard")
+    console.log(`${userId}`)
+    window.location.href = `/board/${id}`
     const response = await fetch(`/api/user/${userId}`, {
       method: "POST",
       headers: {
@@ -80,19 +91,21 @@ const Ads = ({ ads }: Props) => {
 
     const dataResponse = await response.json();
 
-    console.log("dataResponse", dataResponse);
+
+    console.log("dataResponse", dataResponse)
     if (dataResponse) {
     }
   };
 
-  console.log("filteredAds", filteredAds);
+
+  console.log("filteredAds", filteredAds)
 
   return (
     <>
       <div className="mb-4">
         <Header userId={userId} anotherUserId={userId} />
       </div>
-      <div className="bg-[#ffffff] text-center max-w-sm h-screen pt-4">
+      <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
         <SearchBar query={query} setQuery={setQuery}></SearchBar>
 
         <section className="flex justify-around mt-5 ">
@@ -120,11 +133,20 @@ const Ads = ({ ads }: Props) => {
         <div className="bg-[#46649D] h-2"></div>
         <Categories setSelectedCategory={setSelectedCategory} />
 
+        {/* <div className="pl-4 pb-2">
+          <button
+            onClick={setAllCategorys}
+            className="flex justify-end pl-2 pr-2 text-[14px] text-black border-[#9EBB9D] rounded-md border-2 font-bold"
+          >
+            Alla kategorier
+          </button>
+        </div> */}
+
         <div
-          onClick={navigateToCreateAd}
+          // onClick={navigateToCreateAd}
           className="flex justify-center mt-[-2] "
         >
-          <ButtonCreateAd></ButtonCreateAd>
+          <ButtonCreateAd userId={userId} />
           {/* <button
             className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
             onClick={navigateToCreateAd}
@@ -141,7 +163,7 @@ const Ads = ({ ads }: Props) => {
 
                 <Image
                   onClick={() => navigateToAd(ad.id)}
-                  className="mt-4  w-full aspect-square"
+                  className="mt-4  w-full aspect-square rounded-sm"
                   alt={ad.description}
                   src={ad.image}
                   width={"1000"}
@@ -201,10 +223,11 @@ const Ads = ({ ads }: Props) => {
 };
 export async function getServerSideProps() {
   try {
-    const client = await clientPromise;
-    const db = client.db("borrow");
 
-    const ads = await db.collection("ads").find({}).sort({ _id: -1 }).toArray();
+    const client = await clientPromise
+    const db = client.db("borrow")
+
+    const ads = await db.collection("ads").find({}).sort({ _id: -1 }).toArray()
 
     console.log(ads);
 

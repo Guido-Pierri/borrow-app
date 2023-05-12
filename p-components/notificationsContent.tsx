@@ -20,7 +20,7 @@ const NotificationsContent: FC<NotificationsContentProps> = ({ onClose }) => {
       <div className="font-sans bg-[#FFFFFF] flex flex-col h-[640px] w-[full] rounded-lg ml-[5.7%] mr-[5.7%] ">
         <div className="mt-[25px] ml-[10%] mr-[5.8%] flex flex-row justify-between ">
           <p className="text-xl font-[700] text-black flex justify-start">
-            Mina uppgifter
+            Notiser
           </p>
           <div>
             <button onClick={onClose}>

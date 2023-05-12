@@ -8,9 +8,11 @@ import { useState } from 'react'
 import SearchBar from '@/p-components/searchBar'
 import Image from 'next/image'
 
+
 interface Props {
   boardAds: BoardAd[]
 }
+
 
 // function navigateToAd(id: string) {
 //   window.location.href = `/ads/view/${id}`
@@ -38,6 +40,7 @@ const Board = ({ boardAds }: Props) => {
   //   //  ||
   //   //  ad.category === selectedCategory
   // );
+
 
   console.log('selectedCategory:', selectedCategory)
 
