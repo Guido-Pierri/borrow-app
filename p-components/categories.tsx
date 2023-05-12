@@ -54,7 +54,7 @@ const Categories = ({ setSelectedCategory }: any) => {
         Kategorier
       </h1> */}
       <div className=" overflow-x-scroll inline-block w-[90%] whitespace-nowrap scroll-smooth scrollbar-hide">
-        <div className="flex flex-row py-4 pb-6 ">
+        <div className="flex flex-row py-4 pb-1 ">
           <div className="pr-5">
             <button
               style={{
@@ -69,12 +69,12 @@ const Categories = ({ setSelectedCategory }: any) => {
               }}
               // onClick={() => setSelectedCategory("Städ")}
             >
-              <div className="pl-5 pt-2  border-[#9EBB9D] border-2 w-[74px] h-[76px] rounded-full flex justify-between">
+              <div className="pl-4 pt-1  border-[#9EBB9D] border-2 w-[74px] h-[76px] rounded-full flex justify-between">
                 <Image
-                  src={"/vaccum2.png"}
+                  src={"/städ2.svg"}
                   alt={"#"}
-                  width={"25"}
-                  height={"54"}
+                  width={"36"}
+                  height={"50"}
                   style={{ alignSelf: "center" }}
                 ></Image>
               </div>
@@ -99,12 +99,12 @@ const Categories = ({ setSelectedCategory }: any) => {
               // onClick={() => setSelectedCategory("Verktyg")}
             >
               {/* <Link href={"/"}> */}
-              <div className="pl-3 pt-5 border-2  border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
+              <div className="pl-3 pt-4 border-2  border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
                 <Image
-                  src={"/pickaxe.svg"}
+                  src={"/verktyg2.svg"}
                   alt={"#"}
-                  width={"47"}
-                  height={"38"}
+                  width={"46"}
+                  height={"46"}
                   style={{
                     alignSelf: "center",
                   }}
@@ -131,12 +131,12 @@ const Categories = ({ setSelectedCategory }: any) => {
               // onClick={() => setSelectedCategory("Cyklar")}
             >
               {/* <Link href={"/"}> */}
-              <div className=" pl-2 pt-6 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
+              <div className=" pl-2 pt-5 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
                 <Image
-                  src={"/bike.svg"}
+                  src={"/cykel2.svg"}
                   alt={"#"}
-                  width={"54"}
-                  height={"32"}
+                  width={"53"}
+                  height={"37"}
                   style={{ alignSelf: "center" }}
                 ></Image>
               </div>
@@ -162,12 +162,12 @@ const Categories = ({ setSelectedCategory }: any) => {
               // onClick={() => setSelectedCategory("Elektronik")}
             >
               {/* <Link href={"/"}> */}
-              <div className=" pl-2 pt-4 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
+              <div className=" pl-3 pt-3 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
                 <Image
-                  src={"/tv.svg"}
+                  src={"/tv2.svg"}
                   alt={"#"}
-                  width={"47"}
-                  height={"37"}
+                  width={"42"}
+                  height={"49"}
                   style={{ alignSelf: "center" }}
                 ></Image>
               </div>
@@ -194,10 +194,10 @@ const Categories = ({ setSelectedCategory }: any) => {
               {/* <Link href={"/"}> */}
               <div className="pl-3 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full flex justify-between">
                 <Image
-                  src={"/grill2.png"}
+                  src={"/grill2.svg"}
                   alt={"#"}
-                  width={"37"}
-                  height={"74"}
+                  width={"43"}
+                  height={"47"}
                   style={{ alignSelf: "center" }}
                 ></Image>
               </div>
