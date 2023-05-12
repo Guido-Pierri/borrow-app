@@ -110,7 +110,7 @@ const Ads = ({ ads }: Props) => {
 
       <div className="bg-[#46649D] h-2"></div>
       {/* <Categories></Categories> */}
-      <div onClick={navigateToCreateAd}>
+      <div>
         <ButtonCreateAd userId={userId}></ButtonCreateAd>
         {/* <button
           className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
