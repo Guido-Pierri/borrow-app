@@ -8,11 +8,9 @@ import { useState } from 'react'
 import SearchBar from '@/p-components/searchBar'
 import Image from 'next/image'
 
-
 interface Props {
   boardAds: BoardAd[]
 }
-
 
 // function navigateToAd(id: string) {
 //   window.location.href = `/ads/view/${id}`
@@ -40,7 +38,6 @@ const Board = ({ boardAds }: Props) => {
   //   //  ||
   //   //  ad.category === selectedCategory
   // );
-
 
   console.log('selectedCategory:', selectedCategory)
 
@@ -76,7 +73,7 @@ const Board = ({ boardAds }: Props) => {
             {/* <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans">
             <p className="text-black"> Skapa inlägg</p>
           </button> */}
-            <ButtonCreateAd />
+            <ButtonCreateAd userId={userId} />
           </Link>
         </div>
         <div className="text-left px-4">

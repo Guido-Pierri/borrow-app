@@ -78,7 +78,7 @@ const Board = ({ boardAds }: Props) => {
             {/* <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans">
             <p className="text-black"> Skapa inlägg</p>
           </button> */}
-            <ButtonCreateAd />
+            <ButtonCreateAd userId={userId} />
           </Link>
         </div>
         <div className="text-left px-4">
