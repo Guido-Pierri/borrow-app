@@ -55,12 +55,12 @@ const Categories = ({ setSelectedCategory }: any) => {
       </h1> */}
       <div className=" overflow-x-scroll inline-block w-[90%] whitespace-nowrap scroll-smooth scrollbar-hide">
         <div className="flex flex-row py-4 pb-8 ">
-          <div>
+          <div className="pr-5">
             <button
               style={{
                 border: clean ? "3px solid #9EBB9D" : "",
                 borderRadius: "50%",
-                paddingRight: "17px",
+                // paddingRight: "17px",
               }}
               onClick={() => {
                 setSelectedCategory("Städ")
@@ -80,16 +80,16 @@ const Categories = ({ setSelectedCategory }: any) => {
               </div>
             </button>
 
-            <p className="font-sans text-[14px] font-bold text-black pt-[4px] pr-[20px]">
+            <p className="font-sans text-[14px] font-bold text-black pt-[4px] pr-[8px]">
               Städ
             </p>
           </div>
-          <div>
+          <div className="pr-5">
             <button
               style={{
                 border: tools ? "3px solid #9EBB9D" : "",
                 borderRadius: "50%",
-                paddingRight: "17px",
+                // paddingRight: "17px",
               }}
               onClick={() => {
                 setSelectedCategory("Verktyg")
@@ -112,16 +112,16 @@ const Categories = ({ setSelectedCategory }: any) => {
               </div>
               {/* </Link> */}
             </button>
-            <p className=" font-sans text-[14px] font-bold text-black mt-[-3px] pr-[18px]">
+            <p className=" font-sans text-[14px] font-bold text-black mt-[-3px] pr-[2px]">
               Verktyg
             </p>
           </div>
-          <div>
+          <div className="pr-5">
             <button
               style={{
                 border: bicykle ? "3px solid #9EBB9D" : "",
                 borderRadius: "50%",
-                paddingRight: "17px",
+                // paddingRight: "17px",
               }}
               onClick={() => {
                 setSelectedCategory("Cyklar")
@@ -142,17 +142,17 @@ const Categories = ({ setSelectedCategory }: any) => {
               </div>
               {/* </Link> */}
             </button>
-            <p className=" font-sans text-[14px] font-bold text-black mt-[-3px] pr-[18px]">
+            <p className=" font-sans text-[14px] font-bold text-black mt-[-2px] pr-[4px]">
               Cyklar
             </p>
           </div>
 
-          <div>
+          <div className="pr-5">
             <button
               style={{
                 border: electronic ? "3px solid #9EBB9D" : "",
                 borderRadius: "50%",
-                paddingRight: "17px",
+                // paddingRight: "17px",
               }}
               onClick={() => {
                 setSelectedCategory("Elektronik")
@@ -173,16 +173,16 @@ const Categories = ({ setSelectedCategory }: any) => {
               </div>
               {/* </Link> */}
             </button>
-            <p className="font-sans text-[14px] font-bold text-black mt-[-3px] pr-[18px]">
+            <p className="font-sans text-[14px] font-bold text-black mt-[-3px] pr-[4px]">
               Elektronik
             </p>
           </div>
-          <div>
+          <div className="pr-5">
             <button
               style={{
                 border: grill ? "3px solid #9EBB9D" : "",
                 borderRadius: "50%",
-                paddingRight: "17px",
+                // paddingRight: "17px",
               }}
               onClick={() => {
                 setSelectedCategory("Grill")
@@ -203,7 +203,7 @@ const Categories = ({ setSelectedCategory }: any) => {
               </div>
               {/* </Link> */}
             </button>
-            <p className="font-sans text-[14px] font-bold text-black pt-[4px] pr-[18px]">
+            <p className="font-sans text-[14px] font-bold text-black pt-[4px] pr-[4px]">
               Grill
             </p>
           </div>
