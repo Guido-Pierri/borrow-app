@@ -54,7 +54,7 @@ const Categories = ({ setSelectedCategory }: any) => {
         Kategorier
       </h1> */}
       <div className=" overflow-x-scroll inline-block w-[90%] whitespace-nowrap scroll-smooth scrollbar-hide">
-        <div className="flex flex-row py-4 pb-8 ">
+        <div className="flex flex-row py-4 pb-6 ">
           <div className="pr-5">
             <button
               style={{
