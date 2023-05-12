@@ -1,17 +1,12 @@
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
-import Categories from '@/p-components/categories'
 import Header from '@/p-components/header'
-import { NextPage } from 'next'
 import Link from 'next/link'
 import router, { useRouter } from 'next/router'
-import { GoSearch } from 'react-icons/go'
-import { MongoClient, Db } from 'mongodb'
 import clientPromise from '@/lib/mongodb'
 import { BoardAd } from '@/types/boardAd'
 import { useState } from 'react'
 import SearchBar from '@/p-components/searchBar'
 import Image from 'next/image'
-import DesignLine from '@/p-components/designLine'
 
 interface Props {
   boardAds: BoardAd[]
