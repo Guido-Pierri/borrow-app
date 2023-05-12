@@ -27,7 +27,7 @@ const overlayButtonCreateAd: FC<OverlayProps> = ({ onClose, userId }) => {
     <div className="overlay w-[35%]" onClick={onClose}>
       <div onClick={handleContentClick}>
         <div
-          className="flex flex-col bottom-[15%] right-[7.7%]"
+          className="flex flex-col bottom-[17%] right-[9%]"
           style={{ position: 'fixed' }}
         >
           <div
