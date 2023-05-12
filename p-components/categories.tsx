@@ -192,7 +192,7 @@ const Categories = ({ setSelectedCategory }: any) => {
               // onClick={() => setSelectedCategory("Grill")}
             >
               {/* <Link href={"/"}> */}
-              <div className="pl-3 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full flex justify-between">
+              <div className="pl-3 pt-2 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full flex justify-between">
                 <Image
                   src={"/grill2.svg"}
                   alt={"#"}
