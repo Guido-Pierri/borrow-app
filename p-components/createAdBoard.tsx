@@ -41,7 +41,7 @@ export default function CreateAd({ userId }: any) {
   function handleClick() {
     console.log("handleClick");
 
-    router.push(`/ads/${userId}`);
+    router.push(`/board/${userId}`);
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
