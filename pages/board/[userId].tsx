@@ -86,18 +86,24 @@ const Board = ({ boardAds }: Props) => {
           <p>Skriv på våran anslagstavla!</p>
           <p>Kanske en snäll granne har det du söker.</p>
         </div>
-        <section className="flex text-left mb-9 mt-6 items-center justify-evenly">
+        <section className="flex text-left mb-9 mt-6 items-center justify-start">
           <button className="ml-[5.5%]  pr-[2%] mr-[2%] border-b-[1px] border-b-[#9EBB9D]">
             <p className="font-normal text-base">Alla inlägg</p>
           </button>
           <div>
             <Image src={'/Vector 88.svg'} width={1} height={'12'} alt={''} />
           </div>
-          <Link href={`/board/myAdsBoard/${userId}`}>
-            <button className="ml-[2%]">
-              <p className="font-normal text-base w-[full]">Mina inlägg</p>
-            </button>
-          </Link>
+          {/* <Link href={`/board/myAdsBoard/${userId}`}> Detta skapade problem och "mina inlägg" visades
+          som två rader ist för en*/}
+          <button
+            className="ml-[2%]"
+            onClick={() => {
+              router.push(`/board/myAdsBoard/${userId}`)
+            }}
+          >
+            <p className="font-normal text-base ">Mina inlägg</p>
+          </button>
+          {/* </Link> */}
         </section>
         <section className="pb-40">
           <div className="flex flex-col">
