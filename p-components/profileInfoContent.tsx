@@ -91,7 +91,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
 
   return (
     <form
-      className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg mb-[7.9%]"
+      className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg"
       onSubmit={handleSubmit}
     >
       <div className="mt-[8.5%] ml-[7.9%] mr-[5.8%] flex flex-row justify-between ">
@@ -206,7 +206,10 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
             style={{ color: '#000000' }}
           />
         </label>
-        <button className="mt-[4.1%] mb-[8.6%] w-full h-[9.8%] rounded-[2px] bg-[#9EBB9D] placeholder-[#000000]  flex items-center justify-center">
+        <button
+          className="mt-[4.1%] mb-[8.6%] w-full h-[9.8%] rounded-[2px] bg-[#9EBB9D] placeholder-[#000000]  flex items-center justify-center"
+          type="submit"
+        >
           <div className=" ">
             <svg
               width="27"
