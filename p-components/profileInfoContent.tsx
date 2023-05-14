@@ -90,6 +90,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
   console.log('user._id', userId)
 
   return (
+
     <form
       className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg mb-[7.9%]"
       onSubmit={handleSubmit}
