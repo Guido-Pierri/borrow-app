@@ -94,7 +94,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
       className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg"
       onSubmit={handleSubmit}
     >
-      <div className="mt-[8.5%] ml-[7.9%] mr-[5.8%] flex flex-row justify-between ">
+      <div className="mt-[7.25%] ml-[6.7%] mr-[5.8%] flex flex-row justify-between ">
         <p className="text-xl font-[700] text-black flex justify-start">
           Mina uppgifter
         </p>
@@ -105,7 +105,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
         </div>
       </div>
       <div
-        className="ml-[7.9%] mr-[7.9%] mt-[7.9%] h-[100%]
+        className="mt-[6.7%] ml-[6.7%] mr-[6.7%]  h-[100%]
         "
       >
         <label className="text-left">
