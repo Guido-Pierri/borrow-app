@@ -3,11 +3,14 @@ import { User } from "@/types/user";
 import { NextPage } from "next";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import * as React from 'react';
 
 // function navigateTo() {
 //   window.location.href = "/ads"
 // }
+
 export default function MyPage() {
+  
   // const router = useRouter()
 
   const [formData, setFormData] = useState<User>({
@@ -72,71 +75,85 @@ export default function MyPage() {
           Registrera
         </h1>
 
-        <label>
-          <input
-            className="rounded py-4 px-7 mt-800 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="För- och efternamn"
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            required
-            onChange={handleInputChange}
-            style={{ color: "#000000" }}
-          />
-        </label>
-        <label>
-          <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fdfdfd]"
-            placeholder="Postnummer"
-            type="text"
-            name="postnumber"
-            required
-            value={formData.adress}
-            onChange={handleInputChange}
-            style={{ color: "#000000" }}
-          />
-        </label>
-        <label>
-          <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="E-post"
-            type="email"
-            name="email"
-            value={formData.adress}
-            onChange={handleInputChange}
-            style={{ color: "#000000" }}
-            required
-          />
-        </label>
-
-        <label>
-          <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="Lösenord..."
-            type="password"
-            name="password"
-            required
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Måste innehålla minst en siffra och en stor och liten bokstav, och minst 8 eller fler tecken"
-            minLength={8}
-            value={formData.password}
-            onChange={handleInputChange}
-            style={{ color: "#000000" }}
-          />
-        </label>
-        <label>
-          <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            placeholder="Bekräfta lösenord"
-            type="password"
-            name="confirmpassword"
-            value={formData.password}
-            onChange={handleInputChange}
-            style={{ color: "#000000" }}
-            required
-          />
-        </label>
-
+        <div>
+  <label
+    htmlFor="firstName"
+    className="block text-sm font-slim text-black mb-2"
+    style={{ width: "155px" }}
+  >
+    För & Efternamn
+  </label>
+  <input
+    id="firstName"
+    className="rounded py-4 px-7 mt-1 border w-[335px] border-[#9EBB9D] placeholder-[#000000] bg-[#fdfdfd]"
+    type="text"
+    name="firstName"
+    required
+    value={formData.firstName}
+    onChange={handleInputChange}
+    style={{ color: "#000000", marginTop: "-0.4rem" }}
+  />
+</div>
+<div>
+  <label
+    htmlFor="adress"
+    className="block text-sm font-slim text-black mb-2"
+    style={{ width: "135px" }}
+  >
+  Postnummer
+</label>
+<input
+  id="adress"
+  className="rounded py-4 px-7 mt-1 border w-[335px] border-[#9EBB9D] placeholder-[#000000] bg-[#fdfdfd]"
+  type="text"
+  name="adress"
+  required
+  value={formData.adress}
+  onChange={handleInputChange}
+  style={{ color: "#000000", marginTop: "-0.4rem" }}
+/>
+</div>
+<div>
+  <label
+    htmlFor="Email"
+    className="block text-sm font-slimm text-black mb-2"
+    style={{ width: "90px" }} 
+  >
+    Email
+</label>
+<input
+  id="email"
+  className="rounded py-4 px-7 mt-1 border w-[335px] border-[#9EBB9D] placeholder-[#000000] bg-[#fdfdfd]"
+  type="email"
+  name="email"
+  required
+  value={formData.email}
+  onChange={handleInputChange}
+  style={{ color: "#000000", marginTop: "-0.4rem" }}
+/>
+</div>
+<div>
+  <label
+    htmlFor="Lösenord"
+    className="block text-sm font-slim text-black mb-2"
+    style={{ width: "115px" }}
+  >
+    Lösenord
+</label>
+<input
+  id="Lösen"
+  type="password"
+  name="password"
+  className="rounded py-4 px-7 mt-1 border w-[335px] border-[#9EBB9D] placeholder-[#000000] bg-[#fdfdfd]"
+  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  title="Måste innehålla minst en siffra och en stor och liten bokstav, och minst 8 eller fler tecken"
+  minLength={8}
+  required
+  value={formData.password}
+  onChange={handleInputChange}
+  style={{ color: "#000000", marginTop: "-0.4rem" }}
+/>
+</div>
         {/* <label>
           <input
             className="rounded py-4 px-7 mt-8 border w-[265px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
@@ -151,10 +168,15 @@ export default function MyPage() {
             onChange={handleInputChange}
             style={{ color: "#000000" }}
           />
-        </label> */}
+        </label> */
+        }
         <br />
         <br />
-        <div className="bg-[#F5F5F5]">
+        <label className ="flex flex-row-reverse justify-end ml-9">
+          <legend className ="text-medium mt-6 ml-4 text-black">Jag godkänner villkoren</legend>
+          <input class="mt-8 border ml-6 mb-8 rounded  accent-[#9EBB9D]" type="checkbox" required title="Du måste godkänna vilkoren!" name=""/>
+        </label>
+        <div className="bg-[#FFFFFF">
           <button
             className="
            rounded-sm text-[17px] text-black border-[#9EBB9D] bg-[#9EBB9D] border w-[265px]  py-3
@@ -169,3 +191,4 @@ export default function MyPage() {
     </div>
   );
 }
+

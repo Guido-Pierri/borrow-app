@@ -26,6 +26,7 @@ interface ApiData {
   email: string
 }
 
+
 /*Defining a function (pass to other files), that has 
 a object formData that contains following properties*/
 export default function CreateAd({ imageUrl }: any) {
@@ -79,6 +80,7 @@ export default function CreateAd({ imageUrl }: any) {
       description: formData.description,
       fullName: formData.fullName,
       email: formData.email,
+      
     }
     console.log(apiData)
 
@@ -158,6 +160,25 @@ export default function CreateAd({ imageUrl }: any) {
         <div>
           <Upload setImageUrl={setImgUrl} />
         </div>
+        
+  <label htmlFor="startDate" className="block text-black text-sm font-bold mt-1">
+  Select a start date:
+</label>
+<input 
+  className="rounded py-4 px-7 mt-3 border w-[265px]"
+  type="date"
+  id="startDate"
+/>
+
+<label htmlFor="endDate" className="block text-black text-sm font-bold mt-1">
+  Select an end date:
+</label>
+<input 
+  className="rounded py-4 px-7 mt-3 border w-[265px]"
+  type="date"
+  id="endDate"
+/>
+
 
         <br />
         <br />

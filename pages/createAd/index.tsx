@@ -12,6 +12,7 @@ const App = () => {
   }
 
   return (
+    
     <div>
       <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
         <Header></Header>
