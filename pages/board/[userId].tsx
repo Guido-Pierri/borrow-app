@@ -1,15 +1,15 @@
-import ButtonCreateAd from "@/p-components/buttonCreateAd";
-import Header from "@/p-components/header";
-import Link from "next/link";
-import router, { useRouter } from "next/router";
-import clientPromise from "@/lib/mongodb";
-import { BoardAd } from "@/types/boardAd";
-import { useState } from "react";
-import SearchBar from "@/p-components/searchBar";
-import Image from "next/image";
+import ButtonCreateAd from "@/p-components/buttonCreateAd"
+import Header from "@/p-components/header"
+import Link from "next/link"
+import router, { useRouter } from "next/router"
+import clientPromise from "@/lib/mongodb"
+import { BoardAd } from "@/types/boardAd"
+import { useState } from "react"
+import SearchBar from "@/p-components/searchBar"
+import Image from "next/image"
 
 interface Props {
-  boardAds: BoardAd[];
+  boardAds: BoardAd[]
 }
 
 // function navigateToAd(id: string) {
@@ -17,10 +17,10 @@ interface Props {
 // }
 
 const Board = ({ boardAds }: Props) => {
-  const [query, setQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const router = useRouter();
-  const { userId } = router.query;
+  const [query, setQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const router = useRouter()
+  const { userId } = router.query
   const filteredBoardAds = boardAds.filter((boardAd) =>
     boardAd.title.includes(
       query
@@ -31,7 +31,7 @@ const Board = ({ boardAds }: Props) => {
 
         .concat(query.charAt(1).toLocaleLowerCase())
     )
-  );
+  )
 
   // .filter(
   //   (ad) => !selectedCategory
@@ -39,7 +39,7 @@ const Board = ({ boardAds }: Props) => {
   //   //  ad.category === selectedCategory
   // );
 
-  console.log("selectedCategory:", selectedCategory);
+  console.log("selectedCategory:", selectedCategory)
 
   return (
     <>
@@ -80,18 +80,18 @@ const Board = ({ boardAds }: Props) => {
           <p>Kanske en snäll granne har det du söker.</p>
         </div>
         <section className="flex text-left mb-9 mt-6 items-center justify-start">
-          <button className="ml-[5.5%]  pr-[2%] mr-[2%] border-b-[1px] border-b-[#9EBB9D]">
-            <p className="font-normal text-base">Alla inlägg</p>
+          <button className="ml-[5.5%]  pr-[2%] mr-[2%] underline decoration-[#9EBB9D] decoration-2 border-r-[1px] border-black">
+            <p className="font-normal text-base ">Alla inlägg</p>
           </button>
-          <div>
+          {/* <div>
             <Image src={"/Vector 88.svg"} width={1} height={"12"} alt={""} />
-          </div>
+          </div> */}
           {/* <Link href={`/board/myAdsBoard/${userId}`}> Detta skapade problem och "mina inlägg" visades
           som två rader ist för en*/}
           <button
-            className="ml-[2%]"
+            className=""
             onClick={() => {
-              router.push(`/board/myAdsBoard/${userId}`);
+              router.push(`/board/myAdsBoard/${userId}`)
             }}
           >
             <p className="font-normal text-base ">Mina inlägg</p>
@@ -116,7 +116,7 @@ const Board = ({ boardAds }: Props) => {
                     // onClick={() => navigateToAd(ad.id)}
                     className="ml-[7%] mr-[3.5%] mt-[4%]"
                     alt={boardAd.description}
-                    src={"/profile.svg"}
+                    src={"/Profil.svg"}
                     width={"75"}
                     height={"98"}
                   />
@@ -140,27 +140,27 @@ const Board = ({ boardAds }: Props) => {
         `}</style>
       </div>
     </>
-  );
-};
+  )
+}
 export async function getServerSideProps() {
   try {
-    const client = await clientPromise;
-    const db = client.db("borrow");
+    const client = await clientPromise
+    const db = client.db("borrow")
 
     const boardAds = await db
       .collection("board")
       .find({})
       .sort({ _id: -1 })
-      .toArray();
+      .toArray()
 
-    console.log(boardAds);
+    console.log(boardAds)
 
     return {
       props: { boardAds: JSON.parse(JSON.stringify(boardAds)) },
-    };
+    }
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
 }
 
-export default Board;
+export default Board

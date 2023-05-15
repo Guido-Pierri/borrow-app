@@ -26,18 +26,21 @@ const Board = ({ boardAds }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const router = useRouter();
   const { userId } = router.query;
-  const filteredBoardAds = boardAds.filter((boardAd) =>
-    boardAd.title.includes(
-      query
 
-        .charAt(0)
-
-        .toLocaleUpperCase()
-
-        .concat(query.charAt(1).toLocaleLowerCase())
-    )
+  const filteredBoardAds = boardAds.filter(
+    (boardAd) => boardAd.userId === userId
   );
+  // const filteredBoardAds = boardAds.filter((boardAd) =>
+  //   boardAd.title.includes(
+  //     query
 
+  //       .charAt(0)
+
+  //       .toLocaleUpperCase()
+
+  //       .concat(query.charAt(1).toLocaleLowerCase())
+  //   )
+  // )
   // .filter(
   //   (ad) => !selectedCategory
   //   //  ||
@@ -89,12 +92,18 @@ const Board = ({ boardAds }: Props) => {
             onClick={() => {
               router.push(`/board/${userId}`);
             }}
-            className="ml-[5.5%] border-r-[1px] pr-[2%] border-black mr-[2%]"
+            className="ml-[5.5%] border-r-[1px] pr-[2%] border-black mr-[2%] "
           >
             <p>Alla inlägg</p>
           </button>
           <div></div>
-          <button className="underline decoration-[#9EBB9D] decoration-2">
+          <button
+            // onClick={() => {
+            //   router.push(`/board/myAdsBoard/${userId}`)
+            // }}
+
+            className="underline decoration-[#9EBB9D] decoration-2 "
+          >
             <p>Mina inlägg</p>
           </button>
         </section>
@@ -116,7 +125,7 @@ const Board = ({ boardAds }: Props) => {
                     // onClick={() => navigateToAd(ad.id)}
                     className="ml-[7%] mr-[3.5%] mt-[4%]"
                     alt={boardAd.description}
-                    src={"/profile.svg"}
+                    src={"/Profil.svg"}
                     width={"75"}
                     height={"98"}
                   />
@@ -142,14 +151,17 @@ const Board = ({ boardAds }: Props) => {
     </>
   );
 };
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
   try {
+    const { userId } = context.query;
+    console.log("userid: " + userId);
+
     const client = await clientPromise;
     const db = client.db("borrow");
 
     const boardAds = await db
       .collection("board")
-      .find({})
+      .find({ publisher: userId })
       .sort({ _id: -1 })
       .toArray();
 
