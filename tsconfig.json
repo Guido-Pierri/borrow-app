@@ -25,7 +25,8 @@
     "pages/loading.js",
     "pages/uploadForm.js",
     "pages/home.js",
-    "p-components/uploadImageAddProfileImage.js"
+    "p-components/uploadImageAddProfileImage.js",
+    "pages/404.js"
   ],
   "exclude": ["node_modules"]
 }
