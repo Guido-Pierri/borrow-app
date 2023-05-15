@@ -1,26 +1,28 @@
-import ButtonCreateAd from "@/p-components/buttonCreateAd";
-import Header from "@/p-components/header";
-import Link from "next/link";
-import router, { useRouter } from "next/router";
-import clientPromise from "@/lib/mongodb";
-import { BoardAd } from "@/types/boardAd";
-import { useState } from "react";
-import SearchBar from "@/p-components/searchBar";
-import Image from "next/image";
+import ButtonCreateAd from '@/p-components/buttonCreateAd'
+import Header from '@/p-components/header'
+import Link from 'next/link'
+import router, { useRouter } from 'next/router'
+import clientPromise from '@/lib/mongodb'
+import { BoardAd } from '@/types/boardAd'
+import { useState } from 'react'
+import SearchBar from '@/p-components/searchBar'
+import Image from 'next/image'
+import { User } from '@/types/user'
 
 interface Props {
-  boardAds: BoardAd[];
+  boardAds: BoardAd[]
+  users: User[]
 }
 
 // function navigateToAd(id: string) {
 //   window.location.href = `/ads/view/${id}`
 // }
 
-const Board = ({ boardAds }: Props) => {
-  const [query, setQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const router = useRouter();
-  const { userId } = router.query;
+const Board = ({ boardAds, users }: Props) => {
+  const [query, setQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
+  const router = useRouter()
+  const { userId } = router.query
   const filteredBoardAds = boardAds.filter((boardAd) =>
     boardAd.title.includes(
       query
@@ -31,7 +33,7 @@ const Board = ({ boardAds }: Props) => {
 
         .concat(query.charAt(1).toLocaleLowerCase())
     )
-  );
+  )
 
   // .filter(
   //   (ad) => !selectedCategory
@@ -39,7 +41,7 @@ const Board = ({ boardAds }: Props) => {
   //   //  ad.category === selectedCategory
   // );
 
-  console.log("selectedCategory:", selectedCategory);
+  console.log('selectedCategory:', selectedCategory)
 
   return (
     <>
@@ -84,14 +86,21 @@ const Board = ({ boardAds }: Props) => {
             <p className="font-normal text-base">Alla inlägg</p>
           </button>
           <div>
-            <Image src={"/Vector 88.svg"} width={1} height={"12"} alt={""} />
+            {users.map((user)=>(              <div key={user.id} className="">
+))}
+            <Image
+              src={`${}`}
+              width={1}
+              height={'12'}
+              alt={''}
+            />
           </div>
           {/* <Link href={`/board/myAdsBoard/${userId}`}> Detta skapade problem och "mina inlägg" visades
           som två rader ist för en*/}
           <button
             className="ml-[2%]"
             onClick={() => {
-              router.push(`/board/myAdsBoard/${userId}`);
+              router.push(`/board/myAdsBoard/${userId}`)
             }}
           >
             <p className="font-normal text-base ">Mina inlägg</p>
@@ -105,10 +114,10 @@ const Board = ({ boardAds }: Props) => {
                 <div>
                   <Image
                     className="ml-[5.6%]"
-                    src={"/Line.svg"}
-                    alt={"#"}
-                    width={"347"}
-                    height={"280"}
+                    src={'/Line.svg'}
+                    alt={'#'}
+                    width={'347'}
+                    height={'280'}
                   ></Image>
                 </div>
                 <div className="flex items-center">
@@ -116,9 +125,9 @@ const Board = ({ boardAds }: Props) => {
                     // onClick={() => navigateToAd(ad.id)}
                     className="ml-[7%] mr-[3.5%] mt-[4%]"
                     alt={boardAd.description}
-                    src={"/profile.svg"}
-                    width={"75"}
-                    height={"98"}
+                    src={'/profile.svg'}
+                    width={'75'}
+                    height={'98'}
                   />
                   <div>
                     <p className="text-sm font-semibold mr-[7%]">
@@ -140,27 +149,30 @@ const Board = ({ boardAds }: Props) => {
         `}</style>
       </div>
     </>
-  );
-};
+  )
+}
 export async function getServerSideProps() {
   try {
-    const client = await clientPromise;
-    const db = client.db("borrow");
+    const client = await clientPromise
+    const db = client.db('borrow')
 
     const boardAds = await db
-      .collection("board")
+      .collection('board')
       .find({})
       .sort({ _id: -1 })
-      .toArray();
-
-    console.log(boardAds);
+      .toArray()
+    const user =  db.collection('users').find({})
+    console.log(boardAds)
 
     return {
-      props: { boardAds: JSON.parse(JSON.stringify(boardAds)) },
-    };
+      props: {
+        boardAds: JSON.parse(JSON.stringify(boardAds)),
+        users: JSON.parse(JSON.stringify(user)),
+      },
+    }
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
 }
 
-export default Board;
+export default Board
