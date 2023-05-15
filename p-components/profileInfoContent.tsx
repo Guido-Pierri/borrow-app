@@ -90,7 +90,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
   console.log('user._id', userId)
 
   return (
-    <div className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg pb-[7.25%]">
+    <div className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg pb-[7.25%] h-[100%]">
       <div className="mt-[7.25%] ml-[6.7%] mr-[5.8%] flex flex-row justify-between ">
         <p className="text-xl font-[700] text-black flex justify-start">
           Mina uppgifter
@@ -109,7 +109,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
         <label className="text-left">
           <p className="text-base font-normal">Ditt namn</p>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[10.64%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             type="text"
             name="firstAndLastName"
             placeholder={user.firstAndLastName}
@@ -122,7 +122,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
         <label>
           <p className="text-base font-normal">E-post</p>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[10.64%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             type="email"
             name="email"
             placeholder={user.email}
@@ -136,7 +136,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           <p className="text-base font-normal">Postkod</p>
 
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[10.64%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             type="text"
             name="postCode"
             value={formData.postCode}
@@ -149,7 +149,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
         <label>
           <legend className="text-base font-normal">Ändra Lösenord</legend>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[10.64%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             // placeholder="Lösenord..."
             type="password"
             name="password"
@@ -165,7 +165,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
         <label>
           <legend className="text-base font-normal">Bekräfta lösenord</legend>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[10.64%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             // placeholder="Bekräfta lösenord..."
             type="password"
             name="confirmPassword"
@@ -186,7 +186,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
         <label>
           <legend className="text-base font-normal">Bekräfta lösenord</legend>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[10.64%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             // placeholder="Bekräfta lösenord..."
             type="password"
             name="confirmPassword2"
@@ -205,7 +205,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
         </label>
         <div className="mt-[4.1%] h-[100%]">
           <button
-            className="h-[10.26%] w-[100%] rounded-[2px] bg-[#9EBB9D] placeholder-[#000000]  flex items-center justify-center"
+            className="h-[55px] w-[100%] rounded-[2px] bg-[#9EBB9D] placeholder-[#000000]  flex items-center justify-center"
             type="submit"
           >
             <div className=" ">
