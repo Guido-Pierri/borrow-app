@@ -16,6 +16,7 @@ interface Props {
 export default function MyProfile({ user }: Props) {
   const router = useRouter()
   const { userId } = router.query
+
   console.log(user.firstAndLastName)
   // const [showHeader, setShowHeader] = useState<string>('')
   // const [showProfile, setShowProfile] = useState<string>('')
@@ -44,7 +45,16 @@ export default function MyProfile({ user }: Props) {
     setShowDeleteAccountOverlay(false)
   }
   // console.log(showInfo)
+  const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/
 
+  // if (!user.profileImage || !urlRegex.test(user.profileImage)) {
+  //   return {
+  //     redirect: {
+  //       destination: '/404',
+  //       permanent: false,
+  //     },
+  //   }
+  // }
   return (
     <>
       <div className="max-w-sm">
@@ -53,8 +63,25 @@ export default function MyProfile({ user }: Props) {
         </section>
         <section>
           <div className="flex ml-[8%] items-center">
-            <div className="relative">
-              <Image src={'/Ellipse 61.jpg'} width={100} height={100} alt="" />
+            <div className="relative ">
+              {!user.profileImage ? (
+                <Image
+                  className="rounded-full"
+                  src={'/profile.svg'}
+                  width={100}
+                  height={100}
+                  alt=""
+                />
+              ) : (
+                <Image
+                  className="rounded-full"
+                  src={`${user.profileImage}`}
+                  width={100}
+                  height={100}
+                  alt=""
+                />
+              )}
+
               <div className="absolute top-[65.5%] left-[71.42%] clickable">
                 <ProfileImage />
               </div>
@@ -114,6 +141,7 @@ export default function MyProfile({ user }: Props) {
 export const getServerSideProps = async (context: any) => {
   try {
     const { userId } = context.query
+
     const { ObjectId } = require('mongodb')
 
     const str = userId
