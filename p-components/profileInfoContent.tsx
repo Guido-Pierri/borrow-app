@@ -90,7 +90,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
   console.log('user._id', userId)
 
   return (
-    <div className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg">
+    <div className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg pb-[7.25%]">
       <div className="mt-[7.25%] ml-[6.7%] mr-[5.8%] flex flex-row justify-between ">
         <p className="text-xl font-[700] text-black flex justify-start">
           Mina uppgifter
@@ -102,12 +102,12 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
         </div>
       </div>
       <form
-        className="mt-[6.7%] ml-[6.7%] mr-[6.7%]  h-[100%]
+        className="mt-[6.7%] ml-[6.7%] mr-[6.7%] h-[100%]
         "
         onSubmit={handleSubmit}
       >
         <label className="text-left">
-          <p className="">Ditt namn</p>
+          <p className="text-base font-normal">Ditt namn</p>
           <input
             className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
             type="text"
@@ -120,7 +120,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           />
         </label>
         <label>
-          <p className="">E-post</p>
+          <p className="text-base font-normal">E-post</p>
           <input
             className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
             type="email"
@@ -133,7 +133,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           />
         </label>
         <label>
-          <p className="">Postkod</p>
+          <p className="text-base font-normal">Postkod</p>
 
           <input
             className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
@@ -147,7 +147,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           />
         </label>
         <label>
-          <legend className="">Ändra Lösenord</legend>
+          <legend className="text-base font-normal">Ändra Lösenord</legend>
           <input
             className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
             // placeholder="Lösenord..."
@@ -163,7 +163,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           />
         </label>
         <label>
-          <legend className="">Bekräfta lösenord</legend>
+          <legend className="text-base font-normal">Bekräfta lösenord</legend>
           <input
             className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
             // placeholder="Bekräfta lösenord..."
@@ -184,7 +184,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           />
         </label>
         <label>
-          <legend className="">Bekräfta lösenord</legend>
+          <legend className="text-base font-normal">Bekräfta lösenord</legend>
           <input
             className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
             // placeholder="Bekräfta lösenord..."
@@ -239,7 +239,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
                 </defs>
               </svg>
             </div>
-            <p>Spara ändring</p>
+            <p className="text-base font-normal">Spara ändring</p>
           </button>
         </div>
       </form>
