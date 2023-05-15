@@ -90,12 +90,8 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
   console.log('user._id', userId)
 
   return (
-
-    <form
-      className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg mb-[7.9%]"
-      onSubmit={handleSubmit}
-    >
-      <div className="mt-[8.5%] ml-[7.9%] mr-[5.8%] flex flex-row justify-between ">
+    <div className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg pb-[7.25%] h-[100%]">
+      <div className="mt-[7.25%] ml-[6.7%] mr-[5.8%] flex flex-row justify-between ">
         <p className="text-xl font-[700] text-black flex justify-start">
           Mina uppgifter
         </p>
@@ -105,14 +101,15 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           </button>
         </div>
       </div>
-      <div
-        className="ml-[7.9%] mr-[7.9%] mt-[7.9%] h-[100%]
+      <form
+        className="mt-[6.7%] ml-[6.7%] mr-[6.7%] h-[100%]
         "
+        onSubmit={handleSubmit}
       >
         <label className="text-left">
-          <p className="">Ditt namn</p>
+          <p className="text-base font-normal">Ditt namn</p>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             type="text"
             name="firstAndLastName"
             placeholder={user.firstAndLastName}
@@ -123,9 +120,9 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           />
         </label>
         <label>
-          <p className="">E-post</p>
+          <p className="text-base font-normal">E-post</p>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             type="email"
             name="email"
             placeholder={user.email}
@@ -136,10 +133,10 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           />
         </label>
         <label>
-          <p className="">Postkod</p>
+          <p className="text-base font-normal">Postkod</p>
 
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             type="text"
             name="postCode"
             value={formData.postCode}
@@ -150,9 +147,9 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           />
         </label>
         <label>
-          <legend className="">Ändra Lösenord</legend>
+          <legend className="text-base font-normal">Ändra Lösenord</legend>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             // placeholder="Lösenord..."
             type="password"
             name="password"
@@ -166,9 +163,9 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           />
         </label>
         <label>
-          <legend className="">Bekräfta lösenord</legend>
+          <legend className="text-base font-normal">Bekräfta lösenord</legend>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             // placeholder="Bekräfta lösenord..."
             type="password"
             name="confirmPassword"
@@ -187,9 +184,9 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           />
         </label>
         <label>
-          <legend className="">Bekräfta lösenord</legend>
+          <legend className="text-base font-normal">Bekräfta lösenord</legend>
           <input
-            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
+            className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
             // placeholder="Bekräfta lösenord..."
             type="password"
             name="confirmPassword2"
@@ -204,42 +201,49 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
               handleInputChange(event)
               setConfirmedPassword2(event.target.value)
             }}
-            style={{ color: '#000000' }}
           />
         </label>
-        <button className="mt-[4.1%]  rounded-[2px] bg-[#9EBB9D] placeholder-[#000000] w-full h-[9.8%] flex items-center justify-center">
-          <div className=" ">
-            <svg
-              width="27"
-              height="27"
-              viewBox="0 0 27 27"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-            >
-              <rect width="27" height="27" fill="url(#pattern0)" />
-              <defs>
-                <pattern
-                  id="pattern0"
-                  patternContentUnits="objectBoundingBox"
-                  width="1"
-                  height="1"
-                >
-                  <use xlinkHref="#image0_2042_4955" transform="scale(0.02)" />
-                </pattern>
-                <image
-                  id="image0_2042_4955"
-                  width="50"
-                  height="50"
-                  xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABXUlEQVR4nO2WsUoEMRCGP7a95tAHsLBRH0TFRnyDrXwBQVTUQtQr9xFELRSsPMXGQgQbLaw9Oxtf4kQlEHEIe3Amkp2F+WAgu2Qm8+fPkgXDMAzjl0ngFDgGJmgxu8CXjx1aTCWEuHFrqUyIMswRbZgj2jBHtGGOaMMc0YY5og1zRButc2QZeANugO4YQtyca+AdWEER96LhJyGmTkjXz/l5/4Ai1kRjUkwoJBThYh1l9IIGn4ET8XwEPAZz1H43VdDo54ixahGjnKmLrCKmgXNgDygSnUkRUQDb/phOEcGFWHwpIr/6JycWRf5ZRD53okDZ4IVYihqup0aEOBaA+YT8UouQVEoT4rkSO7FBc2yJPi5T74MXoEN+OsBA9HEQU2QO+BBFBt6Z1UyxCbyK9YfATOyOHI5xS+eKfRIovJ3Smdwx9CL++ndRy6x3pw/cZoq+38To42QYhoFavgF/GiSkHOBdGAAAAABJRU5ErkJggg=="
-                />
-              </defs>
-            </svg>
-          </div>
-          <p>Spara ändring</p>
-        </button>
-      </div>
-    </form>
+        <div className="mt-[4.1%] h-[100%]">
+          <button
+            className="h-[55px] w-[100%] rounded-[2px] bg-[#9EBB9D] placeholder-[#000000]  flex items-center justify-center"
+            type="submit"
+          >
+            <div className=" ">
+              <svg
+                width="27"
+                height="27"
+                viewBox="0 0 27 27"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+              >
+                <rect width="27" height="27" fill="url(#pattern0)" />
+                <defs>
+                  <pattern
+                    id="pattern0"
+                    patternContentUnits="objectBoundingBox"
+                    width="1"
+                    height="1"
+                  >
+                    <use
+                      xlinkHref="#image0_2042_4955"
+                      transform="scale(0.02)"
+                    />
+                  </pattern>
+                  <image
+                    id="image0_2042_4955"
+                    width="50"
+                    height="50"
+                    xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABXUlEQVR4nO2WsUoEMRCGP7a95tAHsLBRH0TFRnyDrXwBQVTUQtQr9xFELRSsPMXGQgQbLaw9Oxtf4kQlEHEIe3Amkp2F+WAgu2Qm8+fPkgXDMAzjl0ngFDgGJmgxu8CXjx1aTCWEuHFrqUyIMswRbZgj2jBHtGGOaMMc0YY5og1zRButc2QZeANugO4YQtyca+AdWEER96LhJyGmTkjXz/l5/4Ai1kRjUkwoJBThYh1l9IIGn4ET8XwEPAZz1H43VdDo54ixahGjnKmLrCKmgXNgDygSnUkRUQDb/phOEcGFWHwpIr/6JycWRf5ZRD53okDZ4IVYihqup0aEOBaA+YT8UouQVEoT4rkSO7FBc2yJPi5T74MXoEN+OsBA9HEQU2QO+BBFBt6Z1UyxCbyK9YfATOyOHI5xS+eKfRIovJ3Smdwx9CL++ndRy6x3pw/cZoq+38To42QYhoFavgF/GiSkHOBdGAAAAABJRU5ErkJggg=="
+                  />
+                </defs>
+              </svg>
+            </div>
+            <p className="text-base font-normal">Spara ändring</p>
+          </button>
+        </div>
+      </form>
+    </div>
   )
 }
 
