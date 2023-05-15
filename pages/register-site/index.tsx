@@ -7,12 +7,17 @@ import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Link from 'next/link'
 import hashning from '@/lib/functions/hashning'
+import UploadImageAddProfileImage from '@/p-components/uploadImageAddProfileImage'
+import ImageAddProfileImageIcon from '@/p-components/imageAddProfileImageIcon'
 
 // function navigateTo() {
 //   window.location.href = "/ads"
 // }
+
 export default function MyPage() {
   // const router = useRouter()
+  const [imgUrl, setImgUrl] = useState('')
+
   const [confirmPassword, setConfirmedPassword] = useState<string>('')
   const [formData, setFormData] = useState<User>({
     userId: uuidv4(),
@@ -20,6 +25,7 @@ export default function MyPage() {
     postCode: '',
     email: '',
     password: '',
+    profileImage: '',
   })
 
   console.log(hashning(formData.password))
@@ -38,6 +44,7 @@ export default function MyPage() {
       postCode: formData.postCode,
       email: formData.email,
       password: formData.password,
+      profileImage: imgUrl,
     }
 
     const response = await fetch(`/api/registration`, {
@@ -109,9 +116,16 @@ export default function MyPage() {
               className="text-xl pl-10 font-[700] text-black flex justify-start"
               style={{ marginBottom: '1rem' }}
             >
-              {' '}
               Registrera
             </h1>
+          </div>
+          <div>
+            <legend className="mb-[-32px]">
+              <div>
+                {/* <UploadImageAddProfileImageIcon setImageUrl={setImgUrl} /> */}
+                <UploadImageAddProfileImage setImageUrl={setImgUrl} />
+              </div>
+            </legend>
           </div>
           <label>
             <legend className="mb-[-2px] mt-5 ml-11 text-left">

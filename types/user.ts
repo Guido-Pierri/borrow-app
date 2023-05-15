@@ -4,4 +4,5 @@ export type User = {
   postCode: string
   email: string
   password: string
+  profileImage: string
 }
