@@ -1,6 +1,6 @@
-import clientPromise from "@/lib/mongodb"
-import { Collection } from "mongodb"
-import { NextApiRequest, NextApiResponse } from "next"
+import clientPromise from '@/lib/mongodb'
+import { Collection } from 'mongodb'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,11 +9,11 @@ export default async function handler(
   console.log(req.body)
 
   try {
-    if (req.method === "PATCH") {
+    if (req.method === 'PATCH') {
       const { id, title, description, email, publisher } = req.body
       const client = await clientPromise
-      const database = client.db("borrow")
-      const collection = database.collection("board")
+      const database = client.db('borrow')
+      const collection = database.collection('board')
       console.log(req.body)
       console.log(id)
       const result = await collection.updateOne(
@@ -29,14 +29,21 @@ export default async function handler(
       )
 
       // res.json(result)
-      res.status(201).json({ message: "Update was successfull.", result })
+      res.status(201).json({ message: 'Update was successfull.', result })
     }
-    if (req.method === "POST") {
+    if (req.method === 'POST') {
       console.log(req.body)
-      const { id, title, description, email, publisher } = req.body
+      const {
+        id,
+        title,
+        description,
+        email,
+        publisher,
+        publisherProfileImage,
+      } = req.body
       const client = await clientPromise
-      const database = client.db("borrow")
-      const collection = database.collection("board")
+      const database = client.db('borrow')
+      const collection = database.collection('board')
       // const name = req.body.name
       // const email = req.body.email
       const result = await collection.insertOne({
@@ -45,14 +52,15 @@ export default async function handler(
         description: description,
         email: email,
         publisher: publisher,
+        publisherProfileImage: publisherProfileImage,
       })
 
       // res.json(result)
 
-      res.status(201).json({ message: "Ad created successfully.", result })
+      res.status(201).json({ message: 'Ad created successfully.', result })
     }
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: "An error occurred." })
+    res.status(500).json({ message: 'An error occurred.' })
   }
 }
