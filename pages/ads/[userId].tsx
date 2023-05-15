@@ -29,7 +29,7 @@ const Ads = ({ ads }: Props) => {
   //search through ads using the query in SearchBar
   const [query, setQuery] = useState('')
   const filteredAds = ads
-    // .filter((ad) => !selectedCategory || ad?.category.match(selectedCategory))
+    .filter((ad) => ad.publisher !== userId)
     .filter((ad) =>
       ad.title.includes(
         query
