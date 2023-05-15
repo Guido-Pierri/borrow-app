@@ -1,28 +1,30 @@
 //TODO
 //add userId to ads dynamically from login-->ads--->createAds
 
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { useRouter } from "next/router";
-import Upload from "@/p-components/upload";
-import Image from "next/image";
+import { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
+import { useRouter } from "next/router"
+import Upload from "@/p-components/upload"
+import Image from "next/image"
 
 //function that generates random id:s
-uuidv4();
+uuidv4()
 
 /*Defining two interfaces,
 that describes shape of the data*/
 interface FormData {
-  id: string;
-  title: string;
-  description: string;
-  email: string;
+  id: string
+  title: string
+  description: string
+  email: string
 }
+
 interface ApiData {
-  id: string;
-  title: string;
-  description: string;
-  email: string;
+  id: string
+  title: string
+  description: string
+  email: string
+  publisher: string
 }
 
 /*Defining a function (pass to other files), that has 
@@ -33,21 +35,21 @@ export default function CreateAd({ userId }: any) {
     title: "",
     description: "",
     email: "",
-  });
+  })
 
-  console.log(formData);
-  const router = useRouter();
+  console.log(formData)
+  const router = useRouter()
 
   function handleClick() {
-    console.log("handleClick");
+    console.log("handleClick")
 
-    router.push(`/board/${userId}`);
+    router.push(`/board/${userId}`)
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
     if (!formData) {
-      return alert("Hejsan!");
+      return alert("Hejsan!")
     }
     // if (!file) {
     //   return
@@ -73,9 +75,10 @@ export default function CreateAd({ userId }: any) {
       title: formData.title,
       description: formData.description,
       email: formData.email,
+      publisher: userId,
       // userId:
-    };
-    console.log(apiData);
+    }
+    console.log(apiData)
 
     const response = await fetch("/api/boardAd", {
       method: "POST",
@@ -83,35 +86,35 @@ export default function CreateAd({ userId }: any) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
-    });
-    const data = await response.json();
-    console.log(data);
+    })
+    const data = await response.json()
+    console.log(data)
     if (data) {
     }
-    handleClick();
-  };
+    handleClick()
+  }
 
   /*Is called when user types something in the form
   and it updates formData with the new values passed in
   through setFormData*/
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    console.log(event.target.value);
-  };
+    const { name, value } = event.target
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
+    console.log(event.target.value)
+  }
   const handleInputChangeTextArea = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    console.log(event.target.value);
-  };
+    const { name, value } = event.target
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
+    console.log(event.target.value)
+  }
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    console.log(event.target.value);
-  };
+    const { name, value } = event.target
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
+    console.log(event.target.value)
+  }
   // function handleOnUpload(info){
   //   updateInfo(info)
   // }
@@ -188,5 +191,5 @@ export default function CreateAd({ userId }: any) {
         </div>
       </form>
     </div>
-  );
+  )
 }
