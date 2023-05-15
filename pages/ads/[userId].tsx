@@ -1,4 +1,3 @@
-
 import Header from '@/p-components/header'
 import { Ad } from '@/types/ads'
 import Image from 'next/image'
@@ -10,18 +9,16 @@ import SearchBar from '@/p-components/searchBar'
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
 import { UserId } from '@/types/userId'
 
-
 interface AdId {
-  id: string;
+  id: string
 }
 
 interface Props {
-  ads: Ad[];
+  ads: Ad[]
 }
 const Ads = ({ ads }: Props) => {
-  const router = useRouter();
-  const { userId } = router.query as UserId;
-
+  const router = useRouter()
+  const { userId } = router.query as UserId
 
   const [selectedCategory, setSelectedCategory] = useState('')
 
@@ -45,19 +42,17 @@ const Ads = ({ ads }: Props) => {
     .filter((ad) => !selectedCategory || ad.category === selectedCategory)
   console.log('selectedCategory:', selectedCategory)
 
-
   // navigate to the ad creation
   const navigateToCreateAd = () => {
-    router.push(`/createAd/${userId}`);
-  };
+    router.push(`/createAd/${userId}`)
+  }
 
-  console.log(userId);
+  console.log(userId)
 
   function navigateToAd(id: string) {
-    window.location.href = `/ads/view/${id}`;
+    window.location.href = `/ads/view/${id}`
   }
   const handleClick = async (id: string) => {
-
     console.log('inside handleClick')
 
     console.log(`${userId}`)
@@ -68,18 +63,16 @@ const Ads = ({ ads }: Props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(`${userId}`),
-    });
+    })
 
-    const dataResponse = await response.json();
-
+    const dataResponse = await response.json()
 
     console.log('dataResponse', dataResponse)
     if (dataResponse) {
     }
-  };
+  }
 
   const handleClickBoard = async (id: string) => {
-
     console.log('inside handleClickBoard')
 
     console.log(`${userId}`)
@@ -90,16 +83,14 @@ const Ads = ({ ads }: Props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(`${userId}`),
-    });
+    })
 
-    const dataResponse = await response.json();
-
+    const dataResponse = await response.json()
 
     console.log('dataResponse', dataResponse)
     if (dataResponse) {
     }
-  };
-
+  }
 
   console.log('filteredAds', filteredAds)
 
@@ -117,7 +108,7 @@ const Ads = ({ ads }: Props) => {
           </button>
           <button
             onClick={() => {
-              handleClick(`${userId}`);
+              handleClick(`${userId}`)
             }}
             className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1  text-black"
           >
@@ -126,7 +117,7 @@ const Ads = ({ ads }: Props) => {
           <button
             className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black"
             onClick={() => {
-              handleClickBoard(`${userId}`);
+              handleClickBoard(`${userId}`)
             }}
           >
             Tavlan
@@ -169,7 +160,7 @@ const Ads = ({ ads }: Props) => {
 
                 <Image
                   onClick={() => navigateToAd(ad.id)}
-                  className="mt-4  w-full aspect-square rounded-sm"
+                  className="mt-4  w-full aspect-square rounded-sm object-cover"
                   alt={ad.description}
                   src={ad.image}
                   width={'1000'}
@@ -225,23 +216,22 @@ const Ads = ({ ads }: Props) => {
         `}</style>
       </div>
     </>
-  );
-};
+  )
+}
 export async function getServerSideProps() {
   try {
-
     const client = await clientPromise
     const db = client.db('borrow')
 
     const ads = await db.collection('ads').find({}).sort({ _id: -1 }).toArray()
 
-    console.log(ads);
+    console.log(ads)
 
     return {
       props: { ads: JSON.parse(JSON.stringify(ads)) },
-    };
+    }
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
 }
-export default Ads;
+export default Ads

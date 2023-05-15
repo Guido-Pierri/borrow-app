@@ -1,12 +1,12 @@
-import clientPromise from "@/lib/mongodb"
-import { useRouter } from "next/router"
-import { Ad } from "@/types/ads"
-import Link from "next/link"
-import Header from "@/p-components/header"
-import Image from "next/image"
-import { Query } from "mongoose"
-import { Context } from "vm"
-import { useState } from "react"
+import clientPromise from '@/lib/mongodb'
+import { useRouter } from 'next/router'
+import { Ad } from '@/types/ads'
+import Link from 'next/link'
+import Header from '@/p-components/header'
+import Image from 'next/image'
+import { Query } from 'mongoose'
+import { Context } from 'vm'
+import { useState } from 'react'
 
 interface Props {
   ads: Ad
@@ -18,7 +18,7 @@ interface AdId {
 
 export default function Post({ ads }: Props, { publisher }: any) {
   const router = useRouter()
-  const [userId, setUserId] = useState<string>("")
+  const [userId, setUserId] = useState<string>('')
   const { adId } = router.query
   console.log(adId)
 
@@ -31,20 +31,20 @@ export default function Post({ ads }: Props, { publisher }: any) {
 
   async function updateAd(id: string) {
     window.location.href = `/updateAd/${id}`
-    console.log("updateAd")
+    console.log('updateAd')
   }
 
   async function deleteAd(id: string, publisher: string) {
-    console.log("deleteAd")
-    console.log("id", id)
-    console.log("publisher", publisher)
+    console.log('deleteAd')
+    console.log('id', id)
+    console.log('publisher', publisher)
 
     const confirmed = window.confirm(
-      "Är du säker att du vill ta bort din annons?"
+      'Är du säker att du vill ta bort din annons?'
     )
 
     if (confirmed) {
-      console.log("in i if-satsen")
+      console.log('in i if-satsen')
       console.log(id)
 
       const apiData: AdId = {
@@ -53,31 +53,31 @@ export default function Post({ ads }: Props, { publisher }: any) {
 
       console.log(apiData)
       setUserId(publisher)
-      console.log("setUserId", setUserId)
+      console.log('setUserId', setUserId)
 
       try {
-        console.log("try")
+        console.log('try')
         console.log(id)
 
-        const res = await fetch("/api/deleteAd", {
-          method: "POST",
+        const res = await fetch('/api/deleteAd', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(apiData),
         })
         console.log(res)
         console.log(res.status)
 
-        window.location.href = "/ads/myAds/" + `${publisher}`
+        window.location.href = '/ads/myAds/' + `${publisher}`
 
         if (res.ok) {
           // setDeletedAdId(id)
         } else {
-          console.error("Failed to delete ad")
+          console.error('Failed to delete ad')
         }
       } catch (e) {
-        console.error("Failed to delete ad", e)
+        console.error('Failed to delete ad', e)
       }
     }
   }
@@ -91,10 +91,10 @@ export default function Post({ ads }: Props, { publisher }: any) {
           <div className="flex justify-end mt-5 mb-5">
             {/* <Link href={}> */}
             <Image
-              src={"/kryss_annons.svg"}
+              src={'/kryss_annons.svg'}
               height={25}
               width={25}
-              alt={"Kryss"}
+              alt={'Kryss'}
               onClick={() => {
                 navigateBack()
               }}
@@ -105,7 +105,7 @@ export default function Post({ ads }: Props, { publisher }: any) {
           <div className="flex justify-center ">
             <Image
               src={ads.image}
-              alt={"#"}
+              alt={'#'}
               width={250}
               height={250}
               className="aspect-auto w-full rounded-[4px]"
@@ -140,11 +140,11 @@ export default function Post({ ads }: Props, { publisher }: any) {
                 >
                   <div className="mr-2 mt-1">
                     <Image
-                      src={"/Pencil.svg"}
-                      alt={"#"}
-                      width={"18"}
-                      height={"18"}
-                      style={{ alignSelf: "center" }}
+                      src={'/Pencil.svg'}
+                      alt={'#'}
+                      width={'18'}
+                      height={'18'}
+                      style={{ alignSelf: 'center' }}
                     ></Image>
                   </div>
                   Redigera
@@ -161,11 +161,11 @@ export default function Post({ ads }: Props, { publisher }: any) {
                   >
                     <div className="mr-2">
                       <Image
-                        src={"/trashcanBlack.svg"}
-                        alt={"#"}
-                        width={"19"}
-                        height={"22"}
-                        style={{ alignSelf: "center" }}
+                        src={'/trashcanBlack.svg'}
+                        alt={'#'}
+                        width={'19'}
+                        height={'22'}
+                        style={{ alignSelf: 'center' }}
                       ></Image>
                     </div>
                     Ta bort annons
@@ -199,9 +199,9 @@ export async function getServerSideProps(context: Context) {
   try {
     const { adId } = context.query
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
-    const ads = await db.collection("ads").findOne({ id: adId })
+    const ads = await db.collection('ads').findOne({ id: adId })
     console.log(ads)
 
     return {

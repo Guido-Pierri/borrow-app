@@ -135,7 +135,7 @@ const Ads = ({ ads }: Props) => {
               <div className="pl-6">
                 <Image
                   // onClick={() => navigateToAd(ad.id)}
-                  className="w-full rounded-sm"
+                  className="aspect-square object-cover w-full rounded-sm"
                   alt={ad.description}
                   src={ad.image}
                   width={'100'}
