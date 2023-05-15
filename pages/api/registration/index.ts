@@ -15,8 +15,14 @@ export default async function handler(
     switch (req.method) {
       case 'POST': {
         console.log(req.body)
-        const { userId, firstAndLastName, postCode, email, password } =
-          req.body as User
+        const {
+          userId,
+          firstAndLastName,
+          postCode,
+          email,
+          password,
+          profileImage,
+        } = req.body as User
 
         try {
           console.log(req.body)
@@ -41,6 +47,7 @@ export default async function handler(
                   postCode: postCode,
                   email: email,
                   password: hash,
+                  profileImage: profileImage,
                 })
                 if (result) {
                   res.status(200).json('New User')
