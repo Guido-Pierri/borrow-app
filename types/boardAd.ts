@@ -5,5 +5,6 @@ export type BoardAd = {
   description: string
   email: string
   publisher: string
+  publisherProfileImage: string
   userId: string
 }

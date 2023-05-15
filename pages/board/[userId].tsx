@@ -1,12 +1,12 @@
-import ButtonCreateAd from "@/p-components/buttonCreateAd"
-import Header from "@/p-components/header"
-import Link from "next/link"
-import router, { useRouter } from "next/router"
-import clientPromise from "@/lib/mongodb"
-import { BoardAd } from "@/types/boardAd"
-import { useState } from "react"
-import SearchBar from "@/p-components/searchBar"
-import Image from "next/image"
+import ButtonCreateAd from '@/p-components/buttonCreateAd'
+import Header from '@/p-components/header'
+import Link from 'next/link'
+import router, { useRouter } from 'next/router'
+import clientPromise from '@/lib/mongodb'
+import { BoardAd } from '@/types/boardAd'
+import { useState } from 'react'
+import SearchBar from '@/p-components/searchBar'
+import Image from 'next/image'
 
 interface Props {
   boardAds: BoardAd[]
@@ -17,8 +17,8 @@ interface Props {
 // }
 
 const Board = ({ boardAds }: Props) => {
-  const [query, setQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("")
+  const [query, setQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
   const router = useRouter()
   const { userId } = router.query
   const filteredBoardAds = boardAds.filter((boardAd) =>
@@ -39,7 +39,7 @@ const Board = ({ boardAds }: Props) => {
   //   //  ad.category === selectedCategory
   // );
 
-  console.log("selectedCategory:", selectedCategory)
+  console.log('selectedCategory:', selectedCategory)
 
   return (
     <>
@@ -98,30 +98,47 @@ const Board = ({ boardAds }: Props) => {
           </button>
           {/* </Link> */}
         </section>
-        <section className="pb-40">
+        <section>
           <div className="flex flex-col">
             {filteredBoardAds.map((boardAd) => (
               <div key={boardAd.id} className="">
                 <div>
                   <Image
                     className="ml-[5.6%]"
-                    src={"/Line.svg"}
-                    alt={"#"}
-                    width={"347"}
-                    height={"280"}
+                    src={'/Line.svg'}
+                    alt={'#'}
+                    width={'347'}
+                    height={'280'}
                   ></Image>
                 </div>
                 <div className="flex items-center">
-                  <Image
-                    // onClick={() => navigateToAd(ad.id)}
-                    className="ml-[7%] mr-[3.5%] mt-[4%]"
-                    alt={boardAd.description}
-                    src={"/Profil.svg"}
-                    width={"75"}
-                    height={"98"}
-                  />
                   <div>
-                    <p className="text-sm font-semibold mr-[7%]">
+                    <div className=" mr-[3.5%] mt-[10%] ml-[20%]">
+                      {boardAd.publisherProfileImage ? (
+                        <Image
+                          // onClick={() => navigateToAd(ad.id)}
+                          className=" mt-[4%] rounded-full border-[3px] border-[#9EBB9D]"
+                          alt={'profile'}
+                          src={boardAd.publisherProfileImage}
+                          width={'100'}
+                          height={'100'}
+                        />
+                      ) : (
+                        <Image
+                          className=" mr-[3.5%] mt-[4%] rounded-full"
+                          src="/profile.svg"
+                          width={'100'}
+                          height={'100'}
+                          alt=""
+                        />
+                      )}
+                    </div>
+                    <div className="ml-[10%]">
+                      <p>username</p>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold mr-[7%] ml-[7%]">
                       {boardAd.title}
                     </p>
                     <p className="text-sm font-normal mr-[7%]">
@@ -133,11 +150,6 @@ const Board = ({ boardAds }: Props) => {
             ))}
           </div>
         </section>
-        <style jsx>{`
-          .link {
-            cursor: pointer;
-          }
-        `}</style>
       </div>
     </>
   )
@@ -145,10 +157,10 @@ const Board = ({ boardAds }: Props) => {
 export async function getServerSideProps() {
   try {
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
     const boardAds = await db
-      .collection("board")
+      .collection('board')
       .find({})
       .sort({ _id: -1 })
       .toArray()
