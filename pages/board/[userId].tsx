@@ -69,12 +69,10 @@ const Board = ({ boardAds }: Props) => {
         </section>
         <div className="bg-[#46649D] h-2"></div>
         <div className="flex justify-center mt-5 ">
-          <Link href={`/createAdBoard/` + `${userId}`}>
-            {/* <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans">
+          {/* <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans">
             <p className="text-black"> Skapa inlägg</p>
           </button> */}
-            <ButtonCreateAd userId={userId} />
-          </Link>
+          <ButtonCreateAd userId={userId} />
         </div>
         <div className="text-left px-4">
           <p className="font-medium">Hittar du inte det du söker?</p>
