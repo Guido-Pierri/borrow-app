@@ -90,10 +90,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
   console.log('user._id', userId)
 
   return (
-    <form
-      className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg"
-      onSubmit={handleSubmit}
-    >
+    <div className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg">
       <div className="mt-[7.25%] ml-[6.7%] mr-[5.8%] flex flex-row justify-between ">
         <p className="text-xl font-[700] text-black flex justify-start">
           Mina uppgifter
@@ -104,9 +101,10 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           </button>
         </div>
       </div>
-      <div
+      <form
         className="mt-[6.7%] ml-[6.7%] mr-[6.7%]  h-[100%]
         "
+        onSubmit={handleSubmit}
       >
         <label className="text-left">
           <p className="">Ditt namn</p>
@@ -203,7 +201,6 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
               handleInputChange(event)
               setConfirmedPassword2(event.target.value)
             }}
-            style={{ color: '#000000' }}
           />
         </label>
         <div className="mt-[4.1%] mb-[8.6%] h-[100%]">
@@ -245,8 +242,8 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
             <p>Spara ändring</p>
           </button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   )
 }
 
