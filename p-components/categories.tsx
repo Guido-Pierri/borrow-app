@@ -1,9 +1,9 @@
-import Image from "next/image"
-import { useState } from "react"
+import Image from 'next/image'
+import { useState } from 'react'
 
 interface Props {} //add link and other functionalities when needed
 
-const Categories = ({ setSelectedCategory }: any) => {
+const Categories = ({ setSelectedCategory, selectedCategory }: any) => {
   const [clean, setClean] = useState(false)
   const [tools, setTools] = useState(false)
   const [bicykle, setBicykle] = useState(false)
@@ -12,31 +12,31 @@ const Categories = ({ setSelectedCategory }: any) => {
 
   function reset(category: string) {
     switch (category) {
-      case "clean":
+      case 'clean':
         setTools(false)
         setBicykle(false)
         setElectronic(false)
         setGrill(false)
         break
-      case "tools":
+      case 'tools':
         setClean(false)
         setBicykle(false)
         setElectronic(false)
         setGrill(false)
         break
-      case "bicykle":
+      case 'bicykle':
         setTools(false)
         setClean(false)
         setElectronic(false)
         setGrill(false)
         break
-      case "electronic":
+      case 'electronic':
         setClean(false)
         setTools(false)
         setBicykle(false)
         setGrill(false)
         break
-      case "grill":
+      case 'grill':
         setClean(false)
         setTools(false)
         setElectronic(false)
@@ -58,24 +58,27 @@ const Categories = ({ setSelectedCategory }: any) => {
           <div className="pr-5">
             <button
               style={{
-                border: clean ? "3px solid #9EBB9D" : "",
-                borderRadius: "50%",
+                border: clean ? '3px solid #9EBB9D' : '',
+                borderRadius: '50%',
                 // paddingRight: "17px",
               }}
               onClick={() => {
-                setSelectedCategory("Städ")
+                setSelectedCategory('Städ')
                 setClean(!clean)
-                reset("clean")
+                reset('clean')
+                if (selectedCategory === 'Städ') {
+                  setSelectedCategory('')
+                }
               }}
               // onClick={() => setSelectedCategory("Städ")}
             >
               <div className="pl-4 pt-1  border-[#9EBB9D] border-2 w-[74px] h-[76px] rounded-full flex justify-between">
                 <Image
-                  src={"/städ2.svg"}
-                  alt={"#"}
-                  width={"36"}
-                  height={"50"}
-                  style={{ alignSelf: "center" }}
+                  src={'/städ2.svg'}
+                  alt={'#'}
+                  width={'36'}
+                  height={'50'}
+                  style={{ alignSelf: 'center' }}
                 ></Image>
               </div>
             </button>
@@ -87,26 +90,29 @@ const Categories = ({ setSelectedCategory }: any) => {
           <div className="pr-5">
             <button
               style={{
-                border: tools ? "3px solid #9EBB9D" : "",
-                borderRadius: "50%",
+                border: tools ? '3px solid #9EBB9D' : '',
+                borderRadius: '50%',
                 // paddingRight: "17px",
               }}
               onClick={() => {
-                setSelectedCategory("Verktyg")
+                setSelectedCategory('Verktyg')
                 setTools(!tools)
-                reset("tools")
+                reset('tools')
+                if (selectedCategory === 'Verktyg') {
+                  setSelectedCategory('')
+                }
               }}
               // onClick={() => setSelectedCategory("Verktyg")}
             >
               {/* <Link href={"/"}> */}
               <div className="pl-3 pt-4 border-2  border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
                 <Image
-                  src={"/verktyg2.svg"}
-                  alt={"#"}
-                  width={"46"}
-                  height={"46"}
+                  src={'/verktyg2.svg'}
+                  alt={'#'}
+                  width={'46'}
+                  height={'46'}
                   style={{
-                    alignSelf: "center",
+                    alignSelf: 'center',
                   }}
                 ></Image>
               </div>
@@ -119,25 +125,28 @@ const Categories = ({ setSelectedCategory }: any) => {
           <div className="pr-5">
             <button
               style={{
-                border: bicykle ? "3px solid #9EBB9D" : "",
-                borderRadius: "50%",
+                border: bicykle ? '3px solid #9EBB9D' : '',
+                borderRadius: '50%',
                 // paddingRight: "17px",
               }}
               onClick={() => {
-                setSelectedCategory("Cyklar")
+                setSelectedCategory('Cyklar')
                 setBicykle(!bicykle)
-                reset("bicykle")
+                reset('bicykle')
+                if (selectedCategory === 'Cyklar') {
+                  setSelectedCategory('')
+                }
               }}
               // onClick={() => setSelectedCategory("Cyklar")}
             >
               {/* <Link href={"/"}> */}
               <div className=" pl-2 pt-5 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
                 <Image
-                  src={"/cykel2.svg"}
-                  alt={"#"}
-                  width={"53"}
-                  height={"37"}
-                  style={{ alignSelf: "center" }}
+                  src={'/cykel2.svg'}
+                  alt={'#'}
+                  width={'53'}
+                  height={'37'}
+                  style={{ alignSelf: 'center' }}
                 ></Image>
               </div>
               {/* </Link> */}
@@ -150,25 +159,28 @@ const Categories = ({ setSelectedCategory }: any) => {
           <div className="pr-5">
             <button
               style={{
-                border: electronic ? "3px solid #9EBB9D" : "",
-                borderRadius: "50%",
+                border: electronic ? '3px solid #9EBB9D' : '',
+                borderRadius: '50%',
                 // paddingRight: "17px",
               }}
               onClick={() => {
-                setSelectedCategory("Elektronik")
+                setSelectedCategory('Elektronik')
                 setElectronic(!electronic)
-                reset("electronic")
+                reset('electronic')
+                if (selectedCategory === 'Elektronik') {
+                  setSelectedCategory('')
+                }
               }}
               // onClick={() => setSelectedCategory("Elektronik")}
             >
               {/* <Link href={"/"}> */}
               <div className=" pl-3 pt-3 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full ">
                 <Image
-                  src={"/tv2.svg"}
-                  alt={"#"}
-                  width={"42"}
-                  height={"49"}
-                  style={{ alignSelf: "center" }}
+                  src={'/tv2.svg'}
+                  alt={'#'}
+                  width={'42'}
+                  height={'49'}
+                  style={{ alignSelf: 'center' }}
                 ></Image>
               </div>
               {/* </Link> */}
@@ -180,25 +192,28 @@ const Categories = ({ setSelectedCategory }: any) => {
           <div className="pr-5">
             <button
               style={{
-                border: grill ? "3px solid #9EBB9D" : "",
-                borderRadius: "50%",
+                border: grill ? '3px solid #9EBB9D' : '',
+                borderRadius: '50%',
                 // paddingRight: "17px",
               }}
               onClick={() => {
-                setSelectedCategory("Grill")
+                setSelectedCategory('Grill')
                 setGrill(!grill)
-                reset("grill")
+                reset('grill')
+                if (selectedCategory === 'Grill') {
+                  setSelectedCategory('')
+                }
               }}
               // onClick={() => setSelectedCategory("Grill")}
             >
               {/* <Link href={"/"}> */}
               <div className="pl-3 pt-2 border-2 border-[#9EBB9D] w-[74px] h-[76px] rounded-full flex justify-between">
                 <Image
-                  src={"/grill2.svg"}
-                  alt={"#"}
-                  width={"43"}
-                  height={"47"}
-                  style={{ alignSelf: "center" }}
+                  src={'/grill2.svg'}
+                  alt={'#'}
+                  width={'43'}
+                  height={'47'}
+                  style={{ alignSelf: 'center' }}
                 ></Image>
               </div>
               {/* </Link> */}
