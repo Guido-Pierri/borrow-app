@@ -1,12 +1,17 @@
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
+import Categories from '@/p-components/categories'
 import Header from '@/p-components/header'
+import { NextPage } from 'next'
 import Link from 'next/link'
 import router, { useRouter } from 'next/router'
+import { GoSearch } from 'react-icons/go'
+import { MongoClient, Db } from 'mongodb'
 import clientPromise from '@/lib/mongodb'
 import { BoardAd } from '@/types/boardAd'
 import { useState } from 'react'
 import SearchBar from '@/p-components/searchBar'
 import Image from 'next/image'
+import DesignLine from '@/p-components/designLine'
 
 interface Props {
   boardAds: BoardAd[]
@@ -81,24 +86,14 @@ const Board = ({ boardAds }: Props) => {
           <p>Skriv på våran anslagstavla!</p>
           <p>Kanske en snäll granne har det du söker.</p>
         </div>
-        <section className="flex text-left mb-9 mt-6 items-center justify-start">
-          <button className="ml-[5.5%]  pr-[2%] mr-[2%] border-b-[1px] border-b-[#9EBB9D]">
-            <p className="font-normal text-base">Alla inlägg</p>
+        <section className="flex text-left mb-9 mt-6">
+          <button className="ml-[5.5%] border-r-[1px] pr-[2%] border-black mr-[2%]">
+            <p>Alla inlägg</p>
           </button>
-          <div>
-            <Image src={'/Vector 88.svg'} width={1} height={'12'} alt={''} />
-          </div>
-          {/* <Link href={`/board/myAdsBoard/${userId}`}> Detta skapade problem och "mina inlägg" visades
-          som två rader ist för en*/}
-          <button
-            className="ml-[2%]"
-            onClick={() => {
-              router.push(`/board/myAdsBoard/${userId}`)
-            }}
-          >
-            <p className="font-normal text-base ">Mina inlägg</p>
+          <div></div>
+          <button className="underline decoration-[#9EBB9D] decoration-2">
+            <p>Mina inlägg</p>
           </button>
-          {/* </Link> */}
         </section>
         <section className="pb-40">
           <div className="flex flex-col">

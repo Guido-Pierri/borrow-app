@@ -16,33 +16,23 @@ interface FormData {
   id: string;
   title: string;
   description: string;
-  fullName: string;
   email: string;
-  category: string;
 }
 interface ApiData {
-  image: string;
   id: string;
   title: string;
   description: string;
-  fullName: string;
   email: string;
-  category: string;
-  publisher: string;
 }
 
 /*Defining a function (pass to other files), that has 
 a object formData that contains following properties*/
-export default function CreateAd({ imageUrl, userId }: any) {
-  const [imgUrl, setImgUrl] = useState("");
-
+export default function CreateAd({ userId }: any) {
   const [formData, setFormData] = useState<FormData>({
     id: "",
     title: "",
     description: "",
-    fullName: "",
     email: "",
-    category: "",
   });
 
   console.log(formData);
@@ -51,13 +41,13 @@ export default function CreateAd({ imageUrl, userId }: any) {
   function handleClick() {
     console.log("handleClick");
 
-    router.push(`/ads/${userId}`);
+    router.push(`/board/${userId}`);
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!imgUrl) {
-      return alert("ladda upp en bild!");
+    if (!formData) {
+      return alert("Hejsan!");
     }
     // if (!file) {
     //   return
@@ -79,14 +69,10 @@ export default function CreateAd({ imageUrl, userId }: any) {
     // }
 
     const apiData: ApiData = {
-      image: imgUrl,
       id: uuidv4(),
       title: formData.title,
       description: formData.description,
-      fullName: formData.fullName,
       email: formData.email,
-      category: formData.category,
-      publisher: userId,
       // userId:
     };
     console.log(apiData);

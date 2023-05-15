@@ -10,7 +10,7 @@ export default async function handler(
 
   try {
     if (req.method === "PATCH") {
-      const { id, title, description, email, publisher } = req.body;
+      const { id, title, description, email } = req.body;
       const client = await clientPromise;
       const database = client.db("borrow");
       const collection = database.collection("board");
@@ -23,7 +23,6 @@ export default async function handler(
             title: title,
             description: description,
             email: email,
-            publisher: publisher,
           },
         }
       );
@@ -33,16 +32,7 @@ export default async function handler(
     }
     if (req.method === "POST") {
       console.log(req.body);
-      const {
-        image,
-        id,
-        title,
-        description,
-        fullName,
-        email,
-        publisher,
-        category,
-      } = req.body;
+      const { id, title, description, email } = req.body;
       const client = await clientPromise;
       const database = client.db("borrow");
       const collection = database.collection("board");
@@ -52,11 +42,7 @@ export default async function handler(
         id: id,
         title: title,
         description: description,
-        fullName: fullName,
         email: email,
-        image: image,
-        publisher: publisher,
-        category: category,
       });
 
       // res.json(result)
