@@ -1,13 +1,13 @@
-import Header from "@/p-components/header"
-import { Ad } from "@/types/ads"
-import Image from "next/image"
-import Categories from "@/p-components/categories"
-import clientPromise from "@/lib/mongodb"
-import { useRouter } from "next/router"
-import { useState } from "react"
-import SearchBar from "@/p-components/searchBar"
-import ButtonCreateAd from "@/p-components/buttonCreateAd"
-import { UserId } from "@/types/userId"
+import Header from '@/p-components/header'
+import { Ad } from '@/types/ads'
+import Image from 'next/image'
+import Categories from '@/p-components/categories'
+import clientPromise from '@/lib/mongodb'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import SearchBar from '@/p-components/searchBar'
+import ButtonCreateAd from '@/p-components/buttonCreateAd'
+import { UserId } from '@/types/userId'
 
 interface AdId {
   id: string
@@ -20,14 +20,14 @@ const Ads = ({ ads }: Props) => {
   const router = useRouter()
   const { userId } = router.query as UserId
 
-  const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState('')
 
   function setAllCategorys() {
     window.location.href = `/ads/${userId}`
   }
 
   //search through ads using the query in SearchBar
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState('')
   const filteredAds = ads
     // .filter((ad) => !selectedCategory || ad?.category.match(selectedCategory))
     .filter((ad) =>
@@ -39,7 +39,7 @@ const Ads = ({ ads }: Props) => {
       )
     )
     .filter((ad) => !selectedCategory || ad.category === selectedCategory)
-  console.log("selectedCategory:", selectedCategory)
+  console.log('selectedCategory:', selectedCategory)
 
   // navigate to the ad creation
   const navigateToCreateAd = () => {
@@ -52,44 +52,44 @@ const Ads = ({ ads }: Props) => {
     window.location.href = `/ads/view/${id}`
   }
   const handleClick = async (id: string) => {
-    console.log("inside handleClick")
+    console.log('inside handleClick')
     console.log(`${userId}`)
     window.location.href = `/ads/myAds/${id}`
     const response = await fetch(`/api/user/${userId}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(`${userId}`),
     })
 
     const dataResponse = await response.json()
 
-    console.log("dataResponse", dataResponse)
+    console.log('dataResponse', dataResponse)
     if (dataResponse) {
     }
   }
 
   const handleClickBoard = async (id: string) => {
-    console.log("inside handleClickBoard")
+    console.log('inside handleClickBoard')
     console.log(`${userId}`)
     window.location.href = `/board/${id}`
     const response = await fetch(`/api/user/${userId}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(`${userId}`),
     })
 
     const dataResponse = await response.json()
 
-    console.log("dataResponse", dataResponse)
+    console.log('dataResponse', dataResponse)
     if (dataResponse) {
     }
   }
 
-  console.log("filteredAds", filteredAds)
+  console.log('filteredAds', filteredAds)
 
   return (
     <>
@@ -122,7 +122,10 @@ const Ads = ({ ads }: Props) => {
         </section>
 
         <div className="bg-[#46649D] h-2"></div>
-        <Categories setSelectedCategory={setSelectedCategory} />
+        <Categories
+          setSelectedCategory={setSelectedCategory}
+          selectedCategory={selectedCategory}
+        />
 
         {/* <div className="pl-4 pb-2">
           <button
@@ -157,8 +160,8 @@ const Ads = ({ ads }: Props) => {
                   className="mt-4  w-full aspect-square rounded-sm"
                   alt={ad.description}
                   src={ad.image}
-                  width={"1000"}
-                  height={"0"}
+                  width={'1000'}
+                  height={'0'}
                   // property={userId}
                 />
 
@@ -215,9 +218,9 @@ const Ads = ({ ads }: Props) => {
 export async function getServerSideProps() {
   try {
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
-    const ads = await db.collection("ads").find({}).sort({ _id: -1 }).toArray()
+    const ads = await db.collection('ads').find({}).sort({ _id: -1 }).toArray()
 
     console.log(ads)
 
