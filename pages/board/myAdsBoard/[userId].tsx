@@ -1,20 +1,20 @@
-import ButtonCreateAd from '@/p-components/buttonCreateAd'
-import Categories from '@/p-components/categories'
-import Header from '@/p-components/header'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import router, { useRouter } from 'next/router'
-import { GoSearch } from 'react-icons/go'
-import { MongoClient, Db } from 'mongodb'
-import clientPromise from '@/lib/mongodb'
-import { BoardAd } from '@/types/boardAd'
-import { useState } from 'react'
-import SearchBar from '@/p-components/searchBar'
-import Image from 'next/image'
-import DesignLine from '@/p-components/designLine'
+import ButtonCreateAd from "@/p-components/buttonCreateAd";
+import Categories from "@/p-components/categories";
+import Header from "@/p-components/header";
+import { NextPage } from "next";
+import Link from "next/link";
+import router, { useRouter } from "next/router";
+import { GoSearch } from "react-icons/go";
+import { MongoClient, Db } from "mongodb";
+import clientPromise from "@/lib/mongodb";
+import { BoardAd } from "@/types/boardAd";
+import { useState } from "react";
+import SearchBar from "@/p-components/searchBar";
+import Image from "next/image";
+import DesignLine from "@/p-components/designLine";
 
 interface Props {
-  boardAds: BoardAd[]
+  boardAds: BoardAd[];
 }
 
 // function navigateToAd(id: string) {
@@ -22,10 +22,10 @@ interface Props {
 // }
 
 const Board = ({ boardAds }: Props) => {
-  const [query, setQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('')
-  const router = useRouter()
-  const { userId } = router.query
+  const [query, setQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const router = useRouter();
+  const { userId } = router.query;
   const filteredBoardAds = boardAds.filter((boardAd) =>
     boardAd.title.includes(
       query
@@ -36,7 +36,7 @@ const Board = ({ boardAds }: Props) => {
 
         .concat(query.charAt(1).toLocaleLowerCase())
     )
-  )
+  );
 
   // .filter(
   //   (ad) => !selectedCategory
@@ -44,7 +44,7 @@ const Board = ({ boardAds }: Props) => {
   //   //  ad.category === selectedCategory
   // );
 
-  console.log('selectedCategory:', selectedCategory)
+  console.log("selectedCategory:", selectedCategory);
 
   return (
     <>
@@ -85,7 +85,12 @@ const Board = ({ boardAds }: Props) => {
           <p>Kanske en snäll granne har det du söker.</p>
         </div>
         <section className="flex text-left mb-9 mt-6">
-          <button className="ml-[5.5%] border-r-[1px] pr-[2%] border-black mr-[2%]">
+          <button
+            onClick={() => {
+              router.push(`/board/${userId}`);
+            }}
+            className="ml-[5.5%] border-r-[1px] pr-[2%] border-black mr-[2%]"
+          >
             <p>Alla inlägg</p>
           </button>
           <div></div>
@@ -100,10 +105,10 @@ const Board = ({ boardAds }: Props) => {
                 <div>
                   <Image
                     className="ml-[5.6%]"
-                    src={'/Line.svg'}
-                    alt={'#'}
-                    width={'347'}
-                    height={'280'}
+                    src={"/Line.svg"}
+                    alt={"#"}
+                    width={"347"}
+                    height={"280"}
                   ></Image>
                 </div>
                 <div className="flex items-center">
@@ -111,9 +116,9 @@ const Board = ({ boardAds }: Props) => {
                     // onClick={() => navigateToAd(ad.id)}
                     className="ml-[7%] mr-[3.5%] mt-[4%]"
                     alt={boardAd.description}
-                    src={'/Profil.svg'}
-                    width={'75'}
-                    height={'98'}
+                    src={"/profile.svg"}
+                    width={"75"}
+                    height={"98"}
                   />
                   <div>
                     <p className="text-sm font-semibold mr-[7%]">
@@ -135,27 +140,27 @@ const Board = ({ boardAds }: Props) => {
         `}</style>
       </div>
     </>
-  )
-}
+  );
+};
 export async function getServerSideProps() {
   try {
-    const client = await clientPromise
-    const db = client.db('borrow')
+    const client = await clientPromise;
+    const db = client.db("borrow");
 
     const boardAds = await db
-      .collection('board')
+      .collection("board")
       .find({})
       .sort({ _id: -1 })
-      .toArray()
+      .toArray();
 
-    console.log(boardAds)
+    console.log(boardAds);
 
     return {
       props: { boardAds: JSON.parse(JSON.stringify(boardAds)) },
-    }
+    };
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 }
 
-export default Board
+export default Board;
