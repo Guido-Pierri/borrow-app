@@ -116,7 +116,7 @@ const Board = ({ boardAds }: Props) => {
                     // onClick={() => navigateToAd(ad.id)}
                     className="ml-[7%] mr-[3.5%] mt-[4%]"
                     alt={boardAd.description}
-                    src={"/Profil.svg"}
+                    src={"/profile.svg"}
                     width={"75"}
                     height={"98"}
                   />
