@@ -25,6 +25,7 @@ interface ApiData {
   fullName: string
   email: string
   category: string
+  publisherProfileImage: string
   publisher: string
 }
 
@@ -57,6 +58,22 @@ export default function CreateAd({ imageUrl, userId }: any) {
       return alert("ladda upp en bild!")
     }
 
+    const user = await fetch(`/api/user/${userId}`, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(userId),
+    })
+
+    const userData = await user.json()
+    console.log(userData)
+    const profileImage = userData.result.profileImage
+
+    console.log("profileImage:", profileImage)
+
     const apiData: ApiData = {
       image: imgUrl,
       id: uuidv4(),
@@ -65,6 +82,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
       fullName: formData.fullName,
       email: formData.email,
       category: formData.category,
+      publisherProfileImage: profileImage,
       publisher: userId,
     }
     console.log(apiData)
@@ -77,6 +95,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
       body: JSON.stringify(apiData),
     })
     const data = await response.json()
+
     console.log(data)
     if (data) {
     }

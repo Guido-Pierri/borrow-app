@@ -8,4 +8,5 @@ export type Ad = {
   image: string
   publisher: string
   category: string
+  publisherProfileImage: string
 }
