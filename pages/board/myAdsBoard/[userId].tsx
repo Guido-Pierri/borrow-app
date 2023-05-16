@@ -121,14 +121,26 @@ const Board = ({ boardAds }: Props) => {
                   ></Image>
                 </div>
                 <div className="flex items-center">
-                  <Image
-                    // onClick={() => navigateToAd(ad.id)}
-                    className="ml-[7%] mr-[3.5%] mt-[4%]"
-                    alt={boardAd.description}
-                    src={"/Profil.svg"}
-                    width={"75"}
-                    height={"98"}
-                  />
+                  <div className=" ml-[3%] ">
+                    {boardAd.publisherProfileImage ? (
+                      <Image
+                        // onClick={() => navigateToAd(ad.id)}
+                        className="  rounded-full aspect-square object-cover border-[3px] border-[#9EBB9D] w-[100%]"
+                        alt={"profile"}
+                        src={boardAd.publisherProfileImage}
+                        width={"84"}
+                        height={"84"}
+                      />
+                    ) : (
+                      <Image
+                        className=" mr-[3.5%] mt-[4%] rounded-full"
+                        src="/profile.svg"
+                        width={"84"}
+                        height={"84"}
+                        alt=""
+                      />
+                    )}
+                  </div>
                   <div>
                     <p className="text-sm font-semibold mr-[7%]">
                       {boardAd.title}
