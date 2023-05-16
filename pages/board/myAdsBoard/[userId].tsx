@@ -1,25 +1,16 @@
 import ButtonCreateAd from "@/p-components/buttonCreateAd"
-import Categories from "@/p-components/categories"
 import Header from "@/p-components/header"
-import { NextPage } from "next"
 import Link from "next/link"
-import router, { useRouter } from "next/router"
-import { GoSearch } from "react-icons/go"
-import { MongoClient, Db } from "mongodb"
+import { useRouter } from "next/router"
 import clientPromise from "@/lib/mongodb"
 import { BoardAd } from "@/types/boardAd"
 import { useState } from "react"
 import SearchBar from "@/p-components/searchBar"
 import Image from "next/image"
-import DesignLine from "@/p-components/designLine"
 
 interface Props {
   boardAds: BoardAd[]
 }
-
-// function navigateToAd(id: string) {
-//   window.location.href = `/ads/view/${id}`
-// }
 
 const Board = ({ boardAds }: Props) => {
   const [query, setQuery] = useState("")
@@ -30,22 +21,6 @@ const Board = ({ boardAds }: Props) => {
   const filteredBoardAds = boardAds.filter(
     (boardAd) => boardAd.userId === userId
   )
-  // const filteredBoardAds = boardAds.filter((boardAd) =>
-  //   boardAd.title.includes(
-  //     query
-
-  //       .charAt(0)
-
-  //       .toLocaleUpperCase()
-
-  //       .concat(query.charAt(1).toLocaleLowerCase())
-  //   )
-  // )
-  // .filter(
-  //   (ad) => !selectedCategory
-  //   //  ||
-  //   //  ad.category === selectedCategory
-  // );
 
   console.log("selectedCategory:", selectedCategory)
 
@@ -77,9 +52,6 @@ const Board = ({ boardAds }: Props) => {
         </section>
         <div className="bg-[#46649D] h-2"></div>
         <div className="flex justify-center mt-5 ">
-          {/* <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans">
-            <p className="text-black"> Skapa inlägg</p>
-          </button> */}
           <ButtonCreateAd userId={userId} />
         </div>
         <div className="text-left px-4">
@@ -97,13 +69,7 @@ const Board = ({ boardAds }: Props) => {
             <p>Alla inlägg</p>
           </button>
           <div></div>
-          <button
-            // onClick={() => {
-            //   router.push(`/board/myAdsBoard/${userId}`)
-            // }}
-
-            className="underline decoration-[#9EBB9D] decoration-2 "
-          >
+          <button className="underline decoration-[#9EBB9D] decoration-2 ">
             <p>Mina inlägg</p>
           </button>
         </section>
@@ -121,25 +87,31 @@ const Board = ({ boardAds }: Props) => {
                   ></Image>
                 </div>
                 <div className="flex items-center">
-                  <div className=" ml-[3%] ">
-                    {boardAd.publisherProfileImage ? (
-                      <Image
-                        // onClick={() => navigateToAd(ad.id)}
-                        className="  rounded-full aspect-square object-cover border-[3px] border-[#9EBB9D] w-[100%]"
-                        alt={"profile"}
-                        src={boardAd.publisherProfileImage}
-                        width={"84"}
-                        height={"84"}
-                      />
-                    ) : (
-                      <Image
-                        className=" mr-[3.5%] mt-[4%] rounded-full"
-                        src="/profile.svg"
-                        width={"84"}
-                        height={"84"}
-                        alt=""
-                      />
-                    )}
+                  <div className=" ml-[3%] w-[22%] ">
+                    <div className=" ">
+                      {boardAd.publisherProfileImage ? (
+                        <Image
+                          className="  rounded-full aspect-square object-cover border-[3px] border-[#9EBB9D] w-[100%]"
+                          alt={"profile"}
+                          src={boardAd.publisherProfileImage}
+                          width={"84"}
+                          height={"84"}
+                        />
+                      ) : (
+                        <Image
+                          className=" mr-[3.5%] mt-[4%] rounded-full"
+                          src="/profile.svg"
+                          width={"84"}
+                          height={"84"}
+                          alt=""
+                        />
+                      )}
+                    </div>
+                    <div className="ml-[10%]">
+                      <p className="font-bold text-xs">
+                        {boardAd.publisherName}
+                      </p>
+                    </div>
                   </div>
                   <div>
                     <p className="text-sm font-semibold mr-[7%]">
