@@ -2,16 +2,11 @@ import Link from "next/link"
 import Header from "@/p-components/header"
 import { GoSearch } from "react-icons/go"
 import { Ad } from "@/types/ads"
-import { CldImage } from "next-cloudinary"
 import Image from "next/image"
-import { Suspense } from "react"
-import Categories from "@/p-components/categories"
 import clientPromise from "@/lib/mongodb"
 import { useRouter } from "next/router"
-import { ObjectId } from "mongodb"
 import DesignLine from "@/p-components/designLine"
 import ButtonCreateAd from "@/p-components/buttonCreateAd"
-import hashning from "@/lib/functions/hashning"
 import IconAdsEmpty from "@/p-components/iconAdsEmpty"
 
 interface AdId {
@@ -55,10 +50,6 @@ const Ads = ({ ads }: Props) => {
     if (dataResponse) {
     }
   }
-  // async function updateAd(id: string) {
-  //   window.location.href = `/updateAd/${id}`
-  //   console.log("updateAd")
-  // }
 
   return (
     <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
@@ -75,8 +66,6 @@ const Ads = ({ ads }: Props) => {
           </div>
         </label>
       </form>
-
-      {/* <Categories></Categories> */}
 
       <style jsx>{`
         input[type="text"] {
@@ -111,15 +100,8 @@ const Ads = ({ ads }: Props) => {
       </section>
 
       <div className="bg-[#46649D] h-2"></div>
-      {/* <Categories></Categories> */}
       <div>
         <ButtonCreateAd userId={userId}></ButtonCreateAd>
-        {/* <button
-          className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
-          onClick={navigateToCreateAd}
-        >
-          <p className="text-black"> Skapa annons</p>
-        </button> */}
       </div>
 
       {ads.length === 0 ? <IconAdsEmpty></IconAdsEmpty> : ""}
@@ -134,7 +116,6 @@ const Ads = ({ ads }: Props) => {
             >
               <div className="pl-6">
                 <Image
-                  // onClick={() => navigateToAd(ad.id)}
                   className="aspect-square object-cover w-full rounded-sm"
                   alt={ad.description}
                   src={ad.image}
@@ -142,44 +123,13 @@ const Ads = ({ ads }: Props) => {
                   height={"100"}
                 />
                 <DesignLine></DesignLine>
-                {/* 
-                <div className=" mt-2">
-                        
-
-                        {/* <div className="">
-                          <button
-                            className="bg-[#9EBB9D] rounded-sm border-2 mb-1 mx-1 px-2 text-black"
-                            value={ad._id}
-                            type="submit"
-                            onClick={() => deleteAd(ad.id)}
-                          >
-                            Ta bort
-                          </button>
-                        </div> 
-                      </div> */}
               </div>
               <div className=" text-[#0f0e0e] mt-1 ml-2 link justify-between">
                 <p className="font-bold" onClick={() => navigateToAd(ad.id)}>
                   {ad.title}
                 </p>
-                <p className="mt-2">{ad.description}</p>
-                {/* <p
-                          className="text-[#0f0e0e]"
-                          onClick={() => navigateToAd(ad.id)}
-                        >
-                          Beskrivning: {ad.description}
-                        </p> */}
+                <p>{ad.description}</p>
               </div>
-              {/* <div className="text-right pr-4">
-                <button
-                  className="underline rounded-sm bg- mb-1  text-black "
-                  value={ad._id}
-                  type="submit"
-                  onClick={() => updateAd(ad.id)}
-                >
-                  Redigera
-                </button>
-              </div> */}
             </div>
           ))}
         </div>
@@ -205,11 +155,6 @@ export async function getServerSideProps(context: any) {
       .sort({ _id: -1 })
       .limit(1000)
       .toArray()
-    // console.log(ads1)
-
-    // const ads2 = await db.collection("ads").find({
-    //   publisher: new ObjectId(ads.id),
-    // })
 
     return {
       props: { ads: JSON.parse(JSON.stringify(ads)) },

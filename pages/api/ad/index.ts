@@ -1,5 +1,4 @@
 import clientPromise from '@/lib/mongodb'
-import { Collection } from 'mongodb'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(
@@ -31,7 +30,6 @@ export default async function handler(
         }
       )
 
-      // res.json(result)
       res.status(201).json({ message: 'Update was successfull.', result })
     }
     if (req.method === 'POST') {
@@ -46,11 +44,11 @@ export default async function handler(
         publisher,
         category,
       } = req.body
+
       const client = await clientPromise
       const database = client.db('borrow')
       const collection = database.collection('ads')
-      // const name = req.body.name
-      // const email = req.body.email
+
       const result = await collection.insertOne({
         id: id,
         title: title,
@@ -61,8 +59,6 @@ export default async function handler(
         publisher: publisher,
         category: category,
       })
-
-      // res.json(result)
 
       res.status(201).json({ message: 'Ad created successfully.', result })
     }

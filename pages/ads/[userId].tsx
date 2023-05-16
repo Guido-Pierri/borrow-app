@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Categories from '@/p-components/categories'
 import clientPromise from '@/lib/mongodb'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SearchBar from '@/p-components/searchBar'
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
 import { UserId } from '@/types/userId'
@@ -131,34 +131,17 @@ const Ads = ({ ads }: Props) => {
           selectedCategory={selectedCategory}
         />
 
-        {/* <div className="pl-4 pb-2">
-          <button
-            onClick={setAllCategorys}
-            className="flex justify-end pl-2 pr-2 text-[14px] text-black border-[#9EBB9D] rounded-md border-2 font-bold"
-          >
-            Alla kategorier
-          </button>
-        </div> */}
-
         <div
           // onClick={navigateToCreateAd}
           className="flex justify-center mt-[-2] "
         >
           <ButtonCreateAd userId={userId} />
-          {/* <button
-            className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans"
-            onClick={navigateToCreateAd}
-          >
-            <p className="text-black"> Skapa annons</p>
-          </button> */}
         </div>
 
         <section className="pb-40">
           <div className=" font-sans text-left grid grid-cols-2 gap-y-2 gap-x-4 p-4">
             {filteredAds.map((ad) => (
               <div key={ad.id} className="">
-                {/* <p className="p-12 text-xs">{ad.image}</p> */}
-
                 <Image
                   onClick={() => navigateToAd(ad.id)}
                   className="mt-4  w-full aspect-square rounded-sm object-cover"
@@ -166,32 +149,8 @@ const Ads = ({ ads }: Props) => {
                   src={ad.image}
                   width={'1000'}
                   height={'0'}
-                  // property={userId}
                 />
 
-                {/* <div className=" mt-2">
-                        <div className="">
-                          <button
-                            className="underline rounded-sm bg- mb-1  text-black"
-                            value={ad._id}
-                            type="submit"
-                            onClick={() => updateAd(ad.id)}
-                          >
-                            Redigera
-                          </button>
-                        </div>
-
-                        {/* <div className="">
-                          <button
-                            className="bg-[#9EBB9D] rounded-sm border-2 mb-1 mx-1 px-2 text-black"
-                            value={ad._id}
-                            type="submit"
-                            onClick={() => deleteAd(ad.id)}
-                          >
-                            Ta bort
-                          </button>
-                        </div> 
-                      </div> */}
                 <div>
                   <p
                     className="bold text-[#0f0e0e] mt-1 link "
@@ -199,12 +158,6 @@ const Ads = ({ ads }: Props) => {
                   >
                     {ad.title}
                   </p>
-                  {/* <p
-                          className="text-[#0f0e0e]"
-                          onClick={() => navigateToAd(ad.id)}
-                        >
-                          Beskrivning: {ad.description}
-                        </p> */}
                 </div>
               </div>
             ))}

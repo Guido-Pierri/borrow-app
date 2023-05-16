@@ -1,10 +1,8 @@
 import clientPromise from '@/lib/mongodb'
 import { useRouter } from 'next/router'
 import { Ad } from '@/types/ads'
-import Link from 'next/link'
 import Header from '@/p-components/header'
 import Image from 'next/image'
-import { Query } from 'mongoose'
 import { Context } from 'vm'
 import { useState } from 'react'
 
@@ -72,7 +70,6 @@ export default function Post({ ads }: Props, { publisher }: any) {
         window.location.href = '/ads/myAds/' + `${publisher}`
 
         if (res.ok) {
-          // setDeletedAdId(id)
         } else {
           console.error('Failed to delete ad')
         }
@@ -89,7 +86,6 @@ export default function Post({ ads }: Props, { publisher }: any) {
 
         <div className="mt-6 rounded-md border-[#9EBB9D] border-2 text-left flex-column font-sans px-5 pb-4 shadow-md">
           <div className="flex justify-end mt-5 mb-5">
-            {/* <Link href={}> */}
             <Image
               src={'/kryss_annons.svg'}
               height={25}
@@ -100,7 +96,6 @@ export default function Post({ ads }: Props, { publisher }: any) {
               }}
               className="clickable"
             ></Image>
-            {/* </Link> */}
           </div>
           <div className="flex justify-center ">
             <Image
@@ -118,17 +113,7 @@ export default function Post({ ads }: Props, { publisher }: any) {
             Beskrivning
           </p>
           <p className="font-normal text-[14px]">{ads.description}</p>
-          {/* <div className="flex flex-col w-fit mt-6">
-            <Image
-              src={"/profile.svg"}
-              alt={"#"}
-              width={75}
-              height={75}
-              className="aspect-auto"
-              style={{ alignSelf: "center" }}
-            ></Image>
-            <p className="text-[#0f0e0e] text-center"> {ads.fullName}</p>
-          </div> */}
+
           <div className="mb-10 py-8">
             <div className="w-full text-[#0f0e0e] mt-4 ">
               <div className="text-right flex justify-center">
@@ -174,20 +159,6 @@ export default function Post({ ads }: Props, { publisher }: any) {
                 </div>
               </div>
             </div>
-
-            {/* <button className="w-full bg-[#9EBB9D] font-normal text-base  h-[40px] rounded-sm">
-              <div className="flex row justify-center">
-                <Image
-                  src={"/mail.svg"}
-                  height={20}
-                  width={20}
-                  alt={"Kryss"}
-                  className="mr-[15px]"
-                ></Image>
-                <Link href={"mailto:" + `${ads.email}`}>Skicka meddelande</Link>
-              </div>
-            </button> */}
-            {/* <Link href={'mailto:' + `${ads.email}`}>{ads.email}</Link> */}
           </div>
         </div>
       </div>
