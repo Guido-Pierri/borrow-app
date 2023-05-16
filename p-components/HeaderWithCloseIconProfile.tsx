@@ -1,6 +1,5 @@
-import HeaderProfile from './HeaderProfile'
-import CloseIcon from './closeIcon'
-import Header from './header'
+import HeaderProfile from "./HeaderProfile"
+import CloseIcon from "./closeIcon"
 
 export default function HeaderWithCloseIconProfile({ userId }: any) {
   return (

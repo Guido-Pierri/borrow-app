@@ -1,8 +1,6 @@
-import { FC, useState } from 'react'
-import CloseIconStatic from './closeIconStatic'
-import { User } from '@/types/user'
-import CloseIconWOLink from './closeIconWOLink'
-// import { handleSubmit } from '@/lib/functions/preventDefault'
+import { FC, useState } from "react"
+import { User } from "@/types/user"
+import CloseIconWOLink from "./closeIconWOLink"
 
 interface ProfileInfoContentProps {
   onClose: () => void
@@ -22,15 +20,14 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
   userId,
 }) => {
   const [formData, setFormData] = useState<FormData>({
-    // id: user?.id || '',
     userId: user.userId,
-    firstAndLastName: user?.firstAndLastName || '',
-    postCode: user.postCode || '',
-    email: user?.email || '',
-    password: undefined || '',
+    firstAndLastName: user?.firstAndLastName || "",
+    postCode: user.postCode || "",
+    email: user?.email || "",
+    password: undefined || "",
   })
-  const [confirmPassword, setConfirmedPassword] = useState<string>('')
-  const [confirmPassword2, setConfirmedPassword2] = useState<string>('')
+  const [confirmPassword, setConfirmedPassword] = useState<string>("")
+  const [confirmPassword2, setConfirmedPassword2] = useState<string>("")
 
   const handleContentClick = (event: any) => {
     // Stop the event from propagating up to the outer div
@@ -39,15 +36,12 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setFormData((prevFormData: any) => ({ ...prevFormData, [name]: value }))
-    // console.log(event.target.value)
   }
   console.log(formData)
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     function handleClick() {
-      console.log('handleClick')
-
-      // router.push('/ads')
+      console.log("handleClick")
     }
     const apiData = {
       _id: userId,
@@ -58,21 +52,21 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
       password: formData.password,
     }
 
-    const response = await fetch('/api/user/updateUser', {
-      method: 'POST',
+    const response = await fetch("/api/user/updateUser", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
 
     const data = await response.json()
-    console.log('Response:', response)
+    console.log("Response:", response)
 
     console.log(data)
 
     if (confirmYourPassword()) {
-      alert('Lösenord ändrat')
+      alert("Lösenord ändrat")
     } else {
       console.log(data)
       return false
@@ -80,17 +74,16 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
   }
   function confirmYourPassword() {
     if (formData.password !== confirmPassword) {
-      alert('Lösenordet matchar inte!')
+      alert("Lösenordet matchar inte!")
       return false
     } else {
       return true
     }
   }
-  console.log('userId:', user.userId)
-  console.log('user._id', userId)
+  console.log("userId:", user.userId)
+  console.log("user._id", userId)
 
   return (
-
     <form
       className="font-sans bg-[#FFFFFF] flex flex-col overlay-content rounded-lg mb-[7.9%]"
       onSubmit={handleSubmit}
@@ -119,7 +112,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
             value={formData.firstAndLastName}
             required
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
@@ -132,7 +125,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
             required
             value={formData.email}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
@@ -145,7 +138,7 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
             value={formData.postCode}
             onChange={handleInputChange}
             placeholder={user.postCode}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
             required
           />
         </label>
@@ -153,7 +146,6 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
           <legend className="">Ändra Lösenord</legend>
           <input
             className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
-            // placeholder="Lösenord..."
             type="password"
             name="password"
             required
@@ -162,49 +154,43 @@ const ProfileInfoContent: FC<ProfileInfoContentProps> = ({
             minLength={8}
             value={formData.password}
             onChange={handleInputChange}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
           <legend className="">Bekräfta lösenord</legend>
           <input
             className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
-            // placeholder="Bekräfta lösenord..."
             type="password"
             name="confirmPassword"
             required
             value={confirmPassword}
-            // value={formData.password}
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
             title="Måste innehålla minst en siffra och en stor och liten bokstav, och minst 8 eller fler tecken"
             minLength={8}
-            // value={formData.samePassword}
             onChange={(event) => {
               handleInputChange(event)
               setConfirmedPassword(event.target.value)
             }}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <label>
           <legend className="">Bekräfta lösenord</legend>
           <input
             className=" border rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[9.8%]"
-            // placeholder="Bekräfta lösenord..."
             type="password"
             name="confirmPassword2"
             required
             value={confirmPassword2}
-            // value={formData.password}
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
             title="Måste innehålla minst en siffra och en stor och liten bokstav, och minst 8 eller fler tecken"
             minLength={8}
-            // value={formData.samePassword}
             onChange={(event) => {
               handleInputChange(event)
               setConfirmedPassword2(event.target.value)
             }}
-            style={{ color: '#000000' }}
+            style={{ color: "#000000" }}
           />
         </label>
         <button className="mt-[4.1%]  rounded-[2px] bg-[#9EBB9D] placeholder-[#000000] w-full h-[9.8%] flex items-center justify-center">

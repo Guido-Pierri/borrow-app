@@ -1,6 +1,5 @@
-import { FC } from 'react'
-import NotificationsContent from './notificationsContent'
-import DeleteAccountContent from './deleteAccountContent'
+import { FC } from "react"
+import DeleteAccountContent from "./deleteAccountContent"
 
 interface OverlayProps {
   onClose: () => void

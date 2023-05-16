@@ -1,12 +1,6 @@
-import clientPromise from '@/lib/mongodb'
-import { User } from '@/types/user'
-import { UserId } from '@/types/userId'
-import { Db } from 'mongodb'
-import { ObjectId } from '@/types/objectId'
-import { NextPage, GetStaticPaths } from 'next'
-import Image from 'next/image'
-import { FC, FormEvent } from 'react'
-import router from 'next/router'
+import Image from "next/image"
+import { FC } from "react"
+import router from "next/router"
 
 interface DeleteAccountContentProps {
   onClose: () => void
@@ -18,25 +12,21 @@ const DeleteAccountContent: FC<DeleteAccountContentProps> = ({
 }: DeleteAccountContentProps) => {
   function onClickHandler() {
     deleteAccount(userId)
-    //  onClose()
   }
   const deleteAccount = async (userId: string) => {
-    console.log('inside deleteAccount function')
+    console.log("inside deleteAccount function")
 
-    console.log('userId:', userId)
+    console.log("userId:", userId)
     const apiData = userId
 
-    // console.log('apiData:', userId)
-    // const apiData = { _id: userId }
     try {
-      console.log('apiData:', apiData)
+      console.log("apiData:", apiData)
 
       const response = await fetch(`/api/user/deleteUser/${userId}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        // body: JSON.stringify({ userId: userId }),
       })
       if (!response.ok) {
         throw new Error(`Failed to delete account with userId ${userId}`)
@@ -45,11 +35,10 @@ const DeleteAccountContent: FC<DeleteAccountContentProps> = ({
       console.log(data)
       if (data) {
       }
-      alert('Konto avslutat')
-      router.push('/login')
+      alert("Konto avslutat")
+      router.push("/login")
     } catch (error) {
       console.error(error)
-      // handle error
     }
   }
   return (
@@ -57,7 +46,7 @@ const DeleteAccountContent: FC<DeleteAccountContentProps> = ({
       <div className="font-sans bg-[#FFFFFF] flex flex-col h-[24%] w-[full] rounded-lg ml-[5.7%] mr-[5.7%] ">
         <div>
           <div className="mt-[15%] mx-[40%]">
-            <Image src={'/Sad.svg'} width={48} height={48} alt={'sad'}></Image>
+            <Image src={"/Sad.svg"} width={48} height={48} alt={"sad"}></Image>
           </div>
           <p className="text-base text-center font-semibold mt-[5%] mx-[10%]">
             Är du säker på att du vill avsluta ditt konto?
