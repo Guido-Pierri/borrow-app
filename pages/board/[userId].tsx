@@ -102,7 +102,7 @@ const Board = ({ boardAds }: Props) => {
           <div className="flex flex-col">
             {filteredBoardAds.map((boardAd) => (
               <div key={boardAd.id} className="">
-                <div>
+                <div className="">
                   <Image
                     className="ml-[5.6%]"
                     src={'/Line.svg'}
@@ -112,12 +112,12 @@ const Board = ({ boardAds }: Props) => {
                   ></Image>
                 </div>
                 <div className="flex items-center">
-                  <div>
-                    <div className=" mr-[3.5%] mt-[10%] ml-[20%]">
+                  <div className="w-[22%] ml-[3%] mt-[3%]">
+                    <div className=" ">
                       {boardAd.publisherProfileImage ? (
                         <Image
                           // onClick={() => navigateToAd(ad.id)}
-                          className=" mt-[4%] rounded-full border-[3px] border-[#9EBB9D]"
+                          className="  rounded-full aspect-square object-cover border-[3px] border-[#9EBB9D] w-[100%]"
                           alt={'profile'}
                           src={boardAd.publisherProfileImage}
                           width={'100'}

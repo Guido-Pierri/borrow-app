@@ -74,7 +74,7 @@ export default function MyProfile({ user }: Props) {
                 />
               ) : (
                 <Image
-                  className="rounded-full"
+                  className="rounded-full aspect-square object-cover"
                   src={`${user.profileImage}`}
                   width={100}
                   height={100}
