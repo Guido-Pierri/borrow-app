@@ -1,53 +1,28 @@
-import ButtonCreateAd from '@/p-components/buttonCreateAd'
-import Categories from '@/p-components/categories'
-import Header from '@/p-components/header'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import router, { useRouter } from 'next/router'
-import { GoSearch } from 'react-icons/go'
-import { MongoClient, Db } from 'mongodb'
-import clientPromise from '@/lib/mongodb'
-import { BoardAd } from '@/types/boardAd'
-import { useState } from 'react'
-import SearchBar from '@/p-components/searchBar'
-import Image from 'next/image'
-import DesignLine from '@/p-components/designLine'
+import ButtonCreateAd from "@/p-components/buttonCreateAd"
+import Header from "@/p-components/header"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import clientPromise from "@/lib/mongodb"
+import { BoardAd } from "@/types/boardAd"
+import { useState } from "react"
+import SearchBar from "@/p-components/searchBar"
+import Image from "next/image"
 
 interface Props {
   boardAds: BoardAd[]
 }
 
-// function navigateToAd(id: string) {
-//   window.location.href = `/ads/view/${id}`
-// }
-
 const Board = ({ boardAds }: Props) => {
-  const [query, setQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('')
+  const [query, setQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("")
   const router = useRouter()
   const { userId } = router.query
 
   const filteredBoardAds = boardAds.filter(
     (boardAd) => boardAd.userId === userId
   )
-  // const filteredBoardAds = boardAds.filter((boardAd) =>
-  //   boardAd.title.includes(
-  //     query
 
-  //       .charAt(0)
-
-  //       .toLocaleUpperCase()
-
-  //       .concat(query.charAt(1).toLocaleLowerCase())
-  //   )
-  // )
-  // .filter(
-  //   (ad) => !selectedCategory
-  //   //  ||
-  //   //  ad.category === selectedCategory
-  // );
-
-  console.log('selectedCategory:', selectedCategory)
+  console.log("selectedCategory:", selectedCategory)
 
   return (
     <>
@@ -77,9 +52,6 @@ const Board = ({ boardAds }: Props) => {
         </section>
         <div className="bg-[#46649D] h-2"></div>
         <div className="flex justify-center mt-5 ">
-          {/* <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans">
-            <p className="text-black"> Skapa inlägg</p>
-          </button> */}
           <ButtonCreateAd userId={userId} />
         </div>
         <div className="text-left px-4">
@@ -97,13 +69,7 @@ const Board = ({ boardAds }: Props) => {
             <p>Alla inlägg</p>
           </button>
           <div></div>
-          <button
-            // onClick={() => {
-            //   router.push(`/board/myAdsBoard/${userId}`)
-            // }}
-
-            className="underline decoration-[#9EBB9D] decoration-2 "
-          >
+          <button className="underline decoration-[#9EBB9D] decoration-2 ">
             <p>Mina inlägg</p>
           </button>
         </section>
@@ -114,10 +80,10 @@ const Board = ({ boardAds }: Props) => {
                 <div>
                   <Image
                     className="ml-[5.6%]"
-                    src={'/Line.svg'}
-                    alt={'#'}
-                    width={'347'}
-                    height={'280'}
+                    src={"/Line.svg"}
+                    alt={"#"}
+                    width={"347"}
+                    height={"280"}
                   ></Image>
                 </div>
                 <div className="flex items-center">
@@ -125,19 +91,18 @@ const Board = ({ boardAds }: Props) => {
                     <div className=" ">
                       {boardAd.publisherProfileImage ? (
                         <Image
-                          // onClick={() => navigateToAd(ad.id)}
                           className="  rounded-full aspect-square object-cover border-[3px] border-[#9EBB9D] w-[100%]"
-                          alt={'profile'}
+                          alt={"profile"}
                           src={boardAd.publisherProfileImage}
-                          width={'84'}
-                          height={'84'}
+                          width={"84"}
+                          height={"84"}
                         />
                       ) : (
                         <Image
                           className=" mr-[3.5%] mt-[4%] rounded-full"
                           src="/profile.svg"
-                          width={'84'}
-                          height={'84'}
+                          width={"84"}
+                          height={"84"}
                           alt=""
                         />
                       )}
@@ -173,13 +138,13 @@ const Board = ({ boardAds }: Props) => {
 export async function getServerSideProps(context: any) {
   try {
     const { userId } = context.query
-    console.log('userid: ' + userId)
+    console.log("userid: " + userId)
 
     const client = await clientPromise
-    const db = client.db('borrow')
+    const db = client.db("borrow")
 
     const boardAds = await db
-      .collection('board')
+      .collection("board")
       .find({ publisher: userId })
       .sort({ _id: -1 })
       .toArray()

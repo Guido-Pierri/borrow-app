@@ -1,24 +1,20 @@
-import ButtonCreateAd from '@/p-components/buttonCreateAd'
-import Header from '@/p-components/header'
-import Link from 'next/link'
-import router, { useRouter } from 'next/router'
-import clientPromise from '@/lib/mongodb'
-import { BoardAd } from '@/types/boardAd'
-import { useState } from 'react'
-import SearchBar from '@/p-components/searchBar'
-import Image from 'next/image'
+import ButtonCreateAd from "@/p-components/buttonCreateAd"
+import Header from "@/p-components/header"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import clientPromise from "@/lib/mongodb"
+import { BoardAd } from "@/types/boardAd"
+import { useState } from "react"
+import SearchBar from "@/p-components/searchBar"
+import Image from "next/image"
 
 interface Props {
   boardAds: BoardAd[]
 }
 
-// function navigateToAd(id: string) {
-//   window.location.href = `/ads/view/${id}`
-// }
-
 const Board = ({ boardAds }: Props) => {
-  const [query, setQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('')
+  const [query, setQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("")
   const router = useRouter()
   const { userId } = router.query
   const filteredBoardAds = boardAds.filter((boardAd) =>
@@ -33,17 +29,7 @@ const Board = ({ boardAds }: Props) => {
     )
   )
 
-  function navigateToAd(id: string) {
-    router.push(`/contactboard/${userId}`)
-  }
-
-  // .filter(
-  //   (ad) => !selectedCategory
-  //   //  ||
-  //   //  ad.category === selectedCategory
-  // );
-
-  console.log('selectedCategory:', selectedCategory)
+  console.log("selectedCategory:", selectedCategory)
 
   return (
     <>
@@ -73,9 +59,6 @@ const Board = ({ boardAds }: Props) => {
         </section>
         <div className="bg-[#46649D] h-2"></div>
         <div className="flex justify-center mt-5 ">
-          {/* <button className="flex justify-center p-2 text-gray-900 bg-[#9EBB9D] w-[350px] rounded-sm text-xl font-[500] font-sans">
-            <p className="text-black"> Skapa inlägg</p>
-          </button> */}
           <ButtonCreateAd userId={userId} />
         </div>
         <div className="text-left px-4">
@@ -87,11 +70,7 @@ const Board = ({ boardAds }: Props) => {
           <button className="ml-[5.5%]  pr-[2%] mr-[2%] underline decoration-[#9EBB9D] decoration-2 border-r-[1px] border-black">
             <p className="font-normal text-base ">Alla inlägg</p>
           </button>
-          {/* <div>
-            <Image src={"/Vector 88.svg"} width={1} height={"12"} alt={""} />
-          </div> */}
-          {/* <Link href={`/board/myAdsBoard/${userId}`}> Detta skapade problem och "mina inlägg" visades
-          som två rader ist för en*/}
+
           <button
             className=""
             onClick={() => {
@@ -100,7 +79,6 @@ const Board = ({ boardAds }: Props) => {
           >
             <p className="font-normal text-base ">Mina inlägg</p>
           </button>
-          {/* </Link> */}
         </section>
         <section>
           <div className="flex flex-col">
@@ -112,10 +90,10 @@ const Board = ({ boardAds }: Props) => {
                 <div>
                   <Image
                     className="ml-[5.6%]"
-                    src={'/Line.svg'}
-                    alt={'#'}
-                    width={'347'}
-                    height={'280'}
+                    src={"/Line.svg"}
+                    alt={"#"}
+                    width={"347"}
+                    height={"280"}
                   ></Image>
                 </div>
                 <div className="flex items-center">
@@ -123,19 +101,18 @@ const Board = ({ boardAds }: Props) => {
                     <div className=" ">
                       {boardAd.publisherProfileImage ? (
                         <Image
-                          // onClick={() => navigateToAd(ad.id)}
                           className="  rounded-full aspect-square object-cover border-[3px] border-[#9EBB9D] w-[100%]"
-                          alt={'profile'}
+                          alt={"profile"}
                           src={boardAd.publisherProfileImage}
-                          width={'100'}
-                          height={'100'}
+                          width={"100"}
+                          height={"100"}
                         />
                       ) : (
                         <Image
                           className=" mr-[3.5%] mt-[4%] rounded-full"
                           src="/profile.svg"
-                          width={'100'}
-                          height={'100'}
+                          width={"100"}
+                          height={"100"}
                           alt=""
                         />
                       )}
@@ -166,10 +143,10 @@ const Board = ({ boardAds }: Props) => {
 export async function getServerSideProps() {
   try {
     const client = await clientPromise
-    const db = client.db('borrow')
+    const db = client.db("borrow")
 
     const boardAds = await db
-      .collection('board')
+      .collection("board")
       .find({})
       .sort({ _id: -1 })
       .toArray()

@@ -1,14 +1,13 @@
-import { useRouter } from 'next/router'
-import Image from 'next/image'
-import clientPromise from '@/lib/mongodb'
-import { User } from '@/types/user'
-import ProfileImage from '@/p-components/profileImageChangeIcon'
-import ProfileInfo from '@/p-components/profileInfoContent'
-import { useState } from 'react'
-import HeaderWithCloseIconProfile from '@/p-components/HeaderWithCloseIconProfile'
-import NotificationsOverlay from '@/p-components/notificationsOverlay'
-import DeleteAccountOverlay from '@/p-components/deleteAccountOverlay'
-import ProfileInfoOverlay from '@/p-components/profileInfoOverlay'
+import { useRouter } from "next/router"
+import Image from "next/image"
+import clientPromise from "@/lib/mongodb"
+import { User } from "@/types/user"
+import ProfileImage from "@/p-components/profileImageChangeIcon"
+import { useState } from "react"
+import HeaderWithCloseIconProfile from "@/p-components/HeaderWithCloseIconProfile"
+import NotificationsOverlay from "@/p-components/notificationsOverlay"
+import DeleteAccountOverlay from "@/p-components/deleteAccountOverlay"
+import ProfileInfoOverlay from "@/p-components/profileInfoOverlay"
 
 interface Props {
   user: User
@@ -18,8 +17,7 @@ export default function MyProfile({ user }: Props) {
   const { userId } = router.query
 
   console.log(user.firstAndLastName)
-  // const [showHeader, setShowHeader] = useState<string>('')
-  // const [showProfile, setShowProfile] = useState<string>('')
+
   const [showInfoOverlay, setShowInfoOverlay] = useState(false)
   const [showNotificationsOverlay, setShowNotificationsOverlay] =
     useState(false)
@@ -44,17 +42,9 @@ export default function MyProfile({ user }: Props) {
   const handleCloseDeleteAccountOverlay = () => {
     setShowDeleteAccountOverlay(false)
   }
-  // console.log(showInfo)
+
   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/
 
-  // if (!user.profileImage || !urlRegex.test(user.profileImage)) {
-  //   return {
-  //     redirect: {
-  //       destination: '/404',
-  //       permanent: false,
-  //     },
-  //   }
-  // }
   return (
     <>
       <div className="max-w-sm">
@@ -67,8 +57,8 @@ export default function MyProfile({ user }: Props) {
               {!user.profileImage ? (
                 <Image
                   className="rounded-full "
-                  src={'/profile.svg'}
-                  width={'84'}
+                  src={"/profile.svg"}
+                  width={"84"}
                   height={84}
                   alt=""
                 />
@@ -142,16 +132,16 @@ export const getServerSideProps = async (context: any) => {
   try {
     const { userId } = context.query
 
-    const { ObjectId } = require('mongodb')
+    const { ObjectId } = require("mongodb")
 
     const str = userId
     const objId = new ObjectId(str)
     console.log(userId)
 
     const client = await clientPromise
-    const db = client.db('borrow')
+    const db = client.db("borrow")
 
-    const user = await db.collection('users').findOne({ _id: objId })
+    const user = await db.collection("users").findOne({ _id: objId })
     console.log(user)
 
     return {

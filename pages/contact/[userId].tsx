@@ -1,7 +1,6 @@
-import Header from '@/p-components/header'
-import HeaderWithCloseIcon from '@/p-components/headerWithCloseIcon'
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
+import HeaderWithCloseIcon from "@/p-components/headerWithCloseIcon"
+import { NextPage } from "next"
+import { useRouter } from "next/router"
 
 interface Props {
   userId: string

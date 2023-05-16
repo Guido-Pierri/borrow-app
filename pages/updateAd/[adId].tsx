@@ -1,14 +1,11 @@
-import clientPromise from '@/lib/mongodb'
-import { useRouter } from 'next/router'
-import { Ad } from '@/types/ads'
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { v4 as uuidv4 } from 'uuid'
-import CloseIcon from '@/p-components/closeIcon'
-import Icons from '@/p-components/icons'
-import UpdateImage from '@/p-components/updateImage'
-import Image from 'next/image'
-import { handleSubmit } from '@/lib/functions/preventDefault'
+import clientPromise from "@/lib/mongodb"
+import { useRouter } from "next/router"
+import { Ad } from "@/types/ads"
+import { useState } from "react"
+import CloseIcon from "@/p-components/closeIcon"
+import Icons from "@/p-components/icons"
+import Image from "next/image"
+import { handleSubmit } from "@/lib/functions/preventDefault"
 
 interface AdId {
   id: string
@@ -19,13 +16,13 @@ interface Props {
 
 export default function Post({ ads }: Props) {
   const router = useRouter()
-  console.log('image:', ads?.image)
+  console.log("image:", ads?.image)
 
-  const [imageUrl, setImageUrl] = useState('')
+  const [imageUrl, setImageUrl] = useState("")
 
   const { adId } = router.query
   console.log(adId)
-  const [userId, setUserId] = useState<string>('')
+  const [userId, setUserId] = useState<string>("")
 
   interface FormData {
     id: string
@@ -44,32 +41,29 @@ export default function Post({ ads }: Props) {
     image: string
   }
 
-  /*Defining a function (pass to other files), that has 
-  a object formData that contains following properties*/
-
   const [formData, setFormData] = useState<FormData>({
-    id: ads?.id || '',
-    title: ads?.title || '',
-    description: ads?.description || '',
-    fullName: ads?.fullName || '',
-    email: ads?.email || '',
+    id: ads?.id || "",
+    title: ads?.title || "",
+    description: ads?.description || "",
+    fullName: ads?.fullName || "",
+    email: ads?.email || "",
   })
-  console.log('ads?.id', ads?.id)
-  console.log('adId', adId)
+  console.log("ads?.id", ads?.id)
+  console.log("adId", adId)
 
-  console.log('formData', formData)
+  console.log("formData", formData)
 
   async function deleteAd(id: string, publisher: string) {
-    console.log('deleteAd')
-    console.log('id', id)
-    console.log('publisher', publisher)
+    console.log("deleteAd")
+    console.log("id", id)
+    console.log("publisher", publisher)
 
     const confirmed = window.confirm(
-      'Är du säker att du vill ta bort din annons?'
+      "Är du säker att du vill ta bort din annons?"
     )
 
     if (confirmed) {
-      console.log('in i if-satsen')
+      console.log("in i if-satsen")
       console.log(id)
 
       const apiData: AdId = {
@@ -78,44 +72,35 @@ export default function Post({ ads }: Props) {
 
       console.log(apiData)
       setUserId(publisher)
-      console.log('setUserId', setUserId)
+      console.log("setUserId", setUserId)
 
       try {
-        console.log('try')
+        console.log("try")
         console.log(id)
 
-        const res = await fetch('/api/deleteAd', {
-          method: 'POST',
+        const res = await fetch("/api/deleteAd", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(apiData),
         })
         console.log(res)
         console.log(res.status)
 
-        window.location.href = '/ads/myAds/' + `${publisher}`
+        window.location.href = "/ads/myAds/" + `${publisher}`
 
         if (res.ok) {
-          // setDeletedAdId(id)
         } else {
-          console.error('Failed to delete ad')
+          console.error("Failed to delete ad")
         }
       } catch (e) {
-        console.error('Failed to delete ad', e)
+        console.error("Failed to delete ad", e)
       }
     }
   }
 
-  /*Creating apiData object that contains the formData
-    to be submitted to server.This is sent through POST
-    to the server*/
-
   async function updateAd(id: string) {
-    // const confirmed = window.confirm(
-    //   'Din annons kommer updateras, vill du fortsätta?'
-    // )
-
     const apiData: ApiData = {
       id: ads?.id,
       image: imageUrl,
@@ -126,17 +111,17 @@ export default function Post({ ads }: Props) {
       publisher: ads?.publisher,
     }
 
-    if (imageUrl === '') {
+    if (imageUrl === "") {
       apiData.image = ads?.image
     }
-    console.log('image in updateAd:', imageUrl)
+    console.log("image in updateAd:", imageUrl)
 
-    console.log('apiData:', apiData)
+    console.log("apiData:", apiData)
 
-    const response = await fetch('/api/ad', {
-      method: 'PATCH',
+    const response = await fetch("/api/ad", {
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(apiData),
     })
@@ -146,7 +131,7 @@ export default function Post({ ads }: Props) {
     console.log(data)
     console.log(apiData)
 
-    window.location.href = '/ads/myAds/' + `${ads?.publisher}`
+    window.location.href = "/ads/myAds/" + `${ads?.publisher}`
   }
 
   /*Is called when user types something in the form
@@ -175,9 +160,7 @@ export default function Post({ ads }: Props) {
               <form className="text-left" onSubmit={handleSubmit}>
                 <div className="mt-2 rounded-md  ">
                   <div className="mt-6 mr-4 flex justify-end">
-                    <CloseIcon
-                    // adress={"/ads/myAds/" + `${ads?.publisher}`}
-                    ></CloseIcon>
+                    <CloseIcon></CloseIcon>
                   </div>
 
                   <h1 className="text-black text-xl py-4 mb-4 font-bold text-center">
@@ -189,8 +172,7 @@ export default function Post({ ads }: Props) {
                       image={ads.image}
                     ></Icons>
                   </div>
-                  {/* <p className="bold text-[#0f0e0e] mt-2">
-                    Titel: {""} */}
+
                   <div className="text-center">
                     <label>
                       <legend className="mb-[-16px] text-left ml-7">
@@ -198,7 +180,6 @@ export default function Post({ ads }: Props) {
                       </legend>
                       <input
                         className="rounded py-4 px-2 mt-4 border w-[298px]  border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-                        // placeholder="Titel..."
                         type="text"
                         name="title"
                         value={formData.title}
@@ -210,15 +191,7 @@ export default function Post({ ads }: Props) {
                       <legend className="mb-[2px] mt-5 text-left  ml-7">
                         Beskrivning
                       </legend>
-                      {/* <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] h-28 border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            // placeholder="Beskrivning..."
-            type="text"
-            name="description"
-            required
-            value={formData.description}
-            onChange={handleInputChange}
-          /> */}
+
                       <textarea
                         className="border border-[#9EBB9D] px-2 w-[298px] h-[113px] resize-none rounded"
                         name="description"
@@ -236,7 +209,6 @@ export default function Post({ ads }: Props) {
                       </legend>
                       <input
                         className="rounded py-4 px-2 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-                        // placeholder="För- och efternamn..."
                         type="text"
                         name="fullName"
                         value={formData.fullName}
@@ -250,7 +222,6 @@ export default function Post({ ads }: Props) {
                       </legend>
                       <input
                         className="rounded py-4 px-2 mt-8 border w-[298px] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-                        // placeholder="Email..."
                         type="email"
                         name="email"
                         required
@@ -259,8 +230,7 @@ export default function Post({ ads }: Props) {
                       />
                     </label>
                   </div>
-                  {/* </p> */}
-                  {/* </button> */}
+
                   <div className="py-2 mb-6">
                     <div className="flex mt-4 justify-center">
                       <div className="">
@@ -272,11 +242,11 @@ export default function Post({ ads }: Props) {
                         >
                           <div className="mr-2">
                             <Image
-                              src={'/Downloading Updates.svg'}
-                              alt={'#'}
-                              width={'27'}
-                              height={'27'}
-                              style={{ alignSelf: 'center' }}
+                              src={"/Downloading Updates.svg"}
+                              alt={"#"}
+                              width={"27"}
+                              height={"27"}
+                              style={{ alignSelf: "center" }}
                             ></Image>
                           </div>
                           Spara annons
@@ -293,11 +263,11 @@ export default function Post({ ads }: Props) {
                         >
                           <div className="mr-2">
                             <Image
-                              src={'/trashcanBlack.svg'}
-                              alt={'#'}
-                              width={'19'}
-                              height={'22'}
-                              style={{ alignSelf: 'center' }}
+                              src={"/trashcanBlack.svg"}
+                              alt={"#"}
+                              width={"19"}
+                              height={"22"}
+                              style={{ alignSelf: "center" }}
                             ></Image>
                           </div>
                           Ta bort annons
@@ -321,9 +291,9 @@ export async function getServerSideProps(context: any) {
   try {
     const { adId } = context.query
     const client = await clientPromise
-    const db = client.db('borrow')
+    const db = client.db("borrow")
 
-    const ads = await db.collection('ads').findOne({ id: adId })
+    const ads = await db.collection("ads").findOne({ id: adId })
     console.log(ads)
 
     return {
