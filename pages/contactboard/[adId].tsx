@@ -64,7 +64,7 @@ const contactBoard = ({ boardAds }: Props) => {
                       className="aspect-auto w-full rounded-[4px]"
                     ></Image>
                   </div> */}
-                  <p className="bold text-[#0f0e0e] mt-2 text-[20px] font-bold">
+                  <p className="bold text-[#0f0e0e] mt-2 text-[20px] font-bold py-4">
                     <b>{boardAd.title}</b>
                   </p>
                   <p className="text-[#0f0e0e] mt-2 text-[14px] font-semibold">
@@ -73,21 +73,27 @@ const contactBoard = ({ boardAds }: Props) => {
                   <p className="font-normal text-[14px]">
                     {boardAd.description}
                   </p>
-                  <div className="flex flex-col w-fit mt-6">
-                    <Image
-                      // onClick={() => navigateToAd(ad.id)}
-                      className="ml-[7%] mr-[3.5%] mt-[4%]"
-                      alt={boardAd.description}
-                      src={"/Profil.svg"}
-                      width={"75"}
-                      height={"98"}
-                    />
-                    {/* <p className="text-[#0f0e0e] text-center">
-                      {" "}
-                      {boardAd.fullName}
-                    </p> */}
+                  <div className=" py-4">
+                    {boardAd.publisherProfileImage ? (
+                      <Image
+                        // onClick={() => navigateToAd(ad.id)}
+                        className="  rounded-full aspect-square object-cover border-[3px] border-[#9EBB9D] w-[25%]"
+                        alt={"profile"}
+                        src={boardAd.publisherProfileImage}
+                        width={"84"}
+                        height={"84"}
+                      />
+                    ) : (
+                      <Image
+                        className=" mr-[3.5%] mt-[4%] rounded-full"
+                        src="/profile.svg"
+                        width={"84"}
+                        height={"84"}
+                        alt=""
+                      />
+                    )}
                   </div>
-                  <div className="w-full text-[#0f0e0e] mt-4  flex justify-center">
+                  <div className="w-full text-[#0f0e0e] mt-8  flex justify-center">
                     <button className="w-full bg-[#9EBB9D] font-normal text-base  h-[40px] rounded-sm">
                       <div className="flex row justify-center">
                         <Image
