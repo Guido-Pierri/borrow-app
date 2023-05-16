@@ -80,21 +80,21 @@ const Board = ({ boardAds }: Props) => {
             <p className="font-normal text-base ">Mina inlägg</p>
           </button>
         </section>
-        <section className="">
+        <section className="mx-[5.8%]">
           <div className="flex flex-col">
             {boardAds.map((boardAd) => (
               <div key={boardAd.id} className="">
                 <div>
                   <Image
-                    className="ml-[5.6%]"
+                    className="ml-[] w-[100%]"
                     src={'/Line.svg'}
                     alt={'#'}
-                    width={'347'}
-                    height={'280'}
+                    width={'100'}
+                    height={'100'}
                   ></Image>
                 </div>
                 <div className="flex items-center">
-                  <div className=" ml-[3%] w-[22%] my-[3.9%]">
+                  <div className=" w-[31.8%] my-[3.9%] ">
                     <div className=" ">
                       {boardAd.publisherProfileImage ? (
                         <Image
@@ -120,7 +120,7 @@ const Board = ({ boardAds }: Props) => {
                       </p>
                     </div>
                   </div>
-                  <div className="text-left ml-[3.3%] w-[75%]">
+                  <div className="text-left ml-[3.3%] mr-[13.6%] w-[75%] overflow-x-hidden">
                     <p className="text-sm font-semibold ">{boardAd.title}</p>
                     <p className="text-sm font-normal">{boardAd.description}</p>
                   </div>

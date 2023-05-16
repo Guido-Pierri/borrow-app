@@ -59,35 +59,42 @@ const Board = ({ boardAds }: Props) => {
           <p>Skriv på våran anslagstavla!</p>
           <p>Kanske en snäll granne har det du söker.</p>
         </div>
-        <section className="flex text-left mb-9 mt-6">
-          <button
-            onClick={() => {
-              router.push(`/board/${userId}`)
-            }}
-            className="ml-[5.5%] border-r-[1px] pr-[2%] border-black mr-[2%] "
-          >
-            <p>Alla inlägg</p>
+        <section
+          className="flex text-left mb-9 mt-6 items-center justify-start"
+          onClick={() => {
+            router.push(`/board/${userId}`)
+          }}
+        >
+          <button className="ml-[5.5%]  pr-[2%] mr-[2%]  border-r-[1px] border-black">
+            <p className=" text-base ">Alla inlägg</p>
           </button>
-          <div></div>
-          <button className="font-semibold underline underline-offset-8 decoration-[#9EBB9D] decoration-2 ">
-            <p>Mina inlägg</p>
+
+          <button
+            className=""
+            onClick={() => {
+              router.push(`/board/board/${userId}`)
+            }}
+          >
+            <p className="font-semibold text-base underline decoration-[#9EBB9D] underline-offset-8 decoration-2">
+              Mina inlägg
+            </p>
           </button>
         </section>
-        <section className="">
+        <section className="mx-[5.8%]">
           <div className="flex flex-col">
             {boardAds.map((boardAd) => (
               <div key={boardAd.id} className="">
                 <div>
                   <Image
-                    className="ml-[5.6%]"
+                    className="ml-[] w-[100%]"
                     src={'/Line.svg'}
                     alt={'#'}
-                    width={'347'}
-                    height={'280'}
+                    width={'100'}
+                    height={'100'}
                   ></Image>
                 </div>
                 <div className="flex items-center">
-                  <div className=" ml-[3%] w-[22%] my-[3.9%] ">
+                  <div className=" w-[31.8%] my-[3.9%] ">
                     <div className=" ">
                       {boardAd.publisherProfileImage ? (
                         <Image
@@ -113,7 +120,7 @@ const Board = ({ boardAds }: Props) => {
                       </p>
                     </div>
                   </div>
-                  <div className="text-left ml-[3.3%] w-[75%]">
+                  <div className="text-left ml-[3.3%] mr-[13.6%] w-[75%] overflow-x-hidden">
                     <p className="text-sm font-semibold ">{boardAd.title}</p>
                     <p className="text-sm font-normal">{boardAd.description}</p>
                   </div>
