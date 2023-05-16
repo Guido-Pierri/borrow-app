@@ -119,7 +119,7 @@ const Board = ({ boardAds }: Props) => {
                   ></Image>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-[22%] ml-[3%] mt-[3%]">
+                  <div className="w-[43%] ml-[3%] mt-[3%] mr-[3%]">
                     <div className=" ">
                       {boardAd.publisherProfileImage ? (
                         <Image
@@ -140,8 +140,8 @@ const Board = ({ boardAds }: Props) => {
                         />
                       )}
                     </div>
-                    <div className="ml-[10%]">
-                      <p className="font-bold text-xs">
+                    <div className=" ml-[0%]">
+                      <p className="font-bold text-xs mt-[8.4%]">
                         {boardAd.publisherName}
                       </p>
                     </div>
