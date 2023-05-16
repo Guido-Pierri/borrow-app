@@ -38,6 +38,7 @@ export default async function handler(
         email,
         publisher,
         publisherProfileImage,
+        publisherName,
       } = req.body
       const client = await clientPromise
       const database = client.db('borrow')
@@ -50,9 +51,10 @@ export default async function handler(
         email: email,
         publisher: publisher,
         publisherProfileImage: publisherProfileImage,
+        publisherName: publisherName,
       })
 
-      res.status(201).json({ message: 'Ad created successfully.', result })
+      res.status(201).json({ message: 'BoardAd created successfully.', result })
     }
   } catch (error) {
     console.error(error)
