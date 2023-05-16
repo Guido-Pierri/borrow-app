@@ -1,9 +1,10 @@
-import Header from "@/p-components/header"
-import Link from "next/link"
-import clientPromise from "@/lib/mongodb"
-import { BoardAd } from "@/types/boardAd"
-import Image from "next/image"
-import router from "next/router"
+import Header from '@/p-components/header'
+import Link from 'next/link'
+import clientPromise from '@/lib/mongodb'
+import { BoardAd } from '@/types/boardAd'
+import Image from 'next/image'
+import router from 'next/router'
+import HeaderInView from '@/p-components/headerInView'
 
 interface Props {
   boardAds: BoardAd[]
@@ -21,17 +22,17 @@ const contactBoard = ({ boardAds }: Props) => {
           {boardAds.map((boardAd) => (
             <div key={boardAd.id} className="">
               <div className="bg-[#FFFFFF] text-center max-w-sm h-screen">
-                <Header></Header>
+                <HeaderInView />
 
                 <div className="mt-6 rounded-md border-[#9EBB9D] border-2 text-left flex-column font-sans px-5 pb-20 shadow-md">
                   <div className="flex justify-end mt-5 mb-5">
                     <Image
-                      src={"/kryss_annons.svg"}
+                      src={'/kryss_annons.svg'}
                       height={25}
                       width={25}
-                      alt={"Kryss"}
+                      alt={'Kryss'}
                       onClick={() => {
-                        navigateBack()
+                        router.push(`/board/${boardAd.publisher}`)
                       }}
                       className="clickable"
                     ></Image>
@@ -51,17 +52,17 @@ const contactBoard = ({ boardAds }: Props) => {
                       {boardAd.publisherProfileImage ? (
                         <Image
                           className="  rounded-full aspect-square object-cover border-[3px] border-[#9EBB9D] w-[25%]"
-                          alt={"profile"}
+                          alt={'profile'}
                           src={boardAd.publisherProfileImage}
-                          width={"84"}
-                          height={"84"}
+                          width={'84'}
+                          height={'84'}
                         />
                       ) : (
                         <Image
                           className=" mr-[3.5%] mt-[4%] rounded-full"
                           src="/profile.svg"
-                          width={"84"}
-                          height={"84"}
+                          width={'84'}
+                          height={'84'}
                           alt=""
                         />
                       )}
@@ -76,13 +77,13 @@ const contactBoard = ({ boardAds }: Props) => {
                     <button className="w-full bg-[#9EBB9D] font-normal text-base  h-[40px] rounded-sm">
                       <div className="flex row justify-center">
                         <Image
-                          src={"/mail.svg"}
+                          src={'/mail.svg'}
                           height={20}
                           width={20}
-                          alt={"Kryss"}
+                          alt={'Kryss'}
                           className="mr-[15px]"
                         ></Image>
-                        <Link href={"mailto:" + `${boardAd.email}`}>
+                        <Link href={'mailto:' + `${boardAd.email}`}>
                           Skicka meddelande
                         </Link>
                       </div>
@@ -102,9 +103,9 @@ export async function getServerSideProps(context: any) {
     const { adId } = context.query
 
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
-    const boardAd = await db.collection("board").findOne({ id: adId })
+    const boardAd = await db.collection('board').findOne({ id: adId })
 
     return {
       props: { boardAds: [JSON.parse(JSON.stringify(boardAd))] },

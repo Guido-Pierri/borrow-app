@@ -14,10 +14,10 @@ export default function BorrowLogo({ userId }: any) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         onClick={() => {
-          if (userId === undefined) {
-            return
-          }
-          router.push(`/ads/${userId}`)
+          //   if (userId === undefined) {
+          //     return
+          //   }
+          router.back()
         }}
       >
         <path
