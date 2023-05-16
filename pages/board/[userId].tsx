@@ -1,3 +1,4 @@
+
 import ButtonCreateAd from "@/p-components/buttonCreateAd"
 import Header from "@/p-components/header"
 import Link from "next/link"
@@ -9,10 +10,11 @@ import SearchBar from "@/p-components/searchBar"
 import Image from "next/image"
 
 interface Props {
-  boardAds: BoardAd[]
+  boardAds: BoardAd[];
 }
 
 const Board = ({ boardAds }: Props) => {
+
   const [query, setQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("")
   const router = useRouter()
@@ -27,7 +29,8 @@ const Board = ({ boardAds }: Props) => {
 
         .concat(query.charAt(1).toLocaleLowerCase())
     )
-  )
+  );
+
 
   console.log("selectedCategory:", selectedCategory)
 
@@ -74,7 +77,7 @@ const Board = ({ boardAds }: Props) => {
           <button
             className=""
             onClick={() => {
-              router.push(`/board/myAdsBoard/${userId}`)
+              router.push(`/board/myAdsBoard/${userId}`);
             }}
           >
             <p className="font-normal text-base ">Mina inlägg</p>
@@ -124,10 +127,10 @@ const Board = ({ boardAds }: Props) => {
                     </div>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold mr-[7%] ml-[7%]">
+                    <p className="text-sm text-left font-semibold mr-[7%] ml-[5%]">
                       {boardAd.title}
                     </p>
-                    <p className="text-sm font-normal mr-[7%]">
+                    <p className="text-sm text-left font-normal mr-[7%] ml-[5%]">
                       {boardAd.description}
                     </p>
                   </div>
@@ -138,10 +141,11 @@ const Board = ({ boardAds }: Props) => {
         </section>
       </div>
     </>
-  )
-}
+  );
+};
 export async function getServerSideProps() {
   try {
+
     const client = await clientPromise
     const db = client.db("borrow")
 
@@ -149,16 +153,16 @@ export async function getServerSideProps() {
       .collection("board")
       .find({})
       .sort({ _id: -1 })
-      .toArray()
+      .toArray();
 
-    console.log(boardAds)
+    console.log(boardAds);
 
     return {
       props: { boardAds: JSON.parse(JSON.stringify(boardAds)) },
-    }
+    };
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 }
 
-export default Board
+export default Board;
