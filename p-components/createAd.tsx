@@ -1,5 +1,3 @@
-//TODO
-//add userId to ads dynamically from login-->ads--->createAds
 import Image from "next/image"
 import { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
@@ -58,24 +56,6 @@ export default function CreateAd({ imageUrl, userId }: any) {
     if (!imgUrl) {
       return alert("ladda upp en bild!")
     }
-    // if (!file) {
-    //   return
-    // }
-
-    // const imageData = new FormData()
-    // imageData.append('file', file)
-
-    // const imageResponse = await fetch('/api/upload', {
-    //   method: 'POST',
-    //   body: imageData,
-    // })
-
-    // if (imageResponse.ok) {
-    //   const data = await imageResponse.json()
-    //   console.log(data)
-    // } else {
-    //   console.error(imageResponse.statusText)
-    // }
 
     const apiData: ApiData = {
       image: imgUrl,
@@ -86,7 +66,6 @@ export default function CreateAd({ imageUrl, userId }: any) {
       email: formData.email,
       category: formData.category,
       publisher: userId,
-      // userId:
     }
     console.log(apiData)
 
@@ -125,9 +104,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
     console.log(event.target.value)
   }
-  // function handleOnUpload(info){
-  //   updateInfo(info)
-  // }
+
   return (
     <div className=" flex items-start justify-center text-center bg-[#FFFFFF] h-screen font-sans">
       <form className="font-sans text-left" onSubmit={handleSubmit}>
@@ -142,7 +119,6 @@ export default function CreateAd({ imageUrl, userId }: any) {
           <legend className="mb-[-16px] ">Titel</legend>
           <input
             className="rounded py-4 px-2 mt-4 border w-[298px] outline-[#9EBB9D] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            // placeholder="Titel..."
             type="text"
             name="title"
             value={formData.title}
@@ -152,15 +128,6 @@ export default function CreateAd({ imageUrl, userId }: any) {
         </label>
         <label className="">
           <legend className="mb-[2px] mt-5 ">Beskrivning</legend>
-          {/* <input
-            className="rounded py-4 px-7 mt-8 border w-[265px] h-28 border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            // placeholder="Beskrivning..."
-            type="text"
-            name="description"
-            required
-            value={formData.description}
-            onChange={handleInputChange}
-          /> */}
           <textarea
             className="border border-[#9EBB9D] outline-[#9EBB9D] w-[298px] px-2 resize-none rounded"
             name="description"
@@ -192,7 +159,6 @@ export default function CreateAd({ imageUrl, userId }: any) {
           <legend className="mb-[-32px] mt-5">Namn</legend>
           <input
             className="rounded py-4 px-2 mt-8 border w-[298px] outline-[#9EBB9D] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            // placeholder="För- och efternamn..."
             type="text"
             name="fullName"
             value={formData.fullName}
@@ -204,7 +170,6 @@ export default function CreateAd({ imageUrl, userId }: any) {
           <legend className="mb-[-32px] mt-5">E-post</legend>
           <input
             className="rounded py-4 px-2 mt-8 border w-[298px] outline-[#9EBB9D] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
-            // placeholder="Email..."
             type="email"
             name="email"
             required

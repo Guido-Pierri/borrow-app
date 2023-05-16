@@ -1,18 +1,17 @@
-import { UserId } from '@/types/userId'
-import Link from 'next/link'
-import router from 'next/router'
-import { slide as Menu } from 'react-burger-menu'
+import { UserId } from "@/types/userId"
+import router from "next/router"
+import { slide as Menu } from "react-burger-menu"
 
 const HamburgerMenuProfile = ({ userId }: UserId) => (
   <div className="relative">
     <Menu
       customBurgerIcon={<HamburgerIcon />}
-      width={'auto'}
+      width={"auto"}
       className="left-0 top-0"
       noOverlay={false}
       customCrossIcon={<CrossIcon />}
       overlayClassName="bg-[#000000] top-0"
-      id={'crossBtn'}
+      id={"crossBtn"}
     >
       <Links userId={userId} />
     </Menu>

@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import BorrowLogo from './borrowLogo'
-import { UserId } from '@/types/userId'
-import HamburgerMenuProfile, { Links } from './HamburgerMenuProfile'
+import BorrowLogo from "./borrowLogo"
+
+import HamburgerMenuProfile, { Links } from "./HamburgerMenuProfile"
 interface Props {
   userId: string
   anotherUserId: number

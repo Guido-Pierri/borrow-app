@@ -1,10 +1,6 @@
-import type { AppProps } from 'next/app'
-import CloseIconStatic from './closeIconStatic'
-import CloseIcon from './closeIcon'
-import { Switch } from '@headlessui/react'
-import Toggle from './toggle'
-import { FC } from 'react'
-import CloseIconWOLink from './closeIconWOLink'
+import Toggle from "./toggle"
+import { FC } from "react"
+import CloseIconWOLink from "./closeIconWOLink"
 interface NotificationsContentProps {
   onClose: () => void
 }
@@ -39,15 +35,6 @@ const NotificationsContent: FC<NotificationsContentProps> = ({ onClose }) => {
             <p className="mt-[21px] font-semibold">Meddelanden</p>
             <div className="border-t rounded-[2px] border-[#9EBB9D]"></div>
             <div className="flex items-center justify-between mt-[16px]">
-              {/* <input
-                className=" border-t rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
-                type="button"
-                name="messages"
-                //   value={formData.firstName}
-                required
-                //   onChange={handleInputChange}
-                style={{ color: '#000000' }}
-              ></input> */}
               <p className="text-xs">Få notiser vid ett nytt meddelande</p>
               <div className="">
                 <Toggle />
@@ -72,15 +59,6 @@ const NotificationsContent: FC<NotificationsContentProps> = ({ onClose }) => {
                 <p className="mt-[21px] font-semibold">Nya inlägg</p>
                 <div className="border-t rounded-[2px] border-[#9EBB9D]"></div>
                 <div className="flex items-center justify-between mt-[16px] ">
-                  {/* <input
-                className=" border-t rounded-[2px] border-[#9EBB9D] outline-[#9EBB9D] placeholder-[#000000] bg-[#ffffff] w-full h-[55px]"
-                type="button"
-                name="messages"
-                //   value={formData.firstName}
-                required
-                //   onChange={handleInputChange}
-                style={{ color: '#000000' }}
-              ></input> */}
                   <p className="text-xs">
                     Få en notis vid nytt inlägg inom din förening
                   </p>
@@ -130,28 +108,6 @@ const NotificationsContent: FC<NotificationsContentProps> = ({ onClose }) => {
           </div>
         </form>
       </div>
-
-      {/* <div className="flex w-[345px] h-[640px] ">
-        <div className="  flex-row justify-between ">
-          <div className=" font-sans bg-[#FFFFFF]   ">
-            <p className="text-xl font-[700] text-black justify-start">
-              Notiser
-            </p>
-            <CloseIcon />
-          </div>
-        </div>
-        <form className=" ">
-          <label>
-            <input
-              type="checkbox"
-              role="switch"
-              name=""
-              id=""
-              className="default:ring-2 indeterminate:bg-gray-300"
-            />
-          </label>
-        </form>
-      </div> */}
     </>
   )
 }

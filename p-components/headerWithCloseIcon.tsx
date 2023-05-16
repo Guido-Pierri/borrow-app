@@ -1,6 +1,5 @@
-import { UserId } from '@/types/userId'
-import CloseIcon from './closeIcon'
-import Header from './header'
+import CloseIcon from "./closeIcon"
+import Header from "./header"
 interface Props {
   userId: any
 }

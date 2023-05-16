@@ -1,28 +1,26 @@
-import React, { useState } from 'react'
-import Head from 'next/head'
-import TransformImage from './image'
-import Image from 'next/image'
-import ImageAddProfileImageIcon from './imageAddProfileImageIcon'
+import React, { useState } from "react"
+import Head from "next/head"
+import TransformImage from "./image"
+import ImageAddProfileImageIcon from "./imageAddProfileImageIcon"
 
 const UploadImageAddProfileImage = ({ setImageUrl }) => {
-  const [imagePublicId, setImagePublicId] = useState('')
-  const [alt, setAlt] = useState('')
-  const [crop, setCrop] = useState('scale')
+  const [imagePublicId, setImagePublicId] = useState("")
+  const [alt, setAlt] = useState("")
+  const [crop, setCrop] = useState("scale")
   const [height, setHeight] = useState(100)
   const [width, setWidth] = useState(100)
-  // const [imageUrl, setImageUrl] = useState('')
 
   const openWidget = () => {
     // create the widget
     const widget = window.cloudinary.createUploadWidget(
       {
-        cloudName: 'dqrn5bc0b',
-        uploadPreset: 'ml_default',
+        cloudName: "dqrn5bc0b",
+        uploadPreset: "ml_default",
       },
       (error, result) => {
         if (
-          result.event === 'success' &&
-          result.info.resource_type === 'image'
+          result.event === "success" &&
+          result.info.resource_type === "image"
         ) {
           console.log(result.info)
           setImagePublicId(result.info.public_id)
@@ -54,7 +52,6 @@ const UploadImageAddProfileImage = ({ setImageUrl }) => {
         >
           <div className="flex justify-center ">
             <ImageAddProfileImageIcon />
-            {/* Ladda upp en bild */}
           </div>
         </button>
         <div className="flex justify-center">

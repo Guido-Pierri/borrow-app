@@ -1,15 +1,15 @@
-import Header from '@/p-components/header'
-import { GoSearch } from 'react-icons/go'
-import { Ad } from '@/types/ads'
-import Image from 'next/image'
-import Categories from './categories'
+import Header from "@/p-components/header"
+import { GoSearch } from "react-icons/go"
+import { Ad } from "@/types/ads"
+import Image from "next/image"
+import Categories from "./categories"
 
 interface AdId {
   id: string
 }
 
 function navigateToCreateAd() {
-  window.location.href = '/createAd'
+  window.location.href = "/createAd"
 }
 interface Props {
   ads: Ad[]
@@ -17,9 +17,9 @@ interface Props {
 
 const Ads = ({ ads }: Props) => {
   async function deleteAd(id: string) {
-    console.log('deleteAd')
+    console.log("deleteAd")
     const confirmed = window.confirm(
-      'Är du säker att du vill ta bort din annons?'
+      "Är du säker att du vill ta bort din annons?"
     )
 
     if (confirmed) {
@@ -29,13 +29,13 @@ const Ads = ({ ads }: Props) => {
       console.log(apiData)
 
       try {
-        console.log('try')
+        console.log("try")
         console.log(id)
 
-        const res = await fetch('/api/deleteAd', {
-          method: 'POST',
+        const res = await fetch("/api/deleteAd", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(apiData),
         })
@@ -43,27 +43,26 @@ const Ads = ({ ads }: Props) => {
         console.log(res.status)
 
         if (res.ok) {
-          // setDeletedAdId(id)
           window.location.reload()
         } else {
-          console.error('Failed to delete ad')
+          console.error("Failed to delete ad")
         }
       } catch (e) {
-        console.error('Failed to delete ad', e)
+        console.error("Failed to delete ad", e)
       }
     }
   }
 
   async function updateAd(id: string) {
     window.location.href = `/updateAd/${id}`
-    console.log('updateAd')
+    console.log("updateAd")
   }
   function navigateToAd(id: string) {
     window.location.href = `/ads/view/${id}`
   }
   return (
     <>
-      <Header userId={''} anotherUserId={''}></Header>
+      <Header userId={""} anotherUserId={""}></Header>
       <div className="bg-[#ffffff] text-center max-w-sm h-screen ">
         <form>
           <label className="relative">
@@ -81,7 +80,7 @@ const Ads = ({ ads }: Props) => {
         <Categories></Categories>
 
         <style jsx>{`
-          input[type='text'] {
+          input[type="text"] {
             background-repeat: no-repeat;
             background-size: 16px 16px;
             background-position: 8px 50%;
@@ -119,33 +118,10 @@ const Ads = ({ ads }: Props) => {
                   className="mt-4  w-full aspect-square rounded-md"
                   alt={ad.description}
                   src={ad.image}
-                  width={'1000'}
-                  height={'1000'}
+                  width={"1000"}
+                  height={"1000"}
                 />
 
-                {/* <div className=" mt-2">
-                        <div className="">
-                          <button
-                            className="underline rounded-sm bg- mb-1  text-black"
-                            value={ad._id}
-                            type="submit"
-                            onClick={() => updateAd(ad.id)}
-                          >
-                            Redigera
-                          </button>
-                        </div>
-
-                        {/* <div className="">
-                          <button
-                            className="bg-[#9EBB9D] rounded-sm border-2 mb-1 mx-1 px-2 text-black"
-                            value={ad._id}
-                            type="submit"
-                            onClick={() => deleteAd(ad.id)}
-                          >
-                            Ta bort
-                          </button>
-                        </div> 
-                      </div> */}
                 <div>
                   <p
                     className="bold text-[#0f0e0e] mt-1 link "
@@ -153,12 +129,6 @@ const Ads = ({ ads }: Props) => {
                   >
                     {ad.title}
                   </p>
-                  {/* <p
-                          className="text-[#0f0e0e]"
-                          onClick={() => navigateToAd(ad.id)}
-                        >
-                          Beskrivning: {ad.description}
-                        </p> */}
                 </div>
               </div>
             ))}
