@@ -9,6 +9,7 @@ import HeaderWithCloseIconProfile from '@/p-components/HeaderWithCloseIconProfil
 import NotificationsOverlay from '@/p-components/notificationsOverlay'
 import DeleteAccountOverlay from '@/p-components/deleteAccountOverlay'
 import ProfileInfoOverlay from '@/p-components/profileInfoOverlay'
+import ProfileUploadImageOverlay from '@/p-components/profileUploadImageOverlay'
 
 interface Props {
   user: User
@@ -25,6 +26,8 @@ export default function MyProfile({ user }: Props) {
     useState(false)
   const [showDeleteAccountOverlay, setShowDeleteAccountOverlay] =
     useState(false)
+
+  const [showUploadImageOverlay, setshowUploadImageOverlay] = useState(false)
 
   const handleInfoElementClick = () => {
     setShowInfoOverlay(true)
@@ -43,6 +46,13 @@ export default function MyProfile({ user }: Props) {
   }
   const handleCloseDeleteAccountOverlay = () => {
     setShowDeleteAccountOverlay(false)
+  }
+
+  const handleImageUploadElementClick = () => {
+    setshowUploadImageOverlay(true)
+  }
+  const handleCloseImageUploadOverlay = () => {
+    setshowUploadImageOverlay(false)
   }
   // console.log(showInfo)
   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/
@@ -82,8 +92,20 @@ export default function MyProfile({ user }: Props) {
                 />
               )}
 
-              <div className="absolute top-[65.5%] left-[71.42%] clickable">
+              <div
+                className="absolute top-[65.5%] left-[71.42%] clickable"
+                onClick={handleImageUploadElementClick}
+              >
                 <ProfileImage />
+                <div>
+                  {showUploadImageOverlay && (
+                    <ProfileUploadImageOverlay
+                      onClose={handleCloseImageUploadOverlay}
+                      user={user}
+                      userId={userId}
+                    />
+                  )}
+                </div>
               </div>
             </div>
             <p className="ml-[5.38%] font-bold text-xl ">Min profil </p>
