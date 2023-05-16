@@ -110,7 +110,6 @@ const Board = ({ boardAds }: Props) => {
                 onClick={() => router.push(`/contactboard/${boardAd.id}`)}
               >
                 <div>
-
                   <Image
                     className="ml-[5.6%]"
                     src={'/Line.svg'}
@@ -142,7 +141,9 @@ const Board = ({ boardAds }: Props) => {
                       )}
                     </div>
                     <div className="ml-[10%]">
-                      <p>username</p>
+                      <p className="font-bold text-xs">
+                        {boardAd.publisherName}
+                      </p>
                     </div>
                   </div>
                   <div>

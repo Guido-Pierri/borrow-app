@@ -1,17 +1,17 @@
-import ButtonCreateAd from "@/p-components/buttonCreateAd"
-import Categories from "@/p-components/categories"
-import Header from "@/p-components/header"
-import { NextPage } from "next"
-import Link from "next/link"
-import router, { useRouter } from "next/router"
-import { GoSearch } from "react-icons/go"
-import { MongoClient, Db } from "mongodb"
-import clientPromise from "@/lib/mongodb"
-import { BoardAd } from "@/types/boardAd"
-import { useState } from "react"
-import SearchBar from "@/p-components/searchBar"
-import Image from "next/image"
-import DesignLine from "@/p-components/designLine"
+import ButtonCreateAd from '@/p-components/buttonCreateAd'
+import Categories from '@/p-components/categories'
+import Header from '@/p-components/header'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import router, { useRouter } from 'next/router'
+import { GoSearch } from 'react-icons/go'
+import { MongoClient, Db } from 'mongodb'
+import clientPromise from '@/lib/mongodb'
+import { BoardAd } from '@/types/boardAd'
+import { useState } from 'react'
+import SearchBar from '@/p-components/searchBar'
+import Image from 'next/image'
+import DesignLine from '@/p-components/designLine'
 
 interface Props {
   boardAds: BoardAd[]
@@ -22,8 +22,8 @@ interface Props {
 // }
 
 const Board = ({ boardAds }: Props) => {
-  const [query, setQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("")
+  const [query, setQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
   const router = useRouter()
   const { userId } = router.query
 
@@ -47,7 +47,7 @@ const Board = ({ boardAds }: Props) => {
   //   //  ad.category === selectedCategory
   // );
 
-  console.log("selectedCategory:", selectedCategory)
+  console.log('selectedCategory:', selectedCategory)
 
   return (
     <>
@@ -114,32 +114,39 @@ const Board = ({ boardAds }: Props) => {
                 <div>
                   <Image
                     className="ml-[5.6%]"
-                    src={"/Line.svg"}
-                    alt={"#"}
-                    width={"347"}
-                    height={"280"}
+                    src={'/Line.svg'}
+                    alt={'#'}
+                    width={'347'}
+                    height={'280'}
                   ></Image>
                 </div>
                 <div className="flex items-center">
-                  <div className=" ml-[3%] ">
-                    {boardAd.publisherProfileImage ? (
-                      <Image
-                        // onClick={() => navigateToAd(ad.id)}
-                        className="  rounded-full aspect-square object-cover border-[3px] border-[#9EBB9D] w-[100%]"
-                        alt={"profile"}
-                        src={boardAd.publisherProfileImage}
-                        width={"84"}
-                        height={"84"}
-                      />
-                    ) : (
-                      <Image
-                        className=" mr-[3.5%] mt-[4%] rounded-full"
-                        src="/profile.svg"
-                        width={"84"}
-                        height={"84"}
-                        alt=""
-                      />
-                    )}
+                  <div className=" ml-[3%] w-[22%] ">
+                    <div className=" ">
+                      {boardAd.publisherProfileImage ? (
+                        <Image
+                          // onClick={() => navigateToAd(ad.id)}
+                          className="  rounded-full aspect-square object-cover border-[3px] border-[#9EBB9D] w-[100%]"
+                          alt={'profile'}
+                          src={boardAd.publisherProfileImage}
+                          width={'84'}
+                          height={'84'}
+                        />
+                      ) : (
+                        <Image
+                          className=" mr-[3.5%] mt-[4%] rounded-full"
+                          src="/profile.svg"
+                          width={'84'}
+                          height={'84'}
+                          alt=""
+                        />
+                      )}
+                    </div>
+                    <div className="ml-[10%]">
+                      <p className="font-bold text-xs">
+                        {boardAd.publisherName}
+                      </p>
+                    </div>
                   </div>
                   <div>
                     <p className="text-sm font-semibold mr-[7%]">
@@ -166,13 +173,13 @@ const Board = ({ boardAds }: Props) => {
 export async function getServerSideProps(context: any) {
   try {
     const { userId } = context.query
-    console.log("userid: " + userId)
+    console.log('userid: ' + userId)
 
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
     const boardAds = await db
-      .collection("board")
+      .collection('board')
       .find({ publisher: userId })
       .sort({ _id: -1 })
       .toArray()
