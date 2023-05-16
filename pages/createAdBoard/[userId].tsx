@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-import Upload from "@/p-components/upload";
-import Header from "@/p-components/header";
-import { useRouter } from "next/router";
-import CloseIcon from "@/p-components/closeIcon";
-import CreateAdBoard from "@/p-components/createAdBoard";
+import React, { useState } from "react"
+import { useRouter } from "next/router"
+import CloseIcon from "@/p-components/closeIcon"
+import CreateAdBoard from "@/p-components/createAdBoard"
 
 const App = () => {
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("")
 
-  const router = useRouter();
+  const router = useRouter()
 
-  const { userId } = router.query;
+  const { userId } = router.query
 
   return (
     <div>
@@ -23,7 +21,7 @@ const App = () => {
         <CreateAdBoard userId={userId} imageUrl={imageUrl} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
