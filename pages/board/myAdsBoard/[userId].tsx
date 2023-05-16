@@ -55,7 +55,7 @@ const Board = ({ boardAds }: Props) => {
           <ButtonCreateAd userId={userId} />
         </div>
         <div className="text-left px-4">
-          <p className="font-medium">Hittar du inte det du söker?</p>
+          <p className="font-semibold">Hittar du inte det du söker?</p>
           <p>Skriv på våran anslagstavla!</p>
           <p>Kanske en snäll granne har det du söker.</p>
         </div>
@@ -69,7 +69,7 @@ const Board = ({ boardAds }: Props) => {
             <p>Alla inlägg</p>
           </button>
           <div></div>
-          <button className="underline decoration-[#9EBB9D] decoration-2 ">
+          <button className="font-semibold underline underline-offset-8 decoration-[#9EBB9D] decoration-2 ">
             <p>Mina inlägg</p>
           </button>
         </section>
@@ -87,7 +87,7 @@ const Board = ({ boardAds }: Props) => {
                   ></Image>
                 </div>
                 <div className="flex items-center">
-                  <div className=" ml-[3%] w-[22%] ">
+                  <div className=" ml-[3%] w-[22%] my-[3.9%] ">
                     <div className=" ">
                       {boardAd.publisherProfileImage ? (
                         <Image
