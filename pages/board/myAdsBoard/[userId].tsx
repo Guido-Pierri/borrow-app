@@ -1,20 +1,20 @@
-import ButtonCreateAd from "@/p-components/buttonCreateAd";
-import Categories from "@/p-components/categories";
-import Header from "@/p-components/header";
-import { NextPage } from "next";
-import Link from "next/link";
-import router, { useRouter } from "next/router";
-import { GoSearch } from "react-icons/go";
-import { MongoClient, Db } from "mongodb";
-import clientPromise from "@/lib/mongodb";
-import { BoardAd } from "@/types/boardAd";
-import { useState } from "react";
-import SearchBar from "@/p-components/searchBar";
-import Image from "next/image";
-import DesignLine from "@/p-components/designLine";
+import ButtonCreateAd from "@/p-components/buttonCreateAd"
+import Categories from "@/p-components/categories"
+import Header from "@/p-components/header"
+import { NextPage } from "next"
+import Link from "next/link"
+import router, { useRouter } from "next/router"
+import { GoSearch } from "react-icons/go"
+import { MongoClient, Db } from "mongodb"
+import clientPromise from "@/lib/mongodb"
+import { BoardAd } from "@/types/boardAd"
+import { useState } from "react"
+import SearchBar from "@/p-components/searchBar"
+import Image from "next/image"
+import DesignLine from "@/p-components/designLine"
 
 interface Props {
-  boardAds: BoardAd[];
+  boardAds: BoardAd[]
 }
 
 // function navigateToAd(id: string) {
@@ -22,14 +22,14 @@ interface Props {
 // }
 
 const Board = ({ boardAds }: Props) => {
-  const [query, setQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const router = useRouter();
-  const { userId } = router.query;
+  const [query, setQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const router = useRouter()
+  const { userId } = router.query
 
   const filteredBoardAds = boardAds.filter(
     (boardAd) => boardAd.userId === userId
-  );
+  )
   // const filteredBoardAds = boardAds.filter((boardAd) =>
   //   boardAd.title.includes(
   //     query
@@ -47,7 +47,7 @@ const Board = ({ boardAds }: Props) => {
   //   //  ad.category === selectedCategory
   // );
 
-  console.log("selectedCategory:", selectedCategory);
+  console.log("selectedCategory:", selectedCategory)
 
   return (
     <>
@@ -90,7 +90,7 @@ const Board = ({ boardAds }: Props) => {
         <section className="flex text-left mb-9 mt-6">
           <button
             onClick={() => {
-              router.push(`/board/${userId}`);
+              router.push(`/board/${userId}`)
             }}
             className="ml-[5.5%] border-r-[1px] pr-[2%] border-black mr-[2%] "
           >
@@ -149,30 +149,30 @@ const Board = ({ boardAds }: Props) => {
         `}</style>
       </div>
     </>
-  );
-};
+  )
+}
 export async function getServerSideProps(context: any) {
   try {
-    const { userId } = context.query;
-    console.log("userid: " + userId);
+    const { userId } = context.query
+    console.log("userid: " + userId)
 
-    const client = await clientPromise;
-    const db = client.db("borrow");
+    const client = await clientPromise
+    const db = client.db("borrow")
 
     const boardAds = await db
       .collection("board")
       .find({ publisher: userId })
       .sort({ _id: -1 })
-      .toArray();
+      .toArray()
 
-    console.log(boardAds);
+    console.log(boardAds)
 
     return {
       props: { boardAds: JSON.parse(JSON.stringify(boardAds)) },
-    };
+    }
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
 }
 
-export default Board;
+export default Board

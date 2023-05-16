@@ -33,6 +33,10 @@ const Board = ({ boardAds }: Props) => {
     )
   )
 
+  function navigateToAd(id: string) {
+    router.push(`/contactboard/${userId}`)
+  }
+
   // .filter(
   //   (ad) => !selectedCategory
   //   //  ||
@@ -101,8 +105,12 @@ const Board = ({ boardAds }: Props) => {
         <section>
           <div className="flex flex-col">
             {filteredBoardAds.map((boardAd) => (
-              <div key={boardAd.id} className="">
-                <div className="">
+              <div
+                key={boardAd.id}
+                onClick={() => router.push(`/contactboard/${boardAd.id}`)}
+              >
+                <div>
+
                   <Image
                     className="ml-[5.6%]"
                     src={'/Line.svg'}
