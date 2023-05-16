@@ -4,10 +4,11 @@ import Image from 'next/image'
 import Categories from '@/p-components/categories'
 import clientPromise from '@/lib/mongodb'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SearchBar from '@/p-components/searchBar'
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
 import { UserId } from '@/types/userId'
+import { ObjectId } from 'mongodb'
 
 interface AdId {
   id: string
@@ -218,8 +219,20 @@ const Ads = ({ ads }: Props) => {
     </>
   )
 }
-export async function getServerSideProps() {
+export async function getServerSideProps(context: {
+  query: { userId: string }
+}) {
   try {
+    const { userId } = context.query
+
+    if (!userId || !ObjectId.isValid(userId)) {
+      return {
+        redirect: {
+          destination: '/404',
+          permanent: false,
+        },
+      }
+    }
     const client = await clientPromise
     const db = client.db('borrow')
 
