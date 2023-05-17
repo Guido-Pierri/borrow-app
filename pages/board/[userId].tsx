@@ -13,6 +13,15 @@ interface Props {
 }
 
 const Board = ({ boardAds }: Props) => {
+  const [showAdOverlay, setShowAdOverlay] = useState(false)
+
+  const handleInfoElementClick = () => {
+    setShowAdOverlay(true)
+  }
+  const handleCloseInfoOverlay = () => {
+    setShowAdOverlay(false)
+  }
+
   const [query, setQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const router = useRouter()
@@ -89,7 +98,7 @@ const Board = ({ boardAds }: Props) => {
               <div
                 key={boardAd.id}
                 className=""
-                onClick={() => router.push(`/contactboard/${boardAd.id}`)}
+                onClick={handleInfoElementClick}
               >
                 <div>
                   <Image
