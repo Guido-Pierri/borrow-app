@@ -80,10 +80,7 @@ const Board = ({ boardAds }: Props) => {
             <p className="font-normal text-base ">Mina inlägg</p>
           </button>
         </section>
-        <section
-          className="mx-[5.8%]"
-          onClick={() => router.push('/board/contactBoard')}
-        >
+        <section className="mx-[5.8%]">
           <div className="flex flex-col">
             {boardAds.map((boardAd) => (
               <div
