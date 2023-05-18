@@ -158,8 +158,8 @@ const Ads = ({ ads }: Props) => {
                   className="mt-4  w-full aspect-square rounded-sm object-cover"
                   alt={ad.description}
                   src={ad.image}
-                  width={'100'}
-                  height={'100'}
+                  width={'1000'}
+                  height={'1000'}
                   onClick={() => handleAdViewElementClick(ad)}
                 />
 

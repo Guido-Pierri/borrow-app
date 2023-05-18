@@ -4,6 +4,7 @@ import AdviewOverlay from './adViewOverlay'
 import Link from 'next/link'
 import Image from 'next/image'
 import router from 'next/router'
+import { close } from 'fs'
 interface NotificationsContentProps {
   onClose: () => void
   _id: string
@@ -73,48 +74,49 @@ const AdviewOverlayContent: FC<NotificationsContentProps> = ({
 
   return (
     <>
-      <div className="bg-[#FFFFFF] text-center max-w-sm h-screen">
-        <div className="mt-6 rounded-md border-[#9EBB9D] border-2 text-left flex-column font-sans px-5 pb-20 shadow-md">
-          <div className="flex justify-end mt-5 mb-5">
+      <div className="font-sans bg-[#FFFFFF] flex flex-col h-[full] w-[full] rounded-lg ml-[5.7%] mr-[5.7%] ">
+        <div className="  text-left flex-column font-sans  mx-[7.25%] mt-[7.5%]">
+          <div className="flex justify-end ">
             <Image
               src={'/kryss_annons.svg'}
               height={25}
               width={25}
               alt={'Kryss'}
               onClick={() => {
-                router.back()
+                onClose()
               }}
               className="clickable"
             ></Image>
           </div>
-          <div className="flex justify-center">
+          <div className="mt-[9%]">
             <Image
               src={adImage}
-              alt={''}
+              alt={description}
               width={100}
               height={100}
-              className="aspect-auto w-full rounded-[4px]"
+              className="aspect-auto w-full "
             ></Image>
           </div>
-          <p className="bold text-[#0f0e0e] mt-2 text-[20px] font-bold">
+          <p className="font-bold text-xl mt-[6%]">
             <b>{title}</b>
           </p>
-          <p className="text-[#0f0e0e] mt-2 text-[14px] font-semibold">
-            Beskrivning
-          </p>
-          <p className="font-normal text-[14px]">{description}</p>
-          <div className="flex flex-col w-fit mt-6 ">
-            <Image
-              src={publisherProfileImage}
-              alt={title}
-              width={75}
-              height={75}
-              className="rounded-full aspect-square object-cover"
-              style={{ alignSelf: 'center' }}
-            ></Image>
-            <p className="text-[#0f0e0e] text-center"> {fullName}</p>
+          <p className=" text-sm font-bold mt-[4.2%]">Beskrivning</p>
+          <p className="font-normal text-sm mt-[3.6%]">{description}</p>
+          <div className="flex flex-col mt-[10%] w-[26.5%]">
+            <div className="flex flex-col items-center">
+              <Image
+                src={publisherProfileImage}
+                alt={title}
+                width={75}
+                height={75}
+                className="rounded-full aspect-square object-cover border-[#9EBB9D] border-[3px]"
+              ></Image>
+              <div className="">
+                <p className="font-bold text-xs"> {fullName}</p>
+              </div>
+            </div>
           </div>
-          <div className="w-full text-[#0f0e0e] mt-4  flex justify-center">
+          <div className="w-full text-[#0f0e0e] flex justify-center mt-[12%] mb-[28%]">
             <button className="w-full bg-[#9EBB9D] font-normal text-base  h-[40px] rounded-sm">
               <div className="flex row justify-center">
                 <Image
