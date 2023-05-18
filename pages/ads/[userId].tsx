@@ -9,7 +9,7 @@ import SearchBar from '@/p-components/searchBar'
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
 import { UserId } from '@/types/userId'
 import { ObjectId } from 'mongodb'
-import AdviewOverlay from '@/p-components/adViewOverlay'
+import AdViewOverlay from '@/p-components/adViewOverlay'
 
 interface AdId {
   id: string
@@ -20,8 +20,9 @@ interface Props {
 }
 const Ads = ({ ads }: Props) => {
   const [showAdOverlay, setShowAdOverlay] = useState(false)
-
-  const handleAdViewElementClick = () => {
+  const [selectedAd, setSelectedAd] = useState<Ad | null>(null)
+  const handleAdViewElementClick = (ad: Ad) => {
+    setSelectedAd(ad)
     setShowAdOverlay(true)
   }
   const handleCloseAdViewOverlay = () => {
@@ -157,19 +158,11 @@ const Ads = ({ ads }: Props) => {
                   className="mt-4  w-full aspect-square rounded-sm object-cover"
                   alt={ad.description}
                   src={ad.image}
-                  width={'1000'}
-                  height={'0'}
-                  onClick={handleAdViewElementClick}
+                  width={'100'}
+                  height={'100'}
+                  onClick={() => handleAdViewElementClick(ad)}
                 />
-                <div>
-                  {showAdOverlay && (
-                    <AdviewOverlay
-                      onClose={handleCloseAdViewOverlay}
-                      userId={userId}
-                      adId={ad.id}
-                    />
-                  )}
-                </div>
+
                 <div>
                   <p
                     className="bold text-[#0f0e0e] mt-1 link "
@@ -181,6 +174,20 @@ const Ads = ({ ads }: Props) => {
               </div>
             ))}
           </div>
+          {showAdOverlay && selectedAd && (
+            <AdViewOverlay
+              onClose={handleCloseAdViewOverlay}
+              userId={userId}
+              _id={selectedAd._id}
+              adImage={selectedAd.image}
+              title={selectedAd.title}
+              publisher={selectedAd.publisher}
+              fullName={selectedAd.fullName}
+              publisherProfileImage={selectedAd.publisherProfileImage}
+              adEmail={selectedAd.email}
+              description={selectedAd.description}
+            />
+          )}
         </section>
         <style jsx>{`
           .link {

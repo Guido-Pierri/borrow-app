@@ -1,49 +1,75 @@
-import Toggle from './toggle'
-import { FC } from 'react'
-import CloseIconWOLink from './closeIconWOLink'
+import { FC, useEffect, useState } from 'react'
 import { Ad } from '@/types/ads'
 import AdviewOverlay from './adViewOverlay'
-// import clientPromise from '@/lib/mongodb'
 import Link from 'next/link'
 import Image from 'next/image'
 import router from 'next/router'
 interface NotificationsContentProps {
   onClose: () => void
-  adId: string
+  _id: string
+  adImage: string
+  title: string
+  publisher: string
+  fullName: string
+  publisherProfileImage: string
+  adEmail: string
+  userId: string
+  description: string
 }
 
-interface Props {
-  ad: Ad
-}
-const AdviewOverlayContent: FC<NotificationsContentProps> = (
-  { onClose, adId },
-  { ad }: Props
-) => {
+const AdviewOverlayContent: FC<NotificationsContentProps> = ({
+  onClose,
+  userId,
+  _id,
+  adImage,
+  title,
+  publisher,
+  fullName,
+  publisherProfileImage,
+  adEmail,
+  description,
+}) => {
   const handleContentClick = (event: any) => {
     // Stop the event from propagating up to the outer div
     event.stopPropagation()
   }
-  console.log('adId innan fetch:', adId)
+  console.log('adId innan fetch:', _id)
 
-  //   fetchData(adId)
-  async function fetchData(adId: string) {
-    const response = await fetch('/api/ad/getAd', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(adId),
-    })
-    const data = await response
+  console.log('adImage:', adImage)
+  // const [ad, setAd] = useState<Ad[] | null>(null)
 
-    console.log('data:', data)
-  }
-  function navigateBack() {
-    throw new Error('Function not implemented.')
-  }
-  console.log(ad)
+  // useEffect(() => {
+  //   fetchData(_id)
+  // }, [_id])
 
-  console.log(adId)
+  // async function fetchData(_id: string) {
+  //   try {
+  //     const response = await fetch('/api/ad/getAd', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ id: _id }), // Pass the id as an object with the `id` property
+  //     })
+  //     const data = await response.json()
+
+  //     console.log('data:', data)
+  //     const fetchedAd = data.ad
+  //     console.log('fetchedAd', fetchedAd)
+
+  //     setAd(fetchedAd)
+  //   } catch (error) {
+  //     console.error('Error fetching ad:', error)
+  //   }
+  // }
+
+  // if (!ad) {
+  //   // Render loading state or return null if needed
+  //   return <div>Loading...</div>
+  // }
+  // console.log('ad', ad)
+  // const adItem = ad[0] // Access the first item in the array
+  // console.log(adItem.title)
 
   return (
     <>
@@ -56,37 +82,37 @@ const AdviewOverlayContent: FC<NotificationsContentProps> = (
               width={25}
               alt={'Kryss'}
               onClick={() => {
-                navigateBack()
+                router.back()
               }}
               className="clickable"
             ></Image>
           </div>
           <div className="flex justify-center">
             <Image
-              src={ad.image}
-              alt={'#'}
-              width={250}
-              height={250}
+              src={adImage}
+              alt={''}
+              width={100}
+              height={100}
               className="aspect-auto w-full rounded-[4px]"
             ></Image>
           </div>
           <p className="bold text-[#0f0e0e] mt-2 text-[20px] font-bold">
-            <b>{ad.title}</b>
+            <b>{title}</b>
           </p>
           <p className="text-[#0f0e0e] mt-2 text-[14px] font-semibold">
             Beskrivning
           </p>
-          <p className="font-normal text-[14px]">{ad.description}</p>
+          <p className="font-normal text-[14px]">{description}</p>
           <div className="flex flex-col w-fit mt-6 ">
             <Image
-              src={ad.publisherProfileImage}
-              alt={ad.title}
+              src={publisherProfileImage}
+              alt={title}
               width={75}
               height={75}
               className="rounded-full aspect-square object-cover"
               style={{ alignSelf: 'center' }}
             ></Image>
-            <p className="text-[#0f0e0e] text-center"> {ad.fullName}</p>
+            <p className="text-[#0f0e0e] text-center"> {fullName}</p>
           </div>
           <div className="w-full text-[#0f0e0e] mt-4  flex justify-center">
             <button className="w-full bg-[#9EBB9D] font-normal text-base  h-[40px] rounded-sm">
@@ -98,7 +124,7 @@ const AdviewOverlayContent: FC<NotificationsContentProps> = (
                   alt={'Kryss'}
                   className="mr-[15px]"
                 ></Image>
-                <Link href={'mailto:' + `${ad.email}`}>Skicka meddelande</Link>
+                <Link href={'mailto:' + `${adEmail}`}>Skicka meddelande</Link>
               </div>
             </button>
           </div>
