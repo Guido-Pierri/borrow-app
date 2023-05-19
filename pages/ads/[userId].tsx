@@ -1,14 +1,15 @@
-import Header from "@/p-components/header"
-import { Ad } from "@/types/ads"
-import Image from "next/image"
-import Categories from "@/p-components/categories"
-import clientPromise from "@/lib/mongodb"
-import { useRouter } from "next/router"
-import { useState } from "react"
-import SearchBar from "@/p-components/searchBar"
-import ButtonCreateAd from "@/p-components/buttonCreateAd"
-import { UserId } from "@/types/userId"
-import { ObjectId } from "mongodb"
+import Header from '@/p-components/header'
+import { Ad } from '@/types/ads'
+import Image from 'next/image'
+import Categories from '@/p-components/categories'
+import clientPromise from '@/lib/mongodb'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import SearchBar from '@/p-components/searchBar'
+import ButtonCreateAd from '@/p-components/buttonCreateAd'
+import { UserId } from '@/types/userId'
+import { ObjectId } from 'mongodb'
+import AdViewOverlay from '@/p-components/adViewOverlay'
 
 interface AdId {
   id: string
@@ -21,14 +22,24 @@ const Ads = ({ ads }: Props) => {
   const router = useRouter()
   const { userId } = router.query as UserId
 
-  const [selectedCategory, setSelectedCategory] = useState("")
+  const [showAdOverlay, setShowAdOverlay] = useState(false)
+  const [selectedAd, setSelectedAd] = useState<Ad | null>(null)
+  console.log('selectedAd:', selectedAd)
 
-  function setAllCategorys() {
-    window.location.href = `/ads/${userId}`
+  const handleAdViewElementClick = (ad: Ad) => {
+    setSelectedAd(ad)
+
+    setShowAdOverlay(true)
   }
 
+  const handleCloseAdViewOverlay = () => {
+    setShowAdOverlay(false)
+  }
+
+  const [selectedCategory, setSelectedCategory] = useState('')
+
   //search through ads using the query in SearchBar
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState('')
   const filteredAds = ads
     .filter((ad) => ad.publisher !== userId)
     .filter((ad) =>
@@ -41,59 +52,49 @@ const Ads = ({ ads }: Props) => {
     )
 
     .filter((ad) => !selectedCategory || ad.category === selectedCategory)
-  console.log("selectedCategory:", selectedCategory)
+  console.log('selectedCategory:', selectedCategory)
 
-  // navigate to the ad creation
-  const navigateToCreateAd = () => {
-    router.push(`/createAd/${userId}`)
-  }
-
-  console.log(userId)
-
-  function navigateToAd(id: string) {
-    window.location.href = `/ads/view/${id}`
-  }
   const handleClick = async (id: string) => {
-    console.log("inside handleClick")
+    console.log('inside handleClick')
 
     console.log(`${userId}`)
     window.location.href = `/ads/myAds/${id}`
     const response = await fetch(`/api/user/${userId}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(`${userId}`),
     })
 
     const dataResponse = await response.json()
 
-    console.log("dataResponse", dataResponse)
+    console.log('dataResponse', dataResponse)
     if (dataResponse) {
     }
   }
 
   const handleClickBoard = async (id: string) => {
-    console.log("inside handleClickBoard")
+    console.log('inside handleClickBoard')
 
     console.log(`${userId}`)
     window.location.href = `/board/${id}`
     const response = await fetch(`/api/user/${userId}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(`${userId}`),
     })
 
     const dataResponse = await response.json()
 
-    console.log("dataResponse", dataResponse)
+    console.log('dataResponse', dataResponse)
     if (dataResponse) {
     }
   }
 
-  console.log("filteredAds", filteredAds)
+  console.log('filteredAds', filteredAds)
 
   return (
     <>
@@ -143,18 +144,19 @@ const Ads = ({ ads }: Props) => {
             {filteredAds.map((ad) => (
               <div key={ad.id} className="">
                 <Image
-                  onClick={() => navigateToAd(ad.id)}
+                  // onClick={() => navigateToAd(ad.id)}
                   className="mt-4  w-full aspect-square rounded-sm object-cover"
                   alt={ad.description}
                   src={ad.image}
-                  width={"1000"}
-                  height={"0"}
+                  width={'1000'}
+                  height={'1000'}
+                  onClick={() => handleAdViewElementClick(ad)}
                 />
 
                 <div>
                   <p
                     className="bold text-[#0f0e0e] mt-1 link "
-                    onClick={() => navigateToAd(ad.id)}
+                    // onClick={() => navigateToAd(ad.id)}
                   >
                     {ad.title}
                   </p>
@@ -162,6 +164,20 @@ const Ads = ({ ads }: Props) => {
               </div>
             ))}
           </div>
+          {showAdOverlay && selectedAd && (
+            <AdViewOverlay
+              onClose={handleCloseAdViewOverlay}
+              userId={userId}
+              _id={selectedAd._id}
+              adImage={selectedAd.image}
+              title={selectedAd.title}
+              publisher={selectedAd.publisher}
+              fullName={selectedAd.fullName}
+              publisherProfileImage={selectedAd.publisherProfileImage}
+              adEmail={selectedAd.email}
+              description={selectedAd.description}
+            />
+          )}
         </section>
         <style jsx>{`
           .link {
@@ -181,15 +197,15 @@ export async function getServerSideProps(context: {
     if (!userId || !ObjectId.isValid(userId)) {
       return {
         redirect: {
-          destination: "/404",
+          destination: '/404',
           permanent: false,
         },
       }
     }
     const client = await clientPromise
-    const db = client.db("borrow")
+    const db = client.db('borrow')
 
-    const ads = await db.collection("ads").find({}).sort({ _id: -1 }).toArray()
+    const ads = await db.collection('ads').find({}).sort({ _id: -1 }).toArray()
 
     console.log(ads)
 

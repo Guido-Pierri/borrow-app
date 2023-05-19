@@ -11,10 +11,10 @@
 }
 
 .overlay-content {
+  min-width: 75vh;
   width: 75vw;
   height: 75.8vh;
-  top: 0;
-  left: 0;
+
   /* set the desired width and height for the overlay */
   /* width: 120%; */
   /* center the content within the overlay */
