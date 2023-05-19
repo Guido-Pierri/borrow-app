@@ -74,8 +74,8 @@ const AdviewOverlayContent: FC<NotificationsContentProps> = ({
 
   return (
     <>
-      <div className="font-sans bg-[#FFFFFF] flex flex-col h-[full] w-[full] rounded-lg ml-[5.7%] mr-[5.7%] ">
-        <div className="  text-left flex-column font-sans  mx-[7.25%] mt-[7.5%]">
+      <div className="font-sans bg-[#FFFFFF] flex flex-col h-[full] w-[345px] rounded-lg ">
+        <div className="  text-left flex-column font-sans  mx-[5.9%] mt-[7.5%]">
           <div className="flex justify-end ">
             <Image
               src={'/kryss_annons.svg'}
@@ -88,7 +88,7 @@ const AdviewOverlayContent: FC<NotificationsContentProps> = ({
               className="clickable"
             ></Image>
           </div>
-          <div className="mt-[9%]">
+          <div className="mt-[10%]">
             <Image
               src={adImage}
               alt={description}
@@ -97,7 +97,7 @@ const AdviewOverlayContent: FC<NotificationsContentProps> = ({
               className="aspect-auto w-full "
             ></Image>
           </div>
-          <p className="font-bold text-xl mt-[6%]">
+          <p className="font-bold text-xl mt-[5.8%]">
             <b>{title}</b>
           </p>
           <p className=" text-sm font-bold mt-[4.2%]">Beskrivning</p>
@@ -116,15 +116,15 @@ const AdviewOverlayContent: FC<NotificationsContentProps> = ({
               </div>
             </div>
           </div>
-          <div className="w-full text-[#0f0e0e] flex justify-center mt-[12%] mb-[28%]">
-            <button className="w-full bg-[#9EBB9D] font-normal text-base  h-[40px] rounded-sm">
+          <div className="w-full flex justify-center mt-[12%] mb-[26%]">
+            <button className="w-full bg-[#9EBB9D] font-normal text-base h-[2.5rem] rounded-sm">
               <div className="flex row justify-center">
                 <Image
                   src={'/mail.svg'}
                   height={20}
                   width={20}
                   alt={'Kryss'}
-                  className="mr-[15px]"
+                  className="mr-[0.93rem]"
                 ></Image>
                 <Link href={'mailto:' + `${adEmail}`}>Skicka meddelande</Link>
               </div>

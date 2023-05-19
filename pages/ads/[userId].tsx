@@ -19,24 +19,24 @@ interface Props {
   ads: Ad[]
 }
 const Ads = ({ ads }: Props) => {
+  const router = useRouter()
+  const { userId } = router.query as UserId
+
   const [showAdOverlay, setShowAdOverlay] = useState(false)
   const [selectedAd, setSelectedAd] = useState<Ad | null>(null)
+  console.log('selectedAd:', selectedAd)
+
   const handleAdViewElementClick = (ad: Ad) => {
     setSelectedAd(ad)
+
     setShowAdOverlay(true)
   }
+
   const handleCloseAdViewOverlay = () => {
     setShowAdOverlay(false)
   }
 
-  const router = useRouter()
-  const { userId } = router.query as UserId
-
   const [selectedCategory, setSelectedCategory] = useState('')
-
-  function setAllCategorys() {
-    window.location.href = `/ads/${userId}`
-  }
 
   //search through ads using the query in SearchBar
   const [query, setQuery] = useState('')
@@ -54,16 +54,6 @@ const Ads = ({ ads }: Props) => {
     .filter((ad) => !selectedCategory || ad.category === selectedCategory)
   console.log('selectedCategory:', selectedCategory)
 
-  // navigate to the ad creation
-  const navigateToCreateAd = () => {
-    router.push(`/createAd/${userId}`)
-  }
-
-  console.log(userId)
-
-  function navigateToAd(id: string) {
-    window.location.href = `/ads/view/${id}`
-  }
   const handleClick = async (id: string) => {
     console.log('inside handleClick')
 
