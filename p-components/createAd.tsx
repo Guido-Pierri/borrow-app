@@ -1,8 +1,8 @@
-import Image from "next/image"
-import { useState } from "react"
-import { v4 as uuidv4 } from "uuid"
-import { useRouter } from "next/router"
-import Upload from "@/p-components/upload"
+import Image from 'next/image'
+import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { useRouter } from 'next/router'
+import Upload from '@/p-components/upload'
 
 //function that generates random id:s
 uuidv4()
@@ -32,22 +32,22 @@ interface ApiData {
 /*Defining a function (pass to other files), that has 
 a object formData that contains following properties*/
 export default function CreateAd({ imageUrl, userId }: any) {
-  const [imgUrl, setImgUrl] = useState("")
-
+  const [imgUrl, setImgUrl] = useState('')
+  const [message, setMessage] = useState('')
   const [formData, setFormData] = useState<FormData>({
-    id: "",
-    title: "",
-    description: "",
-    fullName: "",
-    email: "",
-    category: "",
+    id: '',
+    title: '',
+    description: '',
+    fullName: '',
+    email: '',
+    category: '',
   })
 
   console.log(formData)
   const router = useRouter()
 
   function handleClick() {
-    console.log("handleClick")
+    console.log('handleClick')
 
     router.push(`/ads/${userId}`)
   }
@@ -55,14 +55,14 @@ export default function CreateAd({ imageUrl, userId }: any) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!imgUrl) {
-      return alert("ladda upp en bild!")
+      return alert('ladda upp en bild!')
     }
 
     const user = await fetch(`/api/user/${userId}`, {
-      method: "POST",
+      method: 'POST',
 
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
 
       body: JSON.stringify(userId),
@@ -72,7 +72,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
     console.log(userData)
     const profileImage = userData.result.profileImage
 
-    console.log("profileImage:", profileImage)
+    console.log('profileImage:', profileImage)
 
     const apiData: ApiData = {
       image: imgUrl,
@@ -87,10 +87,10 @@ export default function CreateAd({ imageUrl, userId }: any) {
     }
     console.log(apiData)
 
-    const response = await fetch("/api/ad", {
-      method: "POST",
+    const response = await fetch('/api/ad', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(apiData),
     })
@@ -107,6 +107,11 @@ export default function CreateAd({ imageUrl, userId }: any) {
   through setFormData*/
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
+    if (name === 'title' && value.length > 24) {
+      setMessage('Title cannot exceed 25 characters!')
+    } else {
+      setMessage('')
+    }
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
     console.log(event.target.value)
   }
@@ -141,9 +146,11 @@ export default function CreateAd({ imageUrl, userId }: any) {
             type="text"
             name="title"
             value={formData.title}
+            maxLength={25} // Set the maximum length to 50 characters
             required
             onChange={handleInputChange}
-          />
+          />{' '}
+          <div className="text-red-600">{message}</div>
         </label>
         <label className="">
           <legend className="mb-[2px] mt-5 ">Beskrivning</legend>
@@ -207,11 +214,11 @@ export default function CreateAd({ imageUrl, userId }: any) {
         >
           <div className="mr-2 mt-[-2]">
             <Image
-              src={"/Paper Plane.svg"}
-              alt={"#"}
-              width={"27"}
-              height={"27"}
-              style={{ alignSelf: "center" }}
+              src={'/Paper Plane.svg'}
+              alt={'#'}
+              width={'27'}
+              height={'27'}
+              style={{ alignSelf: 'center' }}
             ></Image>
           </div>
           Publicera annons
