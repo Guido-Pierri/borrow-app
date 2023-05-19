@@ -92,8 +92,8 @@ const AdviewOverlayContent: FC<NotificationsContentProps> = ({
             <Image
               src={adImage}
               alt={description}
-              width={100}
-              height={100}
+              width={1000}
+              height={1000}
               className="aspect-auto w-full "
             ></Image>
           </div>
