@@ -3,6 +3,7 @@ import { Ad } from '@/types/ads'
 import Image from 'next/image'
 import router from 'next/router'
 import { Console } from 'console'
+import Toggle from './toggle'
 interface NotificationsContentProps {
   onClose: () => void
   _id: string
@@ -132,7 +133,7 @@ const OverlayMyAdViewContent: FC<NotificationsContentProps> = ({
   return (
     <>
       <div className="bg-[#FFFFFF] text-center max-w-sm h-full rounded-md">
-        <div className="mt-6 rounded-md  text-left flex-column font-sans px-5 pb-4">
+        <div className=" rounded-md  text-left flex-column font-sans px-5 pb-16">
           <div className="flex justify-end">
             <Image
               src={'/kryss_annons.svg'}
@@ -145,7 +146,7 @@ const OverlayMyAdViewContent: FC<NotificationsContentProps> = ({
               className="clickable mt-4"
             ></Image>
           </div>
-          <div className="flex justify-center ">
+          <div className="flex justify-center mt-[7.8%]">
             <Image
               src={adImage}
               alt={'#'}
@@ -161,12 +162,17 @@ const OverlayMyAdViewContent: FC<NotificationsContentProps> = ({
             Beskrivning
           </p>
           <p className="font-normal text-[14px]">{description}</p>
-
-          <div className="mb-10 py-8">
-            <div className="w-full text-[#0f0e0e] mt-4 ">
+          <div className="flex  mt-[9%]">
+            <p className="text-sm mr-[1%]">Tillgänglig</p>
+            <div className="">
+              <Toggle />
+            </div>
+          </div>
+          <div className="">
+            <div className="w-full text-[#0f0e0e] mt-6 ">
               <div className="text-right flex justify-center">
                 <button
-                  className="border flex flex-row justify-center w-[298px] bg-[#9EBB9D] text-[17px] py-3 rounded-sm h-[55px] border-[#9EBB9D] text-black "
+                  className="border flex flex-row justify-center w-[100%] bg-[#9EBB9D] text-[17px] py-3 rounded-sm h-[3.438rem] border-[#9EBB9D] text-black "
                   value={adId}
                   type="submit"
                   onClick={() => updateAd(adId)}
@@ -184,10 +190,10 @@ const OverlayMyAdViewContent: FC<NotificationsContentProps> = ({
                 </button>
               </div>
 
-              <div className=" mt-4 ">
+              <div className=" mt-[3.5%] ">
                 <div className="flex justify-center">
                   <button
-                    className="rounded-sm text-[17px] h-[55px] flex flex-row justify-center text-black border-[#9EBB9D]  border w-[298px]  py-3"
+                    className="rounded-sm text-[17px]  flex flex-row justify-center text-black border-[#9EBB9D]  border  py-3 h-[3.438rem] w-[100%]"
                     value={adId}
                     type="submit"
                     onClick={() => deleteAd(adId, publisher)}
