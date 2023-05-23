@@ -8,10 +8,10 @@
   bottom: 17%;
   right: 9%;
 }
-.imageButton {
+/* .imageButton {
   width: 83px;
   height: 83px;
-}
+} */
 @media (min-width: 391px) {
   .buttonCreate {
     left: 20%;
@@ -21,8 +21,8 @@
     bottom: 17%;
     left: 10.2%;
   }
-  .imageButton {
+  /* .imageButton {
     width: 83px;
     height: 83px;
-  }
+  } */
 }
