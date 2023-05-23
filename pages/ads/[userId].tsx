@@ -4,12 +4,13 @@ import Image from 'next/image'
 import Categories from '@/p-components/categories'
 import clientPromise from '@/lib/mongodb'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import SearchBar from '@/p-components/searchBar'
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
 import { UserId } from '@/types/userId'
 import { ObjectId } from 'mongodb'
 import AdViewOverlay from '@/p-components/adViewOverlay'
+import { MyContext } from '@/contexts/my-context-provider'
 
 interface AdId {
   id: string
@@ -21,10 +22,14 @@ interface Props {
 const Ads = ({ ads }: Props) => {
   const router = useRouter()
   const { userId } = router.query as UserId
-
+  const { username, isLoggedIn, _id, setUsername, setIsLoggedIn, set_id } =
+    useContext(MyContext)
   const [showAdOverlay, setShowAdOverlay] = useState(false)
   const [selectedAd, setSelectedAd] = useState<Ad | null>(null)
   console.log('selectedAd:', selectedAd)
+  console.log('username from context:', username)
+  console.log('_id from context', _id)
+  console.log('isLoggedIn from context', isLoggedIn)
 
   const handleAdViewElementClick = (ad: Ad) => {
     setSelectedAd(ad)
