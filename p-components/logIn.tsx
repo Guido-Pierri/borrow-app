@@ -1,41 +1,71 @@
-import Link from "next/link"
-import { useState } from "react"
-import { LogIn } from "@/types/logIns"
+import Link from 'next/link'
+import { useContext, useEffect, useState } from 'react'
+import { LogIn } from '@/types/logIns'
+import { MyContext } from '@/contexts/my-context-provider'
+import router from 'next/router'
 
 export default function Login() {
+  const { username, isLoggedIn, _id, setUsername, setIsLoggedIn, set_id } =
+    useContext(MyContext)
   const [formData, setFormData] = useState<LogIn>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   })
 
   console.log(formData)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log("in i handlesubmit")
+    console.log('in i handlesubmit')
 
     const apiData: LogIn = {
       email: formData.email,
       password: formData.password,
     }
 
-    const response = await fetch("/api/user", {
-      method: "POST",
+    const response = await fetch('/api/user', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(apiData),
     })
 
     const data = await response.json()
 
-    console.log("response from api", response)
-    console.log("data:", data)
+    console.log('response from api', response)
+    console.log('data:', data)
+    set_id(data)
+    console.log('_id', data)
 
     if (response.ok) {
-      window.location.href = `/ads/${data}`
+      console.log('inside if-statement')
+      console.log('_id', data)
+
+      const userData = await fetch(`api/user/${data}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      const data2 = await userData.json()
+      console.log('data2', data2)
+
+      setUsername(data2.result.firstAndLastName)
+      console.log(
+        'data2.result.firstAndLastName',
+        data2.result.firstAndLastName
+      )
+
+      setIsLoggedIn(true)
+      console.log(isLoggedIn)
+
+      // window.location.href = `/ads/${data}`
+      router.push(`/ads/${data}`)
     } else {
-      alert("Inloggning mysslyckades")
+      alert('Inloggning misslyckades')
     }
     console.log(response)
   }
@@ -45,6 +75,21 @@ export default function Login() {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
     console.log(event.target.value)
   }
+
+  // useEffect(() => {
+  console.log('Updated state variables:')
+  console.log('username:', username)
+  console.log('isLoggedIn:', isLoggedIn)
+  console.log('_id:', _id)
+  // }, [username, isLoggedIn, _id])
+
+  useEffect(() => {
+    console.log('Updated _id:', _id)
+  }, [_id])
+
+  useEffect(() => {
+    console.log('Updated username:', username)
+  }, [username])
 
   return (
     <div className="w-full flex items-start justify-center text-center bg-[#FFFFFF] h-screen font-sans">
@@ -94,8 +139,8 @@ export default function Login() {
               Logga in
             </button>
             <p className="mt-20 text-sm text-black">
-              Har du inget konto än?{" "}
-              <Link href={"/register-site"}>
+              Har du inget konto än?{' '}
+              <Link href={'/register-site'}>
                 <span className="text-[#0074B6] font-medium underline text-md">
                   Registrera dig här
                 </span>
