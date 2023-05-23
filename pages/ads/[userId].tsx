@@ -22,12 +22,18 @@ interface Props {
 const Ads = ({ ads }: Props) => {
   const router = useRouter()
   const { userId } = router.query as UserId
-  const { username, isLoggedIn, _id, setUsername, setIsLoggedIn, set_id } =
-    useContext(MyContext)
+  const {
+    firstAndLastName,
+    isLoggedIn,
+    _id,
+    setFirstAndLastName,
+    setIsLoggedIn,
+    set_id,
+  } = useContext(MyContext)
   const [showAdOverlay, setShowAdOverlay] = useState(false)
   const [selectedAd, setSelectedAd] = useState<Ad | null>(null)
   console.log('selectedAd:', selectedAd)
-  console.log('username from context:', username)
+  console.log('username from context:', firstAndLastName)
   console.log('_id from context', _id)
   console.log('isLoggedIn from context', isLoggedIn)
 
