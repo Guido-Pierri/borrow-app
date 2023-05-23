@@ -12,19 +12,35 @@ import MyContextProvider, { MyContext } from '@/contexts/my-context-provider'
 // })
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [username, setUsername] = useState('')
-  const [_id, set_id] = useState('')
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [_id, set_id] = useState<string>('')
+  const [userId, setUserId] = useState<string>('')
+  const [firstAndLastName, setFirstAndLastName] = useState<string>('')
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+  const [postCode, setPostCode] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [profileImage, setProfileImage] = useState<string>('')
+
   return (
     <MyContextProvider>
       <MyContext.Provider
         value={{
           _id,
-          username,
+          userId,
+          firstAndLastName,
           isLoggedIn,
+          postCode,
+          email,
+          password,
+          profileImage,
           set_id,
-          setUsername,
+          setUserId,
+          setFirstAndLastName,
           setIsLoggedIn,
+          setPostCode,
+          setEmail,
+          setPassword,
+          setProfileImage,
         }}
       >
         <Component {...pageProps} />

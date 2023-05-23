@@ -5,8 +5,14 @@ import { MyContext } from '@/contexts/my-context-provider'
 import router from 'next/router'
 
 export default function Login() {
-  const { username, isLoggedIn, _id, setUsername, setIsLoggedIn, set_id } =
-    useContext(MyContext)
+  const {
+    firstAndLastName,
+    isLoggedIn,
+    _id,
+    setFirstAndLastName,
+    setIsLoggedIn,
+    set_id,
+  } = useContext(MyContext)
   const [formData, setFormData] = useState<LogIn>({
     email: '',
     password: '',
@@ -53,7 +59,7 @@ export default function Login() {
       const data2 = await userData.json()
       console.log('data2', data2)
 
-      setUsername(data2.result.firstAndLastName)
+      setFirstAndLastName(data2.result.firstAndLastName)
       console.log(
         'data2.result.firstAndLastName',
         data2.result.firstAndLastName
@@ -78,7 +84,7 @@ export default function Login() {
 
   // useEffect(() => {
   console.log('Updated state variables:')
-  console.log('username:', username)
+  console.log('username:', firstAndLastName)
   console.log('isLoggedIn:', isLoggedIn)
   console.log('_id:', _id)
   // }, [username, isLoggedIn, _id])
@@ -88,8 +94,8 @@ export default function Login() {
   }, [_id])
 
   useEffect(() => {
-    console.log('Updated username:', username)
-  }, [username])
+    console.log('Updated username:', firstAndLastName)
+  }, [firstAndLastName])
 
   return (
     <div className="w-full flex items-start justify-center text-center bg-[#FFFFFF] h-screen font-sans">
