@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 import '@/styles/burger.css'
 import '@/styles/overlay.css'
-
+import '@/styles/button.css'
 import type { AppProps } from 'next/app'
 import { useState } from 'react'
 import MyContextProvider, { MyContext } from '@/contexts/my-context-provider'

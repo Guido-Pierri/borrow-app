@@ -1,6 +1,6 @@
-import { useState } from "react"
-import OverlayButtonCreateAd from "./overlayButtonCreateAd"
-import ImageCreateButton from "./imageCreateButton"
+import { useState } from 'react'
+import OverlayButtonCreateAd from './overlayButtonCreateAd'
+import ImageCreateButton from './imageCreateButton'
 interface Props {
   userId: any
 }
@@ -17,12 +17,7 @@ const ButtonCreateAd = ({ userId }: Props) => {
     <div>
       <div>
         <button
-          className="drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)] "
-          style={{
-            position: "fixed",
-            bottom: "3.5%",
-            right: "7.7%",
-          }}
+          className="drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)] buttonCreate"
           onClick={toggleOverlay}
         >
           <ImageCreateButton />
@@ -31,15 +26,15 @@ const ButtonCreateAd = ({ userId }: Props) => {
       {showOverlay && (
         <div
           style={{
-            position: "fixed",
+            position: 'fixed',
             top: 0,
             left: 0,
-            width: "100vw",
-            height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <OverlayButtonCreateAd onClose={handleCloseOverlay} userId={userId} />
