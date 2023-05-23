@@ -3,9 +3,26 @@
   bottom: 3.5%;
   right: 7.7%;
 }
-
+.buttonCreateOverlay {
+  position: fixed;
+  bottom: 17%;
+  right: 9%;
+}
+.imageButton {
+  width: 83px;
+  height: 83px;
+}
 @media (min-width: 391px) {
   .buttonCreate {
     left: 20%;
+  }
+  .buttonCreateOverlay {
+    position: fixed;
+    bottom: 17%;
+    left: 10.2%;
+  }
+  .imageButton {
+    width: 83px;
+    height: 83px;
   }
 }

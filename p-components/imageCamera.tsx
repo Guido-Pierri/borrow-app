@@ -5,8 +5,8 @@ export default function ImageCamera() {
       <Image
         src="/Frame 153.svg"
         alt={'camera'}
-        width={'100'}
-        height={'100'}
+        width={'83'}
+        height={'83'}
       ></Image>
     </>
   )

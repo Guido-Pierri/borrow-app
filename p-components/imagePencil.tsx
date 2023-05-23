@@ -2,8 +2,8 @@ export default function ImagePencil() {
   return (
     <>
       <svg
-        width="90"
-        height="92"
+        width="83"
+        height="83"
         viewBox="0 0 90 92"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
