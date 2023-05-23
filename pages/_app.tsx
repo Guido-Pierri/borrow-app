@@ -13,7 +13,7 @@ import MyContextProvider, { MyContext } from '@/contexts/my-context-provider'
 
 export default function App({ Component, pageProps }: AppProps) {
   const [username, setUsername] = useState('')
-  const [_id, set_id] = useState(null)
+  const [_id, set_id] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   return (
     <MyContextProvider>
