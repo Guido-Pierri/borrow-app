@@ -28,7 +28,7 @@ const overlayButtonCreateAd: FC<OverlayProps> = ({ onClose, userId }) => {
             className="flex  items-center  clickable "
             onClick={() => handleCreateAdClick('board')}
           >
-            <button className="border-[3px] rounded-sm border-[#9EBB9D]  px-[5%] py-[2%] mr-[4%]  bg-white text-xs font-bold">
+            <button className="border-[3px] rounded-sm border-[#9EBB9D]  px-[5%] sm:px-[1%] py-[2%] sm:py-[1%] mr-[4%] sm:mr-[1%]  bg-white text-xs font-bold">
               Skapa ett inlägg
             </button>
             <button className="imageButton w-[80%]">
@@ -36,10 +36,10 @@ const overlayButtonCreateAd: FC<OverlayProps> = ({ onClose, userId }) => {
             </button>
           </div>
           <div
-            className="flex items-center mt-[7.5%] clickable"
+            className="flex items-center mt-[7.5%] sm:mt-[1%] clickable"
             onClick={() => handleCreateAdClick('ad')}
           >
-            <button className="border-[3px] border-[#9EBB9D] rounded-sm px-[5%] py-[2%] mr-[4%]  bg-white text-xs font-bold">
+            <button className="border-[3px] border-[#9EBB9D] rounded-sm px-[5%] sm:px-[1%] py-[2%] mr-[4%] sm:mr-[1%] sm:py-[1%]  bg-white text-xs font-bold">
               Skapa en annons
             </button>
             <button className="imageButton  w-[80%]">
