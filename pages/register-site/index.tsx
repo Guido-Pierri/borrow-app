@@ -11,12 +11,14 @@ export default function MyPage() {
 
   const [confirmPassword, setConfirmedPassword] = useState<string>('')
   const [formData, setFormData] = useState<User>({
+    _id: undefined,
     userId: uuidv4(),
     firstAndLastName: '',
     postCode: '',
     email: '',
     password: '',
     profileImage: '',
+    username: '',
   })
 
   console.log(hashning(formData.password))
@@ -25,31 +27,40 @@ export default function MyPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const apiData: User = {
+    const user: User = {
       userId: formData.userId,
       firstAndLastName: formData.firstAndLastName,
       postCode: formData.postCode,
       email: formData.email,
       password: formData.password,
+      //imgurl is not relevant at the moment
       profileImage: imgUrl,
+      username: formData.username,
     }
+    console.log('user', user)
 
-    const response = await fetch(`/api/registration`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(apiData),
-    })
+    try {
+      const response = await fetch('/api/user/newUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      })
 
-    const data = await response.json()
+      const data = await response.json()
+      console.log('data: ', data)
 
-    if (confirmYourPassword() && data === 'New User') {
-      window.location.href = '/login'
-    } else {
-      console.log(JSON.parse(JSON.stringify(data)))
-      alert('Det finns redan en användare med samma epost!')
-      return false
+      if (confirmYourPassword() && data === 'New User') {
+        // window.location.href = '/login'
+        alert('new user')
+      } else {
+        console.log(JSON.parse(JSON.stringify(data)))
+        alert(data)
+        return false
+      }
+    } catch (error) {
+      console.error('Error:', error)
     }
   }
 
@@ -129,6 +140,22 @@ export default function MyPage() {
               style={{ color: '#000000' }}
             />
           </label>
+
+          <label>
+            <legend className="mb-[-32px] mt-5 text-left ml-11">
+              Användarnamn
+            </legend>
+            <input
+              className="rounded py-4 px-2 mt-8 border w-[298px] outline-[#9EBB9D] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleInputChange}
+              style={{ color: '#000000' }}
+              required
+            />
+          </label>
+
           <label>
             <legend className="mb-[-32px] mt-5 text-left ml-11">
               Lösenord
