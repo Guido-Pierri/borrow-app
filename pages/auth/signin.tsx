@@ -57,8 +57,8 @@ const SignIn: NextPage<Props> = ({}) => {
       {error && <p>{error}</p>}
       <div>
         <button
-          className="border border-2 border-[#9EBB9D] rounded"
-          onClick={() => router.push('/api/auth/signin/google')}
+          className=" border-2 border-[#9EBB9D] rounded"
+          onClick={() => signIn('google')}
         >
           <div className="flex">
             <img src="/Google__G__Logo 1.svg" />
