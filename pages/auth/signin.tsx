@@ -31,7 +31,7 @@ const SignIn: NextPage<Props> = ({}) => {
   }
 
   return (
-    <div>
+    <>
       <h1>Login</h1>
       <form onSubmit={handleSignIn}>
         <div>
@@ -55,7 +55,18 @@ const SignIn: NextPage<Props> = ({}) => {
         <button type="submit">Sign In</button>
       </form>
       {error && <p>{error}</p>}
-    </div>
+      <div>
+        <button
+          className="border border-2 border-[#9EBB9D] rounded"
+          onClick={() => router.push('/api/auth/signin/google')}
+        >
+          <div className="flex">
+            <img src="/Google__G__Logo 1.svg" />
+            Sign in with Google
+          </div>
+        </button>
+      </div>
+    </>
   )
 }
 
