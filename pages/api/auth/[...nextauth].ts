@@ -4,16 +4,34 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import { connectToDatabase } from '@/utils/db'
 import { NextApiRequest, NextApiResponse } from 'next'
 import GoogleProvider from 'next-auth/providers/google'
+import FacebookProvider from 'next-auth/providers/facebook'
 interface UserAuthentication {
   id: string
   username: string
   password: string
 }
+const facebookClientId = process.env.FACEBOOK_CLIENT_ID
+const facebookClientSecret = process.env.FACEBOOK_CLIENT_SECRET
+if (!facebookClientId || !facebookClientSecret) {
+  throw new Error('Facebook client ID or secret is missing.')
+}
+
+const googleClientId = process.env.GOOGLE_ID
+const googleClientSecret = process.env.GOOGLE_SECRET
+if (!googleClientId || !googleClientSecret) {
+  throw new Error('Google client ID or secret is missing.')
+}
+
 const options = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: googleClientId,
+      clientSecret: googleClientSecret,
+    }),
+    FacebookProvider({
+      clientId: facebookClientId,
+      clientSecret: facebookClientSecret,
+      // redirectUri: 'https://localhost:3000/api/auth/callback/facebook',
     }),
     CredentialsProvider({
       name: 'Credentials',

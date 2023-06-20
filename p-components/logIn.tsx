@@ -138,6 +138,18 @@ export default function Login() {
               <p> Fortsätt med Google </p>
             </div>
           </button>
+          <button
+            className="rounded py-2 px-6 border mt-8 w-[265px] outline-[#9EBB9D] border-[#9EBB9D] placeholder-[#000000] bg-[#fff]"
+            onClick={() => signIn('facebook', { callbackUrl: '/ads' })}
+          >
+            <div className="flex justify-between items-center">
+              <img src="/facebook logo 1.svg" />
+              <p> Fortsätt med Facebook </p>
+            </div>
+          </button>
+        </div>
+        <div className="mt-8">
+          <p>eller fortsätt med</p>
         </div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="username"></label>
