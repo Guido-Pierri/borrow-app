@@ -24,15 +24,15 @@ if (!googleClientId || !googleClientSecret) {
 
 const options = {
   providers: [
-    GoogleProvider({
-      clientId: googleClientId,
-      clientSecret: googleClientSecret,
-    }),
-    FacebookProvider({
-      clientId: facebookClientId,
-      clientSecret: facebookClientSecret,
-      // redirectUri: 'https://localhost:3000/api/auth/callback/facebook',
-    }),
+    // GoogleProvider({
+    //   clientId: googleClientId,
+    //   clientSecret: googleClientSecret,
+    // }),
+    // FacebookProvider({
+    //   clientId: facebookClientId,
+    //   clientSecret: facebookClientSecret,
+    //   // redirectUri: 'https://localhost:3000/api/auth/callback/facebook',
+    // }),
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
