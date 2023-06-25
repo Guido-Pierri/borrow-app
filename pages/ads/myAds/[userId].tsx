@@ -10,6 +10,7 @@ import ButtonCreateAd from '@/p-components/buttonCreateAd'
 import IconAdsEmpty from '@/p-components/iconAdsEmpty'
 import { useState } from 'react'
 import OverlayMyAdView from '@/p-components/overlayMyAdView'
+import { useSession } from 'next-auth/react'
 
 interface AdId {
   id: string
@@ -20,8 +21,9 @@ interface Props {
 }
 const Ads = ({ ads }: Props) => {
   const router = useRouter()
+  const { data: session } = useSession()
 
-  const { userId } = router.query
+  const userId = session?.user?.id
   console.log(userId)
 
   const [showAdOverlay, setShowAdOverlay] = useState(false)
@@ -45,7 +47,7 @@ const Ads = ({ ads }: Props) => {
     console.log('insede handleClick')
     console.log(`${userId}`)
 
-    const response = await fetch(`/api/user/${userId}`, {
+    const response = await fetch(`/api/user/${session}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +78,7 @@ const Ads = ({ ads }: Props) => {
         </label>
       </form>
 
-      <style jsx>{`
+      <style>{`
         input[type='text'] {
           background-repeat: no-repeat;
           background-size: 16px 16px;
@@ -162,7 +164,7 @@ const Ads = ({ ads }: Props) => {
         )}
       </section>
 
-      <style jsx>{`
+      <style>{`
         .link {
           cursor: pointer;
         }

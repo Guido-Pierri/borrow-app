@@ -1,10 +1,13 @@
 import { UserModel } from '@/schemas/userSchema'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { connectToDatabase } from '@/utils/db'
+// import { connectToDatabase } from '@/utils/db'
 import { NextApiRequest, NextApiResponse } from 'next'
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
+import { connectToDatabase } from '@/utils/db'
+import { Token } from 'typescript'
+import { JWT } from 'next-auth/jwt'
 interface UserAuthentication {
   id: string
   username: string
@@ -68,8 +71,36 @@ const options = {
     }),
   ],
   debug: false,
+  callbacks: {
+    async jwt(
+      { token, user }: any // : { //   token: { accessToken: string; tokenName: string; profileImage: string }
+    ) //   user: { username: string; id: string; profileImage: string }
+    // }
+    {
+      // Persist the OAuth access_token to the token right after signin
+      if (user) {
+        token.accessToken = user.id
+        token.tokenName = user.username
+        token.profileImage = user.profileImage
+      }
+      return token
+    },
+    async session(
+      { session, token, user }: any // : { //   session: { user: { id: string; username: string; profileImage: string } }
+    ) //   token: { accessToken: string; tokenName: string; profileImage: string }
+    //   user: { username: string; id: string }
+    // }
+    {
+      // Send properties to the client, like an access_token from a provider.
+      session.user.id = token.accessToken
+      session.user.username = token.tokenName
+      session.user.profileImage = token.profileImage
+      return session
+    },
+  },
+
   pages: {
-    // signIn: '/auth/signin',
+    signIn: '/auth/signin',
     signOut: '/auth/signout',
     error: '/auth/error', // Error code passed in query string as ?error=
     verifyRequest: '/auth/verify-request', // (used for check email message)
