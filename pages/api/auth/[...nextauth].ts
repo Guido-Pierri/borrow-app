@@ -6,6 +6,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
 import { connectToDatabase } from '@/utils/db'
+import { Token } from 'typescript'
+import { JWT } from 'next-auth/jwt'
 interface UserAuthentication {
   id: string
   username: string
@@ -70,9 +72,9 @@ const options = {
   ],
   debug: false,
   callbacks: {
-    async jwt({ token, user }) // : {
-    //   token: { accessToken: string; tokenName: string; profileImage: string }
-    //   user: { username: string; id: string; profileImage: string }
+    async jwt(
+      { token, user }: any // : { //   token: { accessToken: string; tokenName: string; profileImage: string }
+    ) //   user: { username: string; id: string; profileImage: string }
     // }
     {
       // Persist the OAuth access_token to the token right after signin
@@ -83,9 +85,9 @@ const options = {
       }
       return token
     },
-    async session({ session, token, user }) // : {
-    //   session: { user: { id: string; username: string; profileImage: string } }
-    //   token: { accessToken: string; tokenName: string; profileImage: string }
+    async session(
+      { session, token, user }: any // : { //   session: { user: { id: string; username: string; profileImage: string } }
+    ) //   token: { accessToken: string; tokenName: string; profileImage: string }
     //   user: { username: string; id: string }
     // }
     {
