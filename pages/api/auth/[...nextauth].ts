@@ -70,13 +70,11 @@ const options = {
   ],
   debug: false,
   callbacks: {
-    async jwt({
-      token,
-      user,
-    }: {
-      token: { accessToken: string; tokenName: string; profileImage: string }
-      user: { username: string; id: string; profileImage: string }
-    }) {
+    async jwt({ token, user }) // : {
+    //   token: { accessToken: string; tokenName: string; profileImage: string }
+    //   user: { username: string; id: string; profileImage: string }
+    // }
+    {
       // Persist the OAuth access_token to the token right after signin
       if (user) {
         token.accessToken = user.id
@@ -85,15 +83,12 @@ const options = {
       }
       return token
     },
-    async session({
-      session,
-      token,
-      user,
-    }: {
-      session: { user: { id: string; username: string; profileImage: string } }
-      token: { accessToken: string; tokenName: string; profileImage: string }
-      user: { username: string; id: string }
-    }) {
+    async session({ session, token, user }) // : {
+    //   session: { user: { id: string; username: string; profileImage: string } }
+    //   token: { accessToken: string; tokenName: string; profileImage: string }
+    //   user: { username: string; id: string }
+    // }
+    {
       // Send properties to the client, like an access_token from a provider.
       session.user.id = token.accessToken
       session.user.username = token.tokenName
