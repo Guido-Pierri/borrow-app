@@ -58,7 +58,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
       return alert('ladda upp en bild!')
     }
 
-    const user = await fetch(`/api/user/${userId}`, {
+    const user = await fetch(`/api/user/findUser/${userId}`, {
       method: 'POST',
 
       headers: {
@@ -70,7 +70,7 @@ export default function CreateAd({ imageUrl, userId }: any) {
 
     const userData = await user.json()
     console.log(userData)
-    const profileImage = userData.result.profileImage
+    const profileImage = userData.profileImage
 
     console.log('profileImage:', profileImage)
 

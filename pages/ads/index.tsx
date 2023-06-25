@@ -22,8 +22,7 @@ interface Props {
 }
 const Ads = ({ ads }: Props) => {
   const { data: session } = useSession()
-  const router = useRouter()
-  const { userId } = router.query as UserId
+  const userId = session?.user?.id as UserId
   const {
     firstAndLastName,
     isLoggedIn,
@@ -34,10 +33,10 @@ const Ads = ({ ads }: Props) => {
   } = useContext(MyContext)
   const [showAdOverlay, setShowAdOverlay] = useState(false)
   const [selectedAd, setSelectedAd] = useState<Ad | null>(null)
-  console.log('selectedAd:', selectedAd)
-  console.log('username from context:', firstAndLastName)
-  console.log('_id from context', _id)
-  console.log('isLoggedIn from context', isLoggedIn)
+  // console.log('selectedAd:', selectedAd)
+  // console.log('username from context:', firstAndLastName)
+  // console.log('_id from context', _id)
+  // console.log('isLoggedIn from context', isLoggedIn)
 
   const handleAdViewElementClick = (ad: Ad) => {
     setSelectedAd(ad)
@@ -65,12 +64,12 @@ const Ads = ({ ads }: Props) => {
     )
 
     .filter((ad) => !selectedCategory || ad.category === selectedCategory)
-  console.log('selectedCategory:', selectedCategory)
+  // console.log('selectedCategory:', selectedCategory)
 
   const handleClick = async (id: string) => {
-    console.log('inside handleClick')
+    // console.log('inside handleClick')
 
-    console.log(`${userId}`)
+    // console.log(`${userId}`)
     window.location.href = `/ads/myAds/${id}`
     const response = await fetch(`/api/user/${userId}`, {
       method: 'POST',
@@ -82,15 +81,15 @@ const Ads = ({ ads }: Props) => {
 
     const dataResponse = await response.json()
 
-    console.log('dataResponse', dataResponse)
+    // console.log('dataResponse', dataResponse)
     if (dataResponse) {
     }
   }
 
   const handleClickBoard = async (id: string) => {
-    console.log('inside handleClickBoard')
+    // console.log('inside handleClickBoard')
 
-    console.log(`${userId}`)
+    // console.log(`${userId}`)
     window.location.href = `/board/${id}`
     const response = await fetch(`/api/user/${userId}`, {
       method: 'POST',
@@ -102,12 +101,18 @@ const Ads = ({ ads }: Props) => {
 
     const dataResponse = await response.json()
 
-    console.log('dataResponse', dataResponse)
+    // console.log('dataResponse', dataResponse)
     if (dataResponse) {
     }
   }
 
-  console.log('filteredAds', filteredAds)
+  // console.log('filteredAds', filteredAds)
+  console.log('session:', session)
+  console.log('session?.user?.id:', session?.user?.id)
+  console.log(
+    'session?.user?.firstAndLastName',
+    session?.user?.firstAndLastName
+  )
   if (session) {
     return (
       <>
@@ -194,7 +199,7 @@ const Ads = ({ ads }: Props) => {
               />
             )}
           </section>
-          <style jsx>{`
+          <style>{`
             .link {
               cursor: pointer;
             }
@@ -229,7 +234,7 @@ export async function getServerSideProps() {
 
     const ads = await db.collection('ads').find({}).sort({ _id: -1 }).toArray()
 
-    console.log(ads)
+    // console.log(ads)
 
     return {
       props: { ads: JSON.parse(JSON.stringify(ads)) },
