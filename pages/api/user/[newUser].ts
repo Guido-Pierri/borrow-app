@@ -1,6 +1,7 @@
 import { UserModel } from '@/schemas/userSchema'
 import { User } from '@/types/user'
 import { connectToDatabase } from '@/utils/db'
+import { hash } from 'bcryptjs'
 import { Document, ObjectId, Types } from 'mongoose'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { parse } from 'path'
@@ -19,7 +20,7 @@ export default async function handler(
   if (req.method === 'POST') {
     try {
       const user: User = newUser as User
-
+      newUser.password = await hash(newUser.password, 12)
       if (
         Object.entries(user).some(([key, value]) => key !== '_id' && !value)
       ) {

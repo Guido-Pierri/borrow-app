@@ -33,7 +33,7 @@ export default function MyPage() {
       firstAndLastName: formData.firstAndLastName,
       postCode: formData.postCode,
       email: formData.email,
-      password: await hash(formData.password, 12),
+      password: formData.password,
       //imgurl is not relevant at the moment
       profileImage: imgUrl,
       username: formData.username,
