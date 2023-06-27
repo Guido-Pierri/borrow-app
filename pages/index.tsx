@@ -9,7 +9,7 @@ interface Props {}
 const Index: NextPage<Props> = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
-      window.location.href = '/login'
+      window.location.href = '/auth/signin'
     }, 2300)
 
     return () => clearTimeout(timeout)
