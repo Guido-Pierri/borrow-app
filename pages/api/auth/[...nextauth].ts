@@ -6,8 +6,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
 import { connectToDatabase } from '@/utils/db'
-import { Token } from 'typescript'
-import { JWT } from 'next-auth/jwt'
+import { compare } from 'bcrypt'
+
 interface UserAuthentication {
   id: string
   username: string
@@ -56,8 +56,22 @@ export const options = {
         // Check if the user exists in the database
         const existingUser = await UserModel.findOne({
           username: credentials?.username,
-          password: credentials?.password,
+          // password: credentials?.password,
         })
+        if (existingUser && credentials?.password) {
+          const checkPassword = await compare(
+            credentials?.password,
+            existingUser.password
+          )
+
+          //Incorrect password - send response
+          if (!checkPassword) {
+            console.log('Password doesnt match')
+          }
+        }
+        //Else send success response
+
+        console.log('existingUser', existingUser)
 
         if (!existingUser) {
           console.log('NO USER')
@@ -70,12 +84,13 @@ export const options = {
       },
     }),
   ],
+
   debug: false,
+
   callbacks: {
     async jwt(
-      { token, user }: any // : { //   token: { accessToken: string; tokenName: string; profileImage: string } //   user: { username: string; id: string; profileImage: string }
-    ) // }
-    {
+      { token, user }: any // : { //   token: { accessToken: string; tokenName: string; profileImage: string } //   user: { username: string; id: string; profileImage: string } // }
+    ) {
       // Persist the OAuth access_token to the token right after signin
       if (user) {
         token.accessToken = user.id
@@ -85,10 +100,8 @@ export const options = {
       return token
     },
     async session(
-      { session, token, user }: any // : { //   session: { user: { id: string; username: string; profileImage: string } } //   token: { accessToken: string; tokenName: string; profileImage: string }
-    ) //   user: { username: string; id: string }
-    // }
-    {
+      { session, token, user }: any // : { //   session: { user: { id: string; username: string; profileImage: string } } //   token: { accessToken: string; tokenName: string; profileImage: string } //   user: { username: string; id: string } // }
+    ) {
       // Send properties to the client, like an access_token from a provider.
       session.user.id = token.accessToken
       session.user.username = token.tokenName
