@@ -3,7 +3,7 @@ import { Ad } from '@/types/ads'
 import Image from 'next/image'
 import Categories from '@/p-components/categories'
 import clientPromise from '@/lib/mongodb'
-import { useRouter } from 'next/router'
+import router, { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
 import SearchBar from '@/p-components/searchBar'
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
@@ -86,25 +86,11 @@ const Ads = ({ ads }: Props) => {
     }
   }
 
-  const handleClickBoard = async (id: string) => {
-    // console.log('inside handleClickBoard')
+  // const handleClickBoard = async (userId: string) => {
+  // console.log('inside handleClickBoard')
 
-    // console.log(`${userId}`)
-    window.location.href = `/board/${id}`
-    const response = await fetch(`/api/user/${userId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(`${userId}`),
-    })
-
-    const dataResponse = await response.json()
-
-    // console.log('dataResponse', dataResponse)
-    if (dataResponse) {
-    }
-  }
+  // console.log(`${userId}`)
+  // }
 
   // console.log('filteredAds', filteredAds)
   console.log('session:', session)
@@ -130,7 +116,7 @@ const Ads = ({ ads }: Props) => {
             </button>
             <button
               onClick={() => {
-                handleClick(`${userId}`)
+                router.push('ads/myAds/' + `${userId}`)
               }}
               className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1  text-black"
             >
@@ -139,7 +125,7 @@ const Ads = ({ ads }: Props) => {
             <button
               className="rounded-t-md -md mt-4 font-sans font-semibold   px-4 py-1  text-black"
               onClick={() => {
-                handleClickBoard(`${userId}`)
+                router.push('/board')
               }}
             >
               Tavlan

@@ -62,7 +62,7 @@ const Board = ({ boardAds }: Props) => {
         <section
           className="flex text-left mb-9 mt-6 items-center justify-start"
           onClick={() => {
-            router.push(`/board/${userId}`)
+            router.push(`/board`)
           }}
         >
           <button className="ml-[5.5%]  pr-[2%] mr-[2%]  border-r-[1px] border-black">
