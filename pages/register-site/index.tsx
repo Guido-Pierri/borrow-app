@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Link from 'next/link'
 import hashning from '@/lib/functions/hashning'
 import UploadImageAddProfileImage from '@/p-components/uploadImageAddProfileImage'
+import { hash } from 'bcryptjs'
 
 export default function MyPage() {
   const [imgUrl, setImgUrl] = useState('')
@@ -32,7 +33,7 @@ export default function MyPage() {
       firstAndLastName: formData.firstAndLastName,
       postCode: formData.postCode,
       email: formData.email,
-      password: formData.password,
+      password: await hash(formData.password, 12),
       //imgurl is not relevant at the moment
       profileImage: imgUrl,
       username: formData.username,
