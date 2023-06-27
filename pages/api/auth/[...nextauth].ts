@@ -25,7 +25,7 @@ if (!googleClientId || !googleClientSecret) {
   throw new Error('Google client ID or secret is missing.')
 }
 
-const options = {
+export const options = {
   providers: [
     // GoogleProvider({
     //   clientId: googleClientId,
@@ -73,9 +73,8 @@ const options = {
   debug: false,
   callbacks: {
     async jwt(
-      { token, user }: any // : { //   token: { accessToken: string; tokenName: string; profileImage: string }
-    ) //   user: { username: string; id: string; profileImage: string }
-    // }
+      { token, user }: any // : { //   token: { accessToken: string; tokenName: string; profileImage: string } //   user: { username: string; id: string; profileImage: string }
+    ) // }
     {
       // Persist the OAuth access_token to the token right after signin
       if (user) {
@@ -86,9 +85,8 @@ const options = {
       return token
     },
     async session(
-      { session, token, user }: any // : { //   session: { user: { id: string; username: string; profileImage: string } }
-    ) //   token: { accessToken: string; tokenName: string; profileImage: string }
-    //   user: { username: string; id: string }
+      { session, token, user }: any // : { //   session: { user: { id: string; username: string; profileImage: string } } //   token: { accessToken: string; tokenName: string; profileImage: string }
+    ) //   user: { username: string; id: string }
     // }
     {
       // Send properties to the client, like an access_token from a provider.
