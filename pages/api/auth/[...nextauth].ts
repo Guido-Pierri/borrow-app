@@ -175,11 +175,11 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         clientId: googleClientId,
         clientSecret: googleClientSecret,
       }),
-      FacebookProvider({
-        clientId: facebookClientId,
-        clientSecret: facebookClientSecret,
-        // redirectUri: 'https://localhost:3000/api/auth/callback/facebook',
-      }),
+      // FacebookProvider({
+      //   clientId: facebookClientId,
+      //   clientSecret: facebookClientSecret,
+      //   // redirectUri: 'https://localhost:3000/api/auth/callback/facebook',
+      // }),
     ],
 
     debug: false,
