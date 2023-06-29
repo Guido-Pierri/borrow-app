@@ -38,6 +38,8 @@ export default function Login() {
     }
 
     if (result.error) {
+      console.log(result)
+
       setError(result.error)
     } else {
       router.push(`/ads`)
