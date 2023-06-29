@@ -180,7 +180,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
       }),
     ],
 
-    debug: false,
+    debug: true,
 
     callbacks: {
       async jwt(
