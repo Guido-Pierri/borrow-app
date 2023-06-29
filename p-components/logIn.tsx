@@ -19,7 +19,7 @@ export default function Login() {
     password: '',
   })
 
-  console.log(formData)
+  // console.log(formData)
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -36,7 +36,7 @@ export default function Login() {
     if (result === undefined) {
       return
     }
-    console.log(result)
+    console.log('result:', result)
 
     if (result.error) {
       setError('Wrong credentials')
@@ -102,22 +102,22 @@ export default function Login() {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
-    console.log(event.target.value)
+    // console.log(event.target.value)
   }
 
   // useEffect(() => {
-  console.log('Updated state variables:')
-  console.log('username:', firstAndLastName)
-  console.log('isLoggedIn:', isLoggedIn)
-  console.log('_id:', _id)
+  // console.log('Updated state variables:')
+  // console.log('username:', firstAndLastName)
+  // console.log('isLoggedIn:', isLoggedIn)
+  // console.log('_id:', _id)
   // }, [username, isLoggedIn, _id])
 
   useEffect(() => {
-    console.log('Updated _id:', _id)
+    // console.log('Updated _id:', _id)
   }, [_id])
 
   useEffect(() => {
-    console.log('Updated username:', firstAndLastName)
+    // console.log('Updated username:', firstAndLastName)
   }, [firstAndLastName])
 
   return (
