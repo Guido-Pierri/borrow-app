@@ -30,7 +30,7 @@ export default function Login() {
     const result = await signIn('credentials', {
       username,
       password,
-      callbackUrl: '/ads/',
+      callbackUrl: '/ads',
       redirect: false, // Prevents automatic redirection on success
     })
     if (result === undefined) {
@@ -38,7 +38,7 @@ export default function Login() {
     }
 
     if (result.error) {
-      setError('Wrong credentials')
+      setError(result.error)
     } else {
       router.push(`/ads`)
     }
