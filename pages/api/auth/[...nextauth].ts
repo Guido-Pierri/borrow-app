@@ -165,6 +165,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             //Incorrect password - send response
             if (!checkPassword) {
               console.log('Password doesnt match')
+              return null
             }
           }
           //Else send success response
