@@ -36,11 +36,10 @@ export default function Login() {
     if (result === undefined) {
       return
     }
+    console.log(result)
 
     if (result.error) {
-      console.log(result)
-
-      setError(result.error)
+      setError('Wrong credentials')
     } else {
       router.push(`/ads`)
     }
