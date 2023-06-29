@@ -206,7 +206,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         return session
       },
     },
-    session: { strategy: 'jwt' },
+    // session: { strategy: 'jwt' },
     pages: {
       signIn: '/auth/signin',
       signOut: '/auth/signout',
