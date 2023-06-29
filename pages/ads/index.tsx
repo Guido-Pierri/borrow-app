@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Categories from '@/p-components/categories'
 import clientPromise from '@/lib/mongodb'
 import router, { useRouter } from 'next/router'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import SearchBar from '@/p-components/searchBar'
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
 import { UserId } from '@/types/userId'
@@ -22,17 +22,31 @@ interface Props {
   ads: Ad[]
 }
 const Ads = ({ ads }: Props) => {
+  const [userId, setUserId] = useState('')
   const { data: session } = useSession()
-
   async function getUserId() {
     const userEmail = session?.user?.email
 
     const existingUser = await UserModel.findOne({
       email: userEmail,
     })
-    return existingUser._id
+    return existingUser
   }
-  const userId = getUserId()
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const existingUser = await getUserId()
+        if (existingUser) {
+          setUserId(existingUser._id) // Assuming the userId is stored in the '_id' field
+        }
+      } catch (error) {
+        console.error('Error fetching user:', error)
+      }
+    }
+
+    fetchUser()
+  }, []) // Empty dependency array to run the effect only once
+
   const {
     firstAndLastName,
     isLoggedIn,
