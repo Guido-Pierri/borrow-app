@@ -63,7 +63,7 @@ const Ads = ({ ads }: Props) => {
   //search through ads using the query in SearchBar
   const [query, setQuery] = useState('')
   const filteredAds = ads
-    .filter(async (ad) => ad.publisher !== (await userId))
+    // .filter((ad) => ad.publisher !== userId)
     .filter((ad) =>
       ad.title.includes(
         query
