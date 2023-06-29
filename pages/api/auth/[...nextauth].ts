@@ -13,29 +13,22 @@ import { compare } from 'bcrypt'
 //   username: string
 //   password: string
 // }
-// const facebookClientId = process.env.FACEBOOK_CLIENT_ID
-// const facebookClientSecret = process.env.FACEBOOK_CLIENT_SECRET
-// if (!facebookClientId || !facebookClientSecret) {
-//   throw new Error('Facebook client ID or secret is missing.')
-// }
 
-// const googleClientId = process.env.GOOGLE_ID
-// const googleClientSecret = process.env.GOOGLE_SECRET
-// if (!googleClientId || !googleClientSecret) {
-//   throw new Error('Google client ID or secret is missing.')
-// }
+const facebookClientId = process.env.FACEBOOK_CLIENT_ID || 'id'
+const facebookClientSecret = process.env.FACEBOOK_CLIENT_SECRET || 'secret'
+if (!facebookClientId || !facebookClientSecret) {
+  throw new Error('Facebook client ID or secret is missing.')
+}
+
+const googleClientId = process.env.GOOGLE_ID || 'id'
+const googleClientSecret = process.env.GOOGLE_SECRET || 'secret'
+if (!googleClientId || !googleClientSecret) {
+  throw new Error('Google client ID or secret is missing.')
+}
 
 // export const options = {
 //   providers: [
-//     // GoogleProvider({
-//     //   clientId: googleClientId,
-//     //   clientSecret: googleClientSecret,
-//     // }),
-//     // FacebookProvider({
-//     //   clientId: facebookClientId,
-//     //   clientSecret: facebookClientSecret,
-//     //   // redirectUri: 'https://localhost:3000/api/auth/callback/facebook',
-//     // }),
+
 //     CredentialsProvider({
 //       name: 'Credentials',
 //       credentials: {
@@ -177,6 +170,15 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
           // If all checks pass, return the authenticated user object
           return existingUser
         },
+      }),
+      GoogleProvider({
+        clientId: googleClientId,
+        clientSecret: googleClientSecret,
+      }),
+      FacebookProvider({
+        clientId: facebookClientId,
+        clientSecret: facebookClientSecret,
+        // redirectUri: 'https://localhost:3000/api/auth/callback/facebook',
       }),
     ],
 
