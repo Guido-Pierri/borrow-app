@@ -49,6 +49,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         },
       }),
     ],
+    secret: process.env.NEXTAUTH_SECRET,
     pages: {
       signIn: '/auth/signin',
       signOut: '/auth/signout',
