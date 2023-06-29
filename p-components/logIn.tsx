@@ -31,7 +31,7 @@ export default function Login() {
       username,
       password,
       callbackUrl: '/ads',
-      redirect: false, // Prevents automatic redirection on success
+      redirect: true, // Prevents automatic redirection on success
     })
     if (result === undefined) {
       return
