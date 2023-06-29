@@ -190,7 +190,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
       ) {
         // Persist the OAuth access_token to the token right after signin
         if (user) {
-          token.accessToken = user.id
+          token.accessToken = user.name
           token.tokenName = user.username
           token.profileImage = user.profileImage
         }
