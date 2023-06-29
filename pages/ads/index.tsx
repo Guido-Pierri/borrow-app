@@ -12,6 +12,7 @@ import { ObjectId } from 'mongodb'
 import AdViewOverlay from '@/p-components/adViewOverlay'
 import { MyContext } from '@/contexts/my-context-provider'
 import { signIn, signOut, useSession } from 'next-auth/react'
+import { UserModel } from '@/schemas/userSchema'
 
 interface AdId {
   id: string
@@ -22,7 +23,16 @@ interface Props {
 }
 const Ads = ({ ads }: Props) => {
   const { data: session } = useSession()
-  const userId = session?.user?.id as UserId
+
+  async function getUserId() {
+    const userEmail = session?.user?.email
+
+    const existingUser = await UserModel.findOne({
+      email: userEmail,
+    })
+    return existingUser._id
+  }
+  const userId = getUserId()
   const {
     firstAndLastName,
     isLoggedIn,
@@ -53,7 +63,7 @@ const Ads = ({ ads }: Props) => {
   //search through ads using the query in SearchBar
   const [query, setQuery] = useState('')
   const filteredAds = ads
-    .filter((ad) => ad.publisher !== userId)
+    .filter(async (ad) => ad.publisher !== (await userId))
     .filter((ad) =>
       ad.title.includes(
         query
