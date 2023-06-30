@@ -8,11 +8,11 @@ import FacebookProvider from 'next-auth/providers/facebook'
 import { connectToDatabase } from '@/utils/db'
 import { compare } from 'bcryptjs'
 
-// interface UserAuthentication {
-//   id: string
-//   username: string
-//   password: string
-// }
+interface UserAuthentication {
+  id: string
+  username: string
+  password: string
+}
 
 const facebookClientId = process.env.FACEBOOK_CLIENT_ID || 'id'
 const facebookClientSecret = process.env.FACEBOOK_CLIENT_SECRET || 'secret'
@@ -146,16 +146,16 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
           // Add logic here to look up the user from the credentials supplied
           console.log('authorize function is running')
           // Check if the user exists in the database
-          const existingUser = await UserModel.findOne({
+          const user = await UserModel.findOne({
             username: credentials?.username,
             // password: credentials?.password,
           })
-          if (existingUser && credentials?.password) {
+          if (user && credentials?.password) {
             console.log(credentials?.password)
 
             const checkPassword = await compare(
               credentials?.password,
-              existingUser.password
+              user.password
             )
             //Incorrect password - send response
             if (!checkPassword) {
@@ -165,14 +165,14 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             console.log('checkPassword:', checkPassword)
           }
           //Else send success response
-          console.log('existingUser', existingUser)
+          console.log('user', user)
 
-          if (!existingUser) {
+          if (!user) {
             console.log('NO USER')
             return null
           }
           // If all checks pass, return the authenticated user object
-          return await existingUser
+          return user
         },
       }),
       GoogleProvider({
