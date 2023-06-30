@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
 import { connectToDatabase } from '@/utils/db'
-import { compare } from 'bcrypt'
+import { compare } from 'bcryptjs'
 
 // interface UserAuthentication {
 //   id: string
@@ -150,7 +150,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             username: credentials?.username,
             // password: credentials?.password,
           })
-          if (credentials?.password) {
+          if (existingUser && credentials?.password) {
             console.log(credentials?.password)
 
             const checkPassword = await compare(
