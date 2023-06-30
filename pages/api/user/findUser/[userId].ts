@@ -27,7 +27,7 @@ export default async function handler(
         console.log('NO USER')
       }
 
-      res.status(200).json(existingUser)
+      res.status(200).json(existingUser._id)
     } catch (error) {
       console.error(error)
       res.status(500).json({ error: 'Internal Server Error' })

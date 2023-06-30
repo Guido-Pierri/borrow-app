@@ -43,9 +43,9 @@ const Ads = ({ ads }: Props) => {
 
     // console.log('dataResponse', dataResponse)
     if (dataResponse) {
-      console.log('dataResponse:', dataResponse._id)
+      console.log('dataResponse:', dataResponse)
 
-      setrUserId(dataResponse._id)
+      setrUserId(dataResponse)
     }
   }
   console.log('getUser', getUser())
