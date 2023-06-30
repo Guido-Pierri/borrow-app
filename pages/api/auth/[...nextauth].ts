@@ -150,7 +150,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             username: credentials?.username,
             // password: credentials?.password,
           })
-          if (existingUser && credentials?.password) {
+          if (credentials?.password) {
             const checkPassword = await compare(
               credentials?.password,
               existingUser.password
@@ -193,6 +193,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
           token.accessToken = user.id
           token.tokenName = user.username
           token.profileImage = user.profileImage
+          token.email = user.email
         }
         return token
       },
@@ -203,6 +204,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         session.user.id = token.accessToken
         session.user.username = token.tokenName
         session.user.profileImage = token.profileImage
+        session.user.email = token.email
         return session
       },
     },
