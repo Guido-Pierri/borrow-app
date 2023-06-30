@@ -125,8 +125,6 @@ interface UserAuthentication {
 }
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
-  await connectToDatabase()
-
   return NextAuth(req, res, {
     providers: [
       CredentialsProvider({
@@ -143,6 +141,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
           },
         },
         async authorize(credentials): Promise<UserAuthentication | null> {
+          await connectToDatabase()
           // Add logic here to look up the user from the credentials supplied
           console.log('authorize function is running')
           // Check if the user exists in the database
