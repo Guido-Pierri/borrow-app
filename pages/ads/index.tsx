@@ -11,8 +11,9 @@ import { UserId } from '@/types/userId'
 import { ObjectId } from 'mongodb'
 import AdViewOverlay from '@/p-components/adViewOverlay'
 import { MyContext } from '@/contexts/my-context-provider'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { getSession, signIn, signOut, useSession } from 'next-auth/react'
 import { UserModel } from '@/schemas/userSchema'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 interface AdId {
   id: string
@@ -20,32 +21,33 @@ interface AdId {
 
 interface Props {
   ads: Ad[]
+  userId: UserId
 }
-const Ads = ({ ads }: Props) => {
-  const [userId, setUserId] = useState('')
+const Ads = ({ ads, userId }: Props) => {
+  // const [userId, setUserId] = useState('')
   const { data: session } = useSession()
-  async function getUserId() {
-    const userEmail = session?.user?.email
+  // async function getUserId() {
+  //   const userEmail = session?.user?.email
 
-    const existingUser = await UserModel.findOne({
-      email: userEmail,
-    })
-    return existingUser
-  }
-  useEffect(() => {
-    async function fetchUser() {
-      try {
-        const existingUser = await getUserId()
-        if (existingUser) {
-          setUserId(existingUser._id) // Assuming the userId is stored in the '_id' field
-        }
-      } catch (error) {
-        console.error('Error fetching user:', error)
-      }
-    }
+  //   const existingUser = await UserModel.findOne({
+  //     email: userEmail,
+  //   })
+  //   return existingUser
+  // }
+  // useEffect(() => {
+  //   async function fetchUser() {
+  //     try {
+  //       const existingUser = await getUserId()
+  //       if (existingUser) {
+  //         setUserId(existingUser._id) // Assuming the userId is stored in the '_id' field
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching user:', error)
+  //     }
+  //   }
 
-    fetchUser()
-  }, []) // Empty dependency array to run the effect only once
+  //   fetchUser()
+  // }) // Empty dependency array to run the effect only once
 
   const {
     firstAndLastName,
@@ -227,9 +229,12 @@ const Ads = ({ ads }: Props) => {
     </>
   )
 }
-export async function getServerSideProps() {
+export async function getServerSideProps(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   try {
-    // const { userId } = context.query
+    const userId = getSession(req.query)
 
     // if (!userId || !ObjectId.isValid(userId)) {
     //   return {
@@ -248,6 +253,7 @@ export async function getServerSideProps() {
 
     return {
       props: { ads: JSON.parse(JSON.stringify(ads)) },
+      userId: userId,
     }
   } catch (e) {
     console.error(e)
