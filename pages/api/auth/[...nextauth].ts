@@ -113,16 +113,17 @@ if (!googleClientId || !googleClientSecret) {
 //   return NextAuth(req, res, options)
 // }
 
-interface UserAuthentication {
-  _id?: Types.ObjectId | string
-  userId: string
-  firstAndLastName: string
-  postCode: string
-  email: string
-  profileImage?: string
-  username: string
-  password: string
-}
+type User = typeof UserModel['prototype']
+// {
+//   _id?: Types.ObjectId | string
+//   userId: string
+//   firstAndLastName: string
+//   postCode: string
+//   email: string
+//   profileImage?: string
+//   username: string
+//   password: string
+// }
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
   return NextAuth(req, res, {
@@ -140,7 +141,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             type: 'password',
           },
         },
-        async authorize(credentials): Promise<UserAuthentication | null> {
+        async authorize(credentials): Promise<User | null> {
           await connectToDatabase()
           // Add logic here to look up the user from the credentials supplied
           console.log('authorize function is running')
