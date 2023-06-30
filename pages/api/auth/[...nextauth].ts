@@ -7,6 +7,7 @@ import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
 import { connectToDatabase } from '@/utils/db'
 import { compare } from 'bcryptjs'
+import { Types } from 'mongoose'
 
 interface UserAuthentication {
   id: string
@@ -119,7 +120,12 @@ if (!googleClientId || !googleClientSecret) {
 // }
 
 interface UserAuthentication {
-  id: string
+  _id?: Types.ObjectId | string
+  userId: string
+  firstAndLastName: string
+  postCode: string
+  email: string
+  profileImage?: string
   username: string
   password: string
 }
@@ -140,7 +146,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             type: 'password',
           },
         },
-        async authorize(credentials): Promise<any | null> {
+        async authorize(credentials): Promise<UserAuthentication | null> {
           await connectToDatabase()
           // Add logic here to look up the user from the credentials supplied
           console.log('authorize function is running')
