@@ -9,12 +9,6 @@ import { connectToDatabase } from '@/utils/db'
 import { compare } from 'bcryptjs'
 import { Types } from 'mongoose'
 
-interface UserAuthentication {
-  id: string
-  username: string
-  password: string
-}
-
 const facebookClientId = process.env.FACEBOOK_CLIENT_ID || 'id'
 const facebookClientSecret = process.env.FACEBOOK_CLIENT_SECRET || 'secret'
 if (!facebookClientId || !facebookClientSecret) {
