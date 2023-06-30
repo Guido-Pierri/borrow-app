@@ -21,11 +21,11 @@ interface AdId {
 
 interface Props {
   ads: Ad[]
-  userId: UserId
+  // userId: UserId
 }
-const Ads = ({ ads, userId }: Props) => {
-  // const [userId, setUserId] = useState('')
+const Ads = ({ ads }: Props) => {
   const { data: session } = useSession()
+  const userId = session?.user?.id as UserId
   // async function getUserId() {
   //   const userEmail = session?.user?.email
 
@@ -79,7 +79,7 @@ const Ads = ({ ads, userId }: Props) => {
   //search through ads using the query in SearchBar
   const [query, setQuery] = useState('')
   const filteredAds = ads
-    // .filter((ad) => ad.publisher !== userId)
+    .filter((ad) => ad.publisher !== userId)
     .filter((ad) =>
       ad.title.includes(
         query
