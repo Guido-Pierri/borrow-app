@@ -87,6 +87,7 @@ const Ads = ({ ads }: Props) => {
       return dataResponse
     }
   }
+  console.log(getUser)
 
   // const handleClickBoard = async (userId: string) => {
   // console.log('inside handleClickBoard')
