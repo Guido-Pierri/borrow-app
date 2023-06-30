@@ -12,6 +12,7 @@ import { ObjectId } from 'mongodb'
 import AdViewOverlay from '@/p-components/adViewOverlay'
 import { MyContext } from '@/contexts/my-context-provider'
 import { signIn, signOut, useSession } from 'next-auth/react'
+import { setuid } from 'process'
 
 interface AdId {
   id: string
@@ -22,7 +23,32 @@ interface Props {
 }
 const Ads = ({ ads }: Props) => {
   const { data: session } = useSession()
-  const userId = session?.user?.id as UserId
+  const [userId, setrUserId] = useState('')
+
+  const getUser = async () => {
+    // console.log('inside handleClick')
+    const email = session?.user?.email
+    // console.log(`${userId}`)
+    // window.location.href = `/ads/myAds/${email}`
+
+    const response = await fetch(`/api/user/findUser/${email}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(`${email}`),
+    })
+
+    const dataResponse = await response.json()
+
+    // console.log('dataResponse', dataResponse)
+    if (dataResponse) {
+      console.log('dataResponse:', dataResponse._id)
+
+      setrUserId(dataResponse._id)
+    }
+  }
+  console.log('getUser', getUser())
   const {
     firstAndLastName,
     isLoggedIn,
@@ -66,29 +92,6 @@ const Ads = ({ ads }: Props) => {
     .filter((ad) => !selectedCategory || ad.category === selectedCategory)
   // console.log('selectedCategory:', selectedCategory)
 
-  const getUser = async () => {
-    // console.log('inside handleClick')
-    const email = session?.user?.email
-    // console.log(`${userId}`)
-    // window.location.href = `/ads/myAds/${email}`
-
-    const response = await fetch(`/api/user/findUser/${email}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(`${email}`),
-    })
-
-    const dataResponse = await response.json()
-
-    // console.log('dataResponse', dataResponse)
-    if (dataResponse) {
-      return dataResponse
-    }
-  }
-  console.log('getUser', getUser())
-
   // const handleClickBoard = async (userId: string) => {
   // console.log('inside handleClickBoard')
 
@@ -119,7 +122,7 @@ const Ads = ({ ads }: Props) => {
             </button>
             <button
               onClick={() => {
-                router.push('ads/myAds/' + getUser())
+                router.push('ads/myAds/' + userId)
               }}
               className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1  text-black"
             >
