@@ -9,7 +9,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<User | object | string>
 ) {
-  const _id = req.body
+  const email = req.body
 
   //   if (!newUser) {
   //     res.status(400).json({ 'message:': 'New user is not defined' })
@@ -20,7 +20,7 @@ export default async function handler(
     try {
       await connectToDatabase()
       const existingUser = await UserModel.findOne({
-        _id: _id,
+        email: email,
       })
 
       if (!existingUser) {

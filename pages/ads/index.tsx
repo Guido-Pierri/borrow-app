@@ -66,23 +66,25 @@ const Ads = ({ ads }: Props) => {
     .filter((ad) => !selectedCategory || ad.category === selectedCategory)
   // console.log('selectedCategory:', selectedCategory)
 
-  const handleClick = async (id: string) => {
+  const getUser = async () => {
     // console.log('inside handleClick')
-
+    const email = session?.user?.email
     // console.log(`${userId}`)
-    window.location.href = `/ads/myAds/${id}`
-    const response = await fetch(`/api/user/${userId}`, {
+    // window.location.href = `/ads/myAds/${email}`
+
+    const response = await fetch(`/api/user/findUser/${email}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(`${userId}`),
+      body: JSON.stringify(`${email}`),
     })
 
     const dataResponse = await response.json()
 
     // console.log('dataResponse', dataResponse)
     if (dataResponse) {
+      return dataResponse
     }
   }
 
