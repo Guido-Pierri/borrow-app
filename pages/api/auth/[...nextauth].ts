@@ -151,6 +151,8 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             // password: credentials?.password,
           })
           if (credentials?.password) {
+            console.log(credentials?.password)
+
             const checkPassword = await compare(
               credentials?.password,
               existingUser.password
@@ -160,15 +162,17 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
               console.log('Password doesnt match')
               return null
             }
+            console.log('checkPassword:', checkPassword)
           }
           //Else send success response
           console.log('existingUser', existingUser)
+
           if (!existingUser) {
             console.log('NO USER')
             return null
           }
           // If all checks pass, return the authenticated user object
-          return existingUser
+          return await existingUser
         },
       }),
       GoogleProvider({
