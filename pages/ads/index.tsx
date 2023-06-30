@@ -49,14 +49,14 @@ const Ads = ({ ads, userId }: Props) => {
   //   fetchUser()
   // }) // Empty dependency array to run the effect only once
 
-  const {
-    firstAndLastName,
-    isLoggedIn,
-    _id,
-    setFirstAndLastName,
-    setIsLoggedIn,
-    set_id,
-  } = useContext(MyContext)
+  // const {
+  //   firstAndLastName,
+  //   isLoggedIn,
+  //   _id,
+  //   setFirstAndLastName,
+  //   setIsLoggedIn,
+  //   set_id,
+  // } = useContext(MyContext)
   const [showAdOverlay, setShowAdOverlay] = useState(false)
   const [selectedAd, setSelectedAd] = useState<Ad | null>(null)
   // console.log('selectedAd:', selectedAd)
