@@ -4,16 +4,14 @@ import Image from 'next/image'
 import Categories from '@/p-components/categories'
 import clientPromise from '@/lib/mongodb'
 import router, { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import SearchBar from '@/p-components/searchBar'
 import ButtonCreateAd from '@/p-components/buttonCreateAd'
 import { UserId } from '@/types/userId'
 import { ObjectId } from 'mongodb'
 import AdViewOverlay from '@/p-components/adViewOverlay'
 import { MyContext } from '@/contexts/my-context-provider'
-import { getSession, signIn, signOut, useSession } from 'next-auth/react'
-import { UserModel } from '@/schemas/userSchema'
-import { NextApiRequest, NextApiResponse } from 'next'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 interface AdId {
   id: string
@@ -21,42 +19,18 @@ interface AdId {
 
 interface Props {
   ads: Ad[]
-  // userId: UserId
 }
 const Ads = ({ ads }: Props) => {
   const { data: session } = useSession()
   const userId = session?.user?.id as UserId
-  // async function getUserId() {
-  //   const userEmail = session?.user?.email
-
-  //   const existingUser = await UserModel.findOne({
-  //     email: userEmail,
-  //   })
-  //   return existingUser
-  // }
-  // useEffect(() => {
-  //   async function fetchUser() {
-  //     try {
-  //       const existingUser = await getUserId()
-  //       if (existingUser) {
-  //         setUserId(existingUser._id) // Assuming the userId is stored in the '_id' field
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching user:', error)
-  //     }
-  //   }
-
-  //   fetchUser()
-  // }) // Empty dependency array to run the effect only once
-
-  // const {
-  //   firstAndLastName,
-  //   isLoggedIn,
-  //   _id,
-  //   setFirstAndLastName,
-  //   setIsLoggedIn,
-  //   set_id,
-  // } = useContext(MyContext)
+  const {
+    firstAndLastName,
+    isLoggedIn,
+    _id,
+    setFirstAndLastName,
+    setIsLoggedIn,
+    set_id,
+  } = useContext(MyContext)
   const [showAdOverlay, setShowAdOverlay] = useState(false)
   const [selectedAd, setSelectedAd] = useState<Ad | null>(null)
   // console.log('selectedAd:', selectedAd)
@@ -229,12 +203,9 @@ const Ads = ({ ads }: Props) => {
     </>
   )
 }
-export async function getServerSideProps(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function getServerSideProps() {
   try {
-    const userId = getSession(req.query)
+    // const { userId } = context.query
 
     // if (!userId || !ObjectId.isValid(userId)) {
     //   return {
@@ -253,7 +224,6 @@ export async function getServerSideProps(
 
     return {
       props: { ads: JSON.parse(JSON.stringify(ads)) },
-      userId: userId,
     }
   } catch (e) {
     console.error(e)
