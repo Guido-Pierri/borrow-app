@@ -118,7 +118,7 @@ const Ads = ({ ads }: Props) => {
             </button>
             <button
               onClick={() => {
-                router.push('ads/myAds/' + `${userId}`)
+                router.push('ads/myAds/' + getUser())
               }}
               className="rounded-t-md -md mt-4 font-sans font-semibold px-4 py-1  text-black"
             >
